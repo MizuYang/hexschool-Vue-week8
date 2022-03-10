@@ -1,24 +1,13 @@
-# vue_week8
+## 初期列點
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [x]  最終作業要註冊新的 path
+    - [x]  記得把 path 保管好
+- [x]  規劃前、後台路由結構
+    - [x]  確定前後台會有的頁面，繪圖
+- [x]  每個結構分頁命名，定義路由 path
+- [x]  確定版型
+    - [x]  專案主題色調
+- [x]  架 Vue cli 專案
+    - [x]  設定環境變數
+    - [x]  新增 **`vue.config.js`** 更改路徑
+    - [x]  測試上傳 github
