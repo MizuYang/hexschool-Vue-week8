@@ -1,0 +1,87 @@
+//* 標題
+.title {
+    line-height: 2rem;
+    text-align: center;
+}
+//*偽元素裝飾線條
+.decorate {
+    //* 文字上下置中效果
+    display: block;
+    //* 定位橫線(當橫線的父元素)
+    position: relative;
+}
+//* 調整位置
+.title .decorate:before {
+    left: 25%;
+}
+.title .decorate:after {
+    right: 25%;
+}
+.title .decorate:before,
+.title .decorate:after {
+    position: absolute; //*定位背景橫線位置
+    top: 50%;
+    content: ""; //* CSS偽類用法
+    width: 122px;
+    height: 1px;
+    align-items: center; //*罝中
+    background: #f1ebd8;
+}
+//* 偽類裝飾線條，響應式縮小寬度
+@media (max-width: 768px) {
+    .title .decorate:before,
+    .title .decorate:after {
+        width: 80px;
+    }
+}
+@media (max-width: 576px) {
+    .title .decorate:before,
+    .title .decorate:after {
+        width: 50px;
+    }
+}
+
+.banner{
+    width: 70rem;
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    z-index: -1;
+    opacity: .5;
+    @media (max-width:1400px) {
+        &{
+            width: 50rem;
+            left: 20%;
+            top: 30%;
+        }
+    }
+    @media (max-width:1200px) {
+        &{
+            left: 15%;
+        }
+    }
+    @media (max-width:992px) {
+        &{
+            left: 10%;
+        }
+    }
+    @media (max-width:768px) {
+        &{
+            width: 65rem;
+            left: 0%;
+        }
+    }
+    @media (max-width:576px) {
+        &{
+            top: 45%;
+        }
+    }
+}
+//* hover 放大動畫效果
+.animation_hover:hover {
+    transform: scale(1.02);
+}
+//* active 放大
+.active_bigger:active {
+    transform: scale(1.05);
+}

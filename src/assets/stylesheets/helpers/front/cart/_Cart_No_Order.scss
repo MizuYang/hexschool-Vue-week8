@@ -1,0 +1,51 @@
+//* 購物車為空的 banner
+.banner{
+    background-image: url(https://media.istockphoto.com/photos/close-up-of-freshly-baked-cakes-and-cupcakes-in-a-row-at-food-market-picture-id916575452?k=20&m=916575452&s=612x612&w=0&h=lppIOM0KDpkBCqt2OEmFqoTUy-qXsj4osD8DrW5RPzc=);
+    position: absolute;
+    top: 25%;
+    left: 38.5%;
+    background-repeat: no-repeat;
+    background-size: conter;
+    height: 30rem;
+    width: 40rem;
+    opacity: .6;
+    z-index: -1;
+}
+@media (max-width:1400px) {
+    .banner{
+        left: 28%;
+        top: 30%;
+    }
+}
+@media (max-width:1200px) {
+    .banner{
+        left: 25%;
+    }
+}
+@media (max-width:992px) {
+    .banner{
+        left: 19%;
+    }
+}
+@media (max-width:768px) {
+    .banner{
+        width: 40rem;
+        left: 10%;
+    }
+}
+@media (max-width:576px) {
+    .banner{
+        height: 25rem;
+        width: 30rem;
+        left: 10%;
+        top: 35%;
+    }
+}
+//* hover 放大動畫效果
+.animation_hover:hover {
+    transform: scale(1.02);
+}
+//* active 放大
+.active_bigger:active{
+    transform: scale(1.05);
+}

@@ -1,0 +1,131 @@
+//* 標題
+.title {
+    line-height: 2rem;
+    text-align: center;
+}
+//*偽元素裝飾線條
+.decorate {
+    //* 文字上下置中效果
+    display: block;
+    //* 定位橫線(當橫線的父元素)
+    position: relative;
+}
+//* 調整位置
+.title .decorate:before {
+    left: 25%;
+}
+.title .decorate:after {
+    right: 25%;
+}
+.title .decorate:before,
+.title .decorate:after {
+    position: absolute; //*定位背景橫線位置
+    top: 50%;
+    content: ""; //* CSS偽類用法
+    width: 122px;
+    height: 1px;
+    align-items: center; //*罝中
+    background: #f1ebd8;
+}
+//* 偽類裝飾線條，響應式縮小寬度
+@media (max-width: 768px) {
+    .title .decorate:before,
+    .title .decorate:after {
+        width: 80px;
+    }
+}
+@media (max-width: 576px) {
+    .title .decorate:before,
+    .title .decorate:after {
+        width: 50px;
+    }
+}
+
+//* 產品圖片
+.product_img {
+    height: 10rem;
+    width: 13rem;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+//* 產品 查看產品資訊
+.product_info {
+    height: 9rem;
+    width: 9rem;
+    object-fit: cover;
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    display: none;
+}
+//* 產品數量 加減按鈕
+.product_numBtn {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.3rem;
+}
+.product_numBtn:hover {
+    background: #000;
+    color: #f1ebd8;
+}
+//* 產品數量 數字欄位
+.product_numText {
+    text-align: center;
+    width: 4rem;
+}
+//*產品類別
+.tag{
+    color: #f1ebd8;
+    border-bottom-right-radius: 50%;
+    border: 0.1rem solid rgba(170, 1, 1, 0.678);
+    background: rgba(168, 90, 0, 0.562);
+}
+//* 滑鼠過去產品圖片，顯示 "查看更多"
+.img_hover:hover .product_info {
+    display: block;
+}
+//* hover 放大動畫效果
+.animation_hover:hover {
+    transform: scale(1.02);
+}
+//* active 放大
+.active_bigger:active {
+    transform: scale(1.05);
+}
+//* 刪除按鈕
+.btn-outline-danger {
+    color: #f1ebd8;
+    border: solid 1px red;
+}
+.btn-outline-danger:hover {
+    background: rgba(165, 33, 33, 0.829);
+    color: #f1ebd8;
+}
+//* 把 tfoot 的線 變主色
+.table > :not(caption) > * > * {
+    border-bottom-color: #f1ebd8;
+}
+//*表格響應式 隱藏圖片
+//* 尺寸1200以下 隱藏圖片和圖片的 th
+@media (max-width: 1200px) {
+    .rwd_hide_table_xl {
+        display: none;
+    }
+}
+@media (max-width: 992px) {
+    .rwd_hide_table_lg {
+        display: none;
+    }
+}
+//*結帳按鈕
+.send_order{
+    font-size: 2rem;
+    &:hover {
+        transform: scale(1.03)
+    }
+    &:active{
+        transform: scale(1.07)
+    }
+}

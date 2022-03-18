@@ -1,0 +1,86 @@
+//* 標題
+.title {
+    line-height: 2rem;
+    text-align: center;
+}
+//*偽元素裝飾線條
+.decorate {
+    //* 文字上下置中效果
+    display: block;
+    //* 定位橫線(當橫線的父元素)
+    position: relative;
+}
+//* 調整位置
+.title .decorate:before {
+    left: 25%;
+}
+.title .decorate:after {
+    right: 25%;
+}
+.title .decorate:before,
+.title .decorate:after {
+    position: absolute; //*定位背景橫線位置
+    top: 50%;
+    content: ""; //* CSS偽類用法
+    width: 122px;
+    height: 1px;
+    align-items: center; //*罝中
+    background: #f1ebd8;
+}
+//* 偽類裝飾線條，響應式縮小寬度
+@media (max-width: 768px) {
+    .title .decorate:before,
+    .title .decorate:after {
+        width: 80px;
+    }
+}
+@media (max-width: 576px) {
+    .title .decorate:before,
+    .title .decorate:after {
+        width: 50px;
+    }
+}
+
+.main {
+    height: 500px;
+    margin-bottom: auto;
+    & .accordion-button {
+        background: #000;
+        color: #f1ebd8;
+        padding: .5rem;
+    }
+    & .accordion-button:hover {
+        transform: scale(1.005);
+        background: #f1ebd8;
+        color: #000;
+    }
+    & .accordion-body {
+        background: #000;
+        font-size: 16px;
+    }
+    & .accordion-header {
+        border-bottom: 1px solid #f1ebd8;
+    }
+    & .accordion-item{
+        border-top: 1px solid #f1ebd8;
+        margin-bottom: .3rem;
+    }
+}
+//* 點擊時凸顯當前 QA
+.accordion-item .qa_active{
+    background: #f1ebd8;
+    color: #000;
+    transform: scale(1.009);
+}
+//* 處理 QA 響應式，增加間距 讓選單更好點擊
+@media (max-width:768px) {
+    .main{
+        height: 50rem;
+        & .accordion-item{
+            margin-bottom: 1.2rem;
+        }
+        & .accordion-item .accordion-button{
+            line-height: 1.6rem;
+        }
+    }
+}

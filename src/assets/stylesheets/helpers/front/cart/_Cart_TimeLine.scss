@@ -1,0 +1,77 @@
+//* 結帳流程軸
+.time_line li{
+    padding: 1rem;
+    border-radius: 20%;
+    border: solid 1px #f1ebd8;
+}
+//* 時間軸
+.time_title span, .time_subtitle span  {
+    display: block;     //*设置为块级元素会独占一行形成上下居中的效果*/
+
+    position: relative;   //*定位横线（当横线的父元素）*/
+}
+.time_title span:before, .time_title span:after,.time_subtitle span:before,.time_subtitle span:after{
+    content: '';                 //*CSS伪类用法*/
+    position: absolute;         //*定位背景横线的位置*/
+    top: 52%;
+    background: #f1ebd8;     //*宽和高做出来的背景横线*/
+    width: 14.7rem;
+    height: .1rem;
+}
+.time_title span:before{
+    left: 115%;        //*调整背景横线的左右距离*/
+}
+.time_title span:after {
+    right: 115%;
+}
+.time_subtitle span:after{
+    right: 111%;
+}
+.time_subtitle span:before{
+    left: 111%;        //*调整背景横线的左右距离*/
+}
+@media (max-width:1200px) {
+    .time_title span:before, .time_title span:after,.time_subtitle span:before,.time_subtitle span:after{
+        width: 11rem;
+    }
+}
+@media (max-width:992px) {
+    .time_title span:before, .time_title span:after,.time_subtitle span:before,.time_subtitle span:after{
+        width: 7.2rem;
+    }
+}
+@media (max-width:768px) {
+    .time_title span:before, .time_title span:after,.time_subtitle span:before,.time_subtitle span:after{
+        width: 2.2rem;
+    }
+}
+@media (max-width:576px) {
+    .time_line li{
+        text-align: center;
+        width: 7rem;
+        padding: .9rem;
+    }
+    .time_subtitle span:before,.time_subtitle span:after{
+        width: 1.4rem;
+    }
+    .time_title span:before, .time_title span:after{
+        width: 1.3rem;
+    }
+    .time_title span:before{
+        left: -42%;        //*调整背景横线的左右距离*/
+    }
+    .time_title span:after {
+        right: 120%;
+    }
+    .time_subtitle span:after{
+        right: 117%;
+    }
+    .time_subtitle span:before{
+        left: 117%;        //*调整背景横线的左右距离*/
+    }
+}
+//* 增加時間軸狀態
+.dynamic_timeline{
+    background: #f1ebd8;
+    color: #000;
+}

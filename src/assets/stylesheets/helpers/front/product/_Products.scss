@@ -1,0 +1,181 @@
+//* 標題
+.title {
+    line-height: 2rem;
+    text-align: center;
+}
+//*偽元素裝飾線條
+.decorate {
+    //* 文字上下置中效果
+    display: block;
+    //* 定位橫線(當橫線的父元素)
+    position: relative;
+}
+//* 調整位置
+.title .decorate:before {
+    left: 25%;
+}
+.title .decorate:after {
+    right: 25%;
+}
+.title .decorate:before,
+.title .decorate:after {
+    position: absolute; //*定位背景橫線位置
+    top: 50%;
+    content: ""; //* CSS偽類用法
+    width: 122px;
+    height: 1px;
+    align-items: center; //*罝中
+    background: #f1ebd8;
+}
+//* 偽類裝飾線條，響應式縮小寬度
+@media (max-width: 768px) {
+    .title .decorate:before,
+    .title .decorate:after {
+        width: 80px;
+    }
+}
+@media (max-width: 576px) {
+    .title .decorate:before,
+    .title .decorate:after {
+        width: 50px;
+    }
+}
+
+//* 產品圖片
+.product_img {
+  
+    height: 15rem;
+    width: 20rem;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+}
+//* 將描述過多的文字截斷
+.card-text {
+    height: 5.85rem;
+    overflow: hidden;
+}
+//* 加入購物車按鈕
+.addCart {
+    height: 3rem;
+}
+.addCart:hover {
+    background: #c43118ed;
+}
+//* 變大效果
+.animation_hover:hover {
+    transform: scale(1.02);
+    transition: 0.2s;
+}
+//* 按鈕 active 變大效果
+.btn.animation_active:active {
+    transform: scale(1.05);
+}
+//* 產品收藏按鈕
+.like_btn {
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    font-size: 2.5rem;
+    padding: 0.2rem;
+    color: #f1ebd8;
+    background: rgba(168, 90, 0, 0.562);
+    border: 0.1rem solid rgba(170, 1, 1, 0.678);
+    border-bottom-left-radius: 50%;
+    & :hover {
+        color: red;
+    }
+    & :active{
+        font-size: 2.75rem;
+    }
+}
+
+//*產品數字欄位
+.product_num {
+    text-align: center;
+    padding: 0.3rem;
+}
+//* 產品數量 加減按鈕
+.product_numBtn {
+    font-size: 2rem;
+    padding-top: 0;
+}
+
+//* 產品類別標籤
+.tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #f1ebd8;
+    border-bottom-right-radius: 50%;
+    border: 0.1rem solid rgba(170, 1, 1, 0.678);
+    background: rgba(168, 90, 0, 0.562);
+    &:hover {
+        font-size: 1.005rem;
+        color: #f0ecc8;
+    }
+    &:active{
+        font-size: 1.05rem;
+    }
+}
+//* 產品類別按鈕
+.btn-outline-primary:hover {
+    background: #000;
+    color: #f1ebd8;
+    transform: rotate(-3deg);
+    border-radius: 33%;
+}
+
+//* 產品 查看產品資訊
+.product_info {
+    height: 14rem;
+    width: 14rem;
+    position: absolute;
+    top: 5%;
+    left: 12%;
+    display: none;
+}
+//* 針對響應式調整 定位的座標
+@media (max-width: 1200px) {
+    .product_info {
+        left: 8%;
+    }
+}
+@media (max-width: 768px) {
+    .product_info {
+        left: 14%;
+    }
+}
+@media (max-width: 576px) {
+    .product_info {
+        left: 28%;
+    }
+}
+//* 滑鼠過去產品圖片，顯示 "查看更多"
+.product_img:hover .product_info {
+    display: block;
+}
+//* 搜尋欄
+.search_products {
+    width: 150px;
+}
+
+@media (max-width: 575px) {
+    .category {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+//* 卡片邊線
+.card-body{
+    border-left: 0.1rem solid rgba(170, 1, 1, 0.678);
+    border-right: 0.1rem solid rgba(170, 1, 1, 0.678);
+}
+.card-footer{
+    border-right: 0.1rem solid rgba(170, 1, 1, 0.678);
+    border-left: 0.1rem solid rgba(170, 1, 1, 0.678);
+    border-bottom: 0.1rem solid rgba(170, 1, 1, 0.678);
+}

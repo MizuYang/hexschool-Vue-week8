@@ -1,0 +1,77 @@
+//* 主要banner
+.banner-main {
+    margin-top: 10rem;
+    height: calc(100vh - 10rem);
+    background-image: url(https://images.unsplash.com/photo-1515208272530-d99d8844ebca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 70%;
+    & .product_direct {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 10rem);
+        align-items: center;
+        justify-content: center;
+    }
+}
+//*垂直 banner 主要
+.banner-vertical-main {
+    background-image: url(https://images.unsplash.com/photo-1512223792601-592a9809eed4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=652&q=80);
+    height: 60rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    //* 文字
+    & .vertical-main-text {
+        height: 60rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+//*垂直 banner 次要
+.banner-vertical-secondary {
+    background-image: url(https://images.unsplash.com/photo-1615832494873-b0c52d519696?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
+    height: 60rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    //* 文字
+    & .vertical-secondary-text {
+        height: 60rem;
+        padding-bottom: 25%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+@media (min-width: 992px) {
+    //* lg 以上時，將圖片改為一上一下設計
+    .banner-vertical-secondary {
+        margin-top: 20%;
+    }
+}
+//* 方形圖 主要
+.square-main{
+    margin-top: 10%;
+    width: 20rem;
+    height: 20rem;
+}
+//* 方形次要
+.square-secondary{
+    margin-top: 10%;
+    width: 25rem;
+    height: 25rem;
+}
+
+//*通用類別-
+
+//* 放大動畫
+.animation_hover:hover {
+    transform: scale(1.1);
+    transition: 0.2s;
+}
+.animation_hover:active{
+    transform: scale(1.2);
+}

@@ -1,0 +1,37 @@
+.nav-item a:hover {
+    transform: scale(1.1);
+    border-bottom: 3px solid #f1ebd8;
+}
+.nav-item a:active {
+    transform: scale(1.2);
+}
+//* 凸顯當前頁面
+.current_page{
+    border-bottom: 3px solid #f1ebd8;
+    transform: scale(1.1);
+}
+
+.navbar {
+    background: rgba(0, 0, 0, 0.4); //* 導覽列半透明
+    & .navbar-brand.logo:hover {
+        transform: scale(1.1);
+        transition: 0.5s;
+    }
+    & .navbar-brand.logo:active {
+        transform: scale(1.2);
+    }
+    & .navbar-brand.logo .title {
+        position: absolute;
+        top: 4rem;
+        font-size: 1px;
+        text-indent: 101%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+//*購物車 數量 標籤
+.cart_product_num{
+    margin-top: .5rem;
+    font-size: .8rem;
+}
+

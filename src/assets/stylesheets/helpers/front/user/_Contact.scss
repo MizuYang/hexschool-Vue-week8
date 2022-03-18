@@ -1,0 +1,74 @@
+//* 標題
+.title {
+    line-height: 2rem;
+    text-align: center;
+}
+//*偽元素裝飾線條
+.decorate {
+    //* 文字上下置中效果
+    display: block;
+    //* 定位橫線(當橫線的父元素)
+    position: relative;
+}
+//* 調整位置
+.title .decorate:before {
+    left: 25%;
+}
+.title .decorate:after {
+    right: 25%;
+}
+.title .decorate:before,
+.title .decorate:after {
+    position: absolute; //*定位背景橫線位置
+    top: 50%;
+    content: ""; //* CSS偽類用法
+    width: 122px;
+    height: 1px;
+    align-items: center; //*罝中
+    background: #f1ebd8;
+}
+//* 偽類裝飾線條，響應式縮小寬度
+@media (max-width: 768px) {
+    .title .decorate:before,
+    .title .decorate:after {
+        width: 80px;
+    }
+}
+@media (max-width: 576px) {
+    .title .decorate:before,
+    .title .decorate:after {
+        width: 50px;
+    }
+}
+
+.contact {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 15rem;
+}
+.banner_main {
+    background-image: url(https://media.istockphoto.com/photos/woman-cut-a-piece-of-cake-for-the-birthday-celebrant-picture-id942451482?k=20&m=942451482&s=612x612&w=0&h=cN8eyS9qTlNqDem1EV5uuLGXvLTUmAXy2VLeaO0Skko=);
+    width: 100rem;
+    height: 45rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    opacity: 0.5;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+   @media (max-width:1400px) {
+       & {
+           left: 3%;
+           top: 20%;
+       }
+   }
+}
+.invalid-feedback{
+    color: red;
+    display: inline;
+    padding: 0.1rem;
+}
+.send-btn:active{
+    transform: scale(1.05);
+}

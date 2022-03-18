@@ -1,0 +1,84 @@
+
+//* 愛心按鈕
+.like_btn{
+    color: red;
+    position: absolute;
+    right: 3%;
+    @media (max-width:768px) {
+        right: 7%;
+    }
+    @media (max-width:768px) {
+        right: 20%;
+    }
+}
+.bi:active{
+    font-size: 2.05rem;
+}
+.product_img{
+    text-align: center;
+    margin: 0 auto;
+}
+.badge{
+    position: absolute;
+    left: 0%;
+}
+.banner{
+    position: absolute;
+    width: 50rem;
+    left: 35%;
+    z-index: -1;
+    opacity: .5;
+    @media (max-width:1400px) {
+        & {
+            width: 40rem;
+            left: 28%;
+        }
+    }
+    @media (max-width:1200px) {
+        & {
+            top: 18%;
+            width: 40rem;
+            left: 25%;
+        }
+    }
+    @media (max-width:992px) {
+        & {
+            left: 18%;
+        }
+    }
+    @media (max-width:768px) {
+        & {
+            left: 10%;
+        }
+    }
+    @media (max-width:576px) {
+        & {
+            top: 23%;
+            width: 30rem;
+            left: 10%;
+        }
+    }
+}
+
+// // * 破掉的愛心、哭臉 預設隱藏
+// .bi-heartbreak-fill, .heartbreak, .bi-emoji-dizzy-fill{
+//     display: none;
+// }
+// //*滑鼠過去時 把滿的愛心 隱藏
+// .like_btn:hover .bi-heart-fill, .like_btn {
+//     display: none;
+// }
+// //* 滑鼠過去時 顯示破愛心
+// .like_btn:hover .bi-heartbreak-fill{
+//     display: block;
+// }
+//* 點擊破愛心的話，破愛心隱藏
+// .like_btn:hover:active .bi-heartbreak-fill{
+//     display: none;
+// }
+//* 破愛心隱藏後，顯示哭臉
+// .like_btn:hover:active .bi-emoji-dizzy-fill{
+//     transform: scale(1.25);
+//     display: block;
+//     color: #F1EBD8;
+// }
