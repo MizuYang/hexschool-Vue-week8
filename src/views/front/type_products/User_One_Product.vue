@@ -4,14 +4,14 @@
       <span class="decorate">{{ product.title }}</span>
     </h2>
     <div class="row">
-      <div class="col-7 d-flex">
+      <div class="col-12 col-lg-7 d-flex">
         <img
           :src="product.imageUrl"
           alt="產品圖片"
           class="img-fluid product_img"
         />
       </div>
-      <div class="col-5 card bg-dark">
+      <div class="col-lg-5 card bg-dark">
         <ul class="list-unstyled mt-3 card-body">
           <li>
             <h3 class="fs-3 fw-bold border-bottom">{{ product.title }}</h3>

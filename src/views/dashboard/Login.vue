@@ -2,7 +2,7 @@
   <navbar></navbar>
   <div class="container border p-5">
     <form class="row justify-content-center" @submit.prevent="signIn">
-      <div class="col-md-6">
+      <div class=" col-md-6">
         <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
         <div class="mb-2">
           <label for="inputEmail" class="sr-only">Email address</label>
@@ -85,6 +85,20 @@ export default {
   height: calc(100vh);
   opacity: 0.2;
   z-index: -1;
+  @media (max-width:1200px) {
+    &{
+      width: 50rem;
+      left: 15%;
+    }
+  }
+    @media (max-width:768px) {
+    &{
+      width: 30rem;
+      height: 30rem;
+      top: 15%;
+      left: 15%;
+    }
+  }
 }
 .container {
   margin-top: 10%;
@@ -97,6 +111,11 @@ export default {
   @media (max-width: 992px) {
     & {
       margin-top: 25%;
+    }
+  }
+    @media (max-width: 768px) {
+    & {
+      margin-top: 35%;
     }
   }
 }
