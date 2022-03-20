@@ -43,8 +43,8 @@
   <footerLogin></footerLogin>
 </template>
 <script>
-import navbar from '@/components/layout/dashboard/Login.NavBar.vue'
-import footerLogin from '@/components/layout/front/Front_Footer.vue'
+import navbar from '@/components/dashboard/layout/Login.NavBar.vue'
+import footerLogin from '@/components/front/layout/Front_Footer.vue' //* 使用前台的 footer
 export default {
   components: {
     navbar,
@@ -85,25 +85,30 @@ export default {
   height: calc(100vh);
   opacity: 0.2;
   z-index: -1;
-  @media (max-width:1200px) {
+    @media (max-width:1400px) {
     &{
       width: 50rem;
-      left: 15%;
+      left: 20%;
+    }
+  }
+  @media (max-width:992px) {
+    &{
+      // width: 50rem;
+      left: 10%;
     }
   }
     @media (max-width:768px) {
     &{
-      width: 30rem;
-      height: 30rem;
+      width: 40rem;
+      height: 40rem;
       top: 15%;
-      left: 15%;
     }
   }
 }
 .container {
   margin-top: 10%;
   margin-bottom: 5%;
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     & {
       margin-top: 15%;
     }

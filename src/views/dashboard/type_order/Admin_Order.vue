@@ -66,9 +66,9 @@
 
 <script>
 import emitter from '@/utils/emitter.js'
-import deleteModal from '@/components/modal/order/Delete_Order.vue'
-import orderModal from '@/components/modal/order/Update_Order.vue'
-import OrderPagination from '@/components/pagination/dashboard/Order_Pagination.vue'
+import deleteModal from '@/components/dashboard/modal/order/Delete_Order.vue'
+import orderModal from '@/components/dashboard/modal/order/Update_Order.vue'
+import OrderPagination from '@/components/dashboard/pagination/Order_Pagination.vue'
 import loading from '@/components/utils/Loading.vue'
 export default {
   provide () {

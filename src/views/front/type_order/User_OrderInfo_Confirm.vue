@@ -7,9 +7,9 @@
     <div>
       <div>
         <img
-          src="@/assets/imageUrl/banner/cake.jpg"
+          src="@/assets/imageUrl/banner/bXMwvjYRKB.png"
           class="banner img-fluid"
-          alt="蛋糕圖片"
+          alt="感謝購買的圖片"
         />
       </div>
       <h3 class="text-center border-bottom mb-3 fw-bold">
@@ -135,6 +135,7 @@
         "
         title="結帳"
         @click="payment"
+        v-if="!order.is_paid"
       >
         <i class="bi bi-cash-coin"></i>
         確認付款
@@ -143,8 +144,9 @@
   </div>
 </template>
 <script>
-import timeLine from '@/components/cart/Cart_TimeLine.vue'
+import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
 export default {
+  inject: ['emitter'],
   components: {
     timeLine
   },
@@ -177,6 +179,7 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
       this.$http.post(api).then((res) => {
         alert(res.data.message)
+        this.emitter.emit('get_cart') //* 請 Navbar更新數字
         this.$router.push('/user/order_completed')
       })
     }
@@ -188,5 +191,6 @@ export default {
 }
 </script>
  <style lang="scss" scoped>
+ @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
 @import "@/assets/stylesheets/helpers/front/cart/order/_OrderInfo_Confirm.scss";
 </style>

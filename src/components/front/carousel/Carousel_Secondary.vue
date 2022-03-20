@@ -7,7 +7,7 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="1500">
-      <img src="@/assets/imageUrl/product/莓果舒芙蕾.png" class="d-block img-fluid w-100" alt="產品圖片">
+      <img src="https://images.pexels.com/photos/5900059/pexels-photo-5900059.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="d-block img-fluid w-100" alt="產品圖片">
       <div class="carousel-caption d-none d-md-block">
       </div>
     </div>
@@ -54,3 +54,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.carousel-inner, .carousel-item{
+  height: 39.5rem;
+  overflow: hidden;
+}
+</style>

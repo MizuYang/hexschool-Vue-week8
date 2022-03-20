@@ -77,7 +77,7 @@
   </div>
 </template>
 <script>
-import timeLine from '@/components/cart/Cart_TimeLine.vue'
+import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
 export default {
   components: {
     timeLine
@@ -91,5 +91,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
 @import "@/assets/stylesheets/helpers/front/cart/order/_Order_Completed.scss";
 </style>

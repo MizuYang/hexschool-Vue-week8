@@ -63,8 +63,8 @@
 
 <script>
 import emitter from '@/utils/emitter.js'
-import deleteProduct from '@/components/modal/product/Delete_Product.vue'
-import updateProductModal from '@/components/modal/product/Update_Product.vue'
+import deleteProduct from '@/components/dashboard/modal/product/Delete_Product.vue'
+import updateProductModal from '@/components/dashboard/modal/product/Update_Product.vue'
 export default {
   components: {
     updateProductModal,

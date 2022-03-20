@@ -10,8 +10,8 @@
 
 <script>
 import emitter from '@/utils/emitter.js'
-import navbar from '@/components/layout/front/Front_NavBar.vue'
-import Footer from '@/components/layout/front/Front_Footer.vue'
+import navbar from '@/components/front/layout/Front_NavBar.vue'
+import Footer from '@/components/front/layout/Front_Footer.vue'
 export default {
   provide () {
     return {

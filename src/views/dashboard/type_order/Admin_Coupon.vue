@@ -61,9 +61,9 @@
 
 <script>
 import emitter from '@/utils/emitter.js'
-import updateCoupon from '@/components/modal/coupon/Update_Coupon.vue'
-import deleteCopon from '@/components/modal/coupon/Delete_Coupon.vue'
-import pagination from '@/components/pagination/dashboard/Coupon_Pagination.vue'
+import updateCoupon from '@/components/dashboard/modal/coupon/Update_Coupon.vue'
+import deleteCopon from '@/components/dashboard/modal/coupon/Delete_Coupon.vue'
+import pagination from '@/components/dashboard/pagination/Coupon_Pagination.vue'
 export default {
   provide () {
     return {

@@ -24,11 +24,7 @@
           </tr>
         </thead>
         <tbody class="text-nowrap">
-          <tr
-            v-for="product in cartData"
-            :key="product.id"
-            :class="{ 'table-light': product.checkbox }"
-          >
+          <tr v-for="product in cartData" :key="product.id" :class="{ 'table-light': product.checkbox }">
             <td class="rwd_hide_table_lg">
               <input
                 type="checkbox"
@@ -46,16 +42,9 @@
                   animation_hover
                   d-block
                   text-decoration-none
-                  img_hover img-fluid
-                "
-                :style="{ backgroundImage: `url(${product.product.imageUrl})` }"
-              >
+                  img_hover img-fluid" :style="{ backgroundImage: `url(${product.product.imageUrl})` }">
                 <div class="text-start">
-                  <span
-                    type="button"
-                    class="badge bg-primary text-dark tag"
-                    title="篩選類別"
-                  >
+                  <span type="button" class="badge bg-primary text-dark tag" title="篩選類別">
                     {{ product.product.category }}
                   </span>
                 </div>
@@ -66,21 +55,12 @@
               <h4>
                 {{ product.product.title }}
               </h4>
-              <span
-                class="badge bg-danger p-1"
-                v-if="product.product.popular > 2"
-                >熱門商品</span
-              >
+              <span class="badge bg-danger p-1" v-if="product.product.popular > 2">熱門商品</span>
             </td>
             <td>
               <div class="d-flex align-items-center">
-                <input
-                  type="button"
-                  class="btn product_numBtn btn-outline-primary active_bigger"
-                  value="－"
-                  :disabled="product.qty <= 1"
-                  @click="update_product_num('cut', product)"
-                />
+                <input type="button" class="btn product_numBtn btn-outline-primary active_bigger"
+                 value="－" :disabled="product.qty <= 1" @click="update_product_num('cut', product)"/>
                 <input
                   type="text"
                   class="product_numText mx-1 fs-4"
@@ -114,7 +94,7 @@
               <input
                 type="button"
                 class="btn btn-outline-danger active_bigger"
-                @click="deleteProduct(product.id)"
+                @click="open_delete_product(product, '刪除單一產品')"
                 value="X"
               />
             </td>
@@ -127,7 +107,7 @@
                 v-if="checkbox_productId.length"
                 type="button"
                 class="btn btn-outline-danger active_bigger animation_hover"
-                @click="delete_check_product()"
+                @click="open_delete_product(product,'勾選刪除')"
               >
                 刪除
               </button>
@@ -136,7 +116,7 @@
               <button
                 type="button"
                 class="btn btn-outline-danger active_bigger animation_hover"
-                @click="delete_all_cart"
+                @click="open_delete_product"
               >
                 全部刪除
               </button>
@@ -205,16 +185,19 @@
       </table>
     </div>
   </div>
+   <deleteProductModal @getCartList="getCartList"></deleteProductModal>
 </template>
 <script>
 //* 時間軸、沒訂單時的產品頁面引導
-import noOrder from '@/components/cart/Cart_No_Order.vue'
-import timeLine from '@/components/cart/Cart_TimeLine.vue'
+import noOrder from '@/components/front/cart/Cart_No_Order.vue'
+import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
+import deleteProductModal from '@/components/front/modal/Front_Delete_Product.vue'
 export default {
   inject: ['emitter'],
   components: {
     timeLine,
-    noOrder
+    noOrder,
+    deleteProductModal
   },
   data () {
     return {
@@ -235,37 +218,22 @@ export default {
         this.price_total()
       })
     },
-    //* 刪除單一產品
-    deleteProduct (id) {
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`
-      this.$http.delete(api).then((res) => {
-        this.emitter.emit('get_cart') //* 請 Navbar更新數字
-        alert(res.data.message)
-        this.getCartList()
-      })
+    //* 開啟刪除 modal
+    open_delete_product (product, status) {
+      const data = {}
+      if (status === '勾選刪除') {
+        data.id = this.checkbox_productId
+        data.status = '勾選刪除'
+        this.emitter.emit('open_delete_product', data)
+      } else if (status === '刪除單一產品') {
+        data.product = product
+        data.status = '刪除單一產品'
+        this.emitter.emit('open_delete_product', data)
+      } else {
+        this.emitter.emit('open_delete_product')
+      }
     },
-    //* 刪除勾選產品
-    delete_check_product () {
-      //* 把勾選的產品 id 跑回圈去刪除
-      this.checkbox_productId.forEach((id) => {
-        const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`
-        this.$http.delete(api).then(() => {
-          this.emitter.emit('get_cart') //* 請 Navbar更新數字
-          this.checkbox_productId = []
-        })
-      })
-      alert('刪除成功')
-      this.getCartList()
-    },
-    //* 清空購物車
-    delete_all_cart () {
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`
-      this.$http.delete(api).then((res) => {
-        this.emitter.emit('get_cart') //* 請 Navbar更新數字
-        alert(res.data.message)
-        this.getCartList()
-      })
-    },
+
     //* 勾選時把產品 ID 存起來，如果勾選取消就刪掉 id
     checkbox (status, id) {
       //* 打勾時就把 id 推到資料集

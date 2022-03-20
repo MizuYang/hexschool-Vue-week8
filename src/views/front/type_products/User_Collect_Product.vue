@@ -130,6 +130,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
 @import '@/assets/stylesheets/helpers/front/product/_Products.scss';
 @import '@/assets/stylesheets/helpers/front/product/_Collect_Products.scss';
 .card-body{

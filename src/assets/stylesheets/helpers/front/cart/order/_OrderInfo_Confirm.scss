@@ -1,65 +1,37 @@
-//* 標題
-.title {
-    line-height: 2rem;
-    text-align: center;
-}
-//*偽元素裝飾線條
-.decorate {
-    //* 文字上下置中效果
-    display: block;
-    //* 定位橫線(當橫線的父元素)
-    position: relative;
-}
-//* 調整位置
-.title .decorate:before {
-    left: 25%;
-}
-.title .decorate:after {
-    right: 25%;
-}
-.title .decorate:before,
-.title .decorate:after {
-    position: absolute; //*定位背景橫線位置
-    top: 50%;
-    content: ""; //* CSS偽類用法
-    width: 122px;
-    height: 1px;
-    align-items: center; //*罝中
-    background: #f1ebd8;
-}
-//* 偽類裝飾線條，響應式縮小寬度
-@media (max-width: 768px) {
-    .title .decorate:before,
-    .title .decorate:after {
-        width: 80px;
-    }
-}
-@media (max-width: 576px) {
-    .title .decorate:before,
-    .title .decorate:after {
-        width: 50px;
-    }
-}
 //* 圖片
 .banner{
     position: absolute;
-    top: -10%;
-    left: 17%;
+    top: 35%;
+    left: 27%;
     opacity: .7;
-    width: 110rem;
+    width: 80rem;
     z-index: -1;
 //*圖片圖片響應式大小
     @media (max-width:1400px) {
         & {
-            width: 60rem;
-            height: 50rem;
-            top: 39%;
+            width: 75rem;
+            top: 45%;
+            left: 8%;
+        }
+    }
+    @media (max-width:1200px) {
+        & {
+            width: 68rem;
+            top: 48%;
+            left: 5%;
+        }
+    }
+    @media (max-width:992px) {
+        & {
+            width: 55rem;
+            height: 45rem;
+            top: 50%;
         }
     }
     @media (max-width:768px) {
         & {
-            width: 40rem;
-            height: 40rem;
+            
+            width: 43rem;
         }
     }
     @media (max-width:576px) {

@@ -280,6 +280,7 @@
                           animation_hover
                         "
                         title="上一步"
+                        v-if="cartData.length > 0"
                         >上一步</router-link
                       >
                     </td>
@@ -300,9 +301,21 @@
                           animation_hover
                         "
                         title="前往結帳流程"
+                        v-if="cartData.length > 0"
                       >
                         下一步
                       </button>
+                      <router-link
+                        to="/user/cart"
+                        class="
+                          btn btn-secondary
+                          active_bigger
+                          fs-4
+                          animation_hover
+                        "
+                        title="上一步"
+                        v-else
+                        >上一步</router-link>
                     </td>
                   </tr>
                 </tfoot>
@@ -319,7 +332,7 @@
   </div>
 </template>
 <script>
-import timeLine from '@/components/cart/Cart_TimeLine.vue'
+import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
 // import ordererInfo from '@/components/cart/order/Orderer _Info.vue'
 export default {
   components: {
@@ -392,5 +405,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
 @import "@/assets/stylesheets/helpers/front/cart/order/_Checkout.scss";
 </style>

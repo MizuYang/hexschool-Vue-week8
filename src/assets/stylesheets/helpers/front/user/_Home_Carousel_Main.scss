@@ -1,0 +1,42 @@
+//* 主頁 banner 輪播
+.banner-carousel-main {
+    margin-top: 10rem;
+    height: calc(100vh - 10rem);
+    //* 主要banner
+    .banner-main-1 {
+        background-image: url(https://images.pexels.com/photos/3740196/pexels-photo-3740196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+        height: calc(100vh - 10rem);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .banner-main-2 {
+        background-image: url(https://images.pexels.com/photos/1028714/pexels-photo-1028714.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+        height: calc(100vh - 10rem);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .banner-main-3 {
+        background-image: url(https://images.pexels.com/photos/1028711/pexels-photo-1028711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+        height: calc(100vh - 10rem);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        & .product_direct{
+            margin-left: 20%;
+            margin-top: 5%;
+        }
+    }
+    .product_direct {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 10rem);
+        align-items: center;
+        justify-content: center;
+        margin-top: 5%;
+    }
+}
+.carousel  h2{
+    font-size: 50px;
+}

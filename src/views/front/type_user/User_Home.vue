@@ -1,15 +1,10 @@
 <template>
-  <div class="banner-main mb-5 ">
+
+<!-- 輪播 banner-main -->
+<carouselMain></carouselMain>
+
+  <div class=" mb-5 ">
     <div class="container">
-      <div class="product_direct">
-        <h2>❝ 最意想不到的...</h2>
-        <h2 class="ms-9 mb-4">永遠最甜蜜 ❞</h2>
-        <div>
-          <router-link to="/user/products" class="btn btn-outline-primary fs-4 animation_hover" @click="current('productList')"
-            >前往商品</router-link
-          >
-        </div>
-      </div>
     </div>
   </div>
   <div class="container">
@@ -50,7 +45,7 @@
     <h2 class="text-center mb-5">用甜點，抓住你的胃 - </h2>
     <!-- 輪播 -->
     <div class="d-flex mb-5">
-        <carousel></carousel>
+        <carouselSecondary></carouselSecondary>
         <div class="my-auto">
             <h3 class="mb-3">實在是忍不住了...</h3>
             <router-link to="/user/products" class="btn btn-outline-primary rounded-pill animation_hover fs-5" @click="current('productList')">
@@ -67,10 +62,12 @@
 
 <script>
 import emitter from '@/utils/emitter.js'
-import carousel from '@/components/carousel/Carousel .vue'
+import carouselMain from '@/components/front/carousel/Carousel_Main.vue'
+import carouselSecondary from '@/components/front/carousel/Carousel_Secondary.vue'
 export default {
   components: {
-    carousel
+    carouselMain,
+    carouselSecondary
   },
   methods: {
     //* Navbar 的 active 效果
