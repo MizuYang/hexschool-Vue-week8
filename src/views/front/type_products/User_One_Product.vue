@@ -92,6 +92,7 @@
       </div>
     </div>
   </div>
+   <Loading v-model:active="isLoading" />
 </template>
 
 <script>
@@ -103,24 +104,28 @@ export default {
       add_product_Data: {
         product_id: '',
         qty: 1
-      }
+      },
+      isLoading: false
     }
   },
   methods: {
     //* 取得產品
     get_products () {
-      console.log(this.$route.params.id)
+      this.isLoading = true
       const id = this.$route.params.id
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`
       this.$http.get(api).then((res) => {
+        this.isLoading = false
         this.product = res.data.product
       })
     },
     //* 加入購物車
     addCart (id) {
+      this.isLoading = true
       this.add_product_Data.product_id = id
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.post(api, { data: this.add_product_Data }).then((res) => {
+        this.isLoading = false
         alert(res.data.message)
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
       })

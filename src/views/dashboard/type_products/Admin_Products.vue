@@ -56,6 +56,7 @@
       </div>
     </div>
   </div>
+    <Loading v-model:active="isLoading" />
   <!-- modal -->
   <updateProductModal @get_products="get_products"></updateProductModal>
   <deleteProduct @get_products="get_products"></deleteProduct>
@@ -83,39 +84,22 @@ export default {
         tempProduct: {
           imagesUrl: []
         }
-      }
+      },
+      isLoading: false
     }
   },
-  methods: {
-    //* 登入驗證
-    checkLogin () {
-      //* 將儲存在 cookie 的 token 取出
-      const token = document.cookie.replace(
-        /(?:(?:^|.*;\s*)mizuToken\s*=\s*([^;]*).*$)|^.*$/,
-        '$1'
-      )
-      if (token) {
-        this.$http.defaults.headers.common.Authorization = token
-        const api = `${process.env.VUE_APP_API}/api/user/check`
-        this.$http
-          .post(api)
-          .then(() => {
-            this.$router.push('/admin/coupon')
-          })
-          .catch(() => {
-            this.$router.push('/')
-          })
-      }
-    },
-    //* 取得產品
+  methods: { //* 取得產品
     get_products () {
+      this.isLoading = true
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/products/all`
       this.$http
         .get(url)
         .then((res) => {
+          this.isLoading = false
           this.products = res.data.products
         })
         .catch(() => {
+          this.isLoading = false
           this.$router.push('/')
         })
     },

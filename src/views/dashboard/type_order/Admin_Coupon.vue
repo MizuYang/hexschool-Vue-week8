@@ -57,6 +57,7 @@
 </div>
   <updateCoupon @get_coupon="get_coupon"></updateCoupon>
   <deleteCopon @get_coupon="get_coupon"></deleteCopon>
+    <Loading v-model:active="isLoading" />
 </template>
 
 <script>
@@ -79,7 +80,8 @@ export default {
     return {
       coupons: [],
       coupon_pagination: [],
-      loading_item: {} //* 用來做 disabled 和 加載效果 判斷
+      loading_item: {}, //* 用來做 disabled 和 加載效果 判斷
+      isLoading: false
     }
   },
   methods: {
@@ -98,14 +100,17 @@ export default {
     },
     //     //* 取得優惠券
     get_coupon (page) {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`
       this.$http
         .get(api)
         .then((res) => {
+          this.isLoading = false
           this.coupons = res.data.coupons
           this.coupon_pagination = res.data.pagination
         })
         .catch(() => {
+          this.isLoading = false
           this.$router.push('/')
         })
     },

@@ -11,6 +11,12 @@ import { localize, setLocale } from '@vee-validate/i18n'
 //* 匯入繁體中文語系檔案
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 
+//* loading
+import 'vue-loading-overlay/dist/vue-loading.css'
+import VueLoading from 'vue-loading-overlay'
+
+// import thousandths from '@/utils/thousandths.js' //*千分位
+
 import 'bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
@@ -40,6 +46,8 @@ app.component('Form', Form)
 app.component('Field', Field)
 app.component('ErrorMessage', ErrorMessage)
 
+// app.config.globalProperties.$thousandths = thousandths //* 千分位
+app.component('Loading', VueLoading)
 app.use(VueAxios, axios)
 app.use(router)
 app.mount('#app')

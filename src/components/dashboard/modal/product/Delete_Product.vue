@@ -44,6 +44,7 @@
       </div>
     </div>
   </div>
+    <Loading v-model:active="isLoading" />
 </template>
 
 <script>
@@ -53,20 +54,24 @@ export default {
   data () {
     return {
       delProductModal: '',
-      product: []
+      product: [],
+      isLoading: false
     }
   },
   methods: {
     removeProduct (id) {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product/${id}`
       this.$http
         .delete(api)
         .then((res) => {
+          this.isLoading = false
           this.$emit('get_products')
           this.delProductModal.hide()
           alert(res.data.message)
         })
         .catch((err) => {
+          this.isLoading = false
           alert(err.data.message)
         })
     }

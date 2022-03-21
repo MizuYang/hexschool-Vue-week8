@@ -41,6 +41,7 @@
     alt="背景LOGO圖"
   />
   <footerLogin></footerLogin>
+   <Loading v-model:active="isLoading" />
 </template>
 <script>
 import navbar from '@/components/dashboard/layout/Login.NavBar.vue'
@@ -52,16 +53,19 @@ export default {
   },
   data () {
     return {
-      user: {}
+      user: {},
+      isLoading: false
     }
   },
   methods: {
     //* 登入帳號
     signIn () {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/admin/signin`
       this.$http
         .post(api, this.user)
         .then((res) => {
+          this.isLoading = false
           alert(res.data.message)
           //* token, expired 存入 cookie
           const { token, expired } = res.data
@@ -69,6 +73,7 @@ export default {
           this.$router.push('/admin')
         })
         .catch((err) => {
+          this.isLoading = false
           alert(err.response.data.message)
           this.user.username = ''
           this.user.password = ''

@@ -134,7 +134,7 @@
           animation_hover
         "
         title="結帳"
-        @click="payment"
+        @click="open_confirm_modal"
         v-if="!order.is_paid"
       >
         <i class="bi bi-cash-coin"></i>
@@ -142,13 +142,17 @@
       </button>
     </div>
   </div>
+  <confirmModal ></confirmModal>
 </template>
 <script>
 import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
+import confirmModal from '@/components/front/modal/Order_Confirm.vue'
+// import
 export default {
   inject: ['emitter'],
   components: {
-    timeLine
+    timeLine,
+    confirmModal
   },
   data () {
     return {
@@ -174,14 +178,9 @@ export default {
         })
       }
     },
-    // //* 付款
-    payment () {
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
-      this.$http.post(api).then((res) => {
-        alert(res.data.message)
-        this.emitter.emit('get_cart') //* 請 Navbar更新數字
-        this.$router.push('/user/order_completed')
-      })
+    //* 開啟確認 modal
+    open_confirm_modal () {
+      this.emitter.emit('open_confirmModal')
     }
   },
   mounted () {

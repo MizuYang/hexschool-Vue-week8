@@ -167,6 +167,7 @@
       </div>
     </div>
   </div>
+  <Loading v-model:active="isLoading" />
 </template>
 
 <style lang="scss" scoped>
@@ -186,7 +187,8 @@ export default {
       },
       collect: JSON.parse(localStorage.getItem('collect')) || [], //* 如果 localstorage 沒資料就是空陣列
       search_value: '',
-      search_data: []
+      search_data: [],
+      isLoading: false
     }
   },
   watch: {
@@ -200,10 +202,12 @@ export default {
   methods: {
     //* 取得產品
     get_products (category) {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
       this.$http.get(api).then((res) => {
         this.products = res.data.products
         this.search_data = res.data.products
+        this.isLoading = false
         if (category) {
           if (category === '全部') {
             this.get_products()
@@ -237,11 +241,13 @@ export default {
     },
     //* 加入購物車
     addCart (id) {
+      this.isLoading = true
       this.add_product_Data.product_id = id
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http
         .post(api, { data: this.add_product_Data })
         .then((res) => {
+          this.isLoading = false
           alert(res.data.message)
           this.emitter.emit('get_cart') //* 請 Navbar更新數字
         })
@@ -251,6 +257,7 @@ export default {
     },
     //* 增加產品數量
     update_product_num (status, product) {
+      this.isLoading = true
       let num = 0
       if (status === 'add') {
         num = product.qty + 1
@@ -263,6 +270,7 @@ export default {
       }
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${product.id}`
       this.$http.put(api, { data: data }).then((res) => {
+        this.isLoading = false
         alert(res.data.message)
         this.getCartList()
       })

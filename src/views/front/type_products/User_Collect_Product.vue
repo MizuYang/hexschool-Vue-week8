@@ -57,7 +57,7 @@
     </button>
       </div>
     </template>
-
+   <Loading v-model:active="isLoading" />
 </div>
 </template>
 <script>
@@ -71,14 +71,17 @@ export default {
       add_product_Data: { //* 先定義加入購物車資料
         product_id: '',
         qty: 1
-      }
+      },
+      isLoading: false
     }
   },
   methods: {
     //* 取得產品
     get_products (status) {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
       this.$http.get(api).then((res) => {
+        this.isLoading = false
         this.products = res.data.products
         if (status === 'delete_collect') {
           return
@@ -97,12 +100,13 @@ export default {
     },
     //* 加入購物車
     addCart (id) {
-      console.log(id)
+      this.isLoading = true
       this.add_product_Data.product_id = id
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http
         .post(api, { data: this.add_product_Data })
         .then((res) => {
+          this.isLoading = false
           alert(res.data.message)
           this.emitter.emit('get_cart') //* 請 Navbar更新數字
         })

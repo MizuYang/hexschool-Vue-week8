@@ -45,6 +45,7 @@
       </div>
     </div>
   </div>
+    <Loading v-model:active="isLoading" />
 </template>
 
 <script>
@@ -54,21 +55,25 @@ export default {
   data () {
     return {
       delModal: '',
-      order: []
+      order: [],
+      isLoading: false
     }
   },
   methods: {
     //* 刪除訂單
     delete_order (id) {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${id}`
       this.$http
         .delete(api, { data: this.tempOrder })
         .then((res) => {
+          this.isLoading = false
           alert(res.data.message)
           this.delModal.hide()
           this.$emit('get_order')
         })
         .catch((err) => {
+          this.isLoading = false
           alert(err.data.message)
         })
     }

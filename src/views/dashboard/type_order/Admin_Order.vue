@@ -13,7 +13,7 @@
     <tbody>
       <template v-for="(item, key) in orders" :key="key">
         <tr v-if="orders.length" :class="{ 'text-secondary': !item.is_paid }">
-          <td>{{ filter(item.create_at) }}</td>
+          <td>{{ date(item.create_at) }}</td>
           <td><span v-text="item.user.email" v-if="item.user"></span></td>
           <td>
             <ul class="list-unstyled text-primary">
@@ -40,17 +40,13 @@
           </td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-outline-primary btn-sm" type="button" @click="view_Order(item)"  :disabled="item.id === loading_item.view">
+              <button class="btn btn-outline-primary btn-sm" type="button" @click="view_Order(item)"  >
                 檢視
-                  <div class="spinner-border spinner-border-sm" role="status"
-                        v-show="item.id === loading_item.view">
-                  </div>
+
               </button>
-              <button class="btn btn-outline-danger btn-sm" type="button" @click="delete_order(item)"  :disabled="item.id === loading_item.delete">
+              <button class="btn btn-danger btn-sm" type="button" @click="delete_order(item)"  >
                 刪除
-                  <div class="spinner-border spinner-border-sm" role="status"
-                        v-show="item.id === loading_item.delete">
-                  </div>
+
               </button>
             </div>
           </td>
@@ -60,8 +56,8 @@
   </table>
   <OrderPagination :pagination="pagination" @get_order="get_order"></OrderPagination>
   <deleteModal @get_order="get_order"></deleteModal>
-  <orderModal></orderModal>
-  <loading></loading>
+  <orderModal @get_order="get_order"></orderModal>
+    <Loading v-model:active="isLoading" />
 </template>
 
 <script>
@@ -69,7 +65,6 @@ import emitter from '@/utils/emitter.js'
 import deleteModal from '@/components/dashboard/modal/order/Delete_Order.vue'
 import orderModal from '@/components/dashboard/modal/order/Update_Order.vue'
 import OrderPagination from '@/components/dashboard/pagination/Order_Pagination.vue'
-import loading from '@/components/utils/Loading.vue'
 export default {
   provide () {
     return {
@@ -77,7 +72,7 @@ export default {
     }
   },
   components: {
-    loading,
+    // loading,
     OrderPagination,
     orderModal,
     deleteModal
@@ -86,61 +81,40 @@ export default {
     return {
       orders: [],
       pagination: [],
-      loading_item: {} //* 用來做 disabled 和 加載效果 判斷
+
+      isLoading: false
     }
   },
   methods: {
-    //* 登入驗證
-    checkLogin () {
-      const api = `${process.env.VUE_APP_API}/api/user/check`
-      this.$http.post(api)
-        .catch(() => {
-          this.$router.push('/login')
-        })
-    },
     //* 取得訂單列表
     get_order (page) {
-      emitter.emit('load', 500)
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`
       this.$http
         .get(api)
         .then((res) => {
+          this.isLoading = false
           this.pagination = res.data.pagination
           this.orders = res.data.orders
-        })
-        .catch(() => {
-          this.$router.push('/login')
         })
     },
     //* 查看訂單
     view_Order (order) {
-      this.loading('view', order.id)
+      // this.loading('view', order.id)
       emitter.emit('view_order', order)
     },
     //* 刪除訂單
     delete_order (order) {
-      this.loading('delete', order.id)
+      // this.loading('delete', order.id)
       emitter.emit('deleteOrder', order)
     },
     //* 日期轉換
-    filter (time) {
-      return new Date(time * 1000).toISOString().substring(0, 10)
-    },
-    //* 單個物件_加載效果
-    loading (control, id) {
-      this.loading_item[control] = id
-      setTimeout(() => {
-        this.loading_item = {}
-      }, 1000)
+    date (time) {
+      return new Date(parseInt(time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ')
+      // return new Date(time * 1000).toISOString().substring(0, 10)
     }
   },
   mounted () {
-    //* 將儲存在 cookie 的 token 取出
-    const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)mizuToken\s*=\s*([^;]*).*$)|^.*$/,
-      '$1'
-    )
-    this.$http.defaults.headers.common.Authorization = token
     this.get_order()
   }
 }

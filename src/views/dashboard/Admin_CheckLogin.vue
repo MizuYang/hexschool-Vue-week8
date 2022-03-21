@@ -3,6 +3,7 @@
     <navbar></navbar>
     <router-view></router-view>
 </div>
+  <Loading v-model:active="isLoading" />
 </template>
 
 <script>
@@ -13,12 +14,14 @@ export default {
   },
   data () {
     return {
-      status: false
+      status: false,
+      isLoading: false
     }
   },
   methods: {
     //* 登入驗證
     checkLogin () {
+      this.isLoading = true
       //* 將儲存在 cookie 的 token 取出
       const token = document.cookie.replace(
         /(?:(?:^|.*;\s*)mizuToken\s*=\s*([^;]*).*$)|^.*$/,
@@ -30,11 +33,13 @@ export default {
         this.$http
           .post(api)
           .then(() => {
+            this.isLoading = false
             this.status = true
             //* 確認登入後推送到產品頁
             this.$router.push('/admin/products')
           })
           .catch(() => {
+            this.isLoading = false
             this.$router.push('/')
           })
       }

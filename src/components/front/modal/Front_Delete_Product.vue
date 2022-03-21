@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title text-danger fw-bold"><i class="bi bi-patch-exclamation-fill"></i> 刪除 </h5>
+            <h5 class="modal-title text-danger fw-bold"><i class="bi bi-exclamation-octagon-fill fs-4"></i> 刪除 </h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -20,6 +20,7 @@
         </div>
     </div>
 </div>
+  <Loading v-model:active="isLoading" />
 </template>
 
 <script>
@@ -32,14 +33,17 @@ export default {
       product_title: '',
       product_id: '',
       checkbox_productId: [],
-      delete_status: ''
+      delete_status: '',
+      isLoading: false
     }
   },
   methods: {
     //* 刪除單一產品
     deleteProduct () {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${this.product_id}`
       this.$http.delete(api).then((res) => {
+        this.isLoading = false
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
         alert(res.data.message)
         this.delete_modal.hide()
@@ -48,13 +52,14 @@ export default {
     },
     //* 刪除勾選產品
     delete_check_product () {
+      this.isLoading = true
       //* 把勾選的產品 id 跑回圈去刪除
       this.checkbox_productId.forEach((id) => {
         const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`
         this.$http.delete(api).then(() => {
+          this.isLoading = false
           this.emitter.emit('get_cart') //* 請 Navbar更新數字
-          this.$emit('getCartList')
-          this.checkbox_productId = []
+          this.$emit('getCartList', '已刪除勾選商品') //* 如果刪除勾選商品，就讓購物車頁面隱藏單除勾選按鈕
           this.delete_modal.hide()
         })
       })
@@ -63,8 +68,10 @@ export default {
     },
     //* 清空購物車
     delete_all_cart () {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`
       this.$http.delete(api).then((res) => {
+        this.isLoading = false
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
         alert(res.data.message)
         this.$emit('getCartList')
@@ -97,11 +104,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.modal-header, .modal-body, .modal-footer{
-    background: #000;
-}
-.modal-content{
-    border: 1px solid #F1EBD8;
-    background-color: #000;
-}
+@import '@/assets/stylesheets/helpers/front/cart/_Front_Modal_Style.scss'
 </style>

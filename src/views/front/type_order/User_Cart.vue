@@ -88,7 +88,7 @@
             </td>
             <td>
               價格*數量
-              <p class="border-top border">{{ product.total }} 元</p>
+              <p class="border-top border">{{ thousandths(product.total) }} 元</p>
             </td>
             <td>
               <input
@@ -104,7 +104,7 @@
           <tr>
             <td>
               <button
-                v-if="checkbox_productId.length"
+                v-if="checkbox_productId.length > 0"
                 type="button"
                 class="btn btn-outline-danger active_bigger animation_hover"
                 @click="open_delete_product(product,'勾選刪除')"
@@ -171,7 +171,7 @@
             </td>
             <td></td>
             <td v-show="coupon_final_total > 0">總價格： <span class="text-success fs-2 fw-bold"> {{ coupon_final_total }} </span> 元</td>
-            <td class="fs-4 text-primary fw-bold" v-show="!coupon_final_total"> 總價格： {{ total }} 元 </td>
+            <td class="fs-4 text-primary fw-bold" v-show="!coupon_final_total"> 總價格： {{ thousandths(total) }} 元 </td>
             <td>
               <router-link
                 to="/user/checkout"
@@ -186,12 +186,14 @@
     </div>
   </div>
    <deleteProductModal @getCartList="getCartList"></deleteProductModal>
+     <Loading v-model:active="isLoading" />
 </template>
 <script>
 //* 時間軸、沒訂單時的產品頁面引導
 import noOrder from '@/components/front/cart/Cart_No_Order.vue'
 import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
 import deleteProductModal from '@/components/front/modal/Front_Delete_Product.vue'
+// import $thousandths from '@/utils/thousandths.js'
 export default {
   inject: ['emitter'],
   components: {
@@ -206,16 +208,22 @@ export default {
       checkbox_productId: [],
       couponCode: 'my_coupon',
       coupon_final_total: 0,
-      total: 0
+      total: 0,
+      isLoading: false
     }
   },
   methods: {
     //* 取得購物車
-    getCartList () {
+    getCartList (checkboxDeleteStatus) {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.get(api).then((res) => {
+        this.isLoading = false
         this.cartData = res.data.data.carts
         this.price_total()
+        if (checkboxDeleteStatus) { //* 如果刪除勾選商品，就讓購物車頁面隱藏單除勾選按鈕
+          this.checkbox_productId = []
+        }
       })
     },
     //* 開啟刪除 modal
@@ -233,7 +241,6 @@ export default {
         this.emitter.emit('open_delete_product')
       }
     },
-
     //* 勾選時把產品 ID 存起來，如果勾選取消就刪掉 id
     checkbox (status, id) {
       //* 打勾時就把 id 推到資料集
@@ -249,6 +256,7 @@ export default {
     },
     //* 增加產品數量
     update_product_num (status, product) {
+      this.isLoading = true
       let num = 0
       if (status === 'add') {
         num = product.qty + 1
@@ -261,12 +269,14 @@ export default {
       }
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${product.id}`
       this.$http.put(api, { data: data }).then((res) => {
+        this.isLoading = false
         alert(res.data.message)
         this.getCartList()
       })
     },
     //* 使用優惠券
     use_coupon () {
+      this.isLoading = true
       const data = {
         code: this.couponCode
       }
@@ -274,6 +284,7 @@ export default {
       this.$http
         .post(api, { data: data })
         .then((res) => {
+          this.isLoading = false
           alert(res.data.message)
           this.coupon_final_total = res.data.data.final_total
         })
@@ -285,6 +296,14 @@ export default {
         num += product.total
       })
       this.total = num
+    },
+    //* 千分位
+    thousandths (num) {
+      const n = Number(num)
+      return `$${n.toFixed(0).replace(/./g, (c, i, a) => {
+        const currency = (i && c !== '.' && ((a.length - i) % 3 === 0) ? `, ${c}`.replace(/\s/g, '') : c)
+        return currency
+      })}`
     }
   },
   mounted () {
@@ -294,5 +313,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
 @import "@/assets/stylesheets/helpers/front/cart/_Cart.scss";
 </style>

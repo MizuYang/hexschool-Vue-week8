@@ -194,6 +194,7 @@
       </div>
     </div>
   </div>
+    <Loading v-model:active="isLoading" />
 </template>
 
 <script>
@@ -207,12 +208,14 @@ export default {
       tempProduct: {
         imagesUrl: []
       },
-      isNew: false
+      isNew: false,
+      isLoading: false
     }
   },
   methods: {
     //* 新增或編輯 產品
     updateProduct () {
+      this.isLoading = true
       let api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/product`
       let method = 'post'
       //* 如果不是新的資料，就改用 put 方法編輯資料
@@ -222,12 +225,13 @@ export default {
       }
       this.$http[method](api, { data: this.tempProduct })
         .then((res) => {
+          this.isLoading = false
           alert(res.data.message)
           this.productModal.hide()
-          this.emitter.emit('get_product')
           this.$emit('get_products')
         })
         .catch((err) => {
+          this.isLoading = false
           alert(err.data.message)
         })
     }

@@ -38,7 +38,7 @@
           </ul>
         </div>
         <div class="text-center ">
-            <img src="@/assets/imageUrl/banner/t6vJJ5xCcQ.png" alt="banner 圖片" class="square-secondary img-fluid">
+            <img src="@/assets/imageUrl/banner/dXWgGrVpYl.png" alt="banner 圖片" class="square-secondary img-fluid">
         </div>
       </div>
     </div>

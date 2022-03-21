@@ -138,7 +138,7 @@
       </div>
     </div>
   </div>
-
+  <Loading v-model:active="isLoading" />
 </template>
 
 <script>
@@ -150,7 +150,8 @@ export default {
       order_modal: '',
       tempOrder: {
         create_at: '',
-        id: ''
+        id: '',
+        isLoading: false
       }
     }
   },
@@ -161,12 +162,16 @@ export default {
     },
     //* 修改訂單狀態
     update_paid_status (id) {
+      this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${id}`
       this.$http.put(api, { data: this.tempOrder }).then((res) => {
+        this.isLoading = false
         alert(res.data.message)
+        this.$emit('get_order')
         this.order_modal.hide()
       })
         .catch((err) => {
+          this.isLoading = false
           alert(err.data.message)
         })
     }
@@ -175,9 +180,7 @@ export default {
     this.order_modal = new Modal(document.getElementById('productModal'))
     this.emitter.on('view_order', (order) => {
       this.tempOrder = order
-      setTimeout(() => {
-        this.order_modal.show()
-      }, 1000)
+      this.order_modal.show()
     })
   },
   unmounted () { //* 元件銷毀之後將 emitter 註冊的事件移除

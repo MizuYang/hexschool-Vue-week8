@@ -56,6 +56,7 @@ const routes = [
         component: () => import('@/views/front/type_user/User_Contact.vue')
       }
     ]
+
   },
   {
     //* 後台路由
@@ -79,6 +80,14 @@ const routes = [
         component: () => import('@/views/dashboard/type_order/Admin_Order.vue')
       }
     ]
+  },
+  { //* 代表所有 user 下的頁面，路由錯誤都會被導向
+    path: '/user/:pathMatch(.*)*',
+    redirect: '/user/home'
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
   }
 ]
 
