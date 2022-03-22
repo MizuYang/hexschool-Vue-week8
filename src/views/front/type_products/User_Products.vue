@@ -187,7 +187,7 @@ export default {
       },
       collect: JSON.parse(localStorage.getItem('collect')) || [], //* 如果 localstorage 沒資料就是空陣列
       // search_value: '',
-      search_data: [],
+      // search_data: [],
       isLoading: false
     }
   },
@@ -265,13 +265,16 @@ export default {
       if (collectIndex === -1) {
         this.collect.push(id)
         this.$httpMessageState(true, '收藏產品')
+        this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
       } else {
         this.collect.splice(collectIndex, 1)
+        this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
       }
     }
   },
   mounted () {
     this.get_products()
+    this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
   }
 }
 </script>

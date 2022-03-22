@@ -83,7 +83,7 @@
               @click="current_page('favorite')"
               title="收藏商品頁面"
             >
-            <span v-if="collect.length > 0">
+            <span v-if="collect_data.length > 0">
               <i class="bi bi-heart-fill fs-3" style="color:red"></i>
             </span>
               <i class="bi bi-heart fs-3 collect_icon" v-else></i>
@@ -126,20 +126,10 @@ export default {
     return {
       page: '',
       cartData: [],
-      collect: JSON.parse(localStorage.getItem('collect')) || []
+      collect_data: []
+      // collect: JSON.parse(localStorage.getItem('collect')) || []
     }
   },
-  watch: {
-    collect () {
-      return {
-        handler () {
-          localStorage.setItem('collect', JSON.stringify(this.collect))
-        },
-        deep: true
-      }
-    }
-  },
-
   methods: {
     //* 切換頁面會凸顯當前頁面
     current_page (page) {
@@ -173,6 +163,10 @@ export default {
       setTimeout(() => {
         this.current_page(page)
       })
+    })
+    //* 產品頁面 按收藏時，愛心會變化
+    this.emitter.on('get_collect', (collectData) => {
+      this.collect_data = collectData
     })
   }
 }
