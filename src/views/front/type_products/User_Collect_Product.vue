@@ -86,7 +86,7 @@ export default {
         if (status === 'delete_collect') {
           return
         }
-        this.get_collet_product()
+        this.get_collet_product() //* 取得產品的同時，也取得收藏產品
       })
     },
     //* 取得收藏商品
@@ -97,6 +97,7 @@ export default {
           return product.id === item
         }))
       })
+      this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
     },
     //* 加入購物車
     addCart (id) {
@@ -116,14 +117,15 @@ export default {
       const collectIndex = this.collect.findIndex((item) => {
         return id === item
       })
-      console.log(collectIndex)
       if (collectIndex === -1) {
         this.collect.push(id)
         localStorage.setItem('collect', JSON.stringify(this.collect))
         this.$httpMessageState(true, '加入收藏')
+        this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
       } else {
         this.collect.splice(collectIndex, 1)
         localStorage.setItem('collect', JSON.stringify(this.collect))
+        this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
       }
     }
   },
