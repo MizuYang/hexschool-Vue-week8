@@ -66,13 +66,13 @@ export default {
       this.$http
         .post(api)
         .then((res) => {
-          alert(res.data.message)
+          this.$httpMessageState(res.data.success, '登出')
           //* 清除 cookie
           document.cookie = 'mizuToken=;expires=;'
           this.$router.push('/')
         })
         .catch((err) => {
-          alert(err.data.message)
+          this.$httpMessageState(err.success, '登出')
         })
     }
   },

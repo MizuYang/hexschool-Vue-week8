@@ -68,13 +68,13 @@ export default {
         .delete(api, { data: this.tempOrder })
         .then((res) => {
           this.isLoading = false
-          alert(res.data.message)
+          this.$httpMessageState(res.data.success, '刪除訂單')
           this.delModal.hide()
           this.$emit('get_order')
         })
         .catch((err) => {
           this.isLoading = false
-          alert(err.data.message)
+          this.$httpMessageState(err.success, '刪除訂單')
         })
     }
   },

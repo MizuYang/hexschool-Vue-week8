@@ -115,7 +115,7 @@ export default {
       return phoneNumber.test(value) ? true : '請輸入 09 開頭的正確電話號碼'
     },
     send_question () {
-      alert('送出建議成功!')
+      this.$httpMessageState(true, '送出內容')
       this.$router.push('get_Contact')
     }
   }

@@ -36,7 +36,7 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
       this.$http.post(api).then((res) => {
         this.isLoading = false
-        alert(res.data.message)
+        this.$httpMessageState(res.data.success, '付款')
         this.confirm_modal.hide()
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
         this.$router.push('/user/order_completed')

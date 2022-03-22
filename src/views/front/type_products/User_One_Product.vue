@@ -126,7 +126,7 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.post(api, { data: this.add_product_Data }).then((res) => {
         this.isLoading = false
-        alert(res.data.message)
+        this.$httpMessageState(res.data.success, '加入購物車')
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
       })
     }

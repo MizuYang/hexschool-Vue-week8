@@ -166,13 +166,13 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/order/${id}`
       this.$http.put(api, { data: this.tempOrder }).then((res) => {
         this.isLoading = false
-        alert(res.data.message)
+        this.$httpMessageState(res.data.success, '修改訂單')
         this.$emit('get_order')
         this.order_modal.hide()
       })
         .catch((err) => {
           this.isLoading = false
-          alert(err.data.message)
+          this.$httpMessageState(err.success, '修改訂單')
         })
     }
   },

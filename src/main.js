@@ -15,6 +15,7 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import VueLoading from 'vue-loading-overlay'
 
+import $httpMessageState from '@/utils/pushMessageState.js'
 // import thousandths from '@/utils/thousandths.js' //*千分位
 
 import 'bootstrap'
@@ -41,6 +42,9 @@ configure({
 setLocale('zh_TW')
 
 const app = createApp(App)
+//* 吐司提示窗
+app.config.globalProperties.$httpMessageState = $httpMessageState
+
 //* 表單驗證
 app.component('Form', Form)
 app.component('Field', Field)

@@ -45,7 +45,7 @@ export default {
       this.$http.delete(api).then((res) => {
         this.isLoading = false
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
-        alert(res.data.message)
+        this.$httpMessageState(res.data.success, '刪除產品')
         this.delete_modal.hide()
         this.$emit('getCartList')
       })
@@ -57,14 +57,13 @@ export default {
       this.checkbox_productId.forEach((id) => {
         const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`
         this.$http.delete(api).then(() => {
+          this.$httpMessageState(true, '刪除勾選產品')
           this.isLoading = false
           this.emitter.emit('get_cart') //* 請 Navbar更新數字
-          this.$emit('getCartList', '已刪除勾選商品') //* 如果刪除勾選商品，就讓購物車頁面隱藏單除勾選按鈕
+          this.$emit('getCartList', '已刪除勾選商品') //* 如果刪除勾選商品，就讓購物車頁面隱藏刪除勾選按鈕
           this.delete_modal.hide()
         })
       })
-      alert('刪除成功')
-      this.$emit('getCartList')
     },
     //* 清空購物車
     delete_all_cart () {
@@ -73,7 +72,7 @@ export default {
       this.$http.delete(api).then((res) => {
         this.isLoading = false
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
-        alert(res.data.message)
+        this.$httpMessageState(res.data.success, '清空購物車')
         this.$emit('getCartList')
         this.delete_modal.hide()
       })

@@ -107,7 +107,7 @@ export default {
         .post(api, { data: this.add_product_Data })
         .then((res) => {
           this.isLoading = false
-          alert(res.data.message)
+          this.$httpMessageState(res.data.success, '加入購物車')
           this.emitter.emit('get_cart') //* 請 Navbar更新數字
         })
     },
@@ -120,7 +120,7 @@ export default {
       if (collectIndex === -1) {
         this.collect.push(id)
         localStorage.setItem('collect', JSON.stringify(this.collect))
-        alert('加入收藏成功!')
+        this.$httpMessageState(true, '加入收藏')
       } else {
         this.collect.splice(collectIndex, 1)
         localStorage.setItem('collect', JSON.stringify(this.collect))

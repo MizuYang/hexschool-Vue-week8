@@ -129,13 +129,13 @@ export default {
       }
       this.$http[methods](api, { data: this.tempCoupon })
         .then((res) => {
-          alert(res.data.message)
+          this.$httpMessageState(res.data.success, '更新優惠券')
           this.couponModal.hide()
           this.$emit('get_coupon')
           this.tempCoupon = {}
         })
         .catch((err) => {
-          alert(err.data.message)
+          this.$httpMessageState(err.success, '更新優惠券')
         })
     }
   },

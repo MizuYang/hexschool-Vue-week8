@@ -66,15 +66,16 @@ export default {
         .post(api, this.user)
         .then((res) => {
           this.isLoading = false
-          alert(res.data.message)
+          this.$httpMessageState(res.data.success, '登入')
           //* token, expired 存入 cookie
           const { token, expired } = res.data
           document.cookie = `mizuToken=${token};expires=${new Date(expired)};`
           this.$router.push('/admin')
         })
         .catch((err) => {
+          console.dir(err)
           this.isLoading = false
-          alert(err.response.data.message)
+          this.$httpMessageState(err.success, '登入')
           this.user.username = ''
           this.user.password = ''
         })

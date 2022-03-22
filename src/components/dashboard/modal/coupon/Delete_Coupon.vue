@@ -63,12 +63,12 @@ export default {
       this.$http
         .delete(api)
         .then((res) => {
-          alert(res.data.message)
+          this.$httpMessageState(res.data.success, '刪除優惠券')
           this.del_modal.hide()
           this.$emit('get_coupon')
         })
         .catch((err) => {
-          alert(err.data.message)
+          this.$httpMessageState(err.success, '刪除優惠券')
         })
     }
   },

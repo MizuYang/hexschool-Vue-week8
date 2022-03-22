@@ -221,7 +221,7 @@ export default {
         this.isLoading = false
         this.cartData = res.data.data.carts
         this.price_total()
-        if (checkboxDeleteStatus) { //* 如果刪除勾選商品，就讓購物車頁面隱藏單除勾選按鈕
+        if (checkboxDeleteStatus) { //* 如果刪除勾選商品，就讓購物車頁面隱藏刪除勾選按鈕
           this.checkbox_productId = []
         }
       })
@@ -270,7 +270,7 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${product.id}`
       this.$http.put(api, { data: data }).then((res) => {
         this.isLoading = false
-        alert(res.data.message)
+        this.$httpMessageState(res.data.success, '更新數量')
         this.getCartList()
       })
     },
@@ -285,7 +285,7 @@ export default {
         .post(api, { data: data })
         .then((res) => {
           this.isLoading = false
-          alert(res.data.message)
+          this.$httpMessageState(res.data.success, '使用優惠券')
           this.coupon_final_total = res.data.data.final_total
         })
     },

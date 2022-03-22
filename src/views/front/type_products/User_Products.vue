@@ -247,33 +247,15 @@ export default {
       this.$http
         .post(api, { data: this.add_product_Data })
         .then((res) => {
+          this.$httpMessageState(res.data.success, '加入購物車')
           this.isLoading = false
-          alert(res.data.message)
           this.emitter.emit('get_cart') //* 請 Navbar更新數字
         })
         .catch((err) => {
-          alert(err.response.request.responseText)
+          this.isLoading = false
+          this.$httpMessageState(err.success, '加入購物車')
+          console.dir(err)
         })
-    },
-    //* 增加產品數量
-    update_product_num (status, product) {
-      this.isLoading = true
-      let num = 0
-      if (status === 'add') {
-        num = product.qty + 1
-      } else if (status === 'cut') {
-        num = product.qty - 1
-      }
-      const data = {
-        product_id: product.product_id,
-        qty: num
-      }
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${product.id}`
-      this.$http.put(api, { data: data }).then((res) => {
-        this.isLoading = false
-        alert(res.data.message)
-        this.getCartList()
-      })
     },
     //* 收藏清單
     toggle_collect (id) {
@@ -282,7 +264,7 @@ export default {
       })
       if (collectIndex === -1) {
         this.collect.push(id)
-        alert('加入收藏成功!')
+        this.$httpMessageState(true, '收藏產品')
       } else {
         this.collect.splice(collectIndex, 1)
       }

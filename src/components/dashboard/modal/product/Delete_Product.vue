@@ -65,14 +65,14 @@ export default {
       this.$http
         .delete(api)
         .then((res) => {
+          this.$httpMessageState(res.data.success, '刪除產品')
           this.isLoading = false
           this.$emit('get_products')
           this.delProductModal.hide()
-          alert(res.data.message)
         })
         .catch((err) => {
+          this.$httpMessageState(err.success, '刪除產品')
           this.isLoading = false
-          alert(err.data.message)
         })
     }
   },

@@ -226,13 +226,13 @@ export default {
       this.$http[method](api, { data: this.tempProduct })
         .then((res) => {
           this.isLoading = false
-          alert(res.data.message)
+          this.$httpMessageState(res.data.success, '更新產品')
           this.productModal.hide()
           this.$emit('get_products')
         })
         .catch((err) => {
           this.isLoading = false
-          alert(err.data.message)
+          this.$httpMessageState(err.success, '更新產品')
         })
     }
   },
