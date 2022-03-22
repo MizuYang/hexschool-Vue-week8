@@ -278,7 +278,6 @@ export default {
     },
     //* 關鍵字搜尋
     keywords () {
-      console.log(this.search_value)
       if (!this.search_value) { //* 如果欄位沒值
         this.products = this.temp_product //* 就將暫存的產品 data 賦予上去
       }

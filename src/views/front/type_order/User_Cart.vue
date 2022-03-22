@@ -122,13 +122,44 @@
               </button>
             </td>
             <td></td>
-            <td></td>
-            <td></td>
             <td>
-              <span class="text-success fw-bold" v-show="coupon_final_total > 0">優惠券使用成功!!</span>
+
             </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td><label for="couponCode">輸入優惠碼</label></td>
+            <td></td>
+            <td v-show="coupon_final_total > 0" class="text-success "> 折扣  {{ coupon_discount  }} %</td>
+            <td v-if="coupon_final_total > 0">總價：<span class="text-success fs-5 fw-bold">${{ coupon_final_total }} </span>元</td>
+            <td></td>
+            <td class="fs-5 text-primary " v-if="!coupon_final_total"> 總價：{{ thousandths(total) }}元 </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
             <td>
-              <button
+              <router-link
+                to="/user/products"
+                class="btn btn-secondary active_bigger fs-5 animation_hover"
+                >繼續購物</router-link
+              >
+            </td>
+            <td><input
+                type="text"
+                v-model="couponCode"
+                class="text-center"
+                id="couponCode"
+                style="width: 140px"
+              /></td>
+            <td></td>
+            <td>
+                <button
                 type="button"
                 class="btn btn-success active_bigger animation_hover"
                 @click="use_coupon"
@@ -136,50 +167,16 @@
                 使用優惠券
               </button>
             </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-              <!-- <span class="text-danger">優惠券使用失敗!!</span> -->
-              <label for="couponCode">輸入優惠代碼：</label>
-            </td>
-            <td></td>
-            <td v-show="coupon_final_total > 0" class="text-success "> 您折扣了  {{ coupon_final_total /  total * 100  }} %</td>
-            <td></td>
-            <td><!-- <span class="text-danger">優惠券錯誤或<br />期限已失效</span> --></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <router-link
-                to="/user/products"
-                class="btn btn-secondary active_bigger fs-4 animation_hover"
-                >繼續購物</router-link
-              >
-            </td>
-            <td></td>
-            <td>
-              <input
-                type="text"
-                v-model="couponCode"
-                class="text-center"
-                id="couponCode"
-                style="width: 140px"
-              />
-            </td>
-            <td></td>
-            <td v-show="coupon_final_total > 0">總價格： <span class="text-success fs-2 fw-bold"> {{ coupon_final_total }} </span> 元</td>
-            <td class="fs-4 text-primary fw-bold" v-show="!coupon_final_total"> 總價格： {{ thousandths(total) }} 元 </td>
             <td>
               <router-link
                 to="/user/checkout"
-                class="btn btn-danger send_order fs-4"
+                class="btn btn-danger send_order fs-5"
               >
                 下一步</router-link
               >
             </td>
+            <td></td>
+            <td></td>
           </tr>
         </tfoot>
       </table>
@@ -193,7 +190,6 @@
 import noOrder from '@/components/front/cart/Cart_No_Order.vue'
 import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
 import deleteProductModal from '@/components/front/modal/Front_Delete_Product.vue'
-// import $thousandths from '@/utils/thousandths.js'
 export default {
   inject: ['emitter'],
   components: {
@@ -209,13 +205,13 @@ export default {
       coupon_final_total: 0,
       total: 0,
       isLoading: false,
-      time_line: 0
+      time_line: 0,
+      coupon_discount: 0 //* 折扣百分比
     }
   },
   methods: {
     //* 取得購物車
     getCartList (checkboxDeleteStatus) {
-      console.log(this.time_line)
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.get(api).then((res) => {
@@ -292,6 +288,7 @@ export default {
           this.isLoading = false
           this.$httpMessageState(res.data.success, '使用優惠券')
           this.coupon_final_total = res.data.data.final_total
+          this.coupon_discount = this.coupon_final_total / this.total * 100
         })
     },
     //* 算出總價格

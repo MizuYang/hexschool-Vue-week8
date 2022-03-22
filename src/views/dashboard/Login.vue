@@ -73,7 +73,6 @@ export default {
           this.$router.push('/admin')
         })
         .catch((err) => {
-          console.dir(err)
           this.isLoading = false
           this.$httpMessageState(err.success, '登入')
           this.user.username = ''
@@ -99,7 +98,6 @@ export default {
   }
   @media (max-width:992px) {
     &{
-      // width: 50rem;
       left: 10%;
     }
   }
