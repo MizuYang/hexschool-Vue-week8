@@ -82,7 +82,7 @@
     <div class="card-group">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         <div
-          class="card text-primary bg-dark col"
+          class="card text-primary bg-dark col "
           v-for="product in products "
           :key="product.id"
         >

@@ -15,6 +15,9 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import VueLoading from 'vue-loading-overlay'
 
+//* AOS 滾動視差
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import $httpMessageState from '@/utils/pushMessageState.js'
 // import thousandths from '@/utils/thousandths.js' //*千分位
 
@@ -25,6 +28,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App.vue'
 import router from './router'
+
+//* 滾動視差初始化
+AOS.init({ })
 
 //* 定義驗證規則
 defineRule('required', required)
