@@ -127,6 +127,7 @@ export default {
   },
   mounted () {
     this.get_products()
+    localStorage.setItem('current_page', JSON.stringify('products'))
   }
 }
 </script>

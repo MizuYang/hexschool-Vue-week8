@@ -21,6 +21,7 @@ export default {
   methods: {
     //* 登入驗證
     checkLogin () {
+      const page = JSON.parse(localStorage.getItem('current_page'))
       this.isLoading = true
       //* 將儲存在 cookie 的 token 取出
       const token = document.cookie.replace(
@@ -36,7 +37,7 @@ export default {
             this.isLoading = false
             this.status = true
             //* 確認登入後推送到產品頁
-            this.$router.push('/admin/products')
+            this.$router.push(`/admin/${page}`)
           })
           .catch(() => {
             this.isLoading = false

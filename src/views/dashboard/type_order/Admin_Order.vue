@@ -116,6 +116,7 @@ export default {
   },
   mounted () {
     this.get_order()
+    localStorage.setItem('current_page', JSON.stringify('order'))
   }
 }
 </script>

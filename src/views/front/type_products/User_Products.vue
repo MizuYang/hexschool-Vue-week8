@@ -63,20 +63,21 @@
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
-          @click="get_products('價格低到高')"
+          @click="price_sort"
         >
           價格 / 低到高
         </button>
       </div>
-      <!-- <div class="col text-end text-center text-xl-end mb-sm-5">
+      <div class="col text-end text-center text-xl-end mb-sm-5">
         <label for="search_products">產品搜尋：</label>
         <input
           type="search"
           id="search_products"
           class="search_products"
           v-model="search_value"
+          @input="keywords"
         />
-      </div> -->
+      </div>
     </div>
     <div class="card-group">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
@@ -181,12 +182,13 @@ export default {
   data () {
     return {
       products: [],
+      temp_product: [], //* 借放產品資訊的
       add_product_Data: {
         product_id: '',
         qty: 1
       },
       collect: JSON.parse(localStorage.getItem('collect')) || [], //* 如果 localstorage 沒資料就是空陣列
-      // search_value: '',
+      search_value: '',
       // search_data: [],
       isLoading: false
     }
@@ -206,11 +208,12 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
       this.$http.get(api).then((res) => {
         this.products = res.data.products
+        this.temp_product = res.data.products //* 這是借放的暫存 data
         this.search_data = res.data.products
         this.isLoading = false
         if (category) {
           if (category === '全部') {
-            this.get_products()
+            this.products = this.temp_product //* 篩選時選擇全部，在將暫存的 data 丟回，就不用重新取得產品跑 API
           } else if (category === '蛋糕') {
             this.products = this.products.filter((product) => {
               return product.category === '蛋糕'
@@ -231,12 +234,14 @@ export default {
             this.products = this.products.filter((product) => {
               return product.popular > 2
             })
-          } else if (category === '價格低到高') {
-            this.products = this.products.sort((a, b) => {
-              return a.price - b.price
-            })
           }
         }
+      })
+    },
+    //* 價格低到高
+    price_sort () {
+      this.products = this.products.sort((a, b) => {
+        return a.price - b.price
       })
     },
     //* 加入購物車
@@ -270,6 +275,16 @@ export default {
         this.collect.splice(collectIndex, 1)
         this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
       }
+    },
+    //* 關鍵字搜尋
+    keywords () {
+      console.log(this.search_value)
+      if (!this.search_value) { //* 如果欄位沒值
+        this.products = this.temp_product //* 就將暫存的產品 data 賦予上去
+      }
+      this.products = this.products.filter((product) => {
+        return product.title.match(this.search_value) //* 判斷有部分相符的就顯示
+      })
     }
   },
   mounted () {

@@ -121,6 +121,7 @@ export default {
   },
   mounted () {
     this.get_coupon()
+    localStorage.setItem('current_page', JSON.stringify('coupon'))
   }
 }
 </script>
