@@ -203,7 +203,7 @@ export default {
   },
   data () {
     return {
-      time_line: 1,
+      time_line: 0,
       cartData: [],
       checkbox_productId: [],
       couponCode: 'my_coupon',
@@ -307,6 +307,8 @@ export default {
     }
   },
   mounted () {
+    this.time_line += 1
+    console.log(this.time_line)
     this.getCartList()
   }
 }

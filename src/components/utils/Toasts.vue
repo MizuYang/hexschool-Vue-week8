@@ -36,13 +36,10 @@ export default {
   },
   mounted () {
     emitter.on('push-message', (mes) => {
-      console.log(mes)
       const style = mes.style || 'success'
       const title = mes.title
       const content = mes.content
       this.messages.push({ style, title, content })
-      //   const { style = 'success', title, content } = message
-      //   this.messages.push({ style, title, content })
       this.toastShow()
     })
   }

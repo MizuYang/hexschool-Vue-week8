@@ -40,6 +40,10 @@ export default {
         this.confirm_modal.hide()
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
         this.$router.push('/user/order_completed')
+      }).catch((err) => {
+        this.isLoading = false
+        this.$httpMessageState(err.response.success, '付款')
+        this.confirm_modal.hide()
       })
     }
   },
