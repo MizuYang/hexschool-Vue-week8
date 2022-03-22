@@ -56,8 +56,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.carousel-inner, .carousel-item{
-  height: 39.5rem;
-  overflow: hidden;
-}
 </style>

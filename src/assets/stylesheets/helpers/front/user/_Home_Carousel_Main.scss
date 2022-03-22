@@ -10,6 +10,11 @@
         background-size: cover;
         background-position: center;
         background-attachment: fixed; //*固定圖片
+        @media (max-width:768px) {
+            & {
+                width: 50rem;
+            }
+        }
     }
     .banner-main-2 {
         background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/banner.jpeg?raw=true);
@@ -18,6 +23,11 @@
         background-size: cover;
         background-position: center;
         background-attachment: fixed; //*固定圖片
+        @media (max-width:768px) {
+            & {
+                width: 50rem;
+            }
+        }
     }
     .banner-main-3 {
         background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/pexels-photo-1028711.jpeg?raw=true);
@@ -30,6 +40,11 @@
             margin-left: 20%;
             margin-top: 5%;
         }
+        @media (max-width:768px) {
+            & {
+                width: 50rem;
+            }
+        }
     }
     .product_direct {
         display: flex;
@@ -41,5 +56,10 @@
     }
 }
 .carousel  h2{
-    font-size: 50px;
+    font-size: 3rem;
+    @media (max-width:768px) {
+        & {
+            font-size: 2rem;
+        }
+    }
 }

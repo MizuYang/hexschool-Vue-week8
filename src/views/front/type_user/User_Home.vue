@@ -44,10 +44,10 @@
     </div>
     <h2 class="text-center mb-5">用甜點，抓住你的胃 - </h2>
     <!-- 輪播 -->
-    <div class="d-flex mb-5">
-        <carouselSecondary></carouselSecondary>
-        <div class="my-auto">
-            <h3 class="mb-3">實在是忍不住了...</h3>
+    <div class="d-flex mb-5 row">
+        <carouselSecondary   class="col-12 col-xl-9"></carouselSecondary>
+        <div class=" text-center col-12 col-xl-3 my-xl-auto mt-5">
+            <h3 class="mb-3 ">實在是忍不住了...</h3>
             <router-link to="/user/products" class="btn btn-outline-primary rounded-pill animation_hover fs-5" @click="current('productList')">
                 現在，就想吃。
             </router-link>

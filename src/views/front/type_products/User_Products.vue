@@ -68,15 +68,15 @@
           價格 / 低到高
         </button>
       </div>
-      <div class="col text-end text-center text-xl-end mb-sm-5">
+      <!-- <div class="col text-end text-center text-xl-end mb-sm-5">
         <label for="search_products">產品搜尋：</label>
         <input
-          type="text"
+          type="search"
           id="search_products"
           class="search_products"
           v-model="search_value"
         />
-      </div>
+      </div> -->
     </div>
     <div class="card-group">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
@@ -186,7 +186,7 @@ export default {
         qty: 1
       },
       collect: JSON.parse(localStorage.getItem('collect')) || [], //* 如果 localstorage 沒資料就是空陣列
-      search_value: '',
+      // search_value: '',
       search_data: [],
       isLoading: false
     }
