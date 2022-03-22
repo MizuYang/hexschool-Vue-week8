@@ -177,6 +177,9 @@ export default {
             .substring(0, 10)
           this.create_at = date
           this.is_pay = res.data.order.is_paid
+          if (this.is_pay) { //* 如果使用者按上一頁回來，判斷是已付款，時間軸改為完成訂單
+            this.time_line = 4
+          }
         })
       }
     },

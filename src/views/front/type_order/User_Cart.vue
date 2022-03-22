@@ -203,27 +203,32 @@ export default {
   },
   data () {
     return {
-      time_line: 1,
       cartData: [],
       checkbox_productId: [],
       couponCode: 'my_coupon',
       coupon_final_total: 0,
       total: 0,
-      isLoading: false
+      isLoading: false,
+      time_line: 0
     }
   },
   methods: {
     //* 取得購物車
     getCartList (checkboxDeleteStatus) {
+      console.log(this.time_line)
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.get(api).then((res) => {
         this.isLoading = false
         this.cartData = res.data.data.carts
         this.price_total()
+
         if (checkboxDeleteStatus) { //* 如果刪除勾選商品，就讓購物車頁面隱藏刪除勾選按鈕
           this.checkbox_productId = []
         }
+        setTimeout(() => {
+          this.time_line = 1
+        }, 1000)
       })
     },
     //* 開啟刪除 modal
@@ -307,7 +312,6 @@ export default {
     }
   },
   mounted () {
-    this.time_line += 1
     this.getCartList()
   }
 }
