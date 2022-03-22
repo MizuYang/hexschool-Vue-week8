@@ -13,7 +13,7 @@
             <router-link
               to="/user/products"
               class="btn btn-outline-primary fs-4 animation_hover"
-              @click="current('productList')"
+              @click="(this.emitter.emit('currentPage', 'productList'))"
               >前往商品</router-link
             >
           </div>
@@ -27,7 +27,7 @@
             <router-link
               to="/user/products"
               class="btn btn-outline-primary fs-4 animation_hover"
-              @click="current('productList')"
+              @click="(this.emitter.emit('currentPage', 'productList'))"
               >前往商品</router-link
             >
           </div>
@@ -41,7 +41,7 @@
             <router-link
               to="/user/products"
               class="btn btn-outline-primary fs-4 animation_hover"
-              @click="current('productList')"
+              @click="(this.emitter.emit('currentPage', 'productList'))"
               >前往商品</router-link
             >
           </div>
@@ -68,6 +68,11 @@
     </button>
   </div>
 </template>
+<script>
+export default {
+  inject: ['emitter']
+}
+</script>
 <style lang="scss" scoped>
 @import '@/assets/stylesheets/helpers/front/user/_Home_Carousel_Main.scss'
 </style>
