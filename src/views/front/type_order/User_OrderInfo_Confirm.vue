@@ -14,7 +14,7 @@
       </div>
       <h3 class="text-center border-bottom mb-3 fw-bold">
         請確認您的資料無誤後付款
-        <span span class="bg-primary text-danger fs-5" v-if="!order.is_paid">
+        <span span class="bg-primary text-danger fs-5" v-if="!is_pay">
           (尚未付款)
         </span>
         <span class="bg-primary text-success fs-5" v-else>(已付款)</span>
@@ -112,7 +112,7 @@
             <td>
               <span
                 class="badge bg-primary text-danger fs-5"
-                v-if="!order.is_paid"
+                v-if="!is_pay"
               >
                 未付款
               </span>
@@ -135,14 +135,14 @@
         "
         title="結帳"
         @click="open_confirm_modal"
-        v-if="!order.is_paid"
+        v-if="!is_pay"
       >
         <i class="bi bi-cash-coin"></i>
         確認付款
       </button>
     </div>
   </div>
-  <confirmModal ></confirmModal>
+  <confirmModal @payment="payment"></confirmModal>
 </template>
 <script>
 import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
@@ -156,11 +156,12 @@ export default {
   },
   data () {
     return {
-      time_line: 3,
+      time_line: 0,
       order_user: [],
       orderId: '',
       order: [],
-      create_at: 0
+      create_at: 0,
+      is_pay: false
     }
   },
   methods: {
@@ -175,15 +176,33 @@ export default {
             .toISOString()
             .substring(0, 10)
           this.create_at = date
+          this.is_pay = res.data.order.is_paid
         })
       }
     },
-    //* 開啟確認 modal
+    //* 開啟、關閉確認 modal
     open_confirm_modal () {
-      this.emitter.emit('open_confirmModal')
+      this.emitter.emit('open_confirmModal', '開啟')
+    },
+    //* 付款
+    payment () {
+      this.isLoading = true
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
+      this.$http.post(api).then((res) => {
+        this.isLoading = false
+        this.$httpMessageState(res.data.success, '付款')
+        this.emitter.emit('open_confirmModal', '關閉')
+        this.emitter.emit('get_cart') //* 請 Navbar更新數字
+        this.$router.push('/user/order_completed')
+      }).catch((err) => {
+        this.isLoading = false
+        this.$httpMessageState(err.response.success, '付款')
+        this.emitter.emit('open_confirmModal', '關閉')
+      })
     }
   },
   mounted () {
+    this.time_line = 3
     this.orderId = this.$route.params.orderId
     this.get_order()
   }

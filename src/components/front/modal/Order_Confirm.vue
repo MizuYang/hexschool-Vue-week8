@@ -12,7 +12,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click="payment"  >確認結帳</button>
+            <button type="button" class="btn btn-danger" @click="this.$emit('payment')"  >確認結帳</button>
         </div>
         </div>
     </div>
@@ -29,29 +29,15 @@ export default {
       isLoading: false
     }
   },
-  methods: {
-    //* 付款
-    payment () {
-      this.isLoading = true
-      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
-      this.$http.post(api).then((res) => {
-        this.isLoading = false
-        this.$httpMessageState(res.data.success, '付款')
-        this.confirm_modal.hide()
-        this.emitter.emit('get_cart') //* 請 Navbar更新數字
-        this.$router.push('/user/order_completed')
-      }).catch((err) => {
-        this.isLoading = false
-        this.$httpMessageState(err.response.success, '付款')
-        this.confirm_modal.hide()
-      })
-    }
-  },
   mounted () {
     this.confirm_modal = new Modal(document.querySelector('.modal'))
     //* confirm 頁面開啟確認 modal
-    this.emitter.on('open_confirmModal', () => {
-      this.confirm_modal.show()
+    this.emitter.on('open_confirmModal', (status) => {
+      if (status === '開啟') {
+        this.confirm_modal.show()
+      } else {
+        this.confirm_modal.hide()
+      }
     })
   },
   unmounted () { //* 元件銷毀之後將 emitter 註冊的事件移除

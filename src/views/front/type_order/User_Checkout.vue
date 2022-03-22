@@ -21,8 +21,11 @@ export default {
   },
   data () {
     return {
-      time_line: 2
+      time_line: 0
     }
+  },
+  mounted () {
+    this.time_line = 2
   }
 }
 </script>

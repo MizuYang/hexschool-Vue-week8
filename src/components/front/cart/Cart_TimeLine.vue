@@ -15,8 +15,9 @@ export default {
     }
   },
   watch: {
-    timeLine () {
+    time_line () {
       this.change_time_line()
+      // console.log(this.time_line)
     }
   },
   methods: {
@@ -24,15 +25,15 @@ export default {
       //* 判斷 結帳流程到哪
       if (this.timeLine === 1) {
         document.querySelector('.finish_1').className = 'dynamic_timeline'
-      } else if (this.timeLine === 2) {
-        document.querySelector('.finish_1').classList.add('class', 'dynamic_timeline')
+      } else if (this.time_line === 2) {
+        // document.querySelector('.finish_1').classList.add('class', 'dynamic_timeline')
         document.querySelector('.finish_2').classList.add('class', 'dynamic_timeline')
-      } else if (this.timeLine === 3) {
-        document.querySelector('.finish_1').classList.add('class', 'dynamic_timeline')
+      } else if (this.time_line === 3) {
+        // document.querySelector('.finish_1').classList.add('class', 'dynamic_timeline')
         document.querySelector('.finish_2').classList.add('class', 'dynamic_timeline')
         document.querySelector('.finish_3').classList.add('class', 'dynamic_timeline')
-      } else if (this.timeLine === 4) {
-        document.querySelector('.finish_1').classList.add('class', 'dynamic_timeline')
+      } else if (this.time_line === 4) {
+        // document.querySelector('.finish_1').classList.add('class', 'dynamic_timeline')
         document.querySelector('.finish_2').classList.add('class', 'dynamic_timeline')
         document.querySelector('.finish_3').classList.add('class', 'dynamic_timeline')
         document.querySelector('.finish_4').classList.add('class', 'dynamic_timeline')
@@ -40,8 +41,9 @@ export default {
     }
   },
   mounted () {
+    document.querySelector('.finish_1').className = 'dynamic_timeline'
     // console.log('time', this.time_line)
-    this.timeLine = this.time_line
+    // this.timeLine = this.time_line
     //* 判斷 結帳流程到哪
     // if (this.time_line === 1) {
     //   document.querySelector('.finish_1').className = 'dynamic_timeline'

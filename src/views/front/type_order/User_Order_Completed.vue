@@ -84,8 +84,11 @@ export default {
   },
   data () {
     return {
-      time_line: 4
+      time_line: 0
     }
+  },
+  mounted () {
+    this.time_line = 4
   }
 }
 </script>
