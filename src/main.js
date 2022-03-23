@@ -30,7 +30,7 @@ import App from './App.vue'
 import router from './router'
 
 //* 滾動視差初始化
-AOS.init({ })
+AOS.init({ disable: 'phone' })
 
 //* 定義驗證規則
 defineRule('required', required)
