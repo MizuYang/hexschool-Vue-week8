@@ -45,7 +45,6 @@
         </div>
         <div class="square-secondary img-fluid"  data-aos="fade-left"  data-aos-delay="400" data-aos-duration="1500" >
               <p class=" mt-5"> <span class="badge fs-5">烤奶油堅果塔</span> </p>
-            <!-- <img src="@/assets/imageUrl/banner/dXWgGrVpYl.png" alt="banner 圖片" class="square-secondary img-fluid"> -->
         </div>
       </div>
     </div>

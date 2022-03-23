@@ -60,13 +60,13 @@
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary products_category_btn animation_active"
+          class="btn btn-outline-primary products_category_btn animation_active mt-3 mt-md-0"
           @click="price_sort"
         >
           價格 / 低到高
         </button>
       </div>
-      <div class="col text-end text-center text-xl-end mb-sm-5">
+      <div class="col text-end text-center text-xl-end mb-sm-5 mb-3">
         <label for="search_products">產品搜尋：</label>
         <input
           type="search"
@@ -93,6 +93,7 @@
               text-decoration-none
               product_img
               img-fluid
+              mx-auto w-100
             "
             :style="{ backgroundImage: `url(${product.imageUrl})` }"
           >
