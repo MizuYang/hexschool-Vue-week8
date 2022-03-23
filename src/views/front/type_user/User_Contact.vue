@@ -1,11 +1,11 @@
 <template>
-  <div class="banner_main container img-fluid"></div>
+  <div class="banner_main  img-fluid"></div>
   <div class="contact container mt-10">
     <h2 class="title text-center mb-10 pt-3">
       <span class="decorate">連絡我們</span>
     </h2>
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center form-container">
       <Form
         action="/"
         v-slot="{ errors }"
@@ -88,7 +88,7 @@
           <Field
             name="留言"
             id="message"
-            class="form-control"
+            class="form-control mb-4"
             type="text"
             rules="required"
             :class="{ 'is-invalid': errors['留言'] }"
@@ -99,7 +99,7 @@
         <div class="text-end">
           <button
             type="submit"
-            class="btn btn-danger send-btn"
+            class="btn btn-danger send-btn mb-4"
             title="發送內容"
           >
             送出內容

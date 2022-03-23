@@ -1,6 +1,6 @@
 <template>
-  <div class="container mt-10 mb-4">
-    <h2 class="title text-center mb-5 pt-3">
+  <div class="container mt-10 mb-5">
+    <h2 class="title text-center mb-5 ">
       <span class="decorate">{{ product.title }}</span>
     </h2>
     <div class="row">

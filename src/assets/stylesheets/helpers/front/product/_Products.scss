@@ -1,6 +1,6 @@
+@import "@/assets/stylesheets/helpers/_mixin.scss";
 //* 產品圖片
 .product_img {
-  
     height: 15rem;
     width: 20rem;
     background-position: 50%;
@@ -44,7 +44,7 @@
     & :hover {
         color: red;
     }
-    & :active{
+    & :active {
         font-size: 2.75rem;
     }
 }
@@ -73,7 +73,7 @@
         font-size: 1.005rem;
         color: #f0ecc8;
     }
-    &:active{
+    &:active {
         font-size: 1.05rem;
     }
 }
@@ -81,8 +81,15 @@
 .btn-outline-primary:hover {
     background: #000;
     color: #f1ebd8;
-    transform: rotate(-3deg);
+    transform: rotate(-4deg);
     border-radius: 33%;
+}
+//* 點擊的產品會有特效
+.active_category_status {
+    transform: rotate(-6deg);
+    border-radius: 33%;
+    background: #f1ebd8;
+    color: #000;
 }
 
 //* 產品 查看產品資訊
@@ -91,23 +98,25 @@
     width: 14rem;
     position: absolute;
     top: 5%;
-    left: 12%;
+    // left: 12%;
     display: none;
-}
-//* 針對響應式調整 定位的座標
-@media (max-width: 1200px) {
-    .product_info {
-        left: 8%;
+    @include xs {
+        left: 25%;
     }
-}
-@media (max-width: 768px) {
-    .product_info {
-        left: 14%;
+    @include sm {
+        left: 30%;
     }
-}
-@media (max-width: 576px) {
-    .product_info {
-        left: 28%;
+    @include md {
+        left: 18%;
+    }
+    @include lg {
+        left: 12%;
+    }
+    @include xl {
+        left: 6%;
+    }
+    @include xxl {
+        left: 12%;
     }
 }
 //* 滑鼠過去產品圖片，顯示 "查看更多"
@@ -116,7 +125,7 @@
 }
 //* 搜尋欄
 .search_products {
-    width: 150px;
+    width: 50%;
 }
 
 @media (max-width: 575px) {
@@ -127,13 +136,12 @@
     }
 }
 //* 卡片邊線
-.card-body{
+.card-body {
     border-left: 0.1rem solid rgba(170, 1, 1, 0.678);
     border-right: 0.1rem solid rgba(170, 1, 1, 0.678);
 }
-.card-footer{
+.card-footer {
     border-right: 0.1rem solid rgba(170, 1, 1, 0.678);
     border-left: 0.1rem solid rgba(170, 1, 1, 0.678);
     border-bottom: 0.1rem solid rgba(170, 1, 1, 0.678);
 }
-

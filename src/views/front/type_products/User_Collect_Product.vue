@@ -35,8 +35,8 @@
     </template>
     <template v-else>
       <img src="@/assets/imageUrl/banner/NkpH1t32cK.png" alt="您目前沒有收藏產品，此為 banner 圖片" class="banner img-fluid">
-      <div class="text-center mt-xxl-10">
-        <h3 class="mb-5">您目前沒有收藏的商品</h3>
+      <div class="text-center">
+        <h3 class=" mb-5 subtitle">您目前沒有收藏的商品</h3>
         <p>如果有喜歡的商品，您可以點擊右上方的愛心，</p>
         <p>您的支持就是我們最大的動力，</p>
         <p>祝您購物愉快！</p>
@@ -47,7 +47,7 @@
               text-white
               animation_hover animation_active
               fs-5
-              mb-2
+              mb-10
             "
             title="返回購物"
             @click="this.$router.push('/user/products')"

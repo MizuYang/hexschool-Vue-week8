@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="container">
-    <div data-aos="fade-right" data-aos-delay="200" data-aos-duration="800" >
+    <div data-aos="fade-right" data-aos-duration="800" >
         <h2 class="text-center mb-5"> 這是一群大學生，勇敢追夢的故事 - </h2>
     </div>
 
@@ -16,7 +16,7 @@
       <div class="col">
         <div class="banner-vertical-main mb-5 mb-lg-0 img-fluid">
             <ul class="list-unstyled vertical-main-text" >
-              <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="500" >
+              <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" data-aos-duration="700" >
                 <li>一群來自桃園的大學生們，</li>
                 <li>離鄉背景來到新北打拼，</li>
                 <li>來到這陌生的城市，</li>
@@ -27,14 +27,14 @@
               </div>
             </ul>
         </div>
-        <div class="text-center img-fluid square-main row"  data-aos="fade-right"  data-aos-delay="700">
+        <div class="text-center img-fluid square-main row"  data-aos="fade-right"  data-aos-duration="5500">
               <p class=" d-flex align-items-end justify-content-center mb-4"> <span class="badge fs-5">布朗尼巧克</span> </p>
         </div>
       </div>
       <div class="col d-flex flex-column flex-lg-column-reverse">
         <div class="banner-vertical-secondary img-fluid">
           <ul class="list-unstyled vertical-secondary-text">
-          <div data-aos="flip-right"  data-aos-delay="500" data-aos-duration="600" >
+          <div data-aos="flip-right"   data-aos-duration="5000" >
             <li>我相信努力不會白費，</li>
             <li>就算將來的某一天我不得不放棄這個夢想，</li>
             <li>那我也不顧一切的為其努力過了，</li>
@@ -43,7 +43,7 @@
           </div>
           </ul>
         </div>
-        <div class="square-secondary img-fluid"  data-aos="fade-left"  data-aos-delay="400" data-aos-duration="1500" >
+        <div class="square-secondary img-fluid"  data-aos="fade-left"  data-aos-duration="5000" >
               <p class=" mt-5"> <span class="badge fs-5">烤奶油堅果塔</span> </p>
         </div>
       </div>

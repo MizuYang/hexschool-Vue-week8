@@ -1,83 +1,91 @@
-
+@import "@/assets/stylesheets/helpers/_mixin.scss";
 //* 愛心按鈕
-.like_btn{
+.like_btn {
     color: red;
     position: absolute;
-    right: 3%;
-    @media (max-width:768px) {
+    @include xs {
+        right: 7%;
+        top: -1;
+    }
+    @include sm {
         right: 7%;
     }
-    @media (max-width:768px) {
-        right: 20%;
+    @include xl {
+        right: 4%;
+    }
+    @include xxl {
+        right: 3%;
     }
 }
-.bi:active{
-    font-size: 2.05rem;
+//* 產品圖片
+.product_img {
+    @include xs {
+        width: 100%;
+    }
+    @include sm {
+        width: 100%;
+        height: 20rem;
+    }
 }
-.product_img{
-    text-align: center;
-    margin: 0 auto;
+.card{
+    @include xs {
+        padding-left: 7%;
+        padding-right: 7%;
+    }
 }
-.badge{
+.card-body{
+    margin-bottom: 5%;
+}
+.badge {
     position: absolute;
     left: 0%;
 }
-.banner{
-    position: absolute;
-    width: 50rem;
-    left: 35%;
-    z-index: -1;
-    opacity: .5;
-    @media (max-width:1400px) {
-        & {
-            width: 40rem;
-            left: 28%;
-        }
-    }
-    @media (max-width:1200px) {
-        & {
-            top: 18%;
-            left: 25%;
-        }
-    }
-    @media (max-width:992px) {
-        & {
-            left: 18%;
-        }
-    }
-    @media (max-width:768px) {
-        & {
-            left: 9%;
-        }
-    }
-    @media (max-width:576px) {
-        & {
-            top: 23%;
-            width: 30rem;
-            left: 10%;
-        }
+
+
+//* 小標題
+.subtitle {
+    @include lg {
+        margin-top: 10%;
     }
 }
 
-// // * 破掉的愛心、哭臉 預設隱藏
-// .bi-heartbreak-fill, .heartbreak, .bi-emoji-dizzy-fill{
-//     display: none;
-// }
-// //*滑鼠過去時 把滿的愛心 隱藏
-// .like_btn:hover .bi-heart-fill, .like_btn {
-//     display: none;
-// }
-// //* 滑鼠過去時 顯示破愛心
-// .like_btn:hover .bi-heartbreak-fill{
-//     display: block;
-// }
-//* 點擊破愛心的話，破愛心隱藏
-// .like_btn:hover:active .bi-heartbreak-fill{
-//     display: none;
-// }
-//* 破愛心隱藏後，顯示哭臉
-// .like_btn:hover:active .bi-emoji-dizzy-fill{
-//     transform: scale(1.25);
-//     display: block;
-//     color: #F1EBD8;
-// }
+.bi:active {
+    font-size: 2.05rem;
+}
+//* 無收藏產品的 banner
+.banner {
+    position: absolute;
+    z-index: -1;
+    opacity: 0.6;
+    @include xs {
+        width: 20rem;
+        height: 25rem;
+        left: 6%;
+        top: 27%;
+    }
+    @include sm {
+        width: 30rem;
+        height: 25rem;
+        left: 8%;
+        top: 27%;
+    }
+    @include md {
+        width: 40rem;
+        top: 27%;
+    }
+    @include lg {
+        width: 53rem;
+    }
+    @include xl {
+        width: 64rem;
+        height: 27rem;
+    }
+    @include xxl {
+        width: 75rem;
+        height: 30rem;
+    }
+    @media (min-width: 1401px) {
+        left: 30%;
+        height: 35rem;
+    }
+}

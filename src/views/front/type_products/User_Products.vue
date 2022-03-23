@@ -20,6 +20,7 @@
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('全部')"
+          :class="{active_category_status : category['全部']}"
         >
           全部
         </button>
@@ -27,6 +28,7 @@
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('蛋糕')"
+          :class="{active_category_status : category['蛋糕']}"
         >
           蛋糕
         </button>
@@ -34,6 +36,7 @@
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('布丁')"
+          :class="{active_category_status : category['布丁']}"
         >
           布丁
         </button>
@@ -41,6 +44,7 @@
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('泡芙')"
+          :class="{active_category_status : category['泡芙']}"
         >
           泡芙
         </button>
@@ -48,6 +52,7 @@
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('舒芙蕾')"
+          :class="{active_category_status : category['舒芙蕾']}"
         >
           舒芙蕾
         </button>
@@ -55,6 +60,7 @@
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('熱門商品')"
+          :class="{active_category_status : category['熱門商品']}"
         >
           熱門商品
         </button>
@@ -62,6 +68,7 @@
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active mt-3 mt-md-0"
           @click="price_sort"
+          :class="{active_category_status : category['價格低到高']}"
         >
           價格 / 低到高
         </button>
@@ -200,7 +207,8 @@ export default {
       },
       collect: JSON.parse(localStorage.getItem('collect')) || [], //* 如果 localstorage 沒資料就是空陣列
       search_value: '',
-      isLoading: false
+      isLoading: false,
+      category: {}
     }
   },
   watch: {
@@ -215,6 +223,7 @@ export default {
     //* 取得產品
     get_products (category) {
       this.isLoading = true
+      this.active_category_status(category)
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
       this.$http.get(api).then((res) => {
         this.products = res.data.products
@@ -250,6 +259,7 @@ export default {
     },
     //* 價格低到高
     price_sort () {
+      this.active_category_status('價格低到高')
       this.products = this.products.sort((a, b) => {
         return a.price - b.price
       })
@@ -295,6 +305,13 @@ export default {
       this.products = this.products.filter((product) => {
         return product.title.match(this.search_value) //* 判斷有部分相符的就顯示
       })
+    },
+    //* 點擊的產品會有特效
+    active_category_status (category) {
+      if (category !== '價格低到高') { //* 如果點的不是價格低到高，就初始化，如果是價格低到高的話，就不會初始化
+        this.category = {} //* 因為可以刪選一個類別同時再為那個類別排序低到高
+      }
+      this.category[category] = category
     }
   },
   mounted () {

@@ -1,84 +1,30 @@
-//* 標題
-.title {
-    line-height: 2rem;
-    text-align: center;
-}
-//*偽元素裝飾線條
-.decorate {
-    //* 文字上下置中效果
-    display: block;
-    //* 定位橫線(當橫線的父元素)
-    position: relative;
-}
-//* 調整位置
-.title .decorate:before {
-    left: 25%;
-}
-.title .decorate:after {
-    right: 25%;
-}
-.title .decorate:before,
-.title .decorate:after {
-    position: absolute; //*定位背景橫線位置
-    top: 50%;
-    content: ""; //* CSS偽類用法
-    width: 122px;
-    height: 1px;
-    align-items: center; //*罝中
-    background: #f1ebd8;
-}
-//* 偽類裝飾線條，響應式縮小寬度
-@media (max-width: 768px) {
-    .title .decorate:before,
-    .title .decorate:after {
-        width: 80px;
-    }
-}
-@media (max-width: 576px) {
-    .title .decorate:before,
-    .title .decorate:after {
-        width: 50px;
-    }
-}
-.banner {
-    object-fit: cover;
-    object-position: center;
-    position: absolute;
-    top: 20%;
-    left: 32%;
-    width: 60rem;
-    opacity: .7;
-    z-index: -1;
-    @media (max-width:1400px) {
-        &{
-            left: 25%;
-            top: 22%;
-            width: 45rem;
-        }
-    }
-    @media (max-width:1200px) {
-        &{
-            left: 25%;
-            width: 38rem;
-        }
-    }
-    @media (max-width:992px) {
-        &{
-            width: 35rem;
-        }
-    }
-    @media (max-width:768px) {
-        &{
-            left: 15%;
-        }
-    }
-    &{
-        @media (max-width:576px) {
-            &{
-                left: 12%;
-                width: 29rem;
-            }
-        }
-    }
-}
+@import "@/assets/stylesheets/helpers/_mixin.scss";
 
+.banner {
+    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/bXMwvjYRKB.png?raw=true);
+    // object-position: center;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50%;
+    @include xs {
+        width: 20rem;
+        height: 30rem;
+    }
+    @include sm {
+        width: 30rem;
+        height: 20rem;
+    }
+    @include md {
+        width: 40rem;
+        height: 30rem;
+    }
+    @include lg {
+        width: 50rem;
+        height: 40rem;
+    }
+    @include xl {
+        width: 60rem;
+        height: 39rem;
+    }
+}

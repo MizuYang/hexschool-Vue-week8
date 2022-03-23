@@ -1,13 +1,13 @@
 <template>
-<div class="container mt-10  mb-5">
+<div class="container mt-10  mb-5 wrap">
     <h2 class="title text-center  mb-5 pt-3">
       <span class="decorate title">品牌故事</span>
     </h2>
     <div class="main row d-flex justify-content-end mb-5">
-        <div class="col-12 mb-5 col-md-12 text-md-center mb-md-3 col-xl-6">
+        <div class="col-12 mb-5 col-md-12 text-md-center mb-md-3 col-xl-6" >
             <img src="@/assets/imageUrl/banner/istockphoto-526179613-612x612.jpg" alt="店家品牌故事的示意圖" class="img-fluid">
         </div>
-        <div class="col-12 col-xl-4 col-lg-8 mx-lg-auto col-md-12 px-md-5 fs-md-1  ms-auto  d-flex flex-column my-auto text-start me-xl-auto">
+        <div class="col-12 col-xl-5 col-lg-8 mx-lg-auto col-md-12 px-md-5 fs-md-1  ms-auto  d-flex flex-column my-auto text-start me-xl-auto">
             <ul class="list-unstyled">
                 <li>
                     <h3 class="fs-4 text-center subtitle">起源</h3>
@@ -25,7 +25,7 @@
                 身為餐飲科的我們讚不絕口，紛紛開始討論起口感和猜測使用了哪些食材。</p>
             </li>
             <li>
-                <p>這時，一位非常年長的老者走來，與我們攀談，才知道原來他是這間店的老闆，
+                <p>這時，一位非常年長的老者走來，與我們交談，才知道原來他是這間店的老闆，
                     看我們這些年輕人對於他的產品感興趣，他也覺得非常興奮，開始和我們聊起配方還有做法，
                 </p>
                 <p>
@@ -46,7 +46,7 @@
         <div class="col-12 text-center col-md-12 col-xl-5 mt-xl-auto mb-5 text-md-center ">
             <img src="@/assets/imageUrl/banner/VuBaRVPSvv.png" class="story-img-sm img-fluid" alt="店家品牌故事的示意圖">
         </div>
-        <div class="col-12 px-5 col-md-12 px-md-10 px-xl-5 ">
+        <div class="col-12  col-md-12  px-xl-5 ">
             <p> 回到桃園幾個禮拜後，學校剛好有個專題是要大家做創業發想，
                 聽到這個專題後，我們這群朋友們，眼睛都在閃閃發亮著，
                 <br>
@@ -55,10 +55,10 @@
         </div>
     </div>
     <div class="mb-5 ">
-        <h3 class="fs-4 text-center subtitle">計畫總是趕不上變化</h3>
-        <ul class="list-unstyled px-md-5 ">
+        <h3 class="fs-4 text-center subtitle" >計畫總是趕不上變化</h3>
+        <ul class="list-unstyled px-md-5 "  data-aos="fade-up-right" data-aos-duration="1500">
             <li>
-                <p>
+                <p >
                     我們到了那條陌生但又認得出來的小巷口，心裡非常的雀躍，大家都非常想念那位熱情的老闆，
                     <br>
                     我們還在開玩笑的說老闆這次不知道又要拿什麼出來請客了。
@@ -85,10 +85,10 @@
     </div>
 
     <ul class="list-unstyled row d-flex align-items-center mb-5">
-        <li class="col-12 mb-5 col-lg-6 col-md-12 mt-lg-auto text-md-center mb-md-5">
+        <li class="col-12 mb-5 col-lg-6 col-md-12 mt-lg-auto text-md-center mb-md-5"  data-aos="flip-left">
             <img src="@/assets/imageUrl/banner/istockphoto-1292119448-612x612.jpg" alt="店家品牌故事的示意圖"  class="img-fluid">
         </li>
-        <li class="col-12 px-xl-9  col-lg-6 col-md-12 px-md-5 ms-lg-auto">
+        <li class="col-12 px-xl-9  col-lg-6 col-md-12 px-md-5 ms-lg-auto"  data-aos="fade-up-left" data-aos-duration="2000">
             <h3 class="fs-4 text-center subtitle">轉折，夢想起飛吧！</h3>
             <p>
                 在幾分鐘的沈默過後，胖子（本店老闆）突然說話了，他說：「我們創業吧！將他的精神延續下去！」
@@ -103,11 +103,11 @@
 
     <ul class="list-unstyled row d-flex flex-row-reverse align-items-center">
 
-        <li class="col-12 mb-5 text-md-center col-xl-6">
+        <li class="col-12 mb-5 text-md-center col-xl-6"  data-aos="flip-right" data-aos-delay="1300">
             <img src="@/assets/imageUrl/banner/istockphoto-1202562248-612x612.jpg" alt="店家品牌故事的示意圖"
              class="img-fluid">
         </li>
-        <li class="col-12 px-lg-5  col-xl-6">
+        <li class="col-12 px-lg-5  col-xl-6" data-aos="fade-up-right" data-aos-duration="1500">
             <h3 class="fs-4 text-center subtitle">尾聲</h3>
             <p>
                 這份精神，我們決定替他延續下去。

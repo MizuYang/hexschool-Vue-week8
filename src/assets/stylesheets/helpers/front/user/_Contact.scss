@@ -1,31 +1,69 @@
+@import "@/assets/stylesheets/helpers/_mixin.scss";
 .contact {
     position: relative;
     z-index: 1;
     margin-bottom: 15rem;
 }
+//* 背景圖片
 .banner_main {
     background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/tHe0pXjEGU.png?raw=true);
-    width: 100rem;
-    height: 45rem;
+    // width: 100rem;
+    height: 50rem;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 50%;
-    opacity: 0.5;
+    opacity: 0.6;
     position: absolute;
-    top: 25%;
-    left: 25%;
-   @media (max-width:1400px) {
-       & {
-           left: 3%;
-           top: 20%;
-       }
-   }
+    @include xs {
+        width: 21rem;
+        top: 27%;
+        left: 7%;
+    }
+    @include sm {
+        width: 31rem;
+        top: 27%;
+        left: 7%;
+    }
+    @include md {
+        width: 42rem;
+        left: 6%;
+    }
+    @include lg {
+        width: 55rem;
+    }
+    @include xl {
+        width: 66rem;
+    }
+    @include xxl {
+        width: 79rem;
+        top: 27%;
+        left: 5%;
+    }
+    @media (min-width: 1401px) {
+        width: 79rem;
+        top: 24%;
+        left: 28%;
+    }
 }
-.invalid-feedback{
+//* 表單包裝的容器 ，控制文字欄位長度用
+.form-container {
+    // width: 20rem;
+    margin: 0 auto;
+    padding-left: 5%;
+    padding-right: 5%;
+    @include xs {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    @include md {
+        padding: 0;
+        width: 100%;
+    }
+}
+.invalid-feedback {
     color: red;
     display: inline;
     padding: 0.1rem;
 }
-.send-btn:active{
+.send-btn:active {
     transform: scale(1.05);
 }
