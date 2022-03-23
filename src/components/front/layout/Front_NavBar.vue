@@ -28,23 +28,21 @@
         <ul
           class="
             navbar-nav
-            ms-auto
-            mb-2 mb-lg-0
-            align-items-lg-center
-            text-center
+            ms-auto align-items-lg-center text-center
           "
         >
+
           <li class="nav-item">
             <router-link
               to="/user/home"
-              class="nav-link home"
+              class="nav-link home me-4"
               @click="current_page('home')"
             >
               <i class="bi bi-house-door"></i>
               主頁</router-link
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-4">
             <router-link
               to="/user/products"
               class="nav-link productList"
@@ -52,7 +50,7 @@
               >產品列表</router-link
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-4">
             <router-link
               to="/user/questions"
               class="nav-link qa"
@@ -60,7 +58,7 @@
               >常見問題</router-link
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-4">
             <router-link
               to="/user/about"
               class="nav-link about"
@@ -68,7 +66,7 @@
               >關於我們</router-link
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-4">
             <router-link
               to="/user/contact"
               class="nav-link contact"
@@ -76,7 +74,7 @@
               >聯絡我們</router-link
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-4">
             <router-link
               to="/user/favorite"
               class="nav-link favorite"

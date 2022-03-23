@@ -57,7 +57,14 @@
     </button>
       </div>
     </template>
-   <Loading v-model:active="isLoading" />
+  <Loading v-model:active="isLoading">
+    <div class="cssload-container">
+      <div class="cssload-dot"></div>
+      <div class="step" id="cssload-s1"></div>
+      <div class="step" id="cssload-s2"></div>
+      <div class="step" id="cssload-s3"></div>
+    </div>
+  </Loading>
 </div>
 </template>
 <script>
@@ -139,6 +146,7 @@ export default {
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
 @import '@/assets/stylesheets/helpers/front/product/_Products.scss';
 @import '@/assets/stylesheets/helpers/front/product/_Collect_Products.scss';
+@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
 .card-body{
     border-bottom: 0.1rem solid rgba(170, 1, 1, 0.678);
 }

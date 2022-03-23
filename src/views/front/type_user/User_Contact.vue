@@ -6,7 +6,13 @@
     </h2>
 
     <div class="row justify-content-center">
-      <Form action="/" v-slot="{ errors }" class="col-md-6" ref="form" @submit="send_question">
+      <Form
+        action="/"
+        v-slot="{ errors }"
+        class="col-md-6"
+        ref="form"
+        @submit="send_question"
+      >
         <div class="mb-1">
           <label for="name"> 姓名 </label>
           <Field
@@ -82,7 +88,7 @@
           <Field
             name="留言"
             id="message"
-            class="form-control "
+            class="form-control"
             type="text"
             rules="required"
             :class="{ 'is-invalid': errors['留言'] }"
@@ -91,23 +97,38 @@
           <ErrorMessage name="留言" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="text-end">
-          <button type="submit" class="btn btn-danger send-btn" title="發送內容">送出內容</button>
+          <button
+            type="submit"
+            class="btn btn-danger send-btn"
+            title="發送內容"
+          >
+            送出內容
+          </button>
         </div>
       </Form>
-        <div class="text-center">
-            <p>
-                <small>
-                    送出內容後，我們將在 3~5 個工作天內回覆您。
-                </small>
-            </p>
-        </div>
-
+      <div class="text-center">
+        <p>
+          <small> 送出內容後，我們將在 3~5 個工作天內回覆您。 </small>
+        </p>
+      </div>
+    </div>
   </div>
-
-        </div>
+  <Loading v-model:active="isLoading">
+    <div class="cssload-container">
+      <div class="cssload-dot"></div>
+      <div class="step" id="cssload-s1"></div>
+      <div class="step" id="cssload-s2"></div>
+      <div class="step" id="cssload-s3"></div>
+    </div>
+  </Loading>
 </template>
 <script>
 export default {
+  data () {
+    return {
+      isLoading: false
+    }
+  },
   methods: {
     //* 電話驗證
     isPhone (value) {
@@ -115,14 +136,19 @@ export default {
       return phoneNumber.test(value) ? true : '請輸入 09 開頭的正確電話號碼'
     },
     send_question () {
-      this.$httpMessageState(true, '送出內容')
-      this.$router.push('get_Contact')
+      this.isLoading = true
+      setTimeout(() => {
+        this.$httpMessageState(true, '送出內容')
+        this.$router.push('get_Contact')
+        this.isLoading = false
+      }, 1500)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
+@import "@/assets/stylesheets/helpers/front/_pseudo_el_title.scss"; //* 偽元素標題 CSS
+@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
 @import "@/assets/stylesheets/helpers/front/user/_Contact.scss";
 </style>

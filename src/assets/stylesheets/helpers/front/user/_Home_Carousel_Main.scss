@@ -1,3 +1,4 @@
+@import "@/assets/stylesheets/helpers/_mixin.scss";
 //* 主頁 banner 輪播
 .banner-carousel-main {
     margin-top: 10rem;
@@ -9,12 +10,16 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        background-attachment: fixed; //*固定圖片
-        @media (max-width:768px) {
-            & {
-                width: 40rem;
-                background-attachment: scroll;
-            }
+        @include sm {
+            width: 40rem;
+            background-attachment: scroll;
+        }
+        @include md {
+            width: 50rem;
+        }
+        @include lg {
+            width: 100%;
+            background-attachment: fixed; //*固定圖片
         }
     }
     .banner-main-2 {
@@ -23,12 +28,16 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        background-attachment: fixed; //*固定圖片
-        @media (max-width:768px) {
-            & {
-                width: 40rem;
-                background-attachment: scroll;
-            }
+        @include sm {
+            width: 40rem;
+            background-attachment: scroll;
+        }
+        @include md {
+            width: 50rem;
+        }
+        @include lg {
+            width: 100%;
+            background-attachment: fixed; //*固定圖片
         }
     }
     .banner-main-3 {
@@ -37,16 +46,20 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        background-attachment: fixed; //*固定圖片
-        & .product_direct{
+        & .product_direct {
             margin-left: 20%;
             margin-top: 5%;
         }
-        @media (max-width:768px) {
-            & {
-                width: 40rem;
-                background-attachment: scroll;
-            }
+        @include sm {
+            width: 40rem;
+            background-attachment: scroll;
+        }
+        @include md {
+            width: 50rem;
+        }
+        @include lg {
+            width: 100%;
+            background-attachment: fixed; //*固定圖片
         }
     }
     .product_direct {
@@ -58,9 +71,9 @@
         margin-top: 5%;
     }
 }
-.carousel  h2{
+.carousel h2 {
     font-size: 3rem;
-    @media (max-width:768px) {
+    @media (max-width: 768px) {
         & {
             font-size: 2rem;
         }

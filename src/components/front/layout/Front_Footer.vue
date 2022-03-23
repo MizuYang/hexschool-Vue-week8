@@ -23,7 +23,7 @@
         /></router-link>
       </div>
       <div class="text-center">
-         <div class="d-flex">
+         <div class="d-flex flex-sm-wrap menu">
               <router-link to="/user/products" class="nav-link text-center animation_hover" @click="current('productList')">產品列表</router-link>
               <router-link to="/user/questions" class="nav-link text-center animation_hover" @click="current('qa')">常見問題</router-link>
               <router-link to="/user/about" class="nav-link text-center animation_hover" @click="current('about')">關於我們</router-link>

@@ -183,7 +183,14 @@
     </div>
   </div>
    <deleteProductModal @getCartList="getCartList"></deleteProductModal>
-     <Loading v-model:active="isLoading" />
+    <Loading v-model:active="isLoading">
+    <div class="cssload-container">
+      <div class="cssload-dot"></div>
+      <div class="step" id="cssload-s1"></div>
+      <div class="step" id="cssload-s2"></div>
+      <div class="step" id="cssload-s3"></div>
+    </div>
+  </Loading>
 </template>
 <script>
 //* 時間軸、沒訂單時的產品頁面引導
@@ -315,6 +322,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
 @import "@/assets/stylesheets/helpers/front/cart/_Cart.scss";
 </style>

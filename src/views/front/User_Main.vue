@@ -1,7 +1,6 @@
 <template>
   <div class="sticky-footer">
     <navbar></navbar>
-
     <router-view></router-view>
 
     <Footer class="sticky-bottom"></Footer>
@@ -18,13 +17,22 @@ export default {
       emitter
     }
   },
+  data () {
+    return {
+      collect: JSON.parse(localStorage.getItem('collect')) || [] //* 如果 localstorage 沒資料就是空陣列
+    }
+  },
   components: {
     navbar,
     Footer
+  },
+  mounted () {
+    emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
   }
 }
 </script>
 <style lang="scss" scoped>
+//* footer 置底
 .sticky-footer {
   display: flex;
   flex-direction: column;

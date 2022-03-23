@@ -27,8 +27,8 @@
               </div>
             </ul>
         </div>
-        <div class="text-center"  data-aos="fade-right"  data-aos-delay="700">
-          <img src="@/assets/imageUrl/banner/Tv2V32Kjxb.png" alt="巧克力蛋糕" class="square-main" data-aos-duration="500" >
+        <div class="text-center img-fluid square-main row"  data-aos="fade-right"  data-aos-delay="700">
+              <p class=" d-flex align-items-end justify-content-center mb-4"> <span class="badge fs-5">布朗尼巧克</span> </p>
         </div>
       </div>
       <div class="col d-flex flex-column flex-lg-column-reverse">
@@ -43,8 +43,9 @@
           </div>
           </ul>
         </div>
-        <div class="text-center "  data-aos="fade-left"  data-aos-delay="400" data-aos-duration="1500" >
-            <img src="@/assets/imageUrl/banner/dXWgGrVpYl.png" alt="banner 圖片" class="square-secondary img-fluid">
+        <div class="square-secondary img-fluid"  data-aos="fade-left"  data-aos-delay="400" data-aos-duration="1500" >
+              <p class=" mt-5"> <span class="badge fs-5">烤奶油堅果塔</span> </p>
+            <!-- <img src="@/assets/imageUrl/banner/dXWgGrVpYl.png" alt="banner 圖片" class="square-secondary img-fluid"> -->
         </div>
       </div>
     </div>

@@ -50,7 +50,6 @@
           @click="get_products('舒芙蕾')"
         >
           舒芙蕾
-
         </button>
         <button
           type="button"
@@ -58,7 +57,6 @@
           @click="get_products('熱門商品')"
         >
           熱門商品
-
         </button>
         <button
           type="button"
@@ -82,8 +80,8 @@
     <div class="card-group">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         <div
-          class="card text-primary bg-dark col "
-          v-for="product in products "
+          class="card text-primary bg-dark col"
+          v-for="product in products"
           :key="product.id"
         >
           <router-link
@@ -106,16 +104,20 @@
             >
               {{ product.category }}
             </button>
-            <img class="product_info img-fluid" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
+            <img
+              class="product_info img-fluid"
+              alt="顯示產品細節"
+              src="@/assets/imageUrl/images/product_info.png"
+            />
             <button
               type="button"
               class="badge animation_hover like_btn"
               title="加入收藏"
               @click.prevent="toggle_collect(product.id)"
             >
-          <span v-if="collect.includes(product.id)">
-              <i class="bi bi-heart-fill" style="color:red"></i>
-          </span>
+              <span v-if="collect.includes(product.id)">
+                <i class="bi bi-heart-fill" style="color: red"></i>
+              </span>
               <i class="bi bi-heart-fill" v-else></i>
             </button>
           </router-link>
@@ -168,11 +170,19 @@
       </div>
     </div>
   </div>
-  <Loading v-model:active="isLoading" />
+  <Loading v-model:active="isLoading">
+    <div class="cssload-container">
+      <div class="cssload-dot"></div>
+      <div class="step" id="cssload-s1"></div>
+      <div class="step" id="cssload-s2"></div>
+      <div class="step" id="cssload-s3"></div>
+    </div>
+  </Loading>
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
+@import "@/assets/stylesheets/helpers/front/_pseudo_el_title.scss"; //* 偽元素標題 CSS
+@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
 @import "@/assets/stylesheets/helpers/front/product/_Products.scss";
 </style>
 
@@ -189,7 +199,6 @@ export default {
       },
       collect: JSON.parse(localStorage.getItem('collect')) || [], //* 如果 localstorage 沒資料就是空陣列
       search_value: '',
-      // search_data: [],
       isLoading: false
     }
   },
@@ -278,7 +287,8 @@ export default {
     },
     //* 關鍵字搜尋
     keywords () {
-      if (!this.search_value) { //* 如果欄位沒值
+      if (!this.search_value) {
+        //* 如果欄位沒值
         this.products = this.temp_product //* 就將暫存的產品 data 賦予上去
       }
       this.products = this.products.filter((product) => {
@@ -288,7 +298,6 @@ export default {
   },
   mounted () {
     this.get_products()
-    this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
   }
 }
 </script>
