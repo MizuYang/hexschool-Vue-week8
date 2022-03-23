@@ -14,13 +14,6 @@
         justify-content: center;
         align-items: center;
     }
-    @media (min-width:576px) {
-        & {
-            width: 30rem;
-            margin: 0 auto;
-            background-attachment: scroll;
-        }
-    }
 }
 //*垂直 banner 次要
 .banner-vertical-secondary {
@@ -36,13 +29,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-    }
-    @media (min-width:576px) {
-        & {
-            width: 30rem;
-            margin: 0 auto;
-            background-attachment: scroll;
-        }
     }
 }
 @media (min-width: 992px) {

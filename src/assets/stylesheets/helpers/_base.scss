@@ -3,4 +3,8 @@ body {
     color: #f1ebd8;
     font-size: 1.3rem;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow-x:hidden //* 防止AOS 滾動視差 X軸
+}
+html{
+    overflow-x:hidden //* 防止AOS 滾動視差 X軸
 }
