@@ -1,19 +1,19 @@
 .main {
-    height: 500px;
-    margin-bottom: auto;
+    //* 將手風琴樣式變成主題色調
     & .accordion-button {
         background: #000;
         color: #f1ebd8;
-        padding: .5rem;
     }
     & .accordion-button:hover {
-        transform: scale(1.005);
-        background: #f1ebd8;
-        color: #000;
+        background: #333127;
+        color: #f1ebd8;
     }
     & .accordion-body {
         background: #000;
-        font-size: 16px;
+        font-size: 1.2rem;
+        @include xs {
+            font-size: 1rem;
+        }
     }
     & .accordion-header {
         border-bottom: 1px solid #f1ebd8;
@@ -22,22 +22,41 @@
         border-top: 1px solid #f1ebd8;
         margin-bottom: .3rem;
     }
+    & button {
+        font-size: 1.5rem;
+        @include xs {
+            font-size: 1.2rem;
+        }
+    }
 }
+
 //* 點擊時凸顯當前 QA
 .accordion-item .qa_active{
-    background: #f1ebd8;
-    color: #000;
-    transform: scale(1.009);
+    background: #4d4831;
+    color: #f1ebd8;
 }
 //* 處理 QA 響應式，增加間距 讓選單更好點擊
-@media (max-width:768px) {
+@include xs {
     .main{
-        height: 50rem;
-        & .accordion-item{
-            margin-bottom: 1.2rem;
-        }
-        & .accordion-item .accordion-button{
-            line-height: 1.6rem;
-        }
+        margin-bottom: 5rem;
+    }
+    .main .accordion-button {
+        padding: 1rem;
+        margin-bottom: 5px;
+    }
+    .main .accordion-header{
+        background: #000;
+    }
+}
+@include sm {
+    .main{
+        margin-bottom: 10rem;
+    }
+    .main .accordion-button {
+        padding: 1rem;
+        margin-bottom: 5px;
+    }
+    .main .accordion-header{
+        background: #000;
     }
 }
