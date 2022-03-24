@@ -11,100 +11,101 @@
 
       <table class="table table-hover align-middle text-center text-primary">
         <thead class="table-dark text-primary">
-          <tr>
-            <th class="rwd_hide_table_lg" style="width: 6rem">
-              <i class="bi bi-check2-square"></i> 勾選
-            </th>
-            <th><i class="bi bi-file-earmark-image"></i> 圖片</th>
-            <th><i class="bi bi-bag-heart"></i> 產品名稱</th>
-            <th><i class="bi bi-plus-slash-minus"></i> 購買數量</th>
-            <th><i class="bi bi-coin"></i> 價格</th>
-            <th><i class="bi bi-calculator"></i> 小計</th>
-            <th><i class="bi bi-trash3"></i> 刪除產品</th>
-          </tr>
+            <tr>
+              <th style="width: 100px">
+                <span class="bi bi-check2-square"></span>
+              </th>
+              <th><i class="bi bi-file-earmark-image"></i> 圖片</th>
+              <th><i class="bi bi-bag-heart"></i> 產品名稱</th>
+              <th><i class="bi bi-plus-slash-minus"></i> 購買數量</th>
+              <th><i class="bi bi-coin"></i> 價格</th>
+              <th><i class="bi bi-calculator"></i> 小計</th>
+              <th><i class="bi bi-trash3"></i> </th>
+            </tr>
         </thead>
         <tbody class="text-nowrap">
-          <tr v-for="product in cartData" :key="product.id" :class="{ 'table-light': product.checkbox }">
-            <td class="rwd_hide_table_lg">
-              <input
-                type="checkbox"
-                v-model="product.checkbox"
-                @click="checkbox(product.checkbox, product.id)"
-                class="form-check-input bg-dark border"
-              />
-            </td>
-            <td>
-              <router-link
-                :to="`/user/one_product/${product.product_id}`"
-                class="
-                  product_img
-                  card-img-top
-                  animation_hover
-                  d-block
-                  text-decoration-none
-                  img_hover img-fluid" :style="{ backgroundImage: `url(${product.product.imageUrl})` }">
-                <div class="text-start">
-                  <span type="button" class="badge bg-primary text-dark tag" title="篩選類別">
-                    {{ product.product.category }}
-                  </span>
-                </div>
-                <img class="product_info" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
-              </router-link>
-            </td>
-            <td>
-              <h4>
-                {{ product.product.title }}
-              </h4>
-              <span class="badge bg-danger p-1" v-if="product.product.popular > 2">熱門商品</span>
-            </td>
-            <td>
-              <div class="d-flex align-items-center">
-                <input type="button" class="btn product_numBtn btn-outline-primary active_bigger"
-                 value="－" :disabled="product.qty <= 1" @click="update_product_num('cut', product)"/>
+            <tr v-for="product in cartData" :key="product.id" :class="{ 'table-light': product.checkbox }">
+              <td>
                 <input
-                  type="text"
-                  class="product_numText mx-1 fs-4"
-                  :value="product.qty"
-                  readonly
+                  type="checkbox"
+                  v-model="product.checkbox"
+                  @click="checkbox(product.checkbox, product.id)"
+                  class="form-check-input bg-dark border"
                 />
+              </td>
+              <td>
+                <router-link
+                  :to="`/user/one_product/${product.product_id}`"
+                  class="
+                    product_img
+                    card-img-top
+                    animation_hover
+                    d-block
+                    text-decoration-none
+                    img_hover img-fluid" :style="{ backgroundImage: `url(${product.product.imageUrl})` }">
+                  <div class="text-start">
+                    <span type="button" class="badge bg-primary text-dark tag" title="篩選類別">
+                      {{ product.product.category }}
+                    </span>
+                  </div>
+                  <img class="product_info" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
+                </router-link>
+              </td>
+              <td>
+                <h4>
+                  {{ product.product.title }}
+                </h4>
+                <span class="badge bg-danger p-1" v-if="product.product.popular > 2">熱門商品</span>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <input type="button" class="btn product_numBtn btn-outline-primary active_bigger"
+                  value="－" :disabled="product.qty <= 1" @click="update_product_num('cut', product)"/>
+                  <input
+                    type="text"
+                    class="product_numText mx-1 fs-4"
+                    :value="product.qty"
+                    readonly
+                  />
+                  <input
+                    type="button"
+                    class="btn product_numBtn btn-outline-primary active_bigger"
+                    value="＋"
+                    @click="update_product_num('add', product)"
+                  />
+                </div>
+              </td>
+              <td>
+                <del style="opacity: 0.8"
+                  >原價 {{ product.product.origin_price }} 元</del
+                >
+                <br />
+                <strong
+                  >優惠價<span class="text-danger fs-5">
+                    {{ product.product.price }} </span
+                  >元</strong
+                >
+              </td>
+              <td >
+                <p class="border-bottom mx-auto" style="width:100px">價格*數量</p>
+                <p>{{ thousandths(product.total) }} 元</p>
+              </td>
+              <td>
                 <input
                   type="button"
-                  class="btn product_numBtn btn-outline-primary active_bigger"
-                  value="＋"
-                  @click="update_product_num('add', product)"
+                  class="btn btn-outline-danger active_bigger"
+                  @click="open_delete_product(product, '刪除單一產品')"
+                  value="X"
                 />
-              </div>
-            </td>
-            <td>
-              <del style="opacity: 0.8"
-                >原價 {{ product.product.origin_price }} 元</del
-              >
-              <br />
-              <strong
-                >優惠價<u class="text-danger fs-5">
-                  {{ product.product.price }} </u
-                >元</strong
-              >
-            </td>
-            <td>
-              價格*數量
-              <p class="border-top border">{{ thousandths(product.total) }} 元</p>
-            </td>
-            <td>
-              <input
-                type="button"
-                class="btn btn-outline-danger active_bigger"
-                @click="open_delete_product(product, '刪除單一產品')"
-                value="X"
-              />
-            </td>
-          </tr>
+              </td>
+            </tr>
         </tbody>
         <tfoot>
           <tr>
             <td>
               <button
                 v-if="checkbox_productId.length > 0"
+                style="width: 60px"
                 type="button"
                 class="btn btn-outline-danger active_bigger animation_hover"
                 @click="open_delete_product(product,'勾選刪除')"
@@ -134,10 +135,14 @@
             <td></td>
             <td><label for="couponCode">輸入優惠碼</label></td>
             <td></td>
-            <td v-show="coupon_final_total > 0" class="text-success "> 折扣  {{ coupon_discount  }} %</td>
-            <td v-if="coupon_final_total > 0">總價：<span class="text-success fs-5 fw-bold">${{ coupon_final_total }} </span>元</td>
+            <td v-show="coupon_final_total > 0" class="text-success ">
+                <span class="badge bg-primary text-success"
+                >折扣  {{ coupon_discount  }} %
+                </span>
+            </td>
+            <td v-if="coupon_final_total > 0">總價：<span class="text-success fs-5 fw-bold">{{ thousandths(coupon_final_total) }} </span> 元</td>
             <td></td>
-            <td class="fs-5 text-primary " v-if="!coupon_final_total"> 總價：{{ thousandths(total) }}元 </td>
+            <td class="fs-5 text-primary " v-if="!coupon_final_total"> 總價：{{ thousandths(total) }} 元 </td>
             <td></td>
             <td></td>
           </tr>
@@ -322,6 +327,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/stylesheets/helpers/_mixin.scss";
 @import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
 @import "@/assets/stylesheets/helpers/front/cart/_Cart.scss";

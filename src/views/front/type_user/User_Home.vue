@@ -68,6 +68,7 @@
 </template>
 
 <style lang="scss" scoped>
+@import '@/assets/stylesheets/helpers/_mixin.scss';
 @import "@/assets/stylesheets/helpers/front/user/_Home.scss";
 </style>
 

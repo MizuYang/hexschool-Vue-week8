@@ -1,20 +1,10 @@
-//* 產品圖片
-.img_product{
-    height: 6rem;
-    width: 8rem;
-}
-
-//* hover 放大動畫效果
-.animation_hover:hover {
-    transform: scale(1.02);
-}
-//* active 放大
-.active_bigger:active {
-    transform: scale(1.05);
-}
-//* 驗證錯誤的字樣
-.invalid-feedback{
-    background: #ecce6b;
-    color: red;
-    font-weight: bold;
+//* 表單的容器控制左右空隙
+.form_container {
+    @include xs {
+        padding: 0 1.5rem;
+    }
+    @include sm {
+        padding: 0 1.5rem;
+    }
+    
 }

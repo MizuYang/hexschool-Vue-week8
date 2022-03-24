@@ -1,17 +1,11 @@
 <template>
-  <div class="container mt-10 mb-4">
+  <div class="container mt-10">
     <h2 class="title text-center pt-3 mb-4">
       <span class="decorate">完成訂單</span>
     </h2>
 
     <timeLine :time_line="time_line"></timeLine>
-    <div>
-      <img
-        src="@/assets/imageUrl/banner/istockphoto-1317782863-612x612.jpg"
-        class="banner img-fluid"
-        alt="蛋糕圖片"
-      />
-    </div>
+
     <div class="text-center">
       <h3>感謝您的訂購</h3>
       <p>您訂購的商品將在近期安排出貨，請留意簡訊通知或配送人員的電話。</p>
@@ -52,7 +46,7 @@
         繼續購物
       </button>
     </div>
-    <div class="text-center border-top pt-3">
+    <div class="text-center border-top pt-4">
       <p>如果你喜歡我的作品，也歡迎聯絡我。</p>
       <div>
         <a
@@ -95,5 +89,12 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
-@import "@/assets/stylesheets/helpers/front/cart/order/_Order_Completed.scss";
+//* hover 放大動畫效果
+.animation_hover:hover {
+    transform: scale(1.02);
+}
+//* active 放大
+.active_bigger:active {
+    transform: scale(1.05);
+}
 </style>

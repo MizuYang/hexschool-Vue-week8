@@ -18,6 +18,7 @@
 </template>
 
 <style lang="scss" scoped>
+@import "@/assets/stylesheets/helpers/_mixin.scss";
 @import "@/assets/stylesheets/helpers/front/user/_Get_Contact.scss";
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
 </style>

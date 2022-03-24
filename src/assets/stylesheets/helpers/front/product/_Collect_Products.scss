@@ -1,4 +1,4 @@
-@import "@/assets/stylesheets/helpers/_mixin.scss";
+
 //* 愛心按鈕
 .like_btn {
     color: red;
@@ -9,6 +9,9 @@
     }
     @include sm {
         right: 7%;
+    }
+    @include md {
+        right: 3%;
     }
     @include xl {
         right: 4%;
@@ -74,18 +77,22 @@
         top: 27%;
     }
     @include lg {
-        width: 53rem;
+        width: 50rem;
+        left: 10%;
     }
     @include xl {
-        width: 64rem;
+        width: 55rem;
         height: 27rem;
+        left: 13%;
     }
     @include xxl {
-        width: 75rem;
+        width: 60rem;
         height: 30rem;
+        left: 15%;
     }
     @media (min-width: 1401px) {
-        left: 30%;
-        height: 35rem;
+        top: 25%;
+        left: 35%;
+        width: 60rem;
     }
 }

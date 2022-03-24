@@ -1,4 +1,4 @@
-@import "@/assets/stylesheets/helpers/_mixin.scss";
+
 //* 產品圖片
 .product_img {
     height: 10rem;
@@ -35,6 +35,7 @@
 }
 //*產品類別
 .tag{
+    overflow: hidden;
     color: #f1ebd8;
     border-bottom-right-radius: 50%;
     border: 0.1rem solid rgba(170, 1, 1, 0.678);
@@ -65,20 +66,9 @@
 .table > :not(caption) > * > * {
     border-bottom-color: #f1ebd8;
 }
-//*表格響應式 隱藏圖片
-//* 尺寸1200以下 隱藏圖片和圖片的 th
-@media (max-width: 1200px) {
-    .rwd_hide_table_xl {
-        display: none;
-    }
-}
-@media (max-width: 992px) {
-    .rwd_hide_table_lg {
-        display: none;
-    }
-}
 //*結帳按鈕
 .send_order{
+    width: 10rem;
     &:hover {
         transform: scale(1.03)
     }

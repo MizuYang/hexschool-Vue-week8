@@ -1,7 +1,7 @@
 <template>
 
 <div class="col-12 border p-5">
-    <h3 class="border-bottom text-center">訂單明細</h3>
+    <h3 class="border-bottom text-center  pb-2">訂單明細</h3>
     <div class="table-responsive">
       <table
         class="
@@ -15,22 +15,22 @@
       >
         <thead>
           <tr>
-            <th class="d-none d-md-block">圖片</th>
-            <th>名稱</th>
+            <th>圖片</th>
+            <th style="width: 150px">名稱</th>
             <th>數量</th>
             <th>金額</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="product in cartData" :key="product.product.id">
-            <td class="d-none d-md-block">
+            <td>
               <img
                 class="img_product mx-auto img-fluid"
                 :src="`${product.product.imageUrl}`"
               />
             </td>
             <td>
-              <p>{{ product.product.title }}</p>
+              <p style="width: 150px">{{ product.product.title }}</p>
             </td>
             <td>
               <p>{{ product.qty }}個</p>
@@ -49,17 +49,6 @@
                 >已使用優惠券</span
               >
             </td>
-            <td v-if="has_coupon">
-              使用折扣為：<span class="text-success fw-bold">{{
-                thousandths(coupon_price)
-              }}</span>
-              %
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
             <td>
               總價：
               <span class="text-success fw-bold fs-3">{{ thousandths(total) }}</span> 元
@@ -76,11 +65,7 @@
               >
             </td>
             <td></td>
-            <td>
-              <!-- <span class="text-danger fs-3 border p-2">
-                        您尚未完成表單！
-                      </span> -->
-            </td>
+            <td></td>
             <td>
               <button
                 type="submit"
@@ -163,7 +148,11 @@ export default {
 <style lang="scss" scoped>
 //* 產品圖片
 .img_product {
-  height: 8rem;
+  height: 10rem;
+  width: 12rem;
+}
+//* 按鈕
+.btn{
   width: 10rem;
 }
 </style>

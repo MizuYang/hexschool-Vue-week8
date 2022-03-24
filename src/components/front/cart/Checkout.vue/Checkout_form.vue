@@ -1,8 +1,8 @@
 <template>
-      <Form action="/" v-slot="{ errors }" ref="form" @submit="send_order">
-        <div class="row  mb-8">
+      <Form action="/" v-slot="{ errors }" ref="form" @submit="send_order" >
+        <div class="row  mb-8 form_container">
           <div class="col-12 col-lg-6 me-auto border p-5 ">
-            <h3 class="border-bottom">訂購人資料</h3>
+            <h3 class="border-bottom pb-2">訂購人資料</h3>
             <div class="mb-1">
               <label for="name"> 姓名 </label>
               <Field
@@ -87,7 +87,7 @@
             </div>
           </div>
           <div class="col-12 col-lg-5 text-center justify-content-center border p-5">
-            <h3 class="border-bottom mb-4">
+            <h3 class="border-bottom mb-4  pb-2">
               <i class="bi bi-credit-card-2-front-fill"></i> 信用卡資料
             </h3>
             <div class="row">
@@ -287,5 +287,28 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/front/cart/order/_Checkout.scss";
+@import '@/assets/stylesheets/helpers/_mixin.scss';
+//* 驗證錯誤的字樣
+.invalid-feedback{
+    background: #ecce6b;
+    color: red;
+    font-weight: bold;
+}
+textarea {
+    @include xs {
+        width: 15rem;
+    }
+    @include sm {
+        width: 20rem;
+    }
+    @include md {
+        width: 19.5rem;
+    }
+    @include lg {
+        margin-left: -5%;
+    }
+    @include xl {
+        margin: 0 auto;
+    }
+}
 </style>

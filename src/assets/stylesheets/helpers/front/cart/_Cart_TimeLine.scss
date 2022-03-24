@@ -17,42 +17,22 @@
     background: #f1ebd8;     //*宽和高做出来的背景横线*/
     width: 14.7rem;
     height: .1rem;
-}
-.time_title span:before{
-    left: 115%;        //*调整背景横线的左右距离*/
-}
-.time_title span:after {
-    right: 115%;
-}
-.time_subtitle span:after{
-    right: 111%;
-}
-.time_subtitle span:before{
-    left: 111%;        //*调整背景横线的左右距离*/
-}
-@media (max-width:1200px) {
-    .time_title span:before, .time_title span:after,.time_subtitle span:before,.time_subtitle span:after{
-        width: 11rem;
+    @include xs {
+        display: none; //* 低於 576 的尺寸就隱藏偽元素
+    }
+    @include sm {
+        display: block; 
     }
 }
-@media (max-width:992px) {
-    .time_title span:before, .time_title span:after,.time_subtitle span:before,.time_subtitle span:after{
-        width: 7.2rem;
-    }
-}
-@media (max-width:768px) {
-    .time_title span:before, .time_title span:after,.time_subtitle span:before,.time_subtitle span:after{
-        width: 2.2rem;
-    }
-}
-@media (max-width:576px) {
+//* 處理響應式時 偽元素長度和距離
+@include sm {
     .time_line li{
         text-align: center;
         width: 7rem;
         padding: .9rem;
     }
     .time_subtitle span:before,.time_subtitle span:after{
-        width: 1.4rem;
+        width: 1.5rem;
     }
     .time_title span:before, .time_title span:after{
         width: 1.3rem;
@@ -70,8 +50,134 @@
         left: 117%;        //*调整背景横线的左右距离*/
     }
 }
+@include md {
+    .time_subtitle span:before,.time_subtitle span:after{
+        width: 5.3rem;
+    }
+    .time_title span:before, .time_title span:after{
+        width: 3rem;
+    }
+    .time_title span:before{
+        left: -122%;        //*调整背景横线的左右距离*/
+    }
+    .time_title span:after {
+        right: 119%;
+    }
+}
+@include lg {
+    .time_subtitle span:before,.time_subtitle span:after{
+        width: 10.3rem;
+    }
+    .time_title span:before, .time_title span:after{
+        width: 6rem;
+    }
+    .time_title span:before{
+        left: -219%;        //*调整背景横线的左右距离*/
+    }
+}
+
+@include xl {
+    .time_subtitle span:before,.time_subtitle span:after{
+        width: 14rem;
+    }
+    .time_title span:before, .time_title span:after{
+        width: 9rem;
+    }
+    .time_title span:before{
+        left: -295%;        //*调整背景横线的左右距离*/
+    }
+    .time_title span:after {
+        right: 119%;
+    }
+    .time_subtitle span:after{
+        right: 118%;
+    }
+    .time_subtitle span:before{
+        left: 117%;        //*调整背景横线的左右距离*/
+    }
+}
+
+@include xxl {
+    .time_subtitle span:before,.time_subtitle span:after{
+        width: 17.7rem;
+    }
+    .time_title span:before, .time_title span:after{
+        width: 10rem;
+    }
+    .time_title span:before{
+        left: -367%;        //*调整背景横线的左右距离*/
+    }
+    .time_title span:after {
+        right: 119%;
+    }
+    .time_subtitle span:after{
+        right: 118%;
+    }
+    .time_subtitle span:before{
+        left: 117%;        //*调整背景横线的左右距离*/
+    }
+}
+
+// @include lg {
+//     .time_subtitle span:before,.time_subtitle span:after{
+//         width: 10.3rem;
+//     }
+//     .time_title span:before, .time_title span:after{
+//         width: 6rem;
+//     }
+//     .time_title span:before{
+//         left: -122%;        //*调整背景横线的左右距离*/
+//     }
+//     .time_title span:after {
+//         right: 119%;
+//     }
+//     .time_subtitle span:after{
+//         right: 117%;
+//     }
+//     .time_subtitle span:before{
+//         left: 117%;        //*调整背景横线的左右距离*/
+//     }
+// }
+
+
+// .time_title span:before{
+//     left: 115%;        //*调整背景横线的左右距离*/
+// }
+// .time_title span:after {
+//     right: 115%;
+// }
+// .time_subtitle span:after{
+//     right: 111%;
+// }
+// .time_subtitle span:before{
+//     left: 111%;        //*调整背景横线的左右距离*/
+// }
+// @media (max-width:1200px) {
+//     .time_title span:before, .time_title span:after,.time_subtitle span:before,.time_subtitle span:after{
+//         width: 11rem;
+//     }
+// }
+// @media (max-width:992px) {
+//     .time_title span:before, .time_title span:after,.time_subtitle span:before,.time_subtitle span:after{
+//         width: 7.2rem;
+//     }
+// }
+@media (max-width:768px) {
+
+}
+
 //* 增加時間軸狀態
 .dynamic_timeline{
     background: #f1ebd8;
     color: #000;
+}
+
+li{
+    @include xs {
+        font-size: 1rem;
+    }
+    @include sm {
+        font-size: 1rem;
+        line-height: 1.2;
+    }
 }

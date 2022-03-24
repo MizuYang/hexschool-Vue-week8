@@ -2,7 +2,7 @@
   <ul class="d-flex justify-content-between list-unstyled mb-5 time_line">
     <li class="finish_1">1. 確認商品</li>
     <li class="time_title finish_2"><span>2. 填寫資料</span></li>
-    <li class="time_subtitle finish_3"><span>3. 確認訂單資料</span></li>
+    <li class="time_subtitle finish_3"><span>3. 確認訂單</span></li>
     <li class="finish_4">4. 完成訂單</li>
   </ul>
 </template>
@@ -65,5 +65,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/assets/stylesheets/helpers/_mixin.scss";
 @import "@/assets/stylesheets/helpers/front/cart/_Cart_TimeLine.scss";
 </style>
