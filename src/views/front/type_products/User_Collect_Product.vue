@@ -6,13 +6,13 @@
 <!-- 有收藏資料才顯示 -->
     <template v-if="collectData.length > 0">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-5 ">
-        <div class="card text-primary bg-dark col mb-md-4"  v-for="product in collectData" :key="product.id">
+        <div class="card text-primary bg-dark col mb-md-4"  v-for="(product, index) in collectData" :key="product.id">
             <router-link  :to="`/user/one_product/${product[0].id}`" class="product_img card-img-top animation_hover d-block text-decoration-none img-fluid" title="查看產品細節"
             :style="{backgroundImage: `url(${product[0].imageUrl}) `}">
          <img class="product_info img-fluid" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
             <span class="badge bg-danger p-1"  v-if="product[0].popular > 2">熱門商品</span>
             </router-link>
-            <button type="button" class=" d-block animation_hover like_btn fs-3" title="點擊移除收藏" @click="delete_collect(product[0].id)">
+            <button type="button" class=" d-block animation_hover like_btn fs-3" title="點擊移除收藏" @click="delete_collect(product[0].id, index)">
                 <i class="bi bi-heart-fill" v-if="collect.includes(product[0].id)"></i>
                 <i class="bi bi-heartbreak-fill" v-if="(!collect.includes(product[0].id))"></i>
             </button>
@@ -120,7 +120,7 @@ export default {
         })
     },
     //* 收藏清單
-    delete_collect (id) {
+    delete_collect (id, index) {
       const collectIndex = this.collect.findIndex((item) => {
         return id === item
       })

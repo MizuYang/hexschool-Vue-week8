@@ -144,3 +144,25 @@
     border-left: 0.1rem solid rgba(170, 1, 1, 0.678);
     border-bottom: 0.1rem solid rgba(170, 1, 1, 0.678);
 }
+
+//* 收藏的愛心 會放大的那種
+.heart {
+    display: none;
+    transition: all 0.5s;
+    color: red;
+    font-size: 14rem;
+    position: absolute;
+    top: -20%;
+    right: 13%;
+}
+//* 取消收藏愛心
+.heartbreak {
+    display: none;
+    transition: all 0.5s;
+    color: red;
+    font-size: 14rem;
+    position: absolute;
+    top: -20%;
+    right: 13%;
+}
+

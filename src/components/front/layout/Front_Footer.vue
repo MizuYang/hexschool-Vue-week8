@@ -41,10 +41,12 @@
       </div>
     </div>
   </nav>
+
 </template>
 <script>
 import emitter from '@/utils/emitter.js'
 export default {
+
   methods: {
     current (page) {
       emitter.emit('currentPage', page)

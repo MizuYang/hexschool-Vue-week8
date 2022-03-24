@@ -13,63 +13,54 @@
           justify-content-sm-evenly
           flex-lg-row
           col-lg-12 col-xl-8
-          category
-        "
-      >
+          category">
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('全部')"
-          :class="{active_category_status : category['全部']}"
-        >
+          :class="{active_category_status : category['全部']}">
           全部
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('蛋糕')"
-          :class="{active_category_status : category['蛋糕']}"
-        >
+          :class="{active_category_status : category['蛋糕']}">
           蛋糕
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('布丁')"
-          :class="{active_category_status : category['布丁']}"
-        >
+          :class="{active_category_status : category['布丁']}">
           布丁
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('泡芙')"
-          :class="{active_category_status : category['泡芙']}"
-        >
+          :class="{active_category_status : category['泡芙']}" >
           泡芙
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('舒芙蕾')"
-          :class="{active_category_status : category['舒芙蕾']}"
-        >
+          :class="{active_category_status : category['舒芙蕾']}">
           舒芙蕾
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
           @click="get_products('熱門商品')"
-          :class="{active_category_status : category['熱門商品']}"
-        >
+          :class="{active_category_status : category['熱門商品']}">
           熱門商品
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active mt-3 mt-md-0"
           @click="price_sort"
-          :class="{active_category_status : category['價格低到高']}"
-        >
+          :class="{active_category_status : category['價格低到高']}">
           價格 / 低到高
         </button>
       </div>
@@ -80,17 +71,15 @@
           id="search_products"
           class="search_products"
           v-model="search_value"
-          @input="keywords"
-        />
+          @input="keywords"/>
       </div>
     </div>
     <div class="card-group">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         <div
           class="card text-primary bg-dark col"
-          v-for="product in products"
-          :key="product.id"
-        >
+          v-for="(product, index) in products"
+          :key="product.id">
           <router-link
             :to="`/user/one_product/${product.id}`"
             class="
@@ -100,42 +89,40 @@
               text-decoration-none
               product_img
               img-fluid
-              mx-auto w-100
-            "
-            :style="{ backgroundImage: `url(${product.imageUrl})` }"
-          >
+              mx-auto w-100"
+            :style="{ backgroundImage: `url(${product.imageUrl})` }">
             <button
               type="button"
               class="badge text-decoration-none tag"
               title="篩選類別"
-              @click.prevent="get_products(product.category)"
-            >
+              @click.prevent="get_products(product.category)">
               {{ product.category }}
             </button>
             <img
               class="product_info img-fluid"
               alt="顯示產品細節"
-              src="@/assets/imageUrl/images/product_info.png"
-            />
+              src="@/assets/imageUrl/images/product_info.png"/>
             <button
               type="button"
               class="badge animation_hover like_btn"
+              :class="`like_btn${index}`"
               title="加入收藏"
-              @click.prevent="toggle_collect(product.id)"
-            >
+              @click.prevent="toggle_collect(product.id, index)" >
               <span v-if="collect.includes(product.id)">
                 <i class="bi bi-heart-fill" style="color: red"></i>
               </span>
               <i class="bi bi-heart-fill" v-else></i>
             </button>
+            <!-- //* 收藏愛心特效 -->
+            <i class="bi bi-heart-fill heart" :class="`heart${index}`"></i>
+            <i class="bi bi-heartbreak-fill heartbreak" :class="`heartbreak${index}`"></i>
           </router-link>
 
           <div class="card-body pb-0">
             <div class="d-flex justify-content-between align-items-center">
               <h5 class="card-title fs-4 border-bottom">{{ product.title }}</h5>
               <span class="badge bg-danger p-1" v-if="product.popular > 2"
-                >熱門商品</span
-              >
+                >熱門商品</span>
             </div>
             <p class="card-text">
               {{ product.description }}
@@ -149,25 +136,12 @@
               <strong class="ms-auto"
                 >優惠價<span class="text-danger fs-3 mb-auto">
                   {{ product.price }} </span
-                >元</strong
-              >
+                >元</strong>
             </div>
             <div>
-              <button
-                type="button"
-                class="
-                  btn btn-danger
-                  text-white
-                  w-100
-                  d-block
-                  addCart
-                  animation_hover animation_active
-                  fs-5
-                  mb-2
-                "
+              <button type="button" class="btn btn-danger text-white w-100 d-block addCart animation_hover animation_active fs-5 mb-2"
                 title="加入到購物車"
-                @click="addCart(product.id)"
-              >
+                @click="addCart(product.id)">
                 <i class="bi bi-cart-check-fill"></i>
                 加入購物車
               </button>
@@ -209,7 +183,8 @@ export default {
       collect: JSON.parse(localStorage.getItem('collect')) || [], //* 如果 localstorage 沒資料就是空陣列
       search_value: '',
       isLoading: false,
-      category: {}
+      category: {},
+      heart_disabled: 0
     }
   },
   watch: {
@@ -284,7 +259,14 @@ export default {
         })
     },
     //* 收藏清單
-    toggle_collect (id) {
+    toggle_collect (id, index) {
+      this.heart_disabled += 1
+      //* 兩秒後才可以再點擊
+      if (this.heart_disabled >= 2) {
+        return
+      }
+      const collectBtn = document.querySelector(`.like_btn${index}`)
+      collectBtn.style.cursor = 'no-drop' //* 將滑鼠變為禁用圖示
       const collectIndex = this.collect.findIndex((item) => {
         return id === item
       })
@@ -292,10 +274,15 @@ export default {
         this.collect.push(id)
         this.$httpMessageState(true, '收藏產品')
         this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
+        this.$collectAnimation(index) //* 收藏特效
       } else {
+        this.$cancelCollectAnimation(index) //* 取消收藏特效
         this.collect.splice(collectIndex, 1)
         this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
       }
+      setTimeout(() => {
+        collectBtn.style.cursor = 'default' //* 將滑鼠變回預設樣式
+      }, 2000)
     },
     //* 關鍵字搜尋
     keywords () {

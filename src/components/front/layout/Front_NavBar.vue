@@ -115,6 +115,7 @@
       </div>
     </div>
   </nav>
+
 </template>
 
 <script>
@@ -125,7 +126,6 @@ export default {
       page: '',
       cartData: [],
       collect_data: []
-      // collect: JSON.parse(localStorage.getItem('collect')) || []
     }
   },
   methods: {

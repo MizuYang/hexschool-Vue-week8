@@ -18,8 +18,10 @@ import VueLoading from 'vue-loading-overlay'
 //* AOS 滾動視差
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-import $httpMessageState from '@/utils/pushMessageState.js'
+import $httpMessageState from '@/utils/pushMessageState.js' //* 吐司
 // import thousandths from '@/utils/thousandths.js' //*千分位
+import $collectAnimation from '@/utils/collect_animation.js' //* 加入收藏
+import $cancelCollectAnimation from '@/utils/cancel_collect_animation.js' //* 取消收藏
 
 import 'bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -49,7 +51,9 @@ setLocale('zh_TW')
 
 const app = createApp(App)
 //* 吐司提示窗
-app.config.globalProperties.$httpMessageState = $httpMessageState
+app.config.globalProperties.$httpMessageState = $httpMessageState //* 吐司
+app.config.globalProperties.$collectAnimation = $collectAnimation //* 加入收藏
+app.config.globalProperties.$cancelCollectAnimation = $cancelCollectAnimation //* 取消收藏
 
 //* 表單驗證
 app.component('Form', Form)
