@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-10 mb-5 cart">
+  <div class="container mt-8 mt-sm-10  cart">
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">購物車</span>
     </h2>
@@ -30,8 +30,7 @@
                   type="checkbox"
                   v-model="product.checkbox"
                   @click="checkbox(product.checkbox, product.id)"
-                  class="form-check-input bg-dark border"
-                />
+                  class="form-check-input bg-dark border"/>
               </td>
               <td>
                 <router-link
@@ -64,39 +63,31 @@
                   <input
                     type="text"
                     class="product_numText mx-1 fs-4"
-                    :value="product.qty"
-                    readonly
-                  />
+                    :value="product.qty" readonly/>
                   <input
                     type="button"
                     class="btn product_numBtn btn-outline-primary active_bigger"
                     value="＋"
-                    @click="update_product_num('add', product)"
-                  />
+                    @click="update_product_num('add', product)"/>
                 </div>
               </td>
               <td>
                 <del style="opacity: 0.8"
-                  >原價 {{ product.product.origin_price }} 元</del
-                >
+                  >原價 {{ product.product.origin_price }} 元</del>
                 <br />
-                <strong
-                  >優惠價<span class="text-danger fs-5">
-                    {{ product.product.price }} </span
-                  >元</strong
-                >
+                <strong>優惠價<span class="text-danger fs-5">
+                    {{ product.product.price }} </span>元</strong>
               </td>
               <td >
                 <p class="border-bottom mx-auto" style="width:100px">價格*數量</p>
-                <p>{{ thousandths(product.total) }} 元</p>
+                <p>{{ $thousandths(product.total) }} 元</p>
               </td>
               <td>
                 <input
                   type="button"
                   class="btn btn-outline-danger active_bigger"
                   @click="open_delete_product(product, '刪除單一產品')"
-                  value="X"
-                />
+                  value="X"/>
               </td>
             </tr>
         </tbody>
@@ -108,8 +99,7 @@
                 style="width: 60px"
                 type="button"
                 class="btn btn-outline-danger active_bigger animation_hover"
-                @click="open_delete_product(product,'勾選刪除')"
-              >
+                @click="open_delete_product(product,'勾選刪除')">
                 刪除
               </button>
             </td>
@@ -117,14 +107,12 @@
               <button
                 type="button"
                 class="btn btn-outline-danger active_bigger animation_hover"
-                @click="open_delete_product"
-              >
+                @click="open_delete_product">
                 全部刪除
               </button>
             </td>
             <td></td>
             <td>
-
             </td>
             <td></td>
             <td></td>
@@ -140,9 +128,9 @@
                 >折扣  {{ coupon_discount  }} %
                 </span>
             </td>
-            <td v-if="coupon_final_total > 0">總價：<span class="text-success fs-5 fw-bold">{{ thousandths(coupon_final_total) }} </span> 元</td>
+            <td v-if="coupon_final_total > 0">總價：<span class="text-success fs-5 fw-bold">{{ $thousandths(coupon_final_total) }} </span> 元</td>
             <td></td>
-            <td class="fs-5 text-primary " v-if="!coupon_final_total"> 總價：{{ thousandths(total) }} 元 </td>
+            <td class="fs-5 text-primary " v-if="!coupon_final_total"> 總價：{{ $thousandths(total) }} 元 </td>
             <td></td>
             <td></td>
           </tr>
@@ -152,8 +140,7 @@
               <router-link
                 to="/user/products"
                 class="btn btn-secondary active_bigger fs-5 animation_hover"
-                >繼續購物</router-link
-              >
+                >繼續購物</router-link>
             </td>
             <td><input
                 type="text"
@@ -167,18 +154,15 @@
                 <button
                 type="button"
                 class="btn btn-success active_bigger animation_hover"
-                @click="use_coupon"
-              >
+                @click="use_coupon" >
                 使用優惠券
               </button>
             </td>
             <td>
               <router-link
                 to="/user/checkout"
-                class="btn btn-danger send_order fs-5"
-              >
-                下一步</router-link
-              >
+                class="btn btn-danger send_order fs-5 rwd_hide">
+                下一步</router-link>
             </td>
             <td></td>
             <td></td>
@@ -187,6 +171,14 @@
       </table>
     </div>
   </div>
+  <router-link
+      v-if="cartData.length > 0"
+      to="/user/checkout"
+      class="btn btn-danger send_order fs-5 w-100 d-lg-none my-3" >
+  下一步</router-link >
+
+<swiper class="mb-5" @getCartList="getCartList" :cartData="cartData"></swiper>
+
    <deleteProductModal @getCartList="getCartList"></deleteProductModal>
     <Loading v-model:active="isLoading">
     <div class="cssload-container">
@@ -202,12 +194,14 @@
 import noOrder from '@/components/front/cart/Cart_No_Order.vue'
 import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
 import deleteProductModal from '@/components/front/modal/Front_Delete_Product.vue'
+import swiper from '@/components/front/swiper/Swiper_Cart_oneProduct.vue'
 export default {
   inject: ['emitter'],
   components: {
     timeLine,
     noOrder,
-    deleteProductModal
+    deleteProductModal,
+    swiper
   },
   data () {
     return {
@@ -310,14 +304,6 @@ export default {
         num += product.total
       })
       this.total = num
-    },
-    //* 千分位
-    thousandths (num) {
-      const n = Number(num)
-      return `$${n.toFixed(0).replace(/./g, (c, i, a) => {
-        const currency = (i && c !== '.' && ((a.length - i) % 3 === 0) ? `, ${c}`.replace(/\s/g, '') : c)
-        return currency
-      })}`
     }
   },
   mounted () {

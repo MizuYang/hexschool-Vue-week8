@@ -8,8 +8,45 @@
           alt="小巷弄甜點的logo"
           width="130"
         />
-        <h1 class="title">小巷弄甜點_alley_dessert</h1></router-link
-      >
+        <h1 class="title">小巷弄甜點_alley_dessert</h1></router-link>
+        <router-link class="navbar-brand logo_RWD d-lg-none" title="首頁" to="/user/home"><i class="bi bi-house-door fs-1 ms-2"></i></router-link>
+            <router-link
+              to="/user/products"
+              class="nav-link productList d-block d-lg-none"
+              @click="current_page('productList')"
+              ><i class="bi bi-shop fs-1"></i></router-link>
+
+            <router-link
+              to="/user/cart"
+              class="nav-link cart position-relative d-block d-lg-none"
+              @click="current_page('cart')"
+              title="購物車">
+              <span
+                class="
+                  position-absolute
+                  top-75
+                  end-0
+                  translate-middle
+                  badge
+                  rounded-pill
+                  bg-danger
+                  cart_product_num
+                ">
+                {{ cartData.length }}
+              </span>
+              <i class="bi bi-cart4 fs-1"></i>
+            </router-link>
+
+            <router-link
+              to="/user/favorite"
+              class="nav-link favorite d-lg-none"
+              @click="current_page('favorite')"
+              title="收藏商品頁面">
+            <span v-if="collect_data.length > 0">
+              <i class="bi bi-heart-fill fs-3" style="color:red"></i>
+            </span>
+              <i class="bi bi-heart fs-3 collect_icon" v-else></i>
+            </router-link>
 
       <button
         class="navbar-toggler"
@@ -76,11 +113,18 @@
           </li>
           <li class="nav-item me-4">
             <router-link
+              to="/user/query_order"
+              class="nav-link query_order"
+              @click="current_page('query_order')"
+              >查詢訂單</router-link
+            >
+          </li>
+          <li class="nav-item me-4">
+            <router-link
               to="/user/favorite"
               class="nav-link favorite"
               @click="current_page('favorite')"
-              title="收藏商品頁面"
-            >
+              title="收藏商品頁面">
             <span v-if="collect_data.length > 0">
               <i class="bi bi-heart-fill fs-3" style="color:red"></i>
             </span>
@@ -171,5 +215,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/stylesheets/helpers/_mixin.scss";
 @import "@/assets/stylesheets/helpers/front/layout/_NavBar.scss";
 </style>

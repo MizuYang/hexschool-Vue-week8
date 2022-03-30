@@ -1,5 +1,9 @@
 <template>
-  <table class="table mt-4 text-primary mt-10 container">
+<div class="container">
+  <div class="text-end mt-10  mb-3">
+      <button type="button" class="btn btn-danger" value="全部刪除" @click="delete_order_all">全部刪除</button>
+  </div>
+  <table class="table  text-primary  ">
     <thead>
       <tr>
         <th>購買時間</th>
@@ -54,6 +58,8 @@
       </template>
     </tbody>
   </table>
+</div>
+
   <OrderPagination :pagination="pagination" @get_order="get_order"></OrderPagination>
   <deleteModal @get_order="get_order"></deleteModal>
   <orderModal @get_order="get_order"></orderModal>
@@ -72,7 +78,6 @@ export default {
     }
   },
   components: {
-    // loading,
     OrderPagination,
     orderModal,
     deleteModal
@@ -100,18 +105,27 @@ export default {
     },
     //* 查看訂單
     view_Order (order) {
-      // this.loading('view', order.id)
       emitter.emit('view_order', order)
     },
     //* 刪除訂單
     delete_order (order) {
-      // this.loading('delete', order.id)
       emitter.emit('deleteOrder', order)
     },
     //* 日期轉換
     date (time) {
       return new Date(parseInt(time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ')
       // return new Date(time * 1000).toISOString().substring(0, 10)
+    },
+    //* 全部刪除
+    delete_order_all () {
+      this.isLoading = true
+      const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders/all`
+      this.$http
+        .delete(api)
+        .then((res) => {
+          this.isLoading = false
+          this.get_order()
+        })
     }
   },
   mounted () {

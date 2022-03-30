@@ -1,4 +1,3 @@
-
 //* 愛心按鈕
 .like_btn {
     color: red;
@@ -30,13 +29,13 @@
         height: 20rem;
     }
 }
-.card{
+.card {
     @include xs {
         padding-left: 7%;
         padding-right: 7%;
     }
 }
-.card-body{
+.card-body {
     margin-bottom: 5%;
 }
 .badge {
@@ -44,59 +43,42 @@
     left: 0%;
 }
 
-
-//* 小標題
-.subtitle {
-    @include lg {
-        margin-top: 10%;
-    }
-}
-
 .bi:active {
     font-size: 2.05rem;
 }
 //* 無收藏產品的 banner
-.banner {
+.banner::before {
     position: absolute;
+    content: "";
     z-index: -1;
-    opacity: 0.6;
+    background-attachment: fixed;
+    background-image: url(https://images.pexels.com/photos/4553118/pexels-photo-4553118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-position: 0 40%;
+    background-size: cover;
+    opacity: .6;
+    top: 0;
+    left: 0%;
+    width: 100%;
+    background-repeat: no-repeat;
+    height: calc(105%);
     @include xs {
-        width: 20rem;
-        height: 25rem;
-        left: 6%;
-        top: 27%;
-    }
-    @include sm {
-        width: 30rem;
-        height: 25rem;
-        left: 8%;
-        top: 27%;
+        background-position: 40% 60%;
+        height: calc(105%);
     }
     @include md {
-        width: 40rem;
-        top: 27%;
-    }
-    @include lg {
-        width: 50rem;
-        left: 10%;
-    }
-    @include xl {
-        width: 55rem;
-        height: 27rem;
-        left: 13%;
+        background-position: 55% 55%;
     }
     @include xxl {
-        width: 60rem;
-        height: 30rem;
-        left: 15%;
-    }
-    @media (min-width: 1401px) {
-        top: 25%;
-        left: 35%;
-        width: 60rem;
+        background-position: 55% 35%;
     }
 }
 //* 調整 "查看更多" 圖片位置
-.product_img:hover .product_info{
+.product_img:hover .product_info {
     top: 18%;
+}
+.title{
+    margin-top: 0;
+}
+.card-body{
+    border-bottom: 0.1rem solid rgba(170, 1, 1, 0.678);
 }

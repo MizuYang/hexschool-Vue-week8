@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-10 mb-5">
+  <div class="container mt-8 mt-sm-10 mb-5">
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">填寫資料</span>
     </h2>

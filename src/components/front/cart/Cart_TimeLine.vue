@@ -1,6 +1,6 @@
 <template>
   <ul class="d-flex justify-content-between list-unstyled mb-5 time_line">
-    <li class="finish_1">1. 確認商品</li>
+    <li class="finish_1 dynamic_timeline">1. 確認商品</li>
     <li class="time_title finish_2"><span>2. 填寫資料</span></li>
     <li class="time_subtitle finish_3"><span>3. 確認訂單</span></li>
     <li class="finish_4">4. 完成訂單</li>

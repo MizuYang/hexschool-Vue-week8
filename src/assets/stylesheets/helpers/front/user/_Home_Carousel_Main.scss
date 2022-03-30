@@ -45,10 +45,6 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-        & .product_direct {
-            margin-left: 20%;
-            margin-top: 5%;
-        }
         @include sm {
             width: 40rem;
             background-attachment: scroll;
@@ -61,6 +57,7 @@
             background-attachment: fixed; //*固定圖片
         }
     }
+    //* 主 banner 文字
     .product_direct {
         display: flex;
         flex-direction: column;
@@ -68,6 +65,19 @@
         align-items: center;
         justify-content: center;
         margin-top: 5%;
+        & h2, .btn {
+            background: rgba(17, 14, 14, 0.425);
+            padding: .5rem;
+        }
+        .animation_hover:hover {
+            background: #F1EBD8;
+            transform: scale(1.05);
+        }
+        .animation_active:active {
+            background: rgba(17, 14, 14, 0.425);
+            color: #F1EBD8;
+            transform: scale(1.08);
+        }
     }
 }
 .carousel h2 {

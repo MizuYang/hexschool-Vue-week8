@@ -1,6 +1,6 @@
 <template>
   <div class="banner_main  img-fluid"></div>
-  <div class="contact container mt-10">
+  <div class="contact container  mt-8 mt-sm-10">
     <h2 class="title text-center mb-10 pt-3">
       <span class="decorate">連絡我們</span>
     </h2>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="mb-1">
-          <label for="tel" class="form-label">收件人電話</label>
+          <label for="tel" class="form-label">電話</label>
           <Field
             id="tel"
             name="電話"

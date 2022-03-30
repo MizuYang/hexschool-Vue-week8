@@ -1,11 +1,11 @@
 <template>
-<div class="container mt-10">
+<div class="container collect  mt-8 mt-sm-10 ">
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">收藏清單</span>
     </h2>
 <!-- 有收藏資料才顯示 -->
     <template v-if="collectData.length > 0">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-5 ">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-5">
         <div class="card text-primary bg-dark col mb-md-4"  v-for="(product, index) in collectData" :key="product.id">
             <router-link  :to="`/user/one_product/${product[0].id}`" class="product_img card-img-top animation_hover d-block text-decoration-none img-fluid" title="查看產品細節"
             :style="{backgroundImage: `url(${product[0].imageUrl}) `}">
@@ -16,9 +16,9 @@
                 <i class="bi bi-heart-fill" v-if="collect.includes(product[0].id)"></i>
                 <i class="bi bi-heartbreak-fill" v-if="(!collect.includes(product[0].id))"></i>
             </button>
-            <div class="card-body">
+            <div class="card-body mb-0">
                 <div class="">
-                    <h5 class="card-title fs-4 text-center border-bottom ">{{  product[0].title }}</h5>
+                    <h5 class="card-title fs-4 text-center ">{{  product[0].title }}</h5>
                 </div>
                 <div class="d-flex justify-content-between align-items-end mb-3">
                     <del style="opacity: .8;">原價 {{ product[0].origin_price }} 元</del>
@@ -34,27 +34,28 @@
     </div>
     </template>
     <template v-else>
-      <img src="@/assets/imageUrl/banner/NkpH1t32cK.png" alt="您目前沒有收藏產品，此為 banner 圖片" class="banner img-fluid">
-      <div class="text-center">
-        <h3 class=" mb-5 subtitle">您目前沒有收藏的商品</h3>
-        <p>如果有喜歡的商品，您可以點擊右上方的愛心，</p>
-        <p>您的支持就是我們最大的動力，</p>
-        <p>祝您購物愉快！</p>
-        <button
-            type="button"
-            class="
-              btn btn-danger
-              text-white
-              animation_hover animation_active
-              fs-5
-              mb-10
-            "
-            title="返回購物"
-            @click="this.$router.push('/user/products')"
-          >
-            <i class="bi bi-cart-check-fill"></i>
-            返回購物
-    </button>
+      <div class="banner banner img-fluid">
+          <div class="text-center">
+            <h3 class=" mb-5 subtitle pt-5">您目前沒有收藏的商品</h3>
+            <p>如果有喜歡的商品，您可以點擊右上方的愛心，</p>
+            <p>您的支持就是我們最大的動力，</p>
+            <p>祝您購物愉快！</p>
+            <button
+                type="button"
+                class="
+                  btn btn-danger
+                  text-white
+                  animation_hover animation_active
+                  fs-5
+                  mb-10
+                "
+                title="返回購物"
+                @click="this.$router.push('/user/products')"
+              >
+                <i class="bi bi-cart-check-fill"></i>
+                返回購物
+        </button>
+          </div>
       </div>
     </template>
   <Loading v-model:active="isLoading">
@@ -148,7 +149,4 @@ export default {
 @import '@/assets/stylesheets/helpers/front/product/_Products.scss';
 @import '@/assets/stylesheets/helpers/front/product/_Collect_Products.scss';
 @import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
-.card-body{
-    border-bottom: 0.1rem solid rgba(170, 1, 1, 0.678);
-}
 </style>

@@ -76,4 +76,13 @@
     &:active{
         transform: scale(1.07)
     }
+    &.rwd_hide{
+        @include md{
+            display: block;
+        }
+        @media (max-width:768px) {
+            display: none;
+        }
+
+    }
 }

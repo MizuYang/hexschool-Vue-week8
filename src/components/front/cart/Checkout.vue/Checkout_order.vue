@@ -18,7 +18,7 @@
             <th>圖片</th>
             <th style="width: 150px">名稱</th>
             <th>數量</th>
-            <th>金額</th>
+            <th  style="width: 200px" >金額</th>
           </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
               <p>{{ product.qty }}個</p>
             </td>
             <td>
-              <p>{{ thousandths(product.total) }} 元</p>
+              <p>{{ $thousandths(product.total) }} 元</p>
             </td>
           </tr>
         </tbody>
@@ -49,9 +49,9 @@
                 >已使用優惠券</span
               >
             </td>
-            <td>
+            <td style="width: 200px" class="d-block">
               總價：
-              <span class="text-success fw-bold fs-3">{{ thousandths(total) }}</span> 元
+              <span class="text-success fw-bold fs-5">{{ $thousandths(total) }}</span> 元
             </td>
           </tr>
           <tr>
@@ -74,7 +74,7 @@
                   send-btn
                   active_bigger
                   fs-4
-                  animation_hover
+                  animation_hover d-none d-lg-block
                 "
                 title="前往結帳流程"
                 v-if="cartData.length > 0"
@@ -96,6 +96,23 @@
       <div></div>
     </div>
 </div>
+<button
+  type="submit"
+  class="
+    btn btn-danger
+    send-btn
+    active_bigger
+    fs-4
+    animation_hover
+    mt-3
+    w-100 d-lg-none
+  "
+  title="前往結帳流程"
+  v-if="cartData.length > 0"
+  @submit="this.emitter.emit('call_send_order')"
+>
+  下一步
+</button>
 
 </template>
 <script>
@@ -127,17 +144,6 @@ export default {
           this.coupon_price = (couponPrice / total) * 100 //* 算出折扣
         }
       })
-    },
-    //* 千分位
-    thousandths (num) {
-      const n = Number(num)
-      return `$${n.toFixed(0).replace(/./g, (c, i, a) => {
-        const currency =
-          i && c !== '.' && (a.length - i) % 3 === 0
-            ? `, ${c}`.replace(/\s/g, '')
-            : c
-        return currency
-      })}`
     }
   },
   mounted () {

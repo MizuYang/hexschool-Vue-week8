@@ -1,100 +1,144 @@
 <template>
-  <div class="container mt-10">
+  <div class="container mt-8 mt-sm-10 banner">
     <h2 class="title text-center pt-3 mb-4">
       <span class="decorate">完成訂單</span>
     </h2>
-
     <timeLine :time_line="time_line"></timeLine>
+</div>
+  <div class="">
+      <div class="text-center mt-3">
+          <h3>感謝您的訂購 <span class=" fw-bold ">(已付款)</span> </h3>
+          <p>請妥善保管您的訂單編號： <span class=" fw-bold border-bottom id"> {{ order_Id }} </span>
+          <button type="button" class="btn btn-outline-primary btn-sm ms-2 tag-read" :data-clipboard-text="order_Id" @click="copy">
+            複製
+            <span class="copy_point ms-2 text-success badge bg-primary" :class="{'d-none': !copy_point}"><i class="bi bi-check-lg"></i></span>
+          </button>
 
-    <div class="text-center">
-      <h3>感謝您的訂購</h3>
-      <p>您訂購的商品將在近期安排出貨，請留意簡訊通知或配送人員的電話。</p>
-    </div>
-    <div class="text-center mb-3">
-      <p>如果您對我們的產品有任何想法，歡迎聯絡我們。</p>
-      <p>祝您有美好的一天。</p>
-      <button
-        type="submit"
-        class="
-          me-2
-          btn btn-outline-primary
-          send-btn
-          active_bigger
-          fs-4
-          animation_hover
-        "
-        title="聯絡我們"
-        @click="$router.push('/user/contact')"
-      >
-        <i class="bi bi-envelope-fill"></i>
-        聯絡我們
-      </button>
-
-      <button
-        type="submit"
-        class="
-          btn btn-outline-primary
-          send-btn
-          active_bigger
-          fs-4
-          animation_hover
-        "
-        title="返回產品列表"
-        @click="$router.push('/user/products')"
-      >
-        <i class="bi bi-cart4"></i>
-        繼續購物
-      </button>
-    </div>
-    <div class="text-center border-top pt-4">
-      <p>如果你喜歡我的作品，也歡迎聯絡我。</p>
-      <div>
-        <a
-          href="https://github.com/MizuYang"
-          target="_blank"
-          class="fs-3 me-2 px-2"
-          title="連到 github"
-        >
-          <i class="bi bi-github"></i>
-        </a>
-        <a
-          href="https://equatorial-alloy-23b.notion.site/Mizu_-dc646b31574641de856dd54ac3f6cc1b"
-          target="_blank"
-          class="fs-3"
-          title="連到個人部落格"
-        >
-          <i class="bi bi-facebook"></i>
-        </a>
+          </p>
+          <p>您訂購的商品將在近期安排出貨，請留意簡訊通知或配送人員的電話。</p>
       </div>
-      <br />
-    </div>
+      <div class="text-center mb-3">
+          <p>如果您對我們的產品有任何想法，歡迎聯絡我們。</p>
+          <p>祝您有美好的一天。</p>
+          <button
+            type="submit"
+            class="
+              me-2
+              btn btn-outline-primary
+              send-btn
+              active_bigger
+              fs-4
+              animation_hover
+            "
+            title="聯絡我們"
+            @click="$router.push('/user/contact')"
+          >
+            <i class="bi bi-envelope-fill"></i>
+            聯絡我們
+          </button>
+
+          <button
+            type="submit"
+            class="
+              me-2
+              btn btn-outline-primary
+              send-btn
+              active_bigger
+              fs-4
+              animation_hover
+            "
+            title="返回產品列表"
+            @click="$router.push('/user/products')"
+          >
+            <i class="bi bi-cart4"></i>
+            繼續購物
+          </button>
+
+          <button
+            type="submit"
+            class="
+              btn btn-outline-primary
+              send-btn
+              active_bigger
+              fs-4
+              animation_hover
+            "
+            title="查詢訂單"
+            @click="$router.push('/user/query_order')"
+          >
+            <i class="bi bi-cart4"></i>
+            訂單查詢
+          </button>
+      </div>
+      <div class="text-center border-top pt-4">
+          <p>如果你喜歡我的作品，也歡迎聯絡我。</p>
+          <div>
+              <a
+                href="https://github.com/MizuYang"
+                target="_blank"
+                class="fs-3 me-2 px-2"
+                title="連到 github"
+              >
+                <i class="bi bi-github"></i>
+              </a>
+              <a
+                href="https://equatorial-alloy-23b.notion.site/Mizu_-dc646b31574641de856dd54ac3f6cc1b"
+                target="_blank"
+                class="fs-3"
+                title="連到個人部落格"
+              >
+                <i class="bi bi-facebook"></i>
+              </a>
+          </div>
+          <br />
+      </div>
   </div>
 </template>
 <script>
 import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
+import Clipboard from 'clipboard'
 export default {
+  inject: ['emitter'],
   components: {
     timeLine
   },
   data () {
     return {
-      time_line: 0
+      time_line: 0,
+      order_Id: JSON.parse(localStorage.getItem('orderId')) || '',
+      copy_point: false
+    }
+  },
+  methods: {
+    //* 複製的方法
+    copy () {
+      const clipboard = new Clipboard('.tag-read')
+      clipboard.on('success', e => {
+        this.$httpMessageState(true, '複製')
+        this.copy_point = true
+        //* 釋放內存
+        clipboard.destroy()
+      })
+      clipboard.on('error', e => {
+        //* 不支援複製
+        this.$httpMessageState(false, '該瀏覽器不支援，複製')
+        //* 釋放內存
+        clipboard.destroy()
+      })
     }
   },
   mounted () {
     this.time_line = 4
+    this.emitter.on('get_orderId', (orderId) => { //* 接收確定訂單頁面傳過來的訂單編號
+      this.order_Id = orderId
+      localStorage.setItem('orderId', JSON.stringify(orderId))//* 將ID儲存起來，避免使用者案重新整理後會消失
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/stylesheets/helpers/_mixin.scss';
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
-//* hover 放大動畫效果
-.animation_hover:hover {
-    transform: scale(1.02);
-}
-//* active 放大
-.active_bigger:active {
-    transform: scale(1.05);
-}
+@import '@/assets/stylesheets/helpers/front/cart/order/_Order_completed.scss';
 </style>

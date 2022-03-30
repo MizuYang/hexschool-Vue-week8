@@ -9,6 +9,7 @@
       建立新的優惠券
     </button>
   </div>
+
   <table class="table mt-4 table-dark">
     <thead>
       <tr>

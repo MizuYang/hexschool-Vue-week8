@@ -54,6 +54,10 @@ const routes = [
       {
         path: 'contact',
         component: () => import('@/views/front/type_user/User_Contact.vue')
+      },
+      {
+        path: 'query_order',
+        component: () => import('@/views/front/type_order/Query_Order.vue')
       }
     ]
 

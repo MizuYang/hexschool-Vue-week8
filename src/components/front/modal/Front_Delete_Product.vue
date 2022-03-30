@@ -20,7 +20,14 @@
         </div>
     </div>
 </div>
-  <Loading v-model:active="isLoading" />
+<Loading v-model:active="isLoading">
+    <div class="cssload-container">
+      <div class="cssload-dot"></div>
+      <div class="step" id="cssload-s1"></div>
+      <div class="step" id="cssload-s2"></div>
+      <div class="step" id="cssload-s3"></div>
+    </div>
+</Loading>
 </template>
 
 <script>
@@ -103,5 +110,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '@/assets/stylesheets/helpers/front/cart/_Front_Modal_Style.scss'
+@import '@/assets/stylesheets/helpers/front/cart/_Front_Modal_Style.scss';
+@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS;
 </style>

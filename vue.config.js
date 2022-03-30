@@ -1,5 +1,5 @@
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/hexschool-Vue-week8/' // 資料夾路徑，儲存庫名稱
+    ? '/vue-week8/' // 資料夾路徑，儲存庫名稱
     : '/'
 }

@@ -1,8 +1,7 @@
 <template>
   <navbar></navbar>
-  <div class="container border p-5">
-    <form class="row justify-content-center" @submit.prevent="signIn">
-      <div class=" col-md-6">
+  <div class="container  mx-auto  border p-5 ">
+    <form class="" @submit.prevent="signIn">
         <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
         <div class="mb-2">
           <label for="inputEmail" class="sr-only">Email address</label>
@@ -27,19 +26,20 @@
             required
           />
         </div>
-        <div class="text-end mt-4">
-          <button class="btn btn-lg btn-primary btn-block" type="submit">
+        <div class="mt-4">
+          <button class="btn btn-lg btn-outline-primary btn-block w-50" type="submit">
             登入
           </button>
+          <button class="btn btn-lg btn-outline-primary btn-block  w-50" type="submit">
+            取消
+          </button>
         </div>
-      </div>
     </form>
   </div>
-  <img
-    src="@/assets/imageUrl/images/LOGO_PNG_Big-removebg-preview.png"
+  <div
     class="img-fluid banner"
-    alt="背景LOGO圖"
-  />
+
+  ></div>
   <footerLogin></footerLogin>
    <Loading v-model:active="isLoading" />
 </template>
@@ -83,49 +83,46 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.banner {
+@import  '@/assets/stylesheets/helpers/_mixin.scss';
+.banner::before {
+  background-image: url(https://github.com/MizuYang/vue-week8/blob/main/src/assets/imageUrl/images/LOGO_PNG_Big-removebg-preview.png?raw=true);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100%;
+  height: calc(100%);
   position: absolute;
+  content: "";
   top: 0;
-  left: 30%;
-  height: calc(100vh);
-  opacity: 0.2;
+  left: 0;
+  opacity: 0.3;
   z-index: -1;
-    @media (max-width:1400px) {
-    &{
-      width: 50rem;
-      left: 20%;
-    }
-  }
-  @media (max-width:992px) {
-    &{
-      left: 10%;
-    }
-  }
-    @media (max-width:768px) {
-    &{
-      width: 40rem;
-      height: 40rem;
-      top: 15%;
-    }
-  }
 }
 .container {
-  margin-top: 10%;
-  margin-bottom: 5%;
-  @media (max-width: 1400px) {
-    & {
-      margin-top: 15%;
-    }
+  @include xs{
+    margin-top: 50%;
+    margin-bottom: 10%;
+    width: 90%;
   }
-  @media (max-width: 992px) {
-    & {
-      margin-top: 25%;
-    }
+  @include sm{
+    margin-top: 40%;
+    margin-bottom: 10%;
+    width: 100%;
   }
-    @media (max-width: 768px) {
-    & {
-      margin-top: 35%;
-    }
+  @include md{
+    width: 75%;
+  }
+  @include lg{
+    width: 60%;
+    margin-top: 30%;
+  }
+  @include xl{
+    margin-top: 20%;
+  }
+  @media (min-width: 1401px) {
+    margin-top: 10%;
+    width: 30%;
+    margin-bottom: 5%;
   }
 }
 </style>

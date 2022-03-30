@@ -19,9 +19,9 @@ import VueLoading from 'vue-loading-overlay'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import $httpMessageState from '@/utils/pushMessageState.js' //* 吐司
-// import thousandths from '@/utils/thousandths.js' //*千分位
 import $collectAnimation from '@/utils/collect_animation.js' //* 加入收藏
 import $cancelCollectAnimation from '@/utils/cancel_collect_animation.js' //* 取消收藏
+import $thousandths from '@/utils/thousandths.js' //* 千分位
 
 import 'bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css'
@@ -50,18 +50,19 @@ configure({
 setLocale('zh_TW')
 
 const app = createApp(App)
-//* 吐司提示窗
+
 app.config.globalProperties.$httpMessageState = $httpMessageState //* 吐司
 app.config.globalProperties.$collectAnimation = $collectAnimation //* 加入收藏
 app.config.globalProperties.$cancelCollectAnimation = $cancelCollectAnimation //* 取消收藏
+app.config.globalProperties.$thousandths = $thousandths //* 千分位
 
 //* 表單驗證
 app.component('Form', Form)
 app.component('Field', Field)
 app.component('ErrorMessage', ErrorMessage)
 
-// app.config.globalProperties.$thousandths = thousandths //* 千分位
 app.component('Loading', VueLoading)
+
 app.use(VueAxios, axios)
 app.use(router)
 app.mount('#app')

@@ -1,5 +1,5 @@
 <template>
-<div class="container mt-10  mb-5 wrap">
+<div class="container  mt-8 mt-sm-10  mb-5 wrap">
     <h2 class="title text-center  mb-5 pt-3">
       <span class="decorate title">品牌故事</span>
     </h2>

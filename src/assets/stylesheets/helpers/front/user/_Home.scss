@@ -11,6 +11,11 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        & li {
+          background: rgba(17, 14, 14, 0.425);
+          padding: .5rem;
+          line-height: .5;
+        }
     }
     @include xs {
         width: 30rem;
@@ -44,6 +49,11 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        & li {
+          background: rgba(17, 14, 14, 0.425);
+          padding: .5rem;
+          line-height: .5;
+        }
     }
     @include xs {
         width: 30rem;
@@ -91,3 +101,100 @@
 .animation_hover:active {
     transform: scale(1.1);
 }
+//* 針對下方三個卡片輪播調整樣式
+.card_container {
+    position: relative;
+    @include sm {
+      position: static;
+    }
+    @include md {
+      position: relative;
+      left: 25%;
+    }
+    @include lg {
+      left: 5%;
+    }
+    @include xl {
+      left: 10%;
+      margin-bottom: 30rem;
+    }
+    @include xxl {
+      left: 0%;
+      
+    }
+  }
+  .cake_container {
+    @include xs {
+      position: static;
+      margin-bottom: 2rem;
+    }
+    @include sm {
+      position: static;
+      margin-bottom: 2rem;
+    }
+    @include lg {
+      position: absolute;
+      left: 50%;
+    }
+    @include xl {
+      position: absolute;
+      left: -5%;
+    }
+    @include xxl {
+      left: 2%;
+    }
+    @media (min-width: 1500px) {
+      left: 5%;
+    }
+    @media (min-width: 2000px) {
+      left: 25%;
+    }
+  }
+  .pudding_container {
+    @include xs {
+      position: static;
+      margin-bottom: 2rem;
+    }
+    @include sm {
+      position: static;
+      margin-bottom: 2rem;
+    }
+    @include xl {
+      position: absolute;
+      left: 26%;
+    }
+    @include xxl {
+      position: absolute;
+      left: 33%;
+    }
+    @media (min-width: 1500px) {
+      left: 37%;
+    }
+    @media (min-width: 2000px) {
+      left: 42.5%;
+    }
+  }
+  .profiterole_container {
+    @include xs {
+      position: static;
+      margin-bottom: 2rem;
+    }
+    @include sm {
+      position: static;
+      margin-bottom: 2rem;
+    }
+    @include xl {
+      position: absolute;
+      left: 57%;
+    }
+    @include xxl {
+      position: absolute;
+      left: 65%;
+    }
+    @media (min-width: 1500px) {
+      left: 68%;
+    }
+    @media (min-width: 2000px) {
+      left: 60%;
+    }
+  }

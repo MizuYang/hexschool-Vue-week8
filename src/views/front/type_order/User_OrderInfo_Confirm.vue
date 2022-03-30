@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-10 mb-5">
+  <div class="container mt-8 mt-sm-10 mb-5 ">
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">確認訂單資料</span>
     </h2>
@@ -21,7 +21,11 @@
                     </span>
                   </th>
                   <th>
-                    {{ order.id }}
+                    <span class=" fw-bold border-bottom id"> {{ order.id }} </span>
+                    <button type="button" class="btn btn-outline-primary btn-sm ms-2 tag-read" :data-clipboard-text="orderId" @click="copy">
+                      複製
+                      <span class="copy_point ms-2 text-success badge bg-primary" :class="{'d-none': !copy_point}"><i class="bi bi-check-lg"></i></span>
+                    </button>
                   </th>
               </tr>
               <tr>
@@ -83,7 +87,7 @@
                     <span class=" fs-5">付款金額</span>
                   </th>
                   <td>
-                    {{ thousandths(order.total) }} 元
+                    {{ $thousandths(order.total) }} 元
                   </td>
               </tr>
               <tr>
@@ -143,9 +147,9 @@
 </template>
 
 <script>
+import Clipboard from 'clipboard'
 import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
 import confirmModal from '@/components/front/modal/Order_Confirm.vue'
-// import
 export default {
   inject: ['emitter'],
   components: {
@@ -160,7 +164,8 @@ export default {
       order: [],
       create_at: 0,
       is_pay: false,
-      isLoading: false
+      isLoading: false,
+      copy_point: false
     }
   },
   methods: {
@@ -195,6 +200,9 @@ export default {
         this.$httpMessageState(res.data.success, '付款')
         this.emitter.emit('open_confirmModal', '關閉')
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
+        setTimeout(() => {
+          this.emitter.emit('get_orderId', this.orderId) //* 給完成訂單頁面訂單的ID
+        }, 1000)
         this.$router.push('/user/order_completed')
       }).catch((err) => {
         this.isLoading = false
@@ -202,13 +210,21 @@ export default {
         this.emitter.emit('open_confirmModal', '關閉')
       })
     },
-    //* 千分位
-    thousandths (num) {
-      const n = Number(num)
-      return `$${n.toFixed(0).replace(/./g, (c, i, a) => {
-        const currency = (i && c !== '.' && ((a.length - i) % 3 === 0) ? `, ${c}`.replace(/\s/g, '') : c)
-        return currency
-      })}`
+    //* 複製的方法
+    copy () {
+      const clipboard = new Clipboard('.tag-read')
+      clipboard.on('success', e => {
+        this.copy_point = true
+        this.$httpMessageState(true, '複製')
+        //* 釋放內存
+        clipboard.destroy()
+      })
+      clipboard.on('error', e => {
+        //* 不支援複製
+        this.$httpMessageState(false, '該瀏覽器不支援，複製')
+        //* 釋放內存
+        clipboard.destroy()
+      })
     }
   },
   mounted () {

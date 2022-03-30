@@ -5,6 +5,12 @@
 .nav-item a:active {
     transform: scale(1.2);
 }
+.nav-item{
+    @media (max-width:992px) {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+}
 //* 凸顯當前頁面
 .current_page{
     border-bottom: 3px solid #f1ebd8;
@@ -12,7 +18,7 @@
 }
 
 .navbar {
-    background: rgba(0, 0, 0, 0.4); //* 導覽列半透明
+    background: rgba(0, 0, 0, 0.4);
     & .navbar-brand.logo:hover {
         transform: scale(1.1);
         transition: 0.5s;
@@ -29,9 +35,24 @@
         white-space: nowrap;
     }
 }
+//* 響應式隱藏 LOGO
+.logo{
+    @media (max-width:576px) {
+        display: none;
+    }
+}
 //*購物車 數量 標籤
 .cart_product_num{
     margin-top: .5rem;
     font-size: .8rem;
 }
-
+//* 將購物車的數字標籤，放到準確購物車位置
+@media (max-width:768px) {
+    .start-100{
+        left: 53% !important; 
+    }
+}
+//* 漢堡選單 放大
+.navbar-toggler .bi::before{
+    font-size: 3rem;
+}

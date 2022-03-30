@@ -1,29 +1,45 @@
 
 .banner {
-    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/bXMwvjYRKB.png?raw=true);
-    // object-position: center;
-    margin: 0 auto;
+    background-image: url(https://images.pexels.com/photos/8964281/pexels-photo-8964281.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);
+    content: "";
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: 50%;
+    margin: 0 auto;
+    transition: all 4s;
     @include xs {
-        width: 20rem;
-        height: 30rem;
+        width: 23rem;
+        height: 20rem;
     }
     @include sm {
-        width: 30rem;
+        width: 35rem;
         height: 20rem;
     }
     @include md {
+        width: 45rem;
+    }
+    @include lg {
+        width: 60rem;
+    }
+    @include xl {
         width: 40rem;
         height: 30rem;
     }
-    @include lg {
-        width: 50rem;
-        height: 40rem;
+    @include xxl {
+        width: 45rem;
+        height: 30rem;
     }
-    @include xl {
-        width: 60rem;
-        height: 39rem;
+}
+p{
+    @include xs {
+        padding: 0 5%;
     }
+}
+.banner:hover {
+    transform: scale(1.45);
+    transition: all 3s;
+}
+.content{
+    overflow: hidden;
+
 }

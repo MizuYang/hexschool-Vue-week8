@@ -1,0 +1,87 @@
+//* 大容器
+.order_conteiner {
+    @include xs {
+      padding: 0 5%;
+    }
+    @include md {
+      padding: 0 10%;
+    }
+  }
+  .banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0%;
+    opacity: .5;
+    z-index: -1;
+    background-image: url('https://github.com/MizuYang/vue-week8/blob/main/src/assets/test/test%20(2).png?raw=true');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100%;
+    height: calc(105%);
+    left: 0;
+    @include xs {
+      top: 10%;
+      background-repeat: no-repeat;
+      height: calc(200%);
+      // display: none;
+    }
+    @include sm {
+      // display: none;
+      height: calc(170%);
+    }
+    @include md {
+      height: calc(155%);
+    }
+    @include xxl {
+      height: calc(105%);
+    }
+  }
+  
+  //* 標題
+  .order_title {
+    @include sm {
+      font-size: 2rem;
+    }
+    @include md {
+        font-size: 2rem;
+        padding: 1rem;
+        line-height: 0.3;
+    }
+    @include lg {
+
+    }
+    @include xl {
+        font-size: 2rem;
+        line-height: .3;
+      }
+  }
+  //* 文字欄位
+  .order_id_text{
+    width: 100%;
+  }
+  
+  // //* 滑鼠禁用圖示
+  .send_btn {
+    background: green;
+    color: #f1ebd8;
+    &:hover {
+      background: rgb(96, 114, 24);
+    }
+    @include  xs{
+        margin-top: 1rem;
+        width: 100%;
+    }
+    @include  sm{
+        margin-top: 1rem;
+        width: 100%;
+    }
+  }
+  //* 按鈕禁用時 顏色不同
+  .disabled_btn {
+    background: rgb(100, 26, 26);
+    cursor: not-allowed;
+  }
+  

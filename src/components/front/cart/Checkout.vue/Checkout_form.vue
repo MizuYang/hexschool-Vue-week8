@@ -1,6 +1,6 @@
 <template>
       <Form action="/" v-slot="{ errors }" ref="form" @submit="send_order" >
-        <div class="row  mb-8 form_container">
+        <div class="row  mb-8 form_container ">
           <div class="col-12 col-lg-6 me-auto border p-5 ">
             <h3 class="border-bottom pb-2">訂購人資料</h3>
             <div class="mb-1">
@@ -86,7 +86,7 @@
               <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
             </div>
           </div>
-          <div class="col-12 col-lg-5 text-center justify-content-center border p-5">
+          <div class="col-12 col-lg-5 text-center justify-content-center border p-5 ">
             <h3 class="border-bottom mb-4  pb-2">
               <i class="bi bi-credit-card-2-front-fill"></i> 信用卡資料
             </h3>
@@ -264,8 +264,8 @@ export default {
       this.$http.post(api, { data: this.form }).then((res) => {
         const orderId = res.data.orderId
         this.$router.push(`/user/order_confirm/${orderId}`)
-      }).catch((err) => {
-        alert(err.response.data.message)
+      }).catch(() => {
+        this.$httpMessageState(false, '購物車為空，發送訂單')
         this.$router.push('/user/products')
       })
     },

@@ -1,0 +1,38 @@
+//* hover 放大動畫效果
+.animation_hover:hover {
+    transform: scale(1.02);
+}
+//* active 放大
+.active_bigger:active {
+    transform: scale(1.05);
+}
+
+//* 無收藏產品的 banner
+.banner::before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    background-attachment: fixed;
+    background-image: url(https://images.pexels.com/photos/3740177/pexels-photo-3740177.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-size: cover;
+    background-position: center;
+    left: 0;
+    top: 0;
+    opacity: .7;
+    width: 100%;
+    @include xs {
+        height: calc(175%);
+    }
+    @include sm {
+        height: calc(146%);
+    }
+    @include md {
+        height: calc(125%);
+    }
+    @include xl {
+        height: calc(127%);
+    }
+    @include xxl {
+        height: calc(125%);
+    }
+}

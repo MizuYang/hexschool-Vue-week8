@@ -1,0 +1,50 @@
+//* hover 放大動畫效果
+.animation_hover:hover {
+    transform: scale(1.02);
+}
+//* active 放大
+.active_bigger:active {
+    transform: scale(1.05);
+}
+//* 576 尺寸以下 文字左右空隙
+p{
+    @include xs {
+        padding: 0  2rem;
+    }
+}
+
+//* 背景圖
+.banner::before {
+    position: absolute;
+    content: "";
+    z-index: -1;
+    background-image: url(https://github.com/MizuYang/vue-week8/blob/main/src/assets/imageUrl/new_banner/pexels-photo-835741.png?raw=trueg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 35%;
+    top: 0;
+    left: 0;
+    height: calc(100%);
+    width: 100%;
+    opacity: .5;
+    @include xs {
+        top: 20%;
+        background-position: 70%;
+    }
+    @include sm {
+        top: 0%;
+    }
+    @include md {
+        background-position: 70%;
+    }
+    @include lg {
+        top: 0;
+    }
+    @media (min-width: 1401px) {
+        left: 0;
+        width: 100%;
+        height: calc(101%);
+        top: 0;
+        background-position:  0% 40%;
+    }
+}
