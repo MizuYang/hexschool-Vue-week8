@@ -12,9 +12,11 @@
          <img class="product_info img-fluid" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
             <span class="badge bg-danger p-1"  v-if="product[0].popular > 2">熱門商品</span>
             </router-link>
-            <button type="button" class=" d-block animation_hover like_btn fs-3" title="點擊移除收藏" @click="delete_collect(product[0].id, index)">
-                <i class="bi bi-heart-fill" v-if="collect.includes(product[0].id)"></i>
-                <i class="bi bi-heartbreak-fill" v-if="(!collect.includes(product[0].id))"></i>
+            <button type="button" class=" d-block animation_hover like_btn fs-3" :class="`like_btn${index}`" title="點擊移除收藏" @click="delete_collect(product[0].id, index)">
+                <i class="bi bi-heart-fill "  v-if="collect.includes(product[0].id)"></i>
+                <i class="bi bi-heartbreak-fill " v-if="(!collect.includes(product[0].id))"></i>
+            <i class="bi bi-heart-fill heart" :class="`heart${index}`"></i>
+            <i class="bi bi-heartbreak-fill heartbreak" :class="`heartbreak${index}`"></i>
             </button>
             <div class="card-body mb-0">
                 <div class="">
@@ -80,7 +82,8 @@ export default {
         product_id: '',
         qty: 1
       },
-      isLoading: false
+      isLoading: false,
+      heart_disabled: 0
     }
   },
   methods: {
@@ -122,6 +125,13 @@ export default {
     },
     //* 收藏清單
     delete_collect (id, index) {
+      this.heart_disabled += 1
+      //* 兩秒後才可以再點擊
+      if (this.heart_disabled >= 2) {
+        return
+      }
+      const collectBtn = document.querySelector(`.like_btn${index}`)
+      collectBtn.style.cursor = 'no-drop' //* 將滑鼠變為禁用圖示
       const collectIndex = this.collect.findIndex((item) => {
         return id === item
       })
@@ -129,12 +139,17 @@ export default {
         this.collect.push(id)
         localStorage.setItem('collect', JSON.stringify(this.collect))
         this.$httpMessageState(true, '加入收藏')
+        this.$collectAnimation(index) //* 收藏特效
         this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
       } else {
         this.collect.splice(collectIndex, 1)
         localStorage.setItem('collect', JSON.stringify(this.collect))
         this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
+        this.$cancelCollectAnimation(index)
       }
+      setTimeout(() => {
+        collectBtn.style.cursor = 'default' //* 將滑鼠變回預設樣式
+      }, 2000)
     }
   },
   mounted () {
@@ -144,9 +159,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
 @import "@/assets/stylesheets/helpers/_mixin.scss";
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
 @import '@/assets/stylesheets/helpers/front/product/_Products.scss';
 @import '@/assets/stylesheets/helpers/front/product/_Collect_Products.scss';
-@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
 </style>

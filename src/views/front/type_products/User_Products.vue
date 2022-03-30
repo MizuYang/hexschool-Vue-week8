@@ -65,7 +65,7 @@
       </div>
 
       <div class="text-end mb-sm-5 mb-3 search d-flex">
-        <button type="button" class="btn btn-outline-primary btn-sm me-auto d-block" @click="category_toggle=!category_toggle">隱藏工具</button>
+      <button type="button" class="btn btn-outline-primary hideTool " @click="category_toggle=!category_toggle">隱藏工具</button>
         <label for="search_products"><i class="bi bi-search me-2"  v-if="!category_toggle"></i></label>
         <input
           type="search"
@@ -309,6 +309,9 @@ export default {
   },
   mounted () {
     this.get_products()
+    setTimeout(() => {
+      this.emitter.emit('currentPage', 'productList')
+    }, 5000)
   }
 }
 </script>

@@ -1,11 +1,11 @@
 //* 主頁 banner 輪播
 .banner-carousel-main {
-    margin-top: 10rem;
-    height: calc(100vh - 10rem);
+    margin-top: 6.5rem;
+    height: calc(100vh - 6.5rem);
     //* 主要banner
     .banner-main-1 {
         background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/banner2.jpeg?raw=true);
-        height: calc(100vh - 10rem);
+        height: calc(100vh - 6.5rem);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -23,7 +23,7 @@
     }
     .banner-main-2 {
         background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/banner.jpeg?raw=true);
-        height: calc(100vh - 10rem);
+        height: calc(100vh - 6.5rem);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -41,7 +41,7 @@
     }
     .banner-main-3 {
         background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/pexels-photo-1028711.jpeg?raw=true);
-        height: calc(100vh - 10rem);
+        height: calc(100vh - 6.5rem);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;

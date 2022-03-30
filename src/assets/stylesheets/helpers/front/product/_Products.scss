@@ -78,19 +78,19 @@
 }
 //* 產品類別按鈕
 .btn-outline-primary:hover {
-    background: rgba(187, 187, 32, 0.363);
+    background: rgb(170, 1, 1);
     color: #f1ebd8;
     transform: rotate(-4deg);
     border-top-left-radius: 33%;
     border-bottom-right-radius: 33%;
 }
 //* 點擊的產品會有特效
-.active_category_status {
+.btn.active_category_status {
     transform: rotate(-6deg);
     border-top-left-radius: 33%;
     border-bottom-right-radius: 33%;
-    background: #f1ebd8ea;
-    color: #000;
+    color: #f0ecc8;
+    background: rgb(170, 1, 1);
 }
 
 //* 產品 查看產品資訊
@@ -133,7 +133,6 @@
         position: fixed;
         overflow-x: scroll;
         overflow-y: hidden;
-        background: #000;
         top: 10%;
         z-index: 2;
         & button{
@@ -142,15 +141,20 @@
             line-height: 1.2;
             height: 4rem;
             font-size: 1.3rem;
+            background: rgba(0, 0, 0, 0.637);
         }
     }
     .search{
         position: fixed;
         top: 19%;
         z-index: 2;
-        & .search_products{
-            width: 50%;
-        }
+    }
+    .hideTool{
+        position: fixed;
+        top: 19%;
+        right: 2%;
+        width: 7rem;
+        background: rgba(0, 0, 0, 0.637);
     }
     .title{
         margin-top: 4rem;
@@ -159,7 +163,7 @@
 @include sm {
         .category {
             position: fixed;
-            background: rgba(0, 0, 0, 0.637);
+            // background: rgba(0, 0, 0, 0.637);
             top: 9%;
             width: 90%;
             left:7%;
@@ -167,6 +171,7 @@
             & button{
                 height: 4.5rem;
                 font-size: 1.6rem;
+                background: rgba(0, 0, 0, 0.637);
             }
         }
         .search{
@@ -174,8 +179,15 @@
             top: 17%;
             z-index: 2;
             & .search_products{
-                width: 50%;
+                width: 10rem;
             }
+        }
+        .hideTool{
+            position: fixed;
+            top: 17%;
+            right: 2%;
+            width: 7rem;
+            background: rgba(0, 0, 0, 0.637);
         }
         .title{
             margin-top: 4rem;
@@ -183,8 +195,7 @@
 }
 @include md {
     .category {
-        top: 15%;
-        width: 95%;
+        top: 10%;
         left: 4%;
         & button{
             font-size: 1.6rem;
@@ -192,32 +203,36 @@
         }
     }
     .title{
-        margin-top: 6rem;
+        margin-top: 5rem;
     }
     .search{
-        top: 11%;
+        top: 19%;
         z-index: 1100;
         width: 41%;
-        right: 0;
+        right: 55%;
+    }
+    .hideTool{
+        top: 11%;
+        right: 3%;
+        width: 4rem;
     }
 }
 @include lg {
     .category {
-        top: 15.5%;
+        top: 10%;
         left: 0;
-        width: 100%;
         & button{
             font-size: 1.4rem;
             padding: 0 2.2rem;
         }
     }
-    .title{
-        margin-top: 6rem;
-    }
     .search{
-        top: 11%;
+        top: 18.5%;
         width: 41%;
-        right: 0;
+        right: 59%;
+    }
+    .hideTool{
+        right: 1%;
     }
 }
 @include xl {
@@ -225,45 +240,43 @@
         width: 100%;
     }
     .search{
-        width: 27%;
+        top: 12%;
+        left: 76%;
     }
     .title{
-        margin-top: 8rem;
+        margin-top: 4rem;
     }
 }
-@media (min-width: 1401px) {
+@include xxl {
+    .search{
+        top: 12%;
+        left: 66%;
+    }
+}
+@media (min-width: 1500px) {
     .category {
-        top: 10rem;
-        left: 0%;
-        width: 100%;
-        overflow: hidden;
+        top: 10%;
+        left: 6%;
     }
     .search{
-        top: 7rem;
-        width: 25rem;
-        right: 5%;
+        top: 12%;
+        left: 68%;
     }
 }
-@media (min-width: 2000px) {
+@media (min-width: 2500px) {
     .category {
-        top: 10rem;
+        top: 11%;
         left: 25%;
-        width: 80%;
-        overflow: hidden;
-        & button{
-            height:5rem;
-            width: 12rem;
-            font-size: 1.4rem;
-            padding: 0rem 3rem;
-        }
     }
     .search{
-        top: 7rem;
-        width: 21rem;
-        right: 25%;
+        top: 13%;
+        left: 59%;
     }
     .title{
-        margin-top: 7rem;
+        margin-top: 3rem;
+    }
+    .hideTool{
+        right: 26%;
     }
 }
 @media (max-width:376px) {
@@ -271,7 +284,13 @@
         top: 13%;
     }
     .search{
-        top: 24%;
+        top: 25%;
+    }
+    .hideTool{
+        position: fixed;
+        top: 25%;
+        right: 2%;
+        width: 7rem;
     }
 }
 
@@ -288,7 +307,6 @@
 .card {
     overflow: hidden;
 }
-
 //* 收藏的愛心 會放大的那種
 .heart {
     display: none;

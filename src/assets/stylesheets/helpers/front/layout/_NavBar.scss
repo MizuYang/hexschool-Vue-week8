@@ -11,11 +11,7 @@
         font-size: 1.1rem;
     }
 }
-//* 凸顯當前頁面
-.current_page{
-    border-bottom: 3px solid #f1ebd8;
-    transform: scale(1.1);
-}
+
 
 .navbar {
     background: rgba(0, 0, 0, 0.4);
@@ -55,4 +51,9 @@
 //* 漢堡選單 放大
 .navbar-toggler .bi::before{
     font-size: 3rem;
+}
+//* 凸顯當前頁面
+.current_page{
+    border-bottom: 3px solid #f1ebd8 !important;
+    transform: scale(1.1) !important;
 }

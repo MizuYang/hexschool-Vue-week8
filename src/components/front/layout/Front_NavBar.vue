@@ -4,7 +4,7 @@
     <div class="container">
       <router-link class="navbar-brand logo" title="首頁" to="/user/home"
         ><img
-          src="@/assets/imageUrl/images/LOGO_PNG_Big-removebg-preview.png"
+          src="@/assets/imageUrl/專案圖片/LOGO/橫向LOGO.png"
           alt="小巷弄甜點的logo"
           width="130"
         />
@@ -210,6 +210,11 @@ export default {
     this.emitter.on('get_collect', (collectData) => {
       this.collect_data = collectData
     })
+  },
+  unmounted () {
+    this.emitter.off('get_cart')
+    this.emitter.off('currentPage')
+    this.emitter.off('get_collect')
   }
 }
 </script>
