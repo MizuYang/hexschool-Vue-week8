@@ -3,7 +3,7 @@
     <h2 class="title text-center pt-3 mb-4">
       <span class="decorate">完成訂單</span>
     </h2>
-    <TimeLine :time_line="time_line" />
+    <CartTimeLine :time_line="time_line" />
 </div>
   <div>
       <div class="text-center mt-3">
@@ -91,14 +91,15 @@
       </div>
   </div>
 </template>
+
 <script>
-import TimeLine from '@/components/front/cart/Cart_TimeLine.vue'
+import CartTimeLine from '@/components/front/cart/CartTimeLine.vue'
 import Clipboard from 'clipboard'
 export default {
   inject: ['emitter'],
 
   components: {
-    TimeLine
+    CartTimeLine
   },
 
   data () {
@@ -135,7 +136,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/stylesheets/helpers/_mixin.scss';
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
-@import '@/assets/stylesheets/helpers/front/cart/order/_Order_completed.scss';
+@import '@/assets/stylesheets/helpers/front/cart/_User_Order_Completed.scss';
 </style>

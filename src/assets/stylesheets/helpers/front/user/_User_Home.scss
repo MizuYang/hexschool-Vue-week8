@@ -203,8 +203,21 @@
 .arrowLeft{
     position: absolute;
     right: 54%;
+    @include xs {
+      right: 70%;
+    }
+    @include md {
+      right: 0%;
+      left: -50%;
+    }
 }
 .arrowRight{
     position: absolute;
     right: 44%;
+    @include xs {
+      right: 14%;
+    }
+    @include sm {
+      right: 24%;
+    }
 }

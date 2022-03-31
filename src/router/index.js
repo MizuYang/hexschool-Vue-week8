@@ -21,7 +21,7 @@ const routes = [
       },
       {
         path: 'favorite',
-        component: () => import('@/views/front/type_products/User_Collect_Product.vue')
+        component: () => import('@/views/front/type_products/User_Collect_Products.vue')
       },
       {
         path: 'cart',
@@ -44,8 +44,8 @@ const routes = [
         component: () => import('@/views/front/type_user/User_Questions.vue')
       },
       {
-        path: 'get_Contact',
-        component: () => import('@/views/front/type_user/User_Get_Contact.vue')
+        path: 'sendMessage',
+        component: () => import('@/views/front/type_user/User_sendMessage.vue')
       },
       {
         path: 'about',
@@ -57,7 +57,7 @@ const routes = [
       },
       {
         path: 'query_order',
-        component: () => import('@/views/front/type_order/Query_Order.vue')
+        component: () => import('@/views/front/type_order/User_OrderQuery.vue')
       }
     ]
 

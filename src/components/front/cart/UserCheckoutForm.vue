@@ -225,18 +225,18 @@
             <textarea name="留言" id="textarea" cols="30" rows="8" v-model="form.message"></textarea>
           </div>
           <div class="mt-5">
-              <Order />
+              <UserCheckoutOrder />
           </div>
         </div>
       </Form>
 </template>
 <script>
-import Order from '@/components/front/cart/Checkout.vue/User_CheckoutOrder.vue'
+import UserCheckoutOrder from '@/components/front/cart/UserCheckoutOrder.vue'
 export default {
   inject: ['emitter'],
 
   components: {
-    Order
+    UserCheckoutOrder
   },
 
   data () {
@@ -284,7 +284,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/stylesheets/helpers/_mixin.scss';
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 //* 驗證錯誤的字樣
 .invalid-feedback{
     background: #ecce6b;

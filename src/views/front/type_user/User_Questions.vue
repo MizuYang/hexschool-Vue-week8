@@ -143,6 +143,7 @@
       </ul>
   </div>
 </template>
+
 <script>
 export default {
   data () {
@@ -150,6 +151,7 @@ export default {
       qa: ''
     }
   },
+
   methods: {
     //* 點擊時凸顯當前 QA
     currentQa (qa) {
@@ -165,8 +167,9 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/_mixin.scss";
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
 @import '@/assets/stylesheets/helpers/front/user/_User_Questions.scss';
 </style>

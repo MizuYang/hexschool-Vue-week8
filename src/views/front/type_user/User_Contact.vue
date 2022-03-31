@@ -60,7 +60,7 @@
           <Field
             id="category"
             name="類別"
-            class="form-control"
+            class="form-control form-select"
             :class="{ 'is-invalid': errors['類別'] }"
             rules="required"
             as="select"
@@ -140,7 +140,7 @@ export default {
       this.isLoading = true
       setTimeout(() => {
         this.$httpMessageState(true, '送出內容')
-        this.$router.push('get_Contact')
+        this.$router.push('sendMessage')
         this.isLoading = false
       }, 1500)
     }
@@ -149,8 +149,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/_mixin.scss";
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 @import "@/assets/stylesheets/helpers/front/_pseudo_el_title.scss";
 @import "@/assets/stylesheets/helpers/loading_css.scss";
-@import "@/assets/stylesheets/helpers/front/user/_Contact.scss";
+@import "@/assets/stylesheets/helpers/front/user/_User_Contact.scss";
 </style>

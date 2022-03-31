@@ -1,0 +1,21 @@
+.animation_hover:hover {
+    transform: scale(1.02);
+}
+.active_bigger:active {
+    transform: scale(1.05);
+}
+//* 已付款 打勾 icon
+.bi-check2{
+    color: green;
+}
+.table{
+  @include xs {
+    width: 30rem;
+  }
+  @include sm {
+    width: 90%;
+  }
+  @include lg {
+    width: 50%;
+  }
+}

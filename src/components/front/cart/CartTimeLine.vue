@@ -38,6 +38,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/_mixin.scss";
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 @import "@/assets/stylesheets/helpers/front/cart/_Cart_TimeLine.scss";
 </style>

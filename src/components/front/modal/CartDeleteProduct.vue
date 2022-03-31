@@ -88,7 +88,7 @@ export default {
   mounted () {
     this.delete_modal = new Modal(document.querySelector('.modal'))
     //* 開啟刪除 modal
-    this.emitter.on('open_delete_product', (data) => {
+    this.emitter.on('openDeleteModal', (data) => {
       if (data?.status === '勾選刪除') {
         this.delete_status = '刪除多個產品'
         this.checkbox_productId = data.id
@@ -105,7 +105,7 @@ export default {
     })
   },
   unmounted () { //* 元件銷毀之後將 emitter 註冊的事件移除
-    this.emitter.off('open_delete_product')
+    this.emitter.off('openDeleteModal')
   }
 }
 </script>

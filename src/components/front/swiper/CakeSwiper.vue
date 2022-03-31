@@ -124,6 +124,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
-@import "@/assets/stylesheets/helpers/_mixin.scss";
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 @import "@/assets/stylesheets/helpers/front/_swiper_mixins.scss";
 </style>

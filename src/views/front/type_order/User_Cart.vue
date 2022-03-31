@@ -3,12 +3,9 @@
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">購物車</span>
     </h2>
-
-    <noOrder v-if="cartData.length === 0"></noOrder>
-
+    <CartNoOrder v-if="cartData.length === 0" />
     <div class="table-responsive" v-else>
-      <timeLine :time_line="time_line"></timeLine>
-
+      <CartTimeLine :time_line="time_line" />
       <table class="table table-hover align-middle text-center text-primary">
         <thead class="table-dark text-primary">
             <tr>
@@ -29,7 +26,7 @@
                 <input
                   type="checkbox"
                   v-model="product.checkbox"
-                  @click="checkbox(product.checkbox, product.id)"
+                  @click="checkboxGetProductId(product.checkbox, product.id)"
                   class="form-check-input bg-dark border"/>
               </td>
               <td>
@@ -59,7 +56,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <input type="button" class="btn product_numBtn btn-outline-primary active_bigger"
-                  value="－" :disabled="product.qty <= 1" @click="update_product_num('cut', product)"/>
+                  value="－" :disabled="product.qty <= 1" @click="updateProductQty('cut', product)"/>
                   <input
                     type="text"
                     class="product_numText mx-1 fs-4"
@@ -68,7 +65,7 @@
                     type="button"
                     class="btn product_numBtn btn-outline-primary active_bigger"
                     value="＋"
-                    @click="update_product_num('add', product)"/>
+                    @click="updateProductQty('add', product)"/>
                 </div>
               </td>
               <td>
@@ -86,7 +83,7 @@
                 <input
                   type="button"
                   class="btn btn-outline-danger active_bigger"
-                  @click="open_delete_product(product, '刪除單一產品')"
+                  @click="openDeleteModal(product, '刪除單一產品')"
                   value="X"/>
               </td>
             </tr>
@@ -99,7 +96,7 @@
                 style="width: 60px"
                 type="button"
                 class="btn btn-outline-danger active_bigger animation_hover"
-                @click="open_delete_product(product,'勾選刪除')">
+                @click="openDeleteModal(product,'勾選刪除')">
                 刪除
               </button>
             </td>
@@ -107,13 +104,12 @@
               <button
                 type="button"
                 class="btn btn-outline-danger active_bigger animation_hover"
-                @click="open_delete_product">
+                @click="openDeleteModal">
                 全部刪除
               </button>
             </td>
             <td></td>
-            <td>
-            </td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -123,9 +119,9 @@
             <td></td>
             <td><label for="couponCode">輸入優惠碼</label></td>
             <td></td>
-            <td v-show="coupon_final_total > 0" class="text-success ">
+            <td v-show="coupon_final_total > 0" class="text-success">
                 <span class="badge bg-primary text-success"
-                >折扣  {{ coupon_discount  }} %
+                >折扣  {{ coupon_discount }} %
                 </span>
             </td>
             <td v-if="coupon_final_total > 0">總價：<span class="text-success fs-5 fw-bold">{{ $thousandths(coupon_final_total) }} </span> 元</td>
@@ -154,7 +150,7 @@
                 <button
                 type="button"
                 class="btn btn-success active_bigger animation_hover"
-                @click="use_coupon" >
+                @click="useCoupon">
                 使用優惠券
               </button>
             </td>
@@ -174,35 +170,36 @@
   <router-link
       v-if="cartData.length > 0"
       to="/user/checkout"
-      class="btn btn-danger send_order fs-5 w-100 d-lg-none my-3" >
-  下一步</router-link >
-
-<swiper class="mb-5" @getCartList="getCartList" :cartData="cartData"></swiper>
-
-   <deleteProductModal @getCartList="getCartList"></deleteProductModal>
-    <Loading v-model:active="isLoading">
-    <div class="cssload-container">
-      <div class="cssload-dot"></div>
-      <div class="step" id="cssload-s1"></div>
-      <div class="step" id="cssload-s2"></div>
-      <div class="step" id="cssload-s3"></div>
-    </div>
-  </Loading>
+      class="btn btn-danger send_order fs-5 w-100 d-lg-none my-3">
+  下一步</router-link>
+<SwiperCartOneProduct class="mb-5" @getCartList="getCartList" :cartData="cartData" />
+<CartDeleteProduct @getCartList="getCartList" />
+<Loading v-model:active="isLoading">
+<div class="cssload-container">
+  <div class="cssload-dot"></div>
+  <div class="step" id="cssload-s1"></div>
+  <div class="step" id="cssload-s2"></div>
+  <div class="step" id="cssload-s3"></div>
+</div>
+</Loading>
 </template>
+
 <script>
 //* 時間軸、沒訂單時的產品頁面引導
-import noOrder from '@/components/front/cart/Cart_No_Order.vue'
-import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
-import deleteProductModal from '@/components/front/modal/Front_Delete_Product.vue'
-import swiper from '@/components/front/swiper/Swiper_Cart_oneProduct.vue'
+import CartNoOrder from '@/components/front/cart/CartNoOrder.vue'
+import CartTimeLine from '@/components/front/cart/CartTimeLine.vue'
+import CartDeleteProduct from '@/components/front/modal/CartDeleteProduct.vue'
+import SwiperCartOneProduct from '@/components/front/swiper/SwiperCartOneProduct.vue'
 export default {
   inject: ['emitter'],
+
   components: {
-    timeLine,
-    noOrder,
-    deleteProductModal,
-    swiper
+    CartTimeLine,
+    CartNoOrder,
+    CartDeleteProduct,
+    SwiperCartOneProduct
   },
+
   data () {
     return {
       cartData: [],
@@ -215,17 +212,16 @@ export default {
       coupon_discount: 0 //* 折扣百分比
     }
   },
+
   methods: {
-    //* 取得購物車
     getCartList (checkboxDeleteStatus) {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.get(api).then((res) => {
         this.isLoading = false
         this.cartData = res.data.data.carts
-        this.price_total()
-
-        if (checkboxDeleteStatus) { //* 如果刪除勾選商品，就讓購物車頁面隱藏刪除勾選按鈕
+        this.computeTotal()
+        if (checkboxDeleteStatus) { //* 刪除勾選商品，隱藏刪除勾選按鈕
           this.checkbox_productId = []
         }
         setTimeout(() => {
@@ -233,36 +229,33 @@ export default {
         }, 1000)
       })
     },
-    //* 開啟刪除 modal
-    open_delete_product (product, status) {
+    openDeleteModal (product, status) {
       const data = {}
       if (status === '勾選刪除') {
         data.id = this.checkbox_productId
         data.status = '勾選刪除'
-        this.emitter.emit('open_delete_product', data)
+        this.emitter.emit('openDeleteModal', data)
       } else if (status === '刪除單一產品') {
         data.product = product
         data.status = '刪除單一產品'
-        this.emitter.emit('open_delete_product', data)
+        this.emitter.emit('openDeleteModal', data)
       } else {
-        this.emitter.emit('open_delete_product')
+        this.emitter.emit('openDeleteModal')
       }
     },
     //* 勾選時把產品 ID 存起來，如果勾選取消就刪掉 id
-    checkbox (status, id) {
-      //* 打勾時就把 id 推到資料集
+    checkboxGetProductId (status, id) {
       if (!status) {
         this.checkbox_productId.push(id)
       } else if (status) {
-        // *如果取消打勾的話，就用 findIndex 比對取消的 ID 是資料集的第幾筆，再將那一筆刪除
+        // *取消打勾，就用 findIndex 比對取消的 ID 是資料集的第幾筆，再將那筆刪除
         const deleteId = this.checkbox_productId.findIndex((productId) => {
           return productId === id
         })
         this.checkbox_productId.splice(deleteId, 1)
       }
     },
-    //* 增加產品數量
-    update_product_num (status, product) {
+    updateProductQty (status, product) {
       this.isLoading = true
       let num = 0
       if (status === 'add') {
@@ -281,8 +274,7 @@ export default {
         this.getCartList()
       })
     },
-    //* 使用優惠券
-    use_coupon () {
+    useCoupon () {
       this.isLoading = true
       const data = {
         code: this.couponCode
@@ -297,8 +289,7 @@ export default {
           this.coupon_discount = this.coupon_final_total / this.total * 100
         })
     },
-    //* 算出總價格
-    price_total () {
+    computeTotal () {
       let num = 0
       this.cartData.forEach((product) => {
         num += product.total
@@ -306,6 +297,7 @@ export default {
       this.total = num
     }
   },
+
   mounted () {
     this.getCartList()
   }
@@ -313,8 +305,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/_mixin.scss";
-@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
+@import "@/assets/stylesheets/helpers/loading_css.scss";
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
-@import "@/assets/stylesheets/helpers/front/cart/_Cart.scss";
+@import "@/assets/stylesheets/helpers/front/cart/_User_Cart.scss";
 </style>

@@ -22,6 +22,6 @@
 </template>
 
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/_mixin.scss";
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 @import "@/assets/stylesheets/helpers/front/cart/Cart_No_Order.scss";
 </style>

@@ -51,7 +51,7 @@
                   mb-10
                 "
                 title="返回購物"
-                @click="this.$router.push('/user/products')"
+                @click="$router.push('/user/products')"
               >
                 <i class="bi bi-cart-check-fill"></i>
                 返回購物
@@ -79,7 +79,7 @@ export default {
       collect: [], //* 裝 localStorage 產品ID
       collectData: [], //* 裝收藏產品
       products: [], //* 所有產品列表，做篩選用
-      addProductData: { //* 加入購物車資料
+      addProductData: {
         product_id: '',
         qty: 1
       },
@@ -105,7 +105,7 @@ export default {
           return product.id === item
         }))
       })
-      this.emitter.emit('get_collect', this.collect) //* navbar 更新
+      this.emitter.emit('get_collect', this.collect) //* Navbar 更新
     },
     addCart (id) {
       this.isLoading = true
@@ -156,8 +156,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/loading_css.scss";
-@import "@/assets/stylesheets/helpers/_mixin.scss";
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
-@import '@/assets/stylesheets/helpers/front/product/_Products.scss';
-@import '@/assets/stylesheets/helpers/front/product/_Collect_Products.scss';
+@import '@/assets/stylesheets/helpers/front/product/_User_Products.scss';
+@import '@/assets/stylesheets/helpers/front/product/_User_Collect_Products.scss';
 </style>

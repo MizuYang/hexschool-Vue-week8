@@ -64,15 +64,15 @@
         </button>
       </div>
       <div class="text-end mb-sm-5 mb-3 search d-flex">
-      <button type="button" class="btn btn-outline-primary hideTool " @click="categoryToggle=!categoryToggle">隱藏工具</button>
-        <label for="search_products"><i class="bi bi-search me-2"  v-if="!categoryToggle"></i></label>
+      <button type="button" class="btn btn-outline-primary hideTool" @click="categoryToggle=!categoryToggle">隱藏工具</button>
+        <label for="search_products"><i class="bi bi-search me-2" v-if="!categoryToggle"></i></label>
         <input
           type="search"
           id="search_products"
           class="search_products"
           placeholder="輸入產品名稱"
           v-model="searchValue"
-          @input="keywords"  v-if="!categoryToggle" />
+          @input="keywords" v-if="!categoryToggle" />
       </div>
     </div>
     <div class="card-group">
@@ -267,12 +267,12 @@ export default {
       if (collectIndex === -1) {
         this.collect.push(id)
         this.$httpMessageState(true, '收藏產品')
-        this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
+        this.emitter.emit('get_collect', this.collect) //* navbar 更新收藏資料
         this.$collectAnimation(index) //* 收藏特效
       } else {
         this.$cancelCollectAnimation(index) //* 取消收藏特效
         this.collect.splice(collectIndex, 1)
-        this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
+        this.emitter.emit('get_collect', this.collect) //* navbar 更新收藏資料
       }
       setTimeout(() => {
         collectBtn.style.cursor = 'default' //* 將滑鼠變回預設樣式
@@ -302,7 +302,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/loading_css.scss";
-@import "@/assets/stylesheets/helpers/_mixin.scss";
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 @import "@/assets/stylesheets/helpers/front/_pseudo_el_title.scss";
-@import "@/assets/stylesheets/helpers/front/product/_Products.scss";
+@import "@/assets/stylesheets/helpers/front/product/_User_Products.scss";
 </style>

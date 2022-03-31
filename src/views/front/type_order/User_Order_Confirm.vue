@@ -3,7 +3,7 @@
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">確認訂單資料</span>
     </h2>
-    <TimeLine :time_line="time_line" />
+    <CartTimeLine :time_line="time_line" />
       <h3 class="text-center pb-2 border-bottom mb-5 ">
         <span class=" fs-5 fw-bold" v-if="!is_pay">
           請確認您的資料無誤後付款 <span class=" text-danger">( 未付款 )</span>
@@ -23,7 +23,7 @@
                     <span class="fw-bold border-bottom id"> {{ order.id }} </span>
                     <button type="button" class="btn btn-outline-primary btn-sm ms-2 tag-read" :data-clipboard-text="orderId" @click="copy">
                       複製
-                      <span class="copy_point ms-2 text-success badge bg-primary" :class="{'d-none': !copy_point}"><i class="bi bi-check-lg"></i></span>
+                      <span class="copy_point ms-2 text-success badge bg-primary" :class="{ 'd-none': !copy_point }"><i class="bi bi-check-lg"></i></span>
                     </button>
                   </th>
               </tr>
@@ -134,7 +134,7 @@
         確認付款
       </button>
     </div>
-  <ConfirmModal @payment="payment" />
+  <OrderConfirmModal @payment="payment" />
   <Loading v-model:active="isLoading">
     <div class="cssload-container">
       <div class="cssload-dot"></div>
@@ -147,14 +147,14 @@
 
 <script>
 import Clipboard from 'clipboard'
-import TimeLine from '@/components/front/cart/Cart_TimeLine.vue'
-import ConfirmModal from '@/components/front/modal/OrderConfirm_Modal.vue'
+import CartTimeLine from '@/components/front/cart/CartTimeLine.vue'
+import OrderConfirmModal from '@/components/front/modal/OrderConfirmModal.vue'
 export default {
   inject: ['emitter'],
 
   components: {
-    TimeLine,
-    ConfirmModal
+    CartTimeLine,
+    OrderConfirmModal
   },
 
   data () {
@@ -198,7 +198,7 @@ export default {
         this.isLoading = false
         this.$httpMessageState(res.data.success, '付款')
         this.emitter.emit('openConfirmModal', '關閉')
-        this.emitter.emit('get_cart') //* 請 Navbar更新數字
+        this.emitter.emit('get_cart') //* Navbar更新
         setTimeout(() => {
           this.emitter.emit('get_orderId', this.orderId) //* 給完成訂單頁面訂單的ID
         }, 1000)
@@ -234,25 +234,5 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
 @import "@/assets/stylesheets/helpers/loading_css.scss";
-.animation_hover:hover {
-    transform: scale(1.02);
-}
-.active_bigger:active {
-    transform: scale(1.05);
-}
-//* 已付款 打勾 icon
-.bi-check2{
-    color: green;
-}
-.table{
-  @include xs {
-    width: 30rem;
-  }
-  @include sm {
-    width: 90%;
-  }
-  @include lg {
-    width: 50%;
-  }
-}
+@import "@/assets/stylesheets/helpers/front/cart/_User_Order_Confirm.scss";
 </style>

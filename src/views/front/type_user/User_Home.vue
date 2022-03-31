@@ -1,5 +1,5 @@
 <template>
-  <CarouselMain />
+  <UserHomeBanner />
   <div class="container">
     <div data-aos="fade-right" data-aos-duration="800">
       <h2 class="text-center mb-5">這是一群大學生，勇敢追夢的故事 -</h2>
@@ -83,7 +83,7 @@
           >
             現在，就想吃
           </router-link>
-          <i class="bi bi-arrow-left fs-2 ms-4 arrowRight arrowMoveRight "></i>
+          <i class="bi bi-arrow-left fs-2 ms-4 arrowRight arrowMoveRight"></i>
        </div>
       </div>
     </div>
@@ -102,7 +102,7 @@
 <div class="container text-center mb-5">
     <router-link
         to="/user/products"
-        class="btn btn-outline-primary  animation_hover fs-5"
+        class="btn btn-outline-primary animation_hover fs-5"
         @click="current('productList')"
       >
         <i class="bi bi-shop"></i> 查看所有產品
@@ -112,14 +112,14 @@
 
 <script>
 import emitter from '@/utils/emitter.js'
-import CarouselMain from '@/components/front/carousel/CarouselMain.vue'
+import UserHomeBanner from '@/components/front/carousel/UserHomeBanner.vue'
 import PuddingSwiper from '@/components/front/swiper/PuddingSwiper.vue'
 import ProfiteroleSwiper from '@/components/front/swiper/ProfiteroleSwiper.vue'
 import CakeSwiper from '@/components/front/swiper/CakeSwiper.vue'
 import PopularProductsSwiper from '@/components/front/swiper/PopularProductsSwiper.vue'
 export default {
   components: {
-    CarouselMain,
+    UserHomeBanner,
     PuddingSwiper,
     ProfiteroleSwiper,
     CakeSwiper,
@@ -136,6 +136,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/_mixin.scss";
-@import "@/assets/stylesheets/helpers/front/user/_Home.scss";
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
+@import "@/assets/stylesheets/helpers/front/user/_User_Home.scss";
 </style>

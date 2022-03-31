@@ -83,7 +83,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import  '@/assets/stylesheets/helpers/_mixin.scss';
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 .banner::before {
   background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/LOGO/LOGO_PNG_Big-removebg-preview.png?raw=true);
   background-repeat: no-repeat;

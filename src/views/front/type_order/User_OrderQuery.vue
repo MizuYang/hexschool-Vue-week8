@@ -4,8 +4,7 @@
       <span class="decorate">查詢訂單</span>
     </h2>
     <div class="order_conteiner">
-      <div class=" input-group mb-5 search_content">
-
+      <div class="input-group mb-5 search_content">
         <div class="mx-auto">
               <label class="mx-auto mb-3 order_title" for="orderId"
               >請輸入訂單編號( 20碼 )</label>
@@ -19,7 +18,7 @@
                   type="button"
                   class="send_btn"
                   :class="{ disabled_btn: order_id.length !== 20 }"
-                  @click="get_order"
+                  @click="getAllOrder"
                   :disabled="order_id.length !== 20">送出</button>
               <p>
               <span
@@ -28,7 +27,6 @@
               </p>
         </div>
       </div>
-
       <div class="row text-center">
         <div class="col-12 col-xxl-4">
           <ul class="list-unstyled p-5 border">
@@ -62,7 +60,6 @@
             </li>
           </ul>
         </div>
-        {{order_products['-MyukWOk4Lj-xEo8Je6Y']}}
         <div class="col-12 col-xxl-4">
           <ul class="list-unstyled p-5 border">
             <li><h3 class="border-bottom pb-2">訂購人資料</h3></li>
@@ -99,6 +96,7 @@
     </div>
 </Loading>
 </template>
+
 <script>
 export default {
   data () {
@@ -115,19 +113,20 @@ export default {
       coupon: false
     }
   },
+
   watch: {
     order_id () {
       const btn = document.querySelector('.send_btn')
       if (this.order_id.length !== 20) {
-        btn.style.cursor = 'no-drop' //* 將滑鼠變為禁用圖示
+        btn.style.cursor = 'no-drop' //* 滑鼠禁用圖示
       } else {
-        btn.style.cursor = 'pointer' //* 將滑鼠變為手指圖示
+        btn.style.cursor = 'pointer' //* 滑鼠手指圖示
       }
     }
   },
+
   methods: {
-    //* 取得所有訂單
-    get_order () {
+    getAllOrder () {
       if (this.order_id.length !== 20) {
         return
       }
@@ -136,7 +135,7 @@ export default {
       this.$http.get(api).then((res) => {
         this.isLoading = false
         this.all_order = res.data.orders //* 此為所有訂單
-        this.filter_order() //* 篩選出我們要的那筆訂單
+        this.filterOrder() //* 篩選出我們要的那筆訂單
         this.create_at = this.queryOrder[0].create_at
         this.create_at = new Date(this.create_at * 1000)
           .toISOString()
@@ -146,8 +145,7 @@ export default {
         this.is_pay = this.queryOrder[0].is_paid
       })
     },
-    //* 驗證是否有查詢到訂單
-    query_order () {
+    orderIdCheck () {
       if (this.queryOrder.length === 0) {
         //* 輸入的ID與篩選出來的訂單ID沒有符合的就是他打錯了
         document.querySelector('.error_id_text').classList.remove('d-none') //* 顯示錯誤
@@ -159,22 +157,23 @@ export default {
         this.$httpMessageState(true, '查詢訂單')
       }
     },
-    //* 篩選出 ID 的那筆訂單
-    filter_order () {
+    filterOrder () {
       this.queryOrder = this.all_order.filter((order) => {
         return order.id === this.order_id
       })
-      this.query_order() //* 驗證是否有查詢到訂單
+      this.orderIdCheck()
     }
   },
+
   mounted () {
     document.querySelector('.order_id_text').focus()
   }
 }
 </script>
+
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
-@import "@/assets/stylesheets/helpers/_mixin.scss";
-@import "@/assets/stylesheets/helpers/front/user/_Query_Order.scss";
-@import "@/assets/stylesheets/helpers/front/_pseudo_el_title.scss"; //* 偽元素標題 CSS
+@import "@/assets/stylesheets/helpers/front/_pseudo_el_title.scss";
+@import "@/assets/stylesheets/helpers/loading_css.scss";
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
+@import "@/assets/stylesheets/helpers/front/user/_User_OrderQuery.scss";
 </style>

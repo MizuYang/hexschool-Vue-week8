@@ -63,7 +63,7 @@
         <div class="card-foot">
           <div class="d-flex justify-content-between align-items-end">
             <button
-              type="submit"
+              type="button"
               class="
                 btn btn-outline-primary
                 send-btn
@@ -92,7 +92,7 @@
       </div>
     </div>
   </div>
-  <Swiper :product="product" class="mb-5" />
+  <SwiperCartOneProduct :product="product" class="mb-5" />
   <Loading v-model:active="isLoading">
     <div class="cssload-container">
       <div class="cssload-dot"></div>
@@ -104,10 +104,10 @@
 </template>
 
 <script>
-import Swiper from '@/components/front/swiper/Swiper_Cart_oneProduct.vue'
+import SwiperCartOneProduct from '@/components/front/swiper/SwiperCartOneProduct.vue'
 export default {
   components: {
-    Swiper
+    SwiperCartOneProduct
   },
 
   inject: ['emitter'],
@@ -140,7 +140,7 @@ export default {
       this.$http.post(api, { data: this.addProductData }).then((res) => {
         this.isLoading = false
         this.$httpMessageState(res.data.success, '加入購物車')
-        this.emitter.emit('get_cart') //* 請 Navbar更新數字
+        this.emitter.emit('get_cart') //*  Navbar更新
       })
     }
   },
@@ -152,8 +152,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/_mixin.scss";
+@import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 @import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
 @import "@/assets/stylesheets/helpers/loading_css.scss";
-@import "@/assets/stylesheets/helpers/front/product/_One_Product.scss";
+@import "@/assets/stylesheets/helpers/front/product/_User_One_Product.scss";
 </style>
