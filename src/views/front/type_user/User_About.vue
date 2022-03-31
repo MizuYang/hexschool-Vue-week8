@@ -5,7 +5,7 @@
     </h2>
     <div class="main row d-flex justify-content-end mb-5">
         <div class="col-12 mb-5 col-md-12 text-md-center mb-md-3 col-xl-6" >
-            <img src="@/assets/imageUrl/banner/istockphoto-526179613-612x612.jpg" alt="店家品牌故事的示意圖" class="img-fluid">
+            <img src="https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%91/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%911.jpg?raw=true" alt="店家品牌故事的示意圖" class="img-fluid">
         </div>
         <div class="col-12 col-xl-5 col-lg-8 mx-lg-auto col-md-12 px-md-5 fs-md-1  ms-auto  d-flex flex-column my-auto text-start me-xl-auto">
             <ul class="list-unstyled">
@@ -44,7 +44,7 @@
             </li>
         </ul>
         <div class="col-12 text-center col-md-12 col-xl-5 mt-xl-auto mb-5 text-md-center ">
-            <img src="@/assets/imageUrl/banner/VuBaRVPSvv.png" class="story-img-sm img-fluid" alt="店家品牌故事的示意圖">
+            <img src="https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%91/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%914.png?raw=true" class="story-img-sm img-fluid" alt="店家品牌故事的示意圖">
         </div>
         <div class="col-12  col-md-12  px-xl-5 ">
             <p> 回到桃園幾個禮拜後，學校剛好有個專題是要大家做創業發想，
@@ -80,13 +80,11 @@
                     就會覺得心裡少了些什麼，因此老闆拖著病著的身體每天工作著，才會使病情每況愈下⋯⋯
                 </p>
             </li>
-
         </ul>
     </div>
-
     <ul class="list-unstyled row d-flex align-items-center mb-5">
         <li class="col-12 mb-5 col-lg-6 col-md-12 mt-lg-auto text-md-center mb-md-5"  data-aos="flip-left">
-            <img src="@/assets/imageUrl/banner/istockphoto-1292119448-612x612.jpg" alt="店家品牌故事的示意圖"  class="img-fluid">
+            <img src="https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%91/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%913.jpg?raw=true" alt="店家品牌故事的示意圖"  class="img-fluid">
         </li>
         <li class="col-12 px-xl-9  col-lg-6 col-md-12 px-md-5 ms-lg-auto"  data-aos="fade-up-left" data-aos-duration="2000">
             <h3 class="fs-4 text-center subtitle">轉折，夢想起飛吧！</h3>
@@ -100,11 +98,9 @@
             </p>
         </li>
     </ul>
-
     <ul class="list-unstyled row d-flex flex-row-reverse align-items-center">
-
         <li class="col-12 mb-5 text-md-center col-xl-6"  data-aos="flip-right" data-aos-delay="1300">
-            <img src="@/assets/imageUrl/banner/istockphoto-1202562248-612x612.jpg" alt="店家品牌故事的示意圖"
+            <img src="https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%91/%E9%97%9C%E6%96%BC%E6%88%91%E5%80%912.jpg?raw=true" alt="店家品牌故事的示意圖"
              class="img-fluid">
         </li>
         <li class="col-12 px-lg-5  col-xl-6" data-aos="fade-up-right" data-aos-duration="1500">
@@ -132,6 +128,6 @@
 
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/_mixin.scss";
-@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
-@import '@/assets/stylesheets/helpers/front/user/_About.scss'
+@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
+@import '@/assets/stylesheets/helpers/front/user/_About.scss';
 </style>

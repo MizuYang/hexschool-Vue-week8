@@ -3,8 +3,7 @@
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">確認訂單資料</span>
     </h2>
-    <timeLine :time_line="time_line"></timeLine>
-
+    <TimeLine :time_line="time_line" />
       <h3 class="text-center pb-2 border-bottom mb-5 ">
         <span class=" fs-5 fw-bold" v-if="!is_pay">
           請確認您的資料無誤後付款 <span class=" text-danger">( 未付款 )</span>
@@ -16,12 +15,12 @@
             <tbody>
               <tr>
                   <th>
-                    <span  class=" fs-5">
+                    <span class="fs-5">
                         訂單編號
                     </span>
                   </th>
                   <th>
-                    <span class=" fw-bold border-bottom id"> {{ order.id }} </span>
+                    <span class="fw-bold border-bottom id"> {{ order.id }} </span>
                     <button type="button" class="btn btn-outline-primary btn-sm ms-2 tag-read" :data-clipboard-text="orderId" @click="copy">
                       複製
                       <span class="copy_point ms-2 text-success badge bg-primary" :class="{'d-none': !copy_point}"><i class="bi bi-check-lg"></i></span>
@@ -30,7 +29,7 @@
               </tr>
               <tr>
                   <th>
-                    <span class=" fs-5">訂購日期</span>
+                    <span class="fs-5">訂購日期</span>
                   </th>
                   <td>
                       {{ create_at }}
@@ -38,7 +37,7 @@
               </tr>
               <tr>
                   <th>
-                    <span class=" fs-5">姓名</span>
+                    <span class="fs-5">姓名</span>
                   </th>
                   <td>
                       {{ order_user.name }}
@@ -46,7 +45,7 @@
               </tr>
               <tr>
                   <th>
-                    <span class=" fs-5">Email</span>
+                    <span class="fs-5">Email</span>
                   </th>
                   <td>
                       {{ order_user.email }}
@@ -54,28 +53,28 @@
               </tr>
               <tr>
                   <th>
-                    <span class=" fs-5">電話</span>
+                    <span class="fs-5">電話</span>
                   </th>
                   <td>
-                      {{  order_user.tel  }}
+                      {{ order_user.tel }}
                   </td>
               </tr>
               <tr>
                   <th>
-                    <span class=" fs-5">地址</span>
+                    <span class="fs-5">地址</span>
                   </th>
                   <td>
-                    {{ order_user.address  }}
+                    {{ order_user.address }}
                   </td>
               </tr>
               <tr>
                   <th>
-                    <span class=" fs-5">訂購產品</span>
+                    <span class="fs-5">訂購產品</span>
                   </th>
                   <td>
                     <ul class="list-unstyled">
                       <li v-for="product in order.products" :key="product">
-                        <span class=" mb-1"
+                        <span class="mb-1"
                           >{{ product.product.title }} x {{ product.qty }}
                         </span>
                       </li>
@@ -84,7 +83,7 @@
               </tr>
               <tr>
                   <th>
-                    <span class=" fs-5">付款金額</span>
+                    <span class="fs-5">付款金額</span>
                   </th>
                   <td>
                     {{ $thousandths(order.total) }} 元
@@ -92,7 +91,7 @@
               </tr>
               <tr>
                   <th>
-                    <span class=" fs-5">付款方式</span>
+                    <span class="fs-5">付款方式</span>
                   </th>
                   <td>
                       {{ order_user.pay_method }}
@@ -100,17 +99,17 @@
               </tr>
               <tr>
                   <th>
-                    <span class=" fs-5">付款狀態</span>
+                    <span class="fs-5">付款狀態</span>
                   </th>
                   <td>
                     <span
-                      class="fw-bold  text-danger fs-5"
+                      class="fw-bold text-danger fs-5"
                       v-if="!is_pay"
                     >
                       未付款
                     </span>
-                    <span class="badge  text-success fs-5" v-else
-                      >已付款 <i class="bi bi-check2"></i> </span
+                    <span class="badge text-success fs-5" v-else
+                      >已付款 <i class="bi bi-check2"></i></span
                     >
                   </td>
               </tr>
@@ -118,7 +117,7 @@
           </table>
       </div>
       <button
-        type="submit"
+        type="button"
         class="
           d-block
           mx-auto
@@ -128,14 +127,14 @@
           animation_hover
         "
         title="結帳"
-        @click="open_confirm_modal"
+        @click="openConfirmModal"
         v-if="!is_pay"
       >
         <i class="bi bi-cash-coin"></i>
         確認付款
       </button>
     </div>
-  <confirmModal @payment="payment"></confirmModal>
+  <ConfirmModal @payment="payment" />
   <Loading v-model:active="isLoading">
     <div class="cssload-container">
       <div class="cssload-dot"></div>
@@ -148,14 +147,16 @@
 
 <script>
 import Clipboard from 'clipboard'
-import timeLine from '@/components/front/cart/Cart_TimeLine.vue'
-import confirmModal from '@/components/front/modal/Order_Confirm.vue'
+import TimeLine from '@/components/front/cart/Cart_TimeLine.vue'
+import ConfirmModal from '@/components/front/modal/OrderConfirm_Modal.vue'
 export default {
   inject: ['emitter'],
+
   components: {
-    timeLine,
-    confirmModal
+    TimeLine,
+    ConfirmModal
   },
+
   data () {
     return {
       time_line: 0,
@@ -168,9 +169,9 @@ export default {
       copy_point: false
     }
   },
+
   methods: {
-    //* 取得訂單
-    get_order () {
+    getOrder () {
       if (this.orderId) {
         const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order/${this.orderId}`
         this.$http.get(api).then((res) => {
@@ -181,24 +182,22 @@ export default {
             .substring(0, 10)
           this.create_at = date
           this.is_pay = res.data.order.is_paid
-          if (this.is_pay) { //* 如果使用者按上一頁回來，判斷是已付款，時間軸改為完成訂單
+          if (this.is_pay) { //* 完成訂單回來，判斷是已付款，時間軸為完成訂單
             this.time_line = 4
           }
         })
       }
     },
-    //* 開啟、關閉確認 modal
-    open_confirm_modal () {
-      this.emitter.emit('open_confirmModal', '開啟')
+    openConfirmModal () {
+      this.emitter.emit('openConfirmModal', '開啟')
     },
-    //* 付款
     payment () {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
       this.$http.post(api).then((res) => {
         this.isLoading = false
         this.$httpMessageState(res.data.success, '付款')
-        this.emitter.emit('open_confirmModal', '關閉')
+        this.emitter.emit('openConfirmModal', '關閉')
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
         setTimeout(() => {
           this.emitter.emit('get_orderId', this.orderId) //* 給完成訂單頁面訂單的ID
@@ -207,41 +206,37 @@ export default {
       }).catch((err) => {
         this.isLoading = false
         this.$httpMessageState(err.response.success, '付款')
-        this.emitter.emit('open_confirmModal', '關閉')
+        this.emitter.emit('openConfirmModal', '關閉')
       })
     },
-    //* 複製的方法
     copy () {
       const clipboard = new Clipboard('.tag-read')
       clipboard.on('success', e => {
         this.copy_point = true
         this.$httpMessageState(true, '複製')
-        //* 釋放內存
         clipboard.destroy()
       })
       clipboard.on('error', e => {
-        //* 不支援複製
         this.$httpMessageState(false, '該瀏覽器不支援，複製')
-        //* 釋放內存
         clipboard.destroy()
       })
     }
   },
+
   mounted () {
     this.time_line = 3
     this.orderId = this.$route.params.orderId
-    this.get_order()
+    this.getOrder()
   }
 }
 </script>
+
 <style lang="scss" scoped>
-@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
-@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
-//* hover 放大動畫效果
+@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
+@import "@/assets/stylesheets/helpers/loading_css.scss";
 .animation_hover:hover {
     transform: scale(1.02);
 }
-//* active 放大
 .active_bigger:active {
     transform: scale(1.05);
 }
@@ -249,7 +244,7 @@ export default {
 .bi-check2{
     color: green;
 }
-table{
+.table{
   @include xs {
     width: 30rem;
   }

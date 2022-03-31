@@ -79,7 +79,7 @@
             </button>
 
             <button
-              type="submit"
+              type="button"
               class="ms-auto btn btn-danger active_bigger fs-4 animation_hover"
               title="結帳"
               @click="addCart(product.id)"
@@ -92,7 +92,7 @@
       </div>
     </div>
   </div>
-  <swiper :product="product" class="mb-5"></swiper>
+  <Swiper :product="product" class="mb-5" />
   <Loading v-model:active="isLoading">
     <div class="cssload-container">
       <div class="cssload-dot"></div>
@@ -104,25 +104,27 @@
 </template>
 
 <script>
-import swiper from '@/components/front/swiper/Swiper_Cart_oneProduct.vue'
+import Swiper from '@/components/front/swiper/Swiper_Cart_oneProduct.vue'
 export default {
   components: {
-    swiper
+    Swiper
   },
+
   inject: ['emitter'],
+
   data () {
     return {
       product: [],
-      add_product_Data: {
+      addProductData: {
         product_id: '',
         qty: 1
       },
       isLoading: false
     }
   },
+
   methods: {
-    //* 取得產品
-    get_products () {
+    getProducts () {
       this.isLoading = true
       const id = this.$route.params.id
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/product/${id}`
@@ -131,26 +133,27 @@ export default {
         this.product = res.data.product
       })
     },
-    //* 加入購物車
     addCart (id) {
       this.isLoading = true
-      this.add_product_Data.product_id = id
+      this.addProductData.product_id = id
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
-      this.$http.post(api, { data: this.add_product_Data }).then((res) => {
+      this.$http.post(api, { data: this.addProductData }).then((res) => {
         this.isLoading = false
         this.$httpMessageState(res.data.success, '加入購物車')
         this.emitter.emit('get_cart') //* 請 Navbar更新數字
       })
     }
   },
+
   mounted () {
-    this.get_products()
+    this.getProducts()
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/_mixin.scss";
-@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
-@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
+@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
+@import "@/assets/stylesheets/helpers/loading_css.scss";
 @import "@/assets/stylesheets/helpers/front/product/_One_Product.scss";
 </style>

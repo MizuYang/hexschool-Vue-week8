@@ -1,7 +1,6 @@
 <template>
-
 <div class="col-12 border p-5">
-    <h3 class="border-bottom text-center  pb-2">訂單明細</h3>
+    <h3 class="border-bottom text-center pb-2">訂單明細</h3>
     <div class="table-responsive">
       <table
         class="
@@ -18,7 +17,7 @@
             <th>圖片</th>
             <th style="width: 150px">名稱</th>
             <th>數量</th>
-            <th  style="width: 200px" >金額</th>
+            <th style="width: 200px">金額</th>
           </tr>
         </thead>
         <tbody>
@@ -78,7 +77,6 @@
                 "
                 title="前往結帳流程"
                 v-if="cartData.length > 0"
-                @submit="this.emitter.emit('call_send_order')"
               >
                 下一步
               </button>
@@ -93,7 +91,6 @@
           </tr>
         </tfoot>
       </table>
-      <div></div>
     </div>
 </div>
 <button
@@ -109,15 +106,15 @@
   "
   title="前往結帳流程"
   v-if="cartData.length > 0"
-  @submit="this.emitter.emit('call_send_order')"
 >
   下一步
 </button>
-
 </template>
+
 <script>
 export default {
   inject: ['emitter'],
+
   data () {
     return {
       cartData: [],
@@ -126,8 +123,8 @@ export default {
       coupon_price: 0
     }
   },
+
   methods: {
-    //* 取得購物車
     getCartList () {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.get(api).then((res) => {
@@ -146,18 +143,18 @@ export default {
       })
     }
   },
+
   mounted () {
     this.getCartList()
   }
 }
 </script>
+
 <style lang="scss" scoped>
-//* 產品圖片
 .img_product {
   height: 10rem;
   width: 12rem;
 }
-//* 按鈕
 .btn{
   width: 10rem;
 }

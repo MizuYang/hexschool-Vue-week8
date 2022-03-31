@@ -1,0 +1,74 @@
+//* 左右搖晃 + 變色
+@keyframes heightLight {
+    0% {
+        transform: rotate(3deg);
+    }
+    10% {
+        transform: scale(1.05);
+        background-color: #f1ebd862;
+    }
+    25% {
+        transform: scale(1);
+        transform: rotate(-3deg);
+    }
+    50% {
+        transform: rotate(3deg);
+    }
+    75% {
+        transform: rotate(-3deg);
+    }
+    100% {
+        transform: rotate(3deg);
+    }
+}
+.animationHightLight {
+    animation: heightLight 2s ease infinite;
+}
+//* 箭頭左右效果
+@keyframes arrowMoveLeft {
+    50% {
+        right: 55%;
+    }
+}
+.arrowMoveLeft {
+    animation: arrowMoveLeft 1s ease infinite;
+}
+@keyframes arrowMoveRight {
+    50% {
+        right: 42%;
+    }
+}
+.arrowMoveRight {
+    animation: arrowMoveRight 1s ease infinite;
+}
+//* 手指點擊效果
+@keyframes fingerActiveAnimation {
+    0% {
+        font-size: 3rem;
+    }
+    20% {
+        transform: rotate(-8deg);
+    }
+    25% {
+        transform: rotate(0deg);
+    }
+    70% {
+        font-size: 3.2rem;
+    }
+    100% {
+        font-size: 3rem;
+    }
+}
+.fingerActiveAnimation {
+    animation: fingerActiveAnimation 1s ease infinite;
+}
+//* 按鈕被按壓效果
+@keyframes btnActive {
+    0% {
+        transform: scale(0.97);
+    }
+}
+.btnActive {
+    animation: btnActive 1s ease infinite;
+}
+

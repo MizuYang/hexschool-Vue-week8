@@ -1,15 +1,9 @@
 <template>
-  <!-- 輪播 banner-main -->
-  <carouselMain></carouselMain>
-
-  <div class="mb-5">
-    <div class="container"></div>
-  </div>
+  <CarouselMain />
   <div class="container">
     <div data-aos="fade-right" data-aos-duration="800">
       <h2 class="text-center mb-5">這是一群大學生，勇敢追夢的故事 -</h2>
     </div>
-
     <div class="row row-cols-1 row-cols-lg-2 mb-3">
       <div class="col">
         <div class="banner-vertical-main mb-5 mb-lg-0 img-fluid">
@@ -72,38 +66,39 @@
         </div>
       </div>
     </div>
-
     <div data-aos="zoom-out">
       <h2 class="text-center mb-5">用甜點，抓住你的胃 -</h2>
     </div>
-    <!-- 輪播 -->
       <PopularProductsSwiper></PopularProductsSwiper>
       <div class="text-center my-5" >
         <div data-aos="zoom-out">
-            <h3 class="mb-3">實在是忍不住了...</h3>
+            <h3 class="mb-5">實在是忍不住了...</h3>
         </div>
-        <router-link
-        to="/user/products"
-        class="btn btn-outline-primary  animation_hover fs-5"
-        @click="current('productList')"
-      >
-        現在，就想吃
-      </router-link>
+       <div class="d-flex align-items-center justify-content-center">
+          <i class="bi bi-arrow-right fs-2 me-4 arrowLeft arrowMoveLeft"></i>
+          <router-link
+          to="/user/products"
+          class="btn btn-outline-primary  animation_hover fs-5 relative animationHightLight"
+          @click="current('productList')"
+          >
+            現在，就想吃
+          </router-link>
+          <i class="bi bi-arrow-left fs-2 ms-4 arrowRight arrowMoveRight "></i>
+       </div>
       </div>
     </div>
     <h3 class="text-center border-bottom pb-2 mb-3">產品類別</h3>
   <div class="card_container">
     <div class="cake_container">
-      <cakeSwiper></cakeSwiper>
+      <CakeSwiper />
     </div>
     <div class="pudding_container">
-      <puddingSwiper></puddingSwiper>
+      <PuddingSwiper />
     </div>
     <div class="profiterole_container">
-      <profiteroleSwiper></profiteroleSwiper>
+      <ProfiteroleSwiper />
     </div>
   </div>
-
 <div class="container text-center mb-5">
     <router-link
         to="/user/products"
@@ -117,19 +112,20 @@
 
 <script>
 import emitter from '@/utils/emitter.js'
-import carouselMain from '@/components/front/carousel/Carousel_Main.vue'
-import puddingSwiper from '@/components/front/swiper/Pudding_Swiper.vue'
-import profiteroleSwiper from '@/components/front/swiper/Profiterole_Swiper.vue'
-import cakeSwiper from '@/components/front/swiper/Cake_Swiper.vue'
-import PopularProductsSwiper from '@/components/front/swiper/PopularProducts_Swiper.vue'
+import CarouselMain from '@/components/front/carousel/CarouselMain.vue'
+import PuddingSwiper from '@/components/front/swiper/PuddingSwiper.vue'
+import ProfiteroleSwiper from '@/components/front/swiper/ProfiteroleSwiper.vue'
+import CakeSwiper from '@/components/front/swiper/CakeSwiper.vue'
+import PopularProductsSwiper from '@/components/front/swiper/PopularProductsSwiper.vue'
 export default {
   components: {
-    carouselMain,
-    puddingSwiper,
-    profiteroleSwiper,
-    cakeSwiper,
+    CarouselMain,
+    PuddingSwiper,
+    ProfiteroleSwiper,
+    CakeSwiper,
     PopularProductsSwiper
   },
+
   methods: {
     //* Navbar 的 active 效果
     current (page) {
@@ -138,6 +134,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/_mixin.scss";
 @import "@/assets/stylesheets/helpers/front/user/_Home.scss";

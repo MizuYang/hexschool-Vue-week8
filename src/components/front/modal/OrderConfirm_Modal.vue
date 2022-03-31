@@ -25,26 +25,26 @@ export default {
   inject: ['emitter'],
   data () {
     return {
-      confirm_modal: '',
+      confirmModal: '',
       isLoading: false
     }
   },
   mounted () {
-    this.confirm_modal = new Modal(document.querySelector('.modal'))
+    this.confirmModal = new Modal(document.querySelector('.modal'))
     //* confirm 頁面開啟確認 modal
-    this.emitter.on('open_confirmModal', (status) => {
+    this.emitter.on('openConfirmModal', (status) => {
       if (status === '開啟') {
-        this.confirm_modal.show()
+        this.confirmModal.show()
       } else {
-        this.confirm_modal.hide()
+        this.confirmModal.hide()
       }
     })
   },
   unmounted () { //* 元件銷毀之後將 emitter 註冊的事件移除
-    this.emitter.off('open_confirmModal')
+    this.emitter.off('openConfirmModal')
   }
 }
 </script>
 <style lang="scss" scoped>
-@import '@/assets/stylesheets/helpers/front/cart/_Front_Modal_Style.scss'
+@import '@/assets/stylesheets/helpers/front/cart/_Front_Modal_Style.scss';
 </style>

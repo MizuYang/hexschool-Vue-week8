@@ -3,12 +3,11 @@
       <h2 class="title text-center mb-5 pt-3">
         <span class="decorate"> 常見問題 </span>
       </h2>
-
       <ul class="main list-unstyled">
         <div class="accordion" id="accordionExample">
             <li class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button q1 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" @click="current_qa('q1')">
+                <button class="accordion-button q1 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" @click="currentQa('q1')">
                   <span class="badge bg-dark mx-1">1.</span>
                           如何購買？
                 </button>
@@ -26,7 +25,7 @@
             </li>
             <li class="accordion-item">
               <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed q2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" @click="current_qa('q2')">
+                <button class="accordion-button collapsed q2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" @click="currentQa('q2')">
                   <span class="badge bg-dark mx-1">2.</span>
                   購買需要先註冊會員嗎？
                 </button>
@@ -39,7 +38,7 @@
             </li>
             <li class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed q3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" @click="current_qa('q3')">
+                <button class="accordion-button collapsed q3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" @click="currentQa('q3')">
                   <span class="badge bg-dark mx-1">3.</span>
                   有哪些付款方式？
                 </button>
@@ -52,7 +51,7 @@
             </li>
             <li class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed q4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree4" aria-expanded="false" aria-controls="collapseThree4" @click="current_qa('q4')">
+                <button class="accordion-button collapsed q4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree4" aria-expanded="false" aria-controls="collapseThree4" @click="currentQa('q4')">
                   <span class="badge bg-dark mx-1">4.</span>
                   會有發票嗎？可以開統編發票嗎？
                 </button>
@@ -68,7 +67,7 @@
             </li>
             <li class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed q5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree5" aria-expanded="false" aria-controls="collapseThree5" @click="current_qa('q5')">
+                <button class="accordion-button collapsed q5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree5" aria-expanded="false" aria-controls="collapseThree5" @click="currentQa('q5')">
                   <span class="badge bg-dark mx-1">5.</span>
                   有哪些配送方式？
                 </button>
@@ -81,7 +80,7 @@
             </li>
             <li class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed q6" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree6" aria-expanded="false" aria-controls="collapseThree6" @click="current_qa('q6')">
+                <button class="accordion-button collapsed q6" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree6" aria-expanded="false" aria-controls="collapseThree6" @click="currentQa('q6')">
                   <span class="badge bg-dark mx-1">6.</span>
                   今天下單有辦法明天送達嗎？
                 </button>
@@ -94,7 +93,7 @@
             </li>
             <li class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed q7" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree7" aria-expanded="false" aria-controls="collapseThree7" @click="current_qa('q7')">
+                <button class="accordion-button collapsed q7" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree7" aria-expanded="false" aria-controls="collapseThree7" @click="currentQa('q7')">
                   <span class="badge bg-dark mx-1">7.</span>
                   請問可以冷藏或冷凍嗎？可存放多久？退冰後如何食用？
                 </button>
@@ -107,7 +106,7 @@
             </li>
             <li class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed q8 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree8" aria-expanded="false" aria-controls="collapseThree8" @click="current_qa('q8')">
+                <button class="accordion-button collapsed q8 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree8" aria-expanded="false" aria-controls="collapseThree8" @click="currentQa('q8')">
                   <span class="badge bg-dark mx-1">8.</span>
                   收到的商品有缺少或損壞怎麼辦？
                 </button>
@@ -120,13 +119,12 @@
                       提供到 <a href="https://equatorial-alloy-23b.notion.site/Mizu_-dc646b31574641de856dd54ac3f6cc1b" target="_blank">本店粉絲團</a>
                     或來信客服信箱： <a href="mailto:psdk55052004@gmail.com">psdk55052004@gmail.com</a>   和我們反應。</li>
                   </ol>
-
                 </div>
               </div>
             </li>
             <li class="accordion-item">
               <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed q9" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree9" aria-expanded="false" aria-controls="collapseThree9" @click="current_qa('q9')">
+                <button class="accordion-button collapsed q9" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree9" aria-expanded="false" aria-controls="collapseThree9" @click="currentQa('q9')">
                   <span class="badge bg-dark mx-1">9.</span>
                   買太多吃不完可以退貨嗎？和想像的大小不同可以退貨嗎？
                 </button>
@@ -138,7 +136,6 @@
                     <li>（自 105 年 1 月 1 日起，生鮮食品類不適用於消費者保護法第 19 條，不享有 7 天鑑賞期。）</li>
                     <li>請謹慎評估後購買。</li>
                   </ul>
-
                 </div>
               </div>
             </li>
@@ -155,7 +152,7 @@ export default {
   },
   methods: {
     //* 點擊時凸顯當前 QA
-    current_qa (qa) {
+    currentQa (qa) {
       if (this.qa) {
         document.querySelector(`.${this.qa}`).classList.remove('qa_active')
         this.qa = ''
@@ -170,6 +167,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/_mixin.scss";
-@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
-@import '@/assets/stylesheets/helpers/front/user/_Questions.scss'
+@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
+@import '@/assets/stylesheets/helpers/front/user/_User_Questions.scss';
 </style>

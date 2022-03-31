@@ -33,7 +33,7 @@ const routes = [
       },
       {
         path: 'order_confirm/:orderId',
-        component: () => import('@/views/front/type_order/User_OrderInfo_Confirm.vue')
+        component: () => import('@/views/front/type_order/User_Order_Confirm.vue')
       },
       {
         path: 'order_completed',

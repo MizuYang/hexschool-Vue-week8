@@ -4,7 +4,7 @@
     <div class="container">
       <router-link class="navbar-brand logo" title="首頁" to="/user/home"
         ><img
-          src="@/assets/imageUrl/images/LOGO_PNG_Big-removebg-preview.png"
+          src="https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/LOGO/%E6%A9%AB%E5%90%91LOGO.png?raw=true"
           alt="小巷弄甜點的logo"
           width="130"
         />

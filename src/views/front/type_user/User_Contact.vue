@@ -4,14 +4,13 @@
     <h2 class="title text-center mb-10 pt-3">
       <span class="decorate">連絡我們</span>
     </h2>
-
     <div class="row justify-content-center form-container">
       <Form
         action="/"
         v-slot="{ errors }"
         class="col-md-6"
         ref="form"
-        @submit="send_question"
+        @submit="sendQuestion"
       >
         <div class="mb-1">
           <label for="name"> 姓名 </label>
@@ -122,6 +121,7 @@
     </div>
   </Loading>
 </template>
+
 <script>
 export default {
   data () {
@@ -129,13 +129,14 @@ export default {
       isLoading: false
     }
   },
+
   methods: {
     //* 電話驗證
     isPhone (value) {
       const phoneNumber = /^(09)[0-9]{8}$/
       return phoneNumber.test(value) ? true : '請輸入 09 開頭的正確電話號碼'
     },
-    send_question () {
+    sendQuestion () {
       this.isLoading = true
       setTimeout(() => {
         this.$httpMessageState(true, '送出內容')
@@ -149,7 +150,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/_mixin.scss";
-@import "@/assets/stylesheets/helpers/front/_pseudo_el_title.scss"; //* 偽元素標題 CSS
-@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
+@import "@/assets/stylesheets/helpers/front/_pseudo_el_title.scss";
+@import "@/assets/stylesheets/helpers/loading_css.scss";
 @import "@/assets/stylesheets/helpers/front/user/_Contact.scss";
 </style>

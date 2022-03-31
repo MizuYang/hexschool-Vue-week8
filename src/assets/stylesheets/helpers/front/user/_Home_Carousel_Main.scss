@@ -4,7 +4,7 @@
     height: calc(100vh - 6.5rem);
     //* 主要banner
     .banner-main-1 {
-        background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/banner2.jpeg?raw=true);
+        background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E4%B8%BB%E8%A6%81%E8%BC%AA%E6%92%AD/%E4%B8%BB%E9%A0%81%E5%A4%A7%E8%BC%AA%E6%92%AD1.jpeg?raw=true);
         height: calc(100vh - 6.5rem);
         background-repeat: no-repeat;
         background-size: cover;
@@ -22,7 +22,7 @@
         }
     }
     .banner-main-2 {
-        background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/banner.jpeg?raw=true);
+        background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E4%B8%BB%E8%A6%81%E8%BC%AA%E6%92%AD/%E4%B8%BB%E9%A0%81%E5%A4%A7%E8%BC%AA%E6%92%AD2.jpeg?raw=true);
         height: calc(100vh - 6.5rem);
         background-repeat: no-repeat;
         background-size: cover;
@@ -40,7 +40,7 @@
         }
     }
     .banner-main-3 {
-        background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/pexels-photo-1028711.jpeg?raw=true);
+        background-image: url(https://cdn.pixabay.com/photo/2019/12/17/16/38/macaron-4701985_960_720.jpg);
         height: calc(100vh - 6.5rem);
         background-repeat: no-repeat;
         background-size: cover;
@@ -70,7 +70,7 @@
             padding: .5rem;
         }
         .animation_hover:hover {
-            background: #F1EBD8;
+            color: #F1EBD8;
             transform: scale(1.05);
         }
         .animation_active:active {
@@ -87,4 +87,16 @@
             font-size: 2rem;
         }
     }
+}
+
+.fingerRelative{
+    position: relative;
+}
+.finger{
+    position: absolute;
+    top: 55%;
+    left: 35%;
+    z-index: 500;
+    font-size: 3rem;
+    color: #F1EBD8;
 }

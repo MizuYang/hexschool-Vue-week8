@@ -1,16 +1,13 @@
 <template>
-
-<toasts></toasts>
-
+<Toasts />
   <router-view/>
-
 </template>
 
 <script>
-import toasts from '@/components/utils/Toasts.vue'
+import Toasts from '@/components/utils/Toasts.vue'
 export default {
   components: {
-    toasts
+    Toasts
   }
 }
 </script>

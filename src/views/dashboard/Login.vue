@@ -45,7 +45,7 @@
 </template>
 <script>
 import navbar from '@/components/dashboard/layout/Login.NavBar.vue'
-import footerLogin from '@/components/front/layout/Front_Footer.vue' //* 使用前台的 footer
+import footerLogin from '@/components/front/layout/FrontFooter.vue' //* 使用前台的 footer
 export default {
   components: {
     navbar,
@@ -85,7 +85,7 @@ export default {
 <style lang="scss" scoped>
 @import  '@/assets/stylesheets/helpers/_mixin.scss';
 .banner::before {
-  background-image: url(https://github.com/MizuYang/vue-week8/blob/main/src/assets/imageUrl/images/LOGO_PNG_Big-removebg-preview.png?raw=true);
+  background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/LOGO/LOGO_PNG_Big-removebg-preview.png?raw=true);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

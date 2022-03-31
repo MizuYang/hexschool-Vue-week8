@@ -1,32 +1,31 @@
 <template>
-<div class="container collect  mt-8 mt-sm-10 ">
+<div class="container collect mt-8 mt-sm-10 ">
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">收藏清單</span>
     </h2>
-<!-- 有收藏資料才顯示 -->
     <template v-if="collectData.length > 0">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-5">
         <div class="card text-primary bg-dark col mb-md-4"  v-for="(product, index) in collectData" :key="product.id">
             <router-link  :to="`/user/one_product/${product[0].id}`" class="product_img card-img-top animation_hover d-block text-decoration-none img-fluid" title="查看產品細節"
-            :style="{backgroundImage: `url(${product[0].imageUrl}) `}">
+            :style="{ backgroundImage: `url(${product[0].imageUrl})` }">
          <img class="product_info img-fluid" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
             <span class="badge bg-danger p-1"  v-if="product[0].popular > 2">熱門商品</span>
             </router-link>
-            <button type="button" class=" d-block animation_hover like_btn fs-3" :class="`like_btn${index}`" title="點擊移除收藏" @click="delete_collect(product[0].id, index)">
-                <i class="bi bi-heart-fill "  v-if="collect.includes(product[0].id)"></i>
+            <button type="button" class=" d-block animation_hover like_btn fs-3" :class="`like_btn${index}`" title="點擊移除收藏" @click="toggleCollect(product[0].id, index)">
+                <i class="bi bi-heart-fill" v-if="collect.includes(product[0].id)"></i>
                 <i class="bi bi-heartbreak-fill " v-if="(!collect.includes(product[0].id))"></i>
-            <i class="bi bi-heart-fill heart" :class="`heart${index}`"></i>
-            <i class="bi bi-heartbreak-fill heartbreak" :class="`heartbreak${index}`"></i>
+                <i class="bi bi-heart-fill heart" :class="`heart${index}`"></i>
+                <i class="bi bi-heartbreak-fill heartbreak" :class="`heartbreak${index}`"></i>
             </button>
             <div class="card-body mb-0">
-                <div class="">
-                    <h5 class="card-title fs-4 text-center ">{{  product[0].title }}</h5>
+                <div>
+                    <h5 class="card-title fs-4 text-center ">{{ product[0].title }}</h5>
                 </div>
                 <div class="d-flex justify-content-between align-items-end mb-3">
                     <del style="opacity: .8;">原價 {{ product[0].origin_price }} 元</del>
                     <strong>優惠價<u class="text-danger text-end fs-4"> {{product[0].price}} </u>元</strong>
                 </div>
-                <button type="button" class="btn btn-danger text-white w-100  d-block addCart animation_hover animation_active  fs-5" title="將收藏產品加入購物車"
+                <button type="button" class="btn btn-danger text-white w-100 d-block addCart animation_hover animation_active fs-5" title="將收藏產品加入購物車"
                  @click="addCart(product[0].id)">
                     <i class="bi bi-cart-check-fill fs-5"></i>
                          加入購物車
@@ -70,15 +69,17 @@
   </Loading>
 </div>
 </template>
+
 <script>
 export default {
   inject: ['emitter'],
+
   data () {
     return {
-      collect: [], //* 裝 localstorage 產品ID
+      collect: [], //* 裝 localStorage 產品ID
       collectData: [], //* 裝收藏產品
       products: [], //* 所有產品列表，做篩選用
-      add_product_Data: { //* 先定義加入購物車資料
+      addProductData: { //* 加入購物車資料
         product_id: '',
         qty: 1
       },
@@ -86,52 +87,46 @@ export default {
       heart_disabled: 0
     }
   },
+
   methods: {
-    //* 取得產品
-    get_products (status) {
+    getProducts () {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
       this.$http.get(api).then((res) => {
         this.isLoading = false
         this.products = res.data.products
-        if (status === 'delete_collect') {
-          return
-        }
-        this.get_collet_product() //* 取得產品的同時，也取得收藏產品
+        this.getColletProduct()
       })
     },
-    //* 取得收藏商品
-    get_collet_product () {
-      this.collect = JSON.parse(localStorage.getItem('collect')) || [] //* 如果 localstorage 沒資料就是空陣列
+    getColletProduct () {
+      this.collect = JSON.parse(localStorage.getItem('collect')) || []
       this.collect.forEach((item) => {
         this.collectData.push(this.products.filter((product) => {
           return product.id === item
         }))
       })
-      this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
+      this.emitter.emit('get_collect', this.collect) //* navbar 更新
     },
-    //* 加入購物車
     addCart (id) {
       this.isLoading = true
-      this.add_product_Data.product_id = id
+      this.addProductData.product_id = id
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http
-        .post(api, { data: this.add_product_Data })
+        .post(api, { data: this.addProductData })
         .then((res) => {
           this.isLoading = false
           this.$httpMessageState(res.data.success, '加入購物車')
-          this.emitter.emit('get_cart') //* 請 Navbar更新數字
+          this.emitter.emit('get_cart') //* Navbar更新
         })
     },
-    //* 收藏清單
-    delete_collect (id, index) {
+    toggleCollect (id, index) {
       this.heart_disabled += 1
       //* 兩秒後才可以再點擊
       if (this.heart_disabled >= 2) {
         return
       }
       const collectBtn = document.querySelector(`.like_btn${index}`)
-      collectBtn.style.cursor = 'no-drop' //* 將滑鼠變為禁用圖示
+      collectBtn.style.cursor = 'no-drop' //* 滑鼠變禁用圖示
       const collectIndex = this.collect.findIndex((item) => {
         return id === item
       })
@@ -140,28 +135,29 @@ export default {
         localStorage.setItem('collect', JSON.stringify(this.collect))
         this.$httpMessageState(true, '加入收藏')
         this.$collectAnimation(index) //* 收藏特效
-        this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
+        this.emitter.emit('get_collect', this.collect) //* navbar 更新
       } else {
         this.collect.splice(collectIndex, 1)
         localStorage.setItem('collect', JSON.stringify(this.collect))
-        this.emitter.emit('get_collect', this.collect) //* 請 navbar 更新收藏產品資料
+        this.emitter.emit('get_collect', this.collect) //* navbar 更新
         this.$cancelCollectAnimation(index)
       }
       setTimeout(() => {
-        collectBtn.style.cursor = 'default' //* 將滑鼠變回預設樣式
+        collectBtn.style.cursor = 'default' //* 滑鼠變預設樣式
       }, 2000)
     }
   },
+
   mounted () {
-    this.get_products()
+    this.getProducts()
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
+@import "@/assets/stylesheets/helpers/loading_css.scss";
 @import "@/assets/stylesheets/helpers/_mixin.scss";
-@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss'; //* 偽元素標題 CSS
+@import '@/assets/stylesheets/helpers/front/_pseudo_el_title.scss';
 @import '@/assets/stylesheets/helpers/front/product/_Products.scss';
 @import '@/assets/stylesheets/helpers/front/product/_Collect_Products.scss';
 </style>

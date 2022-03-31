@@ -1,6 +1,6 @@
 //*垂直 banner 主要
 .banner-vertical-main {
-    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/as53w-m8kc8.png?raw=true);
+    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E5%9E%82%E7%9B%B4banner-%E4%B8%BB%E8%A6%81/%E5%9E%82%E7%9B%B4%E5%A4%A7.png?raw=true);
     height: 60rem;
     background-position: center;
     position: relative;
@@ -37,7 +37,7 @@
 }
 //*垂直 banner 次要
 .banner-vertical-secondary {
-    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/argjj-v421l.png?raw=true);
+    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E5%9E%82%E7%9B%B4banner-%E6%AC%A1%E8%A6%81/%E5%9E%82%E7%9B%B4%E5%A4%A7.png?raw=true);
     height: 60rem;
     background-position: center;
     position: relative;
@@ -75,7 +75,7 @@
 }
 //* 方形圖 主要
 .square-main {
-    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/Tv2V32Kjxb.png?raw=true);
+    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E5%9E%82%E7%9B%B4banner-%E4%B8%BB%E8%A6%81/%E5%9E%82%E7%9B%B4%E5%B0%8F.png?raw=true);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -97,6 +97,7 @@
 //* 放大動畫
 .animation_hover:hover {
     transform: scale(1.05);
+    
 }
 .animation_hover:active {
     transform: scale(1.1);
@@ -198,3 +199,12 @@
       left: 60%;
     }
   }
+
+.arrowLeft{
+    position: absolute;
+    right: 54%;
+}
+.arrowRight{
+    position: absolute;
+    right: 44%;
+}

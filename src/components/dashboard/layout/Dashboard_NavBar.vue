@@ -2,7 +2,7 @@
 <!-- bg-secondary -->
   <nav class="navbar navbar-expand-lg navbar-secondary bg-dark  fixed-top">
   <div class="container ">
-      <router-link class="navbar-brand logo"  title="首頁" to="/user/home"><img src="@/assets/imageUrl/images/LOGO_PNG_Big-removebg-preview.png" alt="小巷弄甜點的logo" width="130"></router-link>
+      <router-link class="navbar-brand logo"  title="首頁" to="/user/home"><img src="https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/LOGO/%E6%A9%AB%E5%90%91LOGO.png?raw=true" alt="小巷弄甜點的logo" width="130"></router-link>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon">

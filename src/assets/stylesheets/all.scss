@@ -2,4 +2,5 @@
 @import "./helpers/variables";  //*匯入自訂義變數，剛剛自訂義變數的檔案
 @import "~bootstrap/scss/bootstrap"; //*將所有 bootstrap 載出來
 @import "./helpers/base";
+@import "@/assets/stylesheets/helpers/animation/_animation.scss";
 

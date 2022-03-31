@@ -5,7 +5,7 @@
     </h2>
     <div class="row">
       <div
-        v-if="!category_toggle"
+        v-if="!categoryToggle"
         class="
           mb-5
           d-flex
@@ -16,64 +16,63 @@
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
-          @click="get_products('全部')"
-          :class="{active_category_status : category['全部']}">
+          @click="getProducts('全部')"
+          :class="{ activeCategoryStatus : category['全部'] }">
           全部
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
-          @click="get_products('蛋糕')"
-          :class="{active_category_status : category['蛋糕']}">
+          @click="getProducts('蛋糕')"
+          :class="{ activeCategoryStatus : category['蛋糕'] }">
           蛋糕
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
-          @click="get_products('布丁')"
-          :class="{active_category_status : category['布丁']}">
+          @click="getProducts('布丁')"
+          :class="{ activeCategoryStatus : category['布丁'] }">
           布丁
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
-          @click="get_products('泡芙')"
-          :class="{active_category_status : category['泡芙']}" >
+          @click="getProducts('泡芙')"
+          :class="{ activeCategoryStatus : category['泡芙'] }">
           泡芙
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
-          @click="get_products('舒芙蕾')"
-          :class="{active_category_status : category['舒芙蕾']}">
+          @click="getProducts('舒芙蕾')"
+          :class="{ activeCategoryStatus : category['舒芙蕾'] }">
           舒芙蕾
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active"
-          @click="get_products('熱門商品')"
-          :class="{active_category_status : category['熱門商品']}">
+          @click="getProducts('熱門商品')"
+          :class="{ activeCategoryStatus : category['熱門商品'] }">
           熱門商品
         </button>
         <button
           type="button"
           class="btn btn-outline-primary products_category_btn animation_active mt-md-0"
-          @click="price_sort"
-          :class="{active_category_status : category['價格低到高']}">
+          @click="priceSort"
+          :class="{ activeCategoryStatus : category['價格低到高'] }">
           <i class="bi bi-cash-coin"></i> ↓/↑
         </button>
       </div>
-
       <div class="text-end mb-sm-5 mb-3 search d-flex">
-      <button type="button" class="btn btn-outline-primary hideTool " @click="category_toggle=!category_toggle">隱藏工具</button>
-        <label for="search_products"><i class="bi bi-search me-2"  v-if="!category_toggle"></i></label>
+      <button type="button" class="btn btn-outline-primary hideTool " @click="categoryToggle=!categoryToggle">隱藏工具</button>
+        <label for="search_products"><i class="bi bi-search me-2"  v-if="!categoryToggle"></i></label>
         <input
           type="search"
           id="search_products"
           class="search_products"
           placeholder="輸入產品名稱"
-          v-model="search_value"
-          @input="keywords"  v-if="!category_toggle" />
+          v-model="searchValue"
+          @input="keywords"  v-if="!categoryToggle" />
       </div>
     </div>
     <div class="card-group">
@@ -99,7 +98,7 @@
               type="button"
               class="badge text-decoration-none tag"
               title="篩選類別"
-              @click.prevent="get_products(product.category)">
+              @click.prevent="getProducts(product.category)">
               {{ product.category }}
             </button>
             <img
@@ -111,7 +110,7 @@
               class="badge animation_hover like_btn"
               :class="`like_btn${index}`"
               title="加入收藏"
-              @click.prevent="toggle_collect(product.id, index)" >
+              @click.prevent="toggleCollect(product.id, index)" >
               <span v-if="collect.includes(product.id)">
                 <i class="bi bi-heart-fill" style="color: red"></i>
               </span>
@@ -121,7 +120,6 @@
             <i class="bi bi-heart-fill heart" :class="`heart${index}`"></i>
             <i class="bi bi-heartbreak-fill heartbreak" :class="`heartbreak${index}`"></i>
           </router-link>
-
           <div class="card-body pb-0">
             <div class="d-flex justify-content-between align-items-center">
               <h5 class="card-title fs-4 border-bottom">{{ product.title }}</h5>
@@ -150,7 +148,6 @@
                 加入購物車
               </button>
             </div>
-            <div></div>
           </div>
         </div>
       </div>
@@ -166,32 +163,27 @@
 </Loading>
 </template>
 
-<style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/_mixin.scss";
-@import "@/assets/stylesheets/helpers/front/_pseudo_el_title.scss"; //* 偽元素標題 CSS
-@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
-@import "@/assets/stylesheets/helpers/front/product/_Products.scss";
-</style>
-
 <script>
 export default {
   inject: ['emitter'],
+
   data () {
     return {
       products: [],
-      temp_product: [], //* 借放產品資訊的
-      add_product_Data: {
+      tempProduct: [],
+      addProductData: {
         product_id: '',
         qty: 1
       },
-      collect: JSON.parse(localStorage.getItem('collect')) || [], //* 如果 localstorage 沒資料就是空陣列
-      search_value: '',
+      collect: JSON.parse(localStorage.getItem('collect')) || [],
+      searchValue: '',
       isLoading: false,
       category: {},
       heart_disabled: 0,
-      category_toggle: false
+      categoryToggle: false
     }
   },
+
   watch: {
     collect: {
       handler () {
@@ -200,20 +192,20 @@ export default {
       deep: true
     }
   },
+
   methods: {
-    //* 取得產品
-    get_products (category) {
+    getProducts (category) {
       this.isLoading = true
-      this.active_category_status(category)
+      this.activeCategoryStatus(category)
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
       this.$http.get(api).then((res) => {
         this.products = res.data.products
-        this.temp_product = res.data.products //* 這是借放的暫存 data
+        this.tempProduct = res.data.products
         this.search_data = res.data.products
         this.isLoading = false
         if (category) {
           if (category === '全部') {
-            this.products = this.temp_product //* 篩選時選擇全部，在將暫存的 data 丟回，就不用重新取得產品跑 API
+            this.products = this.tempProduct
           } else if (category === '蛋糕') {
             this.products = this.products.filter((product) => {
               return product.category === '蛋糕'
@@ -239,19 +231,18 @@ export default {
       })
     },
     //* 價格低到高
-    price_sort () {
-      this.active_category_status('價格低到高')
+    priceSort () {
+      this.activeCategoryStatus('價格低到高')
       this.products = this.products.sort((a, b) => {
         return a.price - b.price
       })
     },
-    //* 加入購物車
     addCart (id) {
       this.isLoading = true
-      this.add_product_Data.product_id = id
+      this.addProductData.product_id = id
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http
-        .post(api, { data: this.add_product_Data })
+        .post(api, { data: this.addProductData })
         .then((res) => {
           this.$httpMessageState(res.data.success, '加入購物車')
           this.isLoading = false
@@ -260,11 +251,9 @@ export default {
         .catch((err) => {
           this.isLoading = false
           this.$httpMessageState(err.success, '加入購物車')
-          console.dir(err)
         })
     },
-    //* 收藏清單
-    toggle_collect (id, index) {
+    toggleCollect (id, index) {
       this.heart_disabled += 1
       //* 兩秒後才可以再點擊
       if (this.heart_disabled >= 2) {
@@ -289,29 +278,31 @@ export default {
         collectBtn.style.cursor = 'default' //* 將滑鼠變回預設樣式
       }, 2000)
     },
-    //* 關鍵字搜尋
     keywords () {
-      if (!this.search_value) {
-        //* 如果欄位沒值
-        this.products = this.temp_product //* 就將暫存的產品 data 賦予上去
+      if (!this.searchValue) {
+        this.products = this.tempProduct
       }
       this.products = this.products.filter((product) => {
-        return product.title.match(this.search_value) //* 判斷有部分相符的就顯示
+        return product.title.match(this.searchValue) //* 判斷有部分相符的就顯示
       })
     },
     //* 點擊的產品會有特效
-    active_category_status (category) {
-      if (category !== '價格低到高') { //* 如果點的不是價格低到高，就初始化，如果是價格低到高的話，就不會初始化
-        this.category = {} //* 因為可以刪選一個類別同時再為那個類別排序低到高
+    activeCategoryStatus (category) {
+      if (category !== '價格低到高') { //* 如果點的不是價格低到高，就初始化，如果是價格低到高，就不初始化
+        this.category = {} //* 可以篩選一個類別同時再為那個類別排序低到高
       }
       this.category[category] = category
     }
   },
   mounted () {
-    this.get_products()
-    setTimeout(() => {
-      this.emitter.emit('currentPage', 'productList')
-    }, 5000)
+    this.getProducts()
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/stylesheets/helpers/loading_css.scss";
+@import "@/assets/stylesheets/helpers/_mixin.scss";
+@import "@/assets/stylesheets/helpers/front/_pseudo_el_title.scss";
+@import "@/assets/stylesheets/helpers/front/product/_Products.scss";
+</style>

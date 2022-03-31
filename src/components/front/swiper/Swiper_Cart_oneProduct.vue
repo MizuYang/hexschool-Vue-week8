@@ -6,18 +6,17 @@
       :slides-per-view="3"
       :space-between="25"
       :modules="modules"
-      navigation
-      :pagination="{ clickable: true }"
       :slidesPerView="slidesPerView"
       :loop="true"
       class="swiper-slide"
       data-swiper-autoplay="2000"
+      :free-mode="true"
+      :speed="3000"
       :autoplay="{
-        delay: 1500,
+        delay: 0,
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       }"
-      :free-mode="true"
       :breakpoints="{
         '0': {
           slidesPerView: 1,
@@ -92,13 +91,12 @@
     </Loading>
   </div>
 </template>
+
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue/swiper-vue.js'
-import { Navigation, Autoplay } from 'swiper'
-// Import Swiper styles
-import 'swiper/swiper.scss' // core Swiper
+import { Autoplay, FreeMode } from 'swiper'
+import 'swiper/swiper.scss'
 import 'swiper/modules/navigation/navigation.min.css'
-import 'swiper/modules/pagination/pagination.min.css'
 export default {
   inject: ['emitter'],
   props: ['product', 'cartData'], //* 單一產品 、 購物車列表 做篩選讓輪播不重複
@@ -113,7 +111,7 @@ export default {
       carts: [],
       filterProduct_index: [], //* 篩選出單一產品的品項
       filterCart_index: [], //* 篩選購物車
-      modules: [Navigation, Autoplay], //* swiper
+      modules: [Autoplay, FreeMode],
       slidesPerView: 4,
       isLoading: false,
       add_product_Data: {
@@ -197,6 +195,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/_mixin.scss";
-@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
+@import "@/assets/stylesheets/helpers/loading_css.scss";
 @import "@/assets/stylesheets/helpers/front/_swiper_mixins.scss";
 </style>

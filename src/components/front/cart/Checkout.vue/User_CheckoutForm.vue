@@ -1,5 +1,5 @@
 <template>
-      <Form action="/" v-slot="{ errors }" ref="form" @submit="send_order" >
+      <Form action="/" v-slot="{ errors }" ref="form" @submit="sendOrder">
         <div class="row  mb-8 form_container ">
           <div class="col-12 col-lg-6 me-auto border p-5 ">
             <h3 class="border-bottom pb-2">訂購人資料</h3>
@@ -53,13 +53,13 @@
               <Field
                 id="category"
                 name="付款方式"
-                class="form-control"
+                class="form-control form-select"
                 :class="{ 'is-invalid': errors['付款方式'] }"
                 rules="required"
                 as="select"
                 v-model="form.user.pay_method"
               >
-                <option value="" disabled>請選擇付款方式</option>
+                <option value="" selected >請選擇付款方式</option>
                 <option value="現金 / 限自取">現金 / 限自取</option>
                 <option value="信用卡付款">信用卡付款</option>
                 <option value="超商付款">超商付款</option>
@@ -224,17 +224,21 @@
             <label for="textarea">留言</label> <br />
             <textarea name="留言" id="textarea" cols="30" rows="8" v-model="form.message"></textarea>
           </div>
-        <order class="mt-5"></order>
+          <div class="mt-5">
+              <Order />
+          </div>
         </div>
       </Form>
 </template>
 <script>
-import order from '@/components/front/cart/Checkout.vue/Checkout_order.vue'
+import Order from '@/components/front/cart/Checkout.vue/User_CheckoutOrder.vue'
 export default {
   inject: ['emitter'],
+
   components: {
-    order
+    Order
   },
+
   data () {
     return {
       cartData: [],
@@ -244,7 +248,7 @@ export default {
           email: '123456@gmail.com',
           tel: '0999999123',
           address: '台北',
-          pay_method: '超商',
+          pay_method: '超商付款',
           card1: '123',
           card2: '312',
           card3: '312',
@@ -257,9 +261,10 @@ export default {
       }
     }
   },
+
   methods: {
     //* 發送訂單
-    send_order () {
+    sendOrder () {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`
       this.$http.post(api, { data: this.form }).then((res) => {
         const orderId = res.data.orderId
@@ -274,18 +279,10 @@ export default {
       const phoneNumber = /^(09)[0-9]{8}$/
       return phoneNumber.test(value) ? true : '請輸入 09 開頭的正確電話號碼'
     }
-  },
-  mounted () {
-    //* 訂單明細的送出按鈕
-    this.emitter.on('call_send_order', () => {
-      this.send_order()
-    })
-  },
-  unmounted () { //* 元件銷毀之後將 emitter 註冊的事件移除
-    this.emitter.off('call_send_order')
   }
 }
 </script>
+
 <style lang="scss" scoped>
 @import '@/assets/stylesheets/helpers/_mixin.scss';
 //* 驗證錯誤的字樣
