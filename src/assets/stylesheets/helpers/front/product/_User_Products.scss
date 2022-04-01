@@ -1,4 +1,3 @@
-//* 產品圖片
 .product_img {
     height: 15rem;
     width: 20rem;
@@ -13,24 +12,20 @@
     height: 5.85rem;
     overflow: hidden;
 }
-//* 加入購物車按鈕
-.addCart {
+.addCartBtn {
     height: 3rem;
 }
-.addCart:hover {
-    background: #c43118ed;
+.addCartBtn:hover {
+    background: #c43218c3;
 }
-//* 變大效果
 .animation_hover:hover {
     transform: scale(1.02);
     transition: 0.2s;
 }
-//* 按鈕 active 變大效果
 .btn.animation_active:active {
     transform: scale(1.05);
 }
-//* 產品收藏按鈕
-.like_btn {
+.collect_btn {
     position: absolute;
     right: 0%;
     top: 0%;
@@ -47,20 +42,7 @@
         font-size: 2.75rem;
     }
 }
-
-//*產品數字欄位
-.product_num {
-    text-align: center;
-    padding: 0.3rem;
-}
-//* 產品數量 加減按鈕
-.product_numBtn {
-    font-size: 2rem;
-    padding-top: 0;
-}
-
-//* 產品類別標籤
-.tag {
+.categoryBtn {
     position: absolute;
     top: 0;
     left: 0;
@@ -84,7 +66,6 @@
     border-top-left-radius: 33%;
     border-bottom-right-radius: 33%;
 }
-//* 點擊的產品會有特效
 .btn.activeCategoryStatus {
     transform: rotate(-6deg);
     border-top-left-radius: 33%;
@@ -92,8 +73,6 @@
     color: #f0ecc8;
     background: rgb(170, 1, 1);
 }
-
-//* 產品 查看產品資訊
 .product_info {
     height: 14rem;
     width: 14rem;
@@ -119,12 +98,11 @@
         left: 12%;
     }
 }
-//* 滑鼠過去產品圖片，顯示 "查看更多"
+//* 顯示 "查看更多"
 .product_img:hover .product_info {
     display: block;
 }
-//* 搜尋欄
-.search_products {
+.searchText {
     width: 50%;
 }
 //* 類別 fixed 設定
@@ -163,7 +141,6 @@
 @include sm {
         .category {
             position: fixed;
-            // background: rgba(0, 0, 0, 0.637);
             top: 9%;
             width: 90%;
             left:7%;
@@ -178,7 +155,7 @@
             position: fixed;
             top: 17%;
             z-index: 2;
-            & .search_products{
+            & .searchText{
                 width: 10rem;
             }
         }
@@ -293,8 +270,6 @@
         width: 7rem;
     }
 }
-
-//* 卡片邊線
 .card-body {
     border-left: 0.1rem solid rgba(170, 1, 1, 0.678);
     border-right: 0.1rem solid rgba(170, 1, 1, 0.678);
@@ -307,7 +282,6 @@
 .card {
     overflow: hidden;
 }
-//* 收藏的愛心 會放大的那種
 .heart {
     display: none;
     transition: all 0.5s;
@@ -317,7 +291,6 @@
     top: -20%;
     right: 13%;
 }
-//* 取消收藏愛心
 .heartbreak {
     display: none;
     transition: all 0.5s;

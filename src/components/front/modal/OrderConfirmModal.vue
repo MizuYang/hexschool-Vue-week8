@@ -1,5 +1,5 @@
 <template>
-   <div class="modal " tabindex="-1">
+   <div class="modal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header">
@@ -12,23 +12,26 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click="this.$emit('payment')"  >確認結帳</button>
+            <button type="button" class="btn btn-danger" @click="this.$emit('payment')">確認結帳</button>
         </div>
         </div>
     </div>
 </div>
   <Loading v-model:active="isLoading" />
 </template>
+
 <script>
 import Modal from 'bootstrap/js/dist/modal'
 export default {
   inject: ['emitter'],
+
   data () {
     return {
       confirmModal: '',
       isLoading: false
     }
   },
+
   mounted () {
     this.confirmModal = new Modal(document.querySelector('.modal'))
     //* confirm 頁面開啟確認 modal
@@ -40,11 +43,13 @@ export default {
       }
     })
   },
-  unmounted () { //* 元件銷毀之後將 emitter 註冊的事件移除
+
+  unmounted () {
     this.emitter.off('openConfirmModal')
   }
 }
 </script>
+
 <style lang="scss" scoped>
-@import '@/assets/stylesheets/helpers/front/cart/_Front_Modal_Style.scss';
+@import '@/assets/stylesheets/helpers/front/cart/_FrontModalStyle.scss';
 </style>

@@ -1,0 +1,41 @@
+.banner::before {
+    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/LOGO/LOGO_PNG_Big-removebg-preview.png?raw=true);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 100%;
+    height: calc(100%);
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+    z-index: -1;
+  }
+  .container {
+    @include xs{
+      margin-top: 50%;
+      margin-bottom: 10%;
+      width: 90%;
+    }
+    @include sm{
+      margin-top: 40%;
+      margin-bottom: 10%;
+      width: 100%;
+    }
+    @include md{
+      width: 75%;
+    }
+    @include lg{
+      width: 60%;
+      margin-top: 30%;
+    }
+    @include xl{
+      margin-top: 20%;
+    }
+    @media (min-width: 1401px) {
+      margin-top: 10%;
+      width: 30%;
+      margin-bottom: 5%;
+    }
+  }

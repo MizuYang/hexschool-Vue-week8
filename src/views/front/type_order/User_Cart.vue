@@ -5,7 +5,7 @@
     </h2>
     <CartNoOrder v-if="cartData.length === 0" />
     <div class="table-responsive" v-else>
-      <CartTimeLine :time_line="time_line" />
+      <CartTimeLine />
       <table class="table table-hover align-middle text-center text-primary">
         <thead class="table-dark text-primary">
             <tr>
@@ -55,15 +55,15 @@
               </td>
               <td>
                 <div class="d-flex align-items-center">
-                  <input type="button" class="btn product_numBtn btn-outline-primary active_bigger"
+                  <input type="button" class="btn productsQtyBtn btn-outline-primary active_bigger"
                   value="－" :disabled="product.qty <= 1" @click="updateProductQty('cut', product)"/>
                   <input
                     type="text"
-                    class="product_numText mx-1 fs-4"
+                    class="productsQtyText mx-1 fs-4"
                     :value="product.qty" readonly/>
                   <input
                     type="button"
-                    class="btn product_numBtn btn-outline-primary active_bigger"
+                    class="btn productsQtyBtn btn-outline-primary active_bigger"
                     value="＋"
                     @click="updateProductQty('add', product)"/>
                 </div>
@@ -157,7 +157,7 @@
             <td>
               <router-link
                 to="/user/checkout"
-                class="btn btn-danger send_order fs-5 rwd_hide">
+                class="btn btn-danger sendOrderBtn fs-5 rwd_hide">
                 下一步</router-link>
             </td>
             <td></td>
@@ -170,7 +170,7 @@
   <router-link
       v-if="cartData.length > 0"
       to="/user/checkout"
-      class="btn btn-danger send_order fs-5 w-100 d-lg-none my-3">
+      class="btn btn-danger sendOrderBtn fs-5 w-100 d-lg-none my-3">
   下一步</router-link>
 <SwiperCartOneProduct class="mb-5" @getCartList="getCartList" :cartData="cartData" />
 <CartDeleteProduct @getCartList="getCartList" />
@@ -208,7 +208,6 @@ export default {
       coupon_final_total: 0,
       total: 0,
       isLoading: false,
-      time_line: 0,
       coupon_discount: 0 //* 折扣百分比
     }
   },
@@ -224,9 +223,6 @@ export default {
         if (checkboxDeleteStatus) { //* 刪除勾選商品，隱藏刪除勾選按鈕
           this.checkbox_productId = []
         }
-        setTimeout(() => {
-          this.time_line = 1
-        }, 1000)
       })
     },
     openDeleteModal (product, status) {

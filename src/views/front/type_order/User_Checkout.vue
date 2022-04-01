@@ -3,7 +3,7 @@
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">填寫資料</span>
     </h2>
-    <CartTimeLine :time_line="time_line" />
+    <CartTimeLine />
     <div class="form_container">
       <UserCheckoutForm />
     </div>
@@ -17,16 +17,6 @@ export default {
   components: {
     CartTimeLine,
     UserCheckoutForm
-  },
-
-  data () {
-    return {
-      time_line: 0
-    }
-  },
-
-  mounted () {
-    this.time_line = 2
   }
 }
 </script>

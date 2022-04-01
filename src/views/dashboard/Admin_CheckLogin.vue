@@ -1,29 +1,29 @@
 <template>
 <div  v-if="status">
-    <navbar></navbar>
-    <router-view></router-view>
+    <DashboardNavBar />
+    <router-view />
 </div>
   <Loading v-model:active="isLoading" />
 </template>
 
 <script>
-import navbar from '@/components/dashboard/layout/Dashboard_NavBar.vue'
+import DashboardNavBar from '@/components/dashboard/layout/DashboardNavBar.vue'
 export default {
   components: {
-    navbar
+    DashboardNavBar
   },
+
   data () {
     return {
       status: false,
       isLoading: false
     }
   },
+
   methods: {
-    //* 登入驗證
     checkLogin () {
-      const page = JSON.parse(localStorage.getItem('current_page')) || 'products' //* 跳轉到上一個頁面或產品頁面
+      const page = JSON.parse(localStorage.getItem('current_page')) || 'products'
       this.isLoading = true
-      //* 將儲存在 cookie 的 token 取出
       const token = document.cookie.replace(
         /(?:(?:^|.*;\s*)mizuToken\s*=\s*([^;]*).*$)|^.*$/,
         '$1'
@@ -40,11 +40,12 @@ export default {
           })
           .catch(() => {
             this.isLoading = false
-            this.$router.push('/')
+            this.$router.push('/login')
           })
       }
     }
   },
+
   mounted () {
     this.checkLogin()
   }

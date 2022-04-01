@@ -1,9 +1,9 @@
 <template>
 <div class="container">
-  <div class="text-end mt-10  mb-3">
-      <button type="button" class="btn btn-danger" value="全部刪除" @click="delete_order_all">全部刪除</button>
+  <div class="text-end mt-10 mb-3">
+      <button type="button" class="btn btn-danger" value="全部刪除" @click="deleteAllOrder">全部刪除</button>
   </div>
-  <table class="table  text-primary  ">
+  <table class="table  text-primary">
     <thead>
       <tr>
         <th>購買時間</th>
@@ -17,7 +17,7 @@
     <tbody>
       <template v-for="(item, key) in orders" :key="key">
         <tr v-if="orders.length" :class="{ 'text-secondary': !item.is_paid }">
-          <td>{{ date(item.create_at) }}</td>
+          <td>{{ changeDate(item.create_at) }}</td>
           <td><span v-text="item.user.email" v-if="item.user"></span></td>
           <td>
             <ul class="list-unstyled text-primary">
@@ -44,13 +44,11 @@
           </td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-outline-primary btn-sm" type="button" @click="view_Order(item)"  >
+              <button class="btn btn-outline-primary btn-sm" type="button" @click="openOrderModal(item)">
                 檢視
-
               </button>
-              <button class="btn btn-danger btn-sm" type="button" @click="delete_order(item)"  >
+              <button class="btn btn-danger btn-sm" type="button" @click="openDeleteOrderModal(item)">
                 刪除
-
               </button>
             </div>
           </td>
@@ -59,40 +57,40 @@
     </tbody>
   </table>
 </div>
-
-  <OrderPagination :pagination="pagination" @get_order="get_order"></OrderPagination>
-  <deleteModal @get_order="get_order"></deleteModal>
-  <orderModal @get_order="get_order"></orderModal>
-    <Loading v-model:active="isLoading" />
+<PaginationOrder :pagination="pagination" @getOrder="getOrder" />
+<DeleteOrderModal @getOrder="getOrder" />
+<UpdateOrderModal @getOrder="getOrder" />
+<Loading v-model:active="isLoading" />
 </template>
 
 <script>
 import emitter from '@/utils/emitter.js'
-import deleteModal from '@/components/dashboard/modal/order/Delete_Order.vue'
-import orderModal from '@/components/dashboard/modal/order/Update_Order.vue'
-import OrderPagination from '@/components/dashboard/pagination/Order_Pagination.vue'
+import DeleteOrderModal from '@/components/dashboard/modal/order/DeleteOrderModal.vue'
+import UpdateOrderModal from '@/components/dashboard/modal/order/UpdateOrderModal.vue'
+import PaginationOrder from '@/components/dashboard/pagination/PaginationOrder.vue'
 export default {
   provide () {
     return {
       emitter
     }
   },
+
   components: {
-    OrderPagination,
-    orderModal,
-    deleteModal
+    PaginationOrder,
+    UpdateOrderModal,
+    DeleteOrderModal
   },
+
   data () {
     return {
       orders: [],
       pagination: [],
-
       isLoading: false
     }
   },
+
   methods: {
-    //* 取得訂單列表
-    get_order (page) {
+    getOrder (page) {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`
       this.$http
@@ -103,33 +101,29 @@ export default {
           this.orders = res.data.orders
         })
     },
-    //* 查看訂單
-    view_Order (order) {
-      emitter.emit('view_order', order)
+    openOrderModal (order) {
+      emitter.emit('openOrderModal', order)
     },
-    //* 刪除訂單
-    delete_order (order) {
-      emitter.emit('deleteOrder', order)
+    openDeleteOrderModal (order) {
+      emitter.emit('openDeleteOrderModal', order)
     },
-    //* 日期轉換
-    date (time) {
+    changeDate (time) {
       return new Date(parseInt(time) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ')
-      // return new Date(time * 1000).toISOString().substring(0, 10)
     },
-    //* 全部刪除
-    delete_order_all () {
+    deleteAllOrder () {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/orders/all`
       this.$http
         .delete(api)
-        .then((res) => {
+        .then(() => {
           this.isLoading = false
-          this.get_order()
+          this.getOrder()
         })
     }
   },
+
   mounted () {
-    this.get_order()
+    this.getOrder()
     localStorage.setItem('current_page', JSON.stringify('order'))
   }
 }

@@ -1,0 +1,24 @@
+.time_line .timeLineText{
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    border-top-left-radius: 33%;
+    border-bottom-right-radius: 33%;
+    border: solid 1px #f1ebd8;
+    @include xs {
+        font-size: 1rem;
+        padding: .5rem 0.3rem;
+    }
+    @include sm {
+        font-size: 1rem;
+        padding: .5rem;
+    }
+    @include md {
+        font-size: 1.5rem;
+        padding: .6rem;
+    }
+}
+.timelineStyle{
+    background: #f1ebd8;
+    color: #000;
+}

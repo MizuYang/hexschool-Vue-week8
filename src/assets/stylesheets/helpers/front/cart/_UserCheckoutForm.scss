@@ -1,0 +1,24 @@
+
+//* 驗證錯誤的字樣
+.invalid-feedback{
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+}
+.textarea {
+    @include xs {
+        width: 15rem;
+    }
+    @include sm {
+        width: 20rem;
+    }
+    @include md {
+        width: 19.5rem;
+    }
+    @include lg {
+        margin-left: -5%;
+    }
+    @include xl {
+        margin: 0 auto;
+    }
+}

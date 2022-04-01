@@ -1,53 +1,48 @@
 <template>
-  <!-- bg-secondary -->
   <nav class="navbar navbar-expand-lg navbar-secondary fixed-top">
     <div class="container">
-      <router-link class="navbar-brand logo" title="首頁" to="/user/home"
+      <router-link class="navbar-brand logoRwdHide" title="首頁" to="/user/home"
         ><img
           src="@/assets/imageUrl/專案圖片/LOGO/橫向LOGO.png"
           alt="小巷弄甜點的logo"
           width="130"
         />
         <h1 class="title">小巷弄甜點_alley_dessert</h1></router-link>
-        <router-link class="navbar-brand logo_RWD d-lg-none" title="首頁" to="/user/home"><i class="bi bi-house-door fs-1 ms-2"></i></router-link>
+        <router-link class="navbar-brand  d-lg-none" title="首頁" to="/user/home"><i class="bi bi-house-door fs-1 ms-2"></i></router-link>
             <router-link
               to="/user/products"
               class="nav-link productList d-block d-lg-none"
-              @click="current_page('productList')"
+              @click="currentPage('productList')"
               ><i class="bi bi-shop fs-1"></i></router-link>
-
             <router-link
               to="/user/cart"
               class="nav-link cart position-relative d-block d-lg-none"
-              @click="current_page('cart')"
+              @click="currentPage('cart')"
               title="購物車">
               <span
                 class="
                   position-absolute
                   top-75
-                  end-0
                   translate-middle
                   badge
                   rounded-pill
                   bg-danger
-                  cart_product_num
+                  cartQty
                 ">
                 {{ cartData.length }}
               </span>
               <i class="bi bi-cart4 fs-1"></i>
             </router-link>
-
             <router-link
               to="/user/favorite"
               class="nav-link favorite d-lg-none"
-              @click="current_page('favorite')"
+              @click="currentPage('favorite')"
               title="收藏商品頁面">
             <span v-if="collect_data.length > 0">
               <i class="bi bi-heart-fill fs-3" style="color:red"></i>
             </span>
               <i class="bi bi-heart fs-3 collect_icon" v-else></i>
             </router-link>
-
       <button
         class="navbar-toggler"
         type="button"
@@ -68,12 +63,11 @@
             ms-auto align-items-lg-center text-center
           "
         >
-
           <li class="nav-item">
             <router-link
               to="/user/home"
               class="nav-link home me-4"
-              @click="current_page('home')"
+              @click="currentPage('home')"
             >
               <i class="bi bi-house-door"></i>
               主頁</router-link
@@ -83,7 +77,7 @@
             <router-link
               to="/user/products"
               class="nav-link productList"
-              @click="current_page('productList')"
+              @click="currentPage('productList')"
               >產品列表</router-link
             >
           </li>
@@ -91,7 +85,7 @@
             <router-link
               to="/user/questions"
               class="nav-link qa"
-              @click="current_page('qa')"
+              @click="currentPage('qa')"
               >常見問題</router-link
             >
           </li>
@@ -99,7 +93,7 @@
             <router-link
               to="/user/about"
               class="nav-link about"
-              @click="current_page('about')"
+              @click="currentPage('about')"
               >關於我們</router-link
             >
           </li>
@@ -107,7 +101,7 @@
             <router-link
               to="/user/contact"
               class="nav-link contact"
-              @click="current_page('contact')"
+              @click="currentPage('contact')"
               >聯絡我們</router-link
             >
           </li>
@@ -115,7 +109,7 @@
             <router-link
               to="/user/query_order"
               class="nav-link query_order"
-              @click="current_page('query_order')"
+              @click="currentPage('query_order')"
               >查詢訂單</router-link
             >
           </li>
@@ -123,7 +117,7 @@
             <router-link
               to="/user/favorite"
               class="nav-link favorite"
-              @click="current_page('favorite')"
+              @click="currentPage('favorite')"
               title="收藏商品頁面">
             <span v-if="collect_data.length > 0">
               <i class="bi bi-heart-fill fs-3" style="color:red"></i>
@@ -131,23 +125,22 @@
               <i class="bi bi-heart fs-3 collect_icon" v-else></i>
             </router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-4">
             <router-link
               to="/user/cart"
               class="nav-link cart position-relative"
-              @click="current_page('cart')"
+              @click="currentPage('cart')"
               title="購物車"
             >
               <span
                 class="
                   position-absolute
                   top-75
-                  start-100
                   translate-middle
                   badge
                   rounded-pill
                   bg-danger
-                  cart_product_num
+                  cartProductsQtyBadge
                 "
               >
                 {{ cartData.length }}
@@ -159,12 +152,12 @@
       </div>
     </div>
   </nav>
-
 </template>
 
 <script>
 export default {
   inject: ['emitter'],
+
   data () {
     return {
       page: '',
@@ -172,28 +165,32 @@ export default {
       collect_data: []
     }
   },
+
   methods: {
-    //* 切換頁面會凸顯當前頁面
-    current_page (page) {
+    currentPage (page) {
+      this.clickPageHideMenu()
       if (this.page) {
         document
           .querySelector(`.${this.page}`)
-          .classList.remove('current_page')
+          .classList.remove('currentPage')
         this.page = ''
       }
       setTimeout(() => {
-        document.querySelector(`.${page}`).classList.add('current_page')
+        document.querySelector(`.${page}`).classList.add('currentPage')
         this.page = page
       }, 500)
     },
-    //* 取得購物車
     getCartList () {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.get(api).then((res) => {
         this.cartData = res.data.data.carts
       })
+    },
+    clickPageHideMenu () {
+      document.querySelector('.collapse.navbar-collapse').classList.remove('show')
     }
   },
+
   mounted () {
     this.getCartList()
     //* 新增或刪除產品時會重新更新產品數量 product、cart
@@ -203,7 +200,7 @@ export default {
     //* 切換頁面會凸顯當前頁面    home
     this.emitter.on('currentPage', (page) => {
       setTimeout(() => {
-        this.current_page(page)
+        this.currentPage(page)
       })
     })
     //* 產品頁面 按收藏時，愛心會變化
@@ -211,6 +208,7 @@ export default {
       this.collect_data = collectData
     })
   },
+
   unmounted () {
     this.emitter.off('get_cart')
     this.emitter.off('currentPage')
@@ -221,5 +219,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/_rwdMixin.scss";
-@import "@/assets/stylesheets/helpers/front/layout/_NavBar.scss";
+@import "@/assets/stylesheets/helpers/front/layout/_FrontNavBar.scss";
 </style>

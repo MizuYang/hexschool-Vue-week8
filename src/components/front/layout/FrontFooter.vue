@@ -28,7 +28,7 @@
               <router-link to="/user/questions" class="nav-link text-center animation_hover" @click="current('qa')">常見問題</router-link>
               <router-link to="/user/about" class="nav-link text-center animation_hover" @click="current('about')">關於我們</router-link>
               <router-link to="/user/contact" class="nav-link text-center animation_hover" @click="current('contact')">聯絡我們</router-link>
-              <router-link to="/" class="nav-link text-center animation_hover" ><i class="bi bi-key"></i>企業登入</router-link>
+              <router-link to="/login" class="nav-link text-center animation_hover" ><i class="bi bi-key"></i>企業登入</router-link>
           </div>
           <div>
               <a href="https://github.com/MizuYang" target="_blank" class="fs-3 me-2 px-2" title="連到 github">
@@ -41,8 +41,8 @@
       </div>
     </div>
   </nav>
-
 </template>
+
 <script>
 import emitter from '@/utils/emitter.js'
 export default {
@@ -54,6 +54,7 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
-@import '@/assets/stylesheets/helpers/front/layout/_Footer.scss'
+@import '@/assets/stylesheets/helpers/front/layout/_FrontFooter.scss';
 </style>

@@ -1,5 +1,4 @@
-//* 大容器
-.order_conteiner {
+.order_container {
     @include xs {
       padding: 0 5%;
     }
@@ -26,10 +25,8 @@
       top: 10%;
       background-repeat: no-repeat;
       height: calc(200%);
-      // display: none;
     }
     @include sm {
-      // display: none;
       height: calc(170%);
     }
     @include md {
@@ -40,7 +37,6 @@
     }
   }
   
-  //* 標題
   .order_title {
     @include sm {
       font-size: 2rem;
@@ -58,12 +54,9 @@
         line-height: .3;
       }
   }
-  //* 文字欄位
   .order_id_text{
     width: 100%;
   }
-  
-  // //* 滑鼠禁用圖示
   .send_btn {
     background: green;
     color: #f1ebd8;
@@ -79,7 +72,6 @@
         width: 100%;
     }
   }
-  //* 按鈕禁用時 顏色不同
   .disabled_btn {
     background: rgb(100, 26, 26);
     cursor: not-allowed;

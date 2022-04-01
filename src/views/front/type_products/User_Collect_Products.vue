@@ -11,7 +11,7 @@
          <img class="product_info img-fluid" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
             <span class="badge bg-danger p-1"  v-if="product[0].popular > 2">熱門商品</span>
             </router-link>
-            <button type="button" class=" d-block animation_hover like_btn fs-3" :class="`like_btn${index}`" title="點擊移除收藏" @click="toggleCollect(product[0].id, index)">
+            <button type="button" class=" d-block animation_hover collect_btn fs-3" :class="`collect_btn${index}`" title="點擊移除收藏" @click="toggleCollect(product[0].id, index)">
                 <i class="bi bi-heart-fill" v-if="collect.includes(product[0].id)"></i>
                 <i class="bi bi-heartbreak-fill " v-if="(!collect.includes(product[0].id))"></i>
                 <i class="bi bi-heart-fill heart" :class="`heart${index}`"></i>
@@ -125,7 +125,7 @@ export default {
       if (this.heart_disabled >= 2) {
         return
       }
-      const collectBtn = document.querySelector(`.like_btn${index}`)
+      const collectBtn = document.querySelector(`.collect_btn${index}`)
       collectBtn.style.cursor = 'no-drop' //* 滑鼠變禁用圖示
       const collectIndex = this.collect.findIndex((item) => {
         return id === item
@@ -143,7 +143,7 @@ export default {
         this.$cancelCollectAnimation(index)
       }
       setTimeout(() => {
-        collectBtn.style.cursor = 'default' //* 滑鼠變預設樣式
+        collectBtn.style.cursor = 'pointer' //* 滑鼠變預設樣式
       }, 2000)
     }
   },

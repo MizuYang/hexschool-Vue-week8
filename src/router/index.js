@@ -1,6 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-// import Home from '../views/Home.vue'
-
 const routes = [
   {
     //* 前台路由
@@ -64,7 +62,7 @@ const routes = [
   },
   {
     //* 後台路由
-    path: '/',
+    path: '/login',
     component: () => import('@/views/dashboard/Login.vue')
   },
   {
@@ -91,7 +89,7 @@ const routes = [
   },
   {
     path: '/:pathMatch(.*)*',
-    redirect: '/'
+    redirect: '/login'
   }
 ]
 

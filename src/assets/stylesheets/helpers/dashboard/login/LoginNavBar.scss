@@ -1,0 +1,35 @@
+.nav-item a:hover {
+    transform: scale(1.1);
+    border-bottom: 3px solid #f1ebd8;
+}
+.nav-item a:active {
+    transform: scale(1.2);
+}
+.nav-item{
+    @media (max-width:992px) {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+}
+.navbar {
+    background: rgba(0, 0, 0, 0.4);
+    & .navbar-brand.logo:hover {
+        transform: scale(1.1);
+        transition: 0.5s;
+    }
+    & .navbar-brand.logo:active {
+        transform: scale(1.2);
+    }
+    & .navbar-brand.logo .title {
+        position: absolute;
+        top: 4rem;
+        font-size: 1px;
+        text-indent: 101%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+//* 漢堡選單 放大
+.navbar-toggler .bi::before{
+    font-size: 3rem;
+}

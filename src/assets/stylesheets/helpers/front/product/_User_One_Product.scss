@@ -1,13 +1,9 @@
-//* hover 放大動畫效果
 .animation_hover:hover {
     transform: scale(1.02);
 }
-//* active 放大
 .active_bigger:active {
     transform: scale(1.05);
 }
-
-//* 產品圖
 .product_img{
 	object-fit: cover;
 	object-position: center;

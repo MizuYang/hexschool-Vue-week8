@@ -5,7 +5,6 @@
         <p>如果您在購物時發生問題，請聯絡我們。</p>
       </small>
       <div class="mt-5">
-
           <router-link
             to="/user/contact"
             class="btn btn-outline-primary animation_hover active_bigger me-5"
@@ -23,5 +22,5 @@
 
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/_rwdMixin.scss";
-@import "@/assets/stylesheets/helpers/front/cart/Cart_No_Order.scss";
+@import "@/assets/stylesheets/helpers/front/cart/_CartNoOrder.scss";
 </style>

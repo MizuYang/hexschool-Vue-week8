@@ -28,22 +28,7 @@
 //* 箭頭左右效果
 @keyframes arrowMoveLeft {
     50% {
-        right: 55%;
-    }
-}
-@include xs {
-    @keyframes arrowMoveLeft {
-        50% {
-            right: 80%;
-        }
-    }
-}
-@include md {
-    @keyframes arrowMoveLeft {
-        50% {
-            right: 0%;
-            left: -70%;
-        }
+        transform: translateX(1rem);
     }
 }
 .arrowMoveLeft {
@@ -51,21 +36,7 @@
 }
 @keyframes arrowMoveRight {
     50% {
-        right: 42%;
-    }
-}
-@include xs {
-    @keyframes arrowMoveRight {
-        50% {
-            right: 4%;
-        }
-    }
-}
-@include sm {
-    @keyframes arrowMoveRight {
-        50% {
-            right: 14%;
-        }
+        transform: translateX(-1rem);
     }
 }
 .arrowMoveRight {

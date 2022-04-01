@@ -1,5 +1,5 @@
 //* 愛心按鈕
-.like_btn {
+.collect_btn {
     color: red;
     position: absolute;
     @include xs {
@@ -19,7 +19,6 @@
         right: 3%;
     }
 }
-//* 產品圖片
 .product_img {
     @include xs {
         width: 100%;
@@ -42,11 +41,17 @@
     position: absolute;
     left: 0%;
 }
-
 .bi:active {
-    font-size: 2.05rem;
+    @include xs {
+        font-size: 1.6rem;
+    }
+    @include sm {
+        font-size: 1.7rem;
+    }
+    @include md {
+        font-size: 1.8rem;
+    }
 }
-//* 無收藏產品的 banner
 .banner::before {
     position: absolute;
     content: "";

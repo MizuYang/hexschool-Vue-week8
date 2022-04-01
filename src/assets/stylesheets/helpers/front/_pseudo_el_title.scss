@@ -1,5 +1,4 @@
 @import "@/assets/stylesheets/helpers/_rwdMixin.scss";
-//* 標題
 .title {
     line-height: 2rem;
     text-align: center;
@@ -14,7 +13,6 @@
     //* 定位橫線(當橫線的父元素)
     position: relative;
 }
-//* 調整位置
 .title .decorate:before {
     left: 25%;
     @include xs {
@@ -35,12 +33,12 @@
 }
 .title .decorate:before,
 .title .decorate:after {
-    position: absolute; //*定位背景橫線位置
+    position: absolute; 
     top: 50%;
-    content: ""; //* CSS偽類用法
+    content: ""; 
     width: 122px;
     height: 1px;
-    align-items: center; //*罝中
+    align-items: center; 
     background: #f1ebd8;
     @include xs {
         width: 45px;

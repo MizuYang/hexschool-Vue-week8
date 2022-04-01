@@ -3,7 +3,7 @@
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">確認訂單資料</span>
     </h2>
-    <CartTimeLine :time_line="time_line" />
+    <CartTimeLine />
       <h3 class="text-center pb-2 border-bottom mb-5 ">
         <span class=" fs-5 fw-bold" v-if="!is_pay">
           請確認您的資料無誤後付款 <span class=" text-danger">( 未付款 )</span>
@@ -159,7 +159,6 @@ export default {
 
   data () {
     return {
-      time_line: 0,
       order_user: [],
       orderId: '',
       order: [],
@@ -182,9 +181,6 @@ export default {
             .substring(0, 10)
           this.create_at = date
           this.is_pay = res.data.order.is_paid
-          if (this.is_pay) { //* 完成訂單回來，判斷是已付款，時間軸為完成訂單
-            this.time_line = 4
-          }
         })
       }
     },
@@ -224,7 +220,6 @@ export default {
   },
 
   mounted () {
-    this.time_line = 3
     this.orderId = this.$route.params.orderId
     this.getOrder()
   }

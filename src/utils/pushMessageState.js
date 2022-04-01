@@ -1,6 +1,6 @@
 import emitter from '@/utils/emitter.js'
 
-export default function (res, title = '更新') {
+export default (res, title = '更新') => {
   if (res) {
     emitter.emit('push-message', {
       style: 'success',

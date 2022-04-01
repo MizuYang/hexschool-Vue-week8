@@ -3,7 +3,7 @@
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">查詢訂單</span>
     </h2>
-    <div class="order_conteiner">
+    <div class="order_container">
       <div class="input-group mb-5 search_content">
         <div class="mx-auto">
               <label class="mx-auto mb-3 order_title" for="orderId"

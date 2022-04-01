@@ -9,7 +9,6 @@
       建立新的優惠券
     </button>
   </div>
-
   <table class="table mt-4 table-dark">
     <thead>
       <tr>
@@ -24,7 +23,7 @@
       <tr v-for="(item, key) in coupons" :key="key">
         <td>{{ item.title }}</td>
         <td>{{ item.percent }}%</td>
-        <td>{{ filter(item.due_date) }}</td>
+        <td>{{ changeDate(item.due_date) }}</td>
         <td>
           <span v-if="item.is_enabled === 1" class="text-success">啟用</span>
           <span v-else class="text-muted">未啟用</span>
@@ -33,74 +32,67 @@
           <div class="btn-group">
             <button
               class="btn btn-outline-primary btn-sm"
-              @click="openCouponModal(false, item)" :disabled="item.id === loading_item.edit"
+              @click="openCouponModal(false, item)"
             >
               編輯
-                <div class="spinner-border spinner-border-sm" role="status"
-                      v-show="item.id === loading_item.edit">
-                </div>
             </button>
             <button
               class="btn btn-danger btn-sm"
-              @click="openDelCouponModal(item)" :disabled="item.id === loading_item.delete"
+              @click="openDelCouponModal(item)"
             >
               刪除
-                <div class="spinner-border spinner-border-sm" role="status"
-                      v-show="item.id === loading_item.delete">
-                </div>
             </button>
           </div>
         </td>
       </tr>
     </tbody>
   </table>
-  <pagination :coupon_pagination="coupon_pagination" @get_coupon="get_coupon"></pagination>
+<PaginationCoupon :pagination="pagination" @getCoupon="getCoupon" />
 </div>
-  <updateCoupon @get_coupon="get_coupon"></updateCoupon>
-  <deleteCopon @get_coupon="get_coupon"></deleteCopon>
-    <Loading v-model:active="isLoading" />
+<UpdateCouponModal @getCoupon="getCoupon" />
+<DeleteCouponModal @getCoupon="getCoupon" />
+<Loading v-model:active="isLoading" />
 </template>
 
 <script>
 import emitter from '@/utils/emitter.js'
-import updateCoupon from '@/components/dashboard/modal/coupon/Update_Coupon.vue'
-import deleteCopon from '@/components/dashboard/modal/coupon/Delete_Coupon.vue'
-import pagination from '@/components/dashboard/pagination/Coupon_Pagination.vue'
+import UpdateCouponModal from '@/components/dashboard/modal/coupon/UpdateCouponModal.vue'
+import DeleteCouponModal from '@/components/dashboard/modal/coupon/DeleteCouponModal.vue'
+import PaginationCoupon from '@/components/dashboard/pagination/PaginationCoupon.vue'
 export default {
   provide () {
     return {
       emitter
     }
   },
+
   components: {
-    updateCoupon,
-    deleteCopon,
-    pagination
+    UpdateCouponModal,
+    DeleteCouponModal,
+    PaginationCoupon
   },
+
   data () {
     return {
       coupons: [],
-      coupon_pagination: [],
-      loading_item: {}, //* 用來做 disabled 和 加載效果 判斷
+      pagination: [],
       isLoading: false
     }
   },
+
   methods: {
-    //* 開啟新增、編輯優惠券 modal
     openCouponModal (status, item) {
       if (status) {
-        emitter.emit('updateCoupon')
+        emitter.emit('openCouponModal')
       } else if (!status) {
-        const temp = JSON.parse(JSON.stringify(item)) //* 深拷貝
-        emitter.emit('updateCoupon', temp)
+        const temp = JSON.parse(JSON.stringify(item))
+        emitter.emit('openCouponModal', temp)
       }
     },
-    //* 開啟刪除優惠券 modal
     openDelCouponModal (item) {
-      emitter.emit('openDelCoupon_Modal', item)
+      emitter.emit('openDelCouponModal', item)
     },
-    //     //* 取得優惠券
-    get_coupon (page) {
+    getCoupon (page) {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`
       this.$http
@@ -108,20 +100,16 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.coupons = res.data.coupons
-          this.coupon_pagination = res.data.pagination
-        })
-        .catch(() => {
-          this.isLoading = false
-          this.$router.push('/')
+          this.pagination = res.data.pagination
         })
     },
-    //     //* 日期轉換
-    filter (time) {
+    changeDate (time) {
       return new Date(time * 1000).toISOString().substring(0, 10)
     }
   },
+
   mounted () {
-    this.get_coupon()
+    this.getCoupon()
     localStorage.setItem('current_page', JSON.stringify('coupon'))
   }
 }

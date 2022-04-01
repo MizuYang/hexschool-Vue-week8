@@ -12,7 +12,6 @@
         </div>
     </div>
 </div>
-
 </template>
 
 <script>
@@ -34,6 +33,7 @@ export default {
       this.messages.splice(index, 1)
     }
   },
+
   mounted () {
     emitter.on('push-message', (mes) => {
       const style = mes.style || 'success'

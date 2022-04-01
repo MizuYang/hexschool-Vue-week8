@@ -1,7 +1,7 @@
 <template>
       <Form action="/" v-slot="{ errors }" ref="form" @submit="sendOrder">
         <div class="row  mb-8 form_container ">
-          <div class="col-12 col-lg-6 me-auto border p-5 ">
+          <div class="col-12 col-lg-6 me-auto border p-5 mb-5">
             <h3 class="border-bottom pb-2">訂購人資料</h3>
             <div class="mb-1">
               <label for="name"> 姓名 </label>
@@ -59,7 +59,7 @@
                 as="select"
                 v-model="form.user.pay_method"
               >
-                <option value="" selected >請選擇付款方式</option>
+                <option value="" selected disabled>請選擇付款方式</option>
                 <option value="現金 / 限自取">現金 / 限自取</option>
                 <option value="信用卡付款">信用卡付款</option>
                 <option value="超商付款">超商付款</option>
@@ -86,7 +86,7 @@
               <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
             </div>
           </div>
-          <div class="col-12 col-lg-5 text-center justify-content-center border p-5 ">
+          <div class="col-12 col-lg-5 text-center justify-content-center border p-5 mb-5">
             <h3 class="border-bottom mb-4  pb-2">
               <i class="bi bi-credit-card-2-front-fill"></i> 信用卡資料
             </h3>
@@ -222,14 +222,13 @@
               </div>
             </div>
             <label for="textarea">留言</label> <br />
-            <textarea name="留言" id="textarea" cols="30" rows="8" v-model="form.message"></textarea>
+            <textarea name="留言" id="textarea" class="textarea" cols="30" rows="8" v-model="form.message"></textarea>
           </div>
-          <div class="mt-5">
-              <UserCheckoutOrder />
-          </div>
+          <UserCheckoutOrder />
         </div>
       </Form>
 </template>
+
 <script>
 import UserCheckoutOrder from '@/components/front/cart/UserCheckoutOrder.vue'
 export default {
@@ -263,7 +262,6 @@ export default {
   },
 
   methods: {
-    //* 發送訂單
     sendOrder () {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`
       this.$http.post(api, { data: this.form }).then((res) => {
@@ -274,7 +272,6 @@ export default {
         this.$router.push('/user/products')
       })
     },
-    //* 電話驗證
     isPhone (value) {
       const phoneNumber = /^(09)[0-9]{8}$/
       return phoneNumber.test(value) ? true : '請輸入 09 開頭的正確電話號碼'
@@ -285,27 +282,5 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/_rwdMixin.scss";
-//* 驗證錯誤的字樣
-.invalid-feedback{
-    background: #ecce6b;
-    color: red;
-    font-weight: bold;
-}
-textarea {
-    @include xs {
-        width: 15rem;
-    }
-    @include sm {
-        width: 20rem;
-    }
-    @include md {
-        width: 19.5rem;
-    }
-    @include lg {
-        margin-left: -5%;
-    }
-    @include xl {
-        margin: 0 auto;
-    }
-}
+@import "@/assets/stylesheets/helpers/front/cart/_UserCheckoutForm.scss";
 </style>

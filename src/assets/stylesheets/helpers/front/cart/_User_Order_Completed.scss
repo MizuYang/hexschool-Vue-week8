@@ -1,19 +1,14 @@
-//* hover 放大動畫效果
 .animation_hover:hover {
     transform: scale(1.02);
 }
-//* active 放大
 .active_bigger:active {
     transform: scale(1.05);
 }
-//* 576 尺寸以下 文字左右空隙
 p{
     @include xs {
         padding: 0  2rem;
     }
 }
-
-//* 背景圖
 .banner::before {
     position: absolute;
     content: "";

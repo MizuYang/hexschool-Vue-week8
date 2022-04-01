@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <h3 class="text-center border-bottom pb-2 mb-5">猜你會喜歡...</h3>
-    <swiper
+    <Swiper
       ref="swiper"
       :slides-per-view="3"
       :space-between="25"
@@ -44,11 +44,11 @@
         },
       }"
     >
-      <swiper-slide v-for="products in products" :key="products.id">
+      <Swiper-slide v-for="products in products" :key="products.id">
         <div class="overflow-hidden">
           <a
             href="#"
-            @click.prevent="view_product(products.id)"
+            @click.prevent="viewProduct(products.id)"
             class="text-decoration-none"
           >
             <div
@@ -79,8 +79,8 @@
         >
           <i class="bi bi-cart4 me-2"></i>加入購物車
         </button>
-      </swiper-slide>
-    </swiper>
+      </Swiper-slide>
+    </Swiper>
     <Loading v-model:active="isLoading">
       <div class="cssload-container">
         <div class="cssload-dot"></div>
@@ -99,14 +99,17 @@ import 'swiper/swiper.scss'
 import 'swiper/modules/navigation/navigation.min.css'
 export default {
   inject: ['emitter'],
+
   props: ['product', 'cartData'], //* 單一產品 、 購物車列表 做篩選讓輪播不重複
+
   components: {
     Swiper,
     SwiperSlide
   },
+
   data () {
     return {
-      productsData: [],
+      tempProducts: [],
       products: [], //* 所有產品
       carts: [],
       filterProduct_index: [], //* 篩選出單一產品的品項
@@ -120,41 +123,36 @@ export default {
       }
     }
   },
+
   methods: {
-    //* 取得產品
     getProducts () {
-      //* 只有第一次會抓 API 資料，之後都是用 productsData 這個暫存的資料
-      if (this.productsData.length === 0) {
+      //* 只有第一次會抓 API 資料，之後都是用 tempProducts 這個暫存的資料
+      if (this.tempProducts.length === 0) {
         const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
         this.$http.get(api).then((res) => {
           this.products = res.data.products
-          this.productsData = res.data.products
+          this.tempProducts = res.data.products
         })
       }
       setTimeout(() => {
         //* 單一產品頁面 、 購物車頁面 各自篩選的方法
         const path = this.$route.path
         if (path === '/user/cart') {
-          this.filter_carts()
+          this.filterCarts()
         } else {
-          this.filter_products()
+          this.filterOneProduct()
         }
       }, 1500)
     },
-    //* 輪播不重複顯示 單一產品，所以先塞選出來刪掉，有單一產品才篩選
-    filter_products () {
+    filterOneProduct () {
       if (this.product) {
-        //* 先找出索引位置
         this.filterProduct_index = this.products.findIndex((item) => {
           return item.id === this.product.id
         })
-        //* 拿到索引位置後，刪除該品項，就可以用此 data 去渲染 swiper
         this.products.splice(this.filterProduct_index, 1)
       }
     },
-    //* 輪播不重複顯示購物車已有產品
-    filter_carts () {
-      //* 如果購物車東西超過 15 個就初始化輪播顯示的產品
+    filterCarts () {
       if (this.cartData.length >= 1 && this.cartData.length <= 15) {
         this.cartData.forEach((cartProduct) => {
           this.products = this.products.filter((product) => {
@@ -162,18 +160,15 @@ export default {
           })
         })
       } else {
-        this.products = this.productsData
+        this.products = this.tempProducts
       }
     },
-
-    //* 點輪播圖片可以看其他單一產品
-    view_product (id) {
+    viewProduct (id) {
       this.$router.push('/user/products')
       setTimeout(() => {
         this.$router.push(`/user/one_product/${id}`)
       })
     },
-    //* 加入購物車
     addCart (id) {
       this.isLoading = true
       this.add_product_Data.product_id = id
@@ -181,12 +176,13 @@ export default {
       this.$http.post(api, { data: this.add_product_Data }).then((res) => {
         this.isLoading = false
         this.$httpMessageState(res.data.success, '加入購物車')
-        this.emitter.emit('get_cart') //* 請 Navbar更新數字
-        this.$emit('getCartList') //* 購物車刷新
+        this.emitter.emit('get_cart') //*  Navbar更新
+        this.$emit('getCartList')
         this.getProducts()
       })
     }
   },
+
   mounted () {
     this.getProducts()
   }
@@ -196,5 +192,5 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 @import "@/assets/stylesheets/helpers/loading_css.scss";
-@import "@/assets/stylesheets/helpers/front/_swiper_mixins.scss";
+@import "@/assets/stylesheets/helpers/front/_swiperMixins.scss";
 </style>

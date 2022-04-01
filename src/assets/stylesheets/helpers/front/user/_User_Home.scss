@@ -1,10 +1,8 @@
-//*垂直 banner 主要
 .banner-vertical-main {
     background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E5%9E%82%E7%9B%B4banner-%E4%B8%BB%E8%A6%81/%E5%9E%82%E7%9B%B4%E5%A4%A7.png?raw=true);
     height: 60rem;
     background-position: center;
     position: relative;
-    //* 文字
     & .vertical-main-text {
         height: 60rem;
         display: flex;
@@ -35,13 +33,11 @@
         width: 100%;
     }
 }
-//*垂直 banner 次要
 .banner-vertical-secondary {
     background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E5%9E%82%E7%9B%B4banner-%E6%AC%A1%E8%A6%81/%E5%9E%82%E7%9B%B4%E5%A4%A7.png?raw=true);
     height: 60rem;
     background-position: center;
     position: relative;
-    //* 文字
     & .vertical-secondary-text {
         margin-left: 5%;
         height: 60rem;
@@ -73,7 +69,6 @@
         width: 100%;
     }
 }
-//* 方形圖 主要
 .square-main {
     background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E5%9E%82%E7%9B%B4banner-%E4%B8%BB%E8%A6%81/%E5%9E%82%E7%9B%B4%E5%B0%8F.png?raw=true);
     background-repeat: no-repeat;
@@ -83,7 +78,6 @@
     width: 25rem;
     height: 20rem;
 }
-//* 方形次要
 .square-secondary {
     background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/banner/dXWgGrVpYl.png?raw=true);
     background-repeat: no-repeat;
@@ -93,16 +87,12 @@
     width: 25rem;
     height: 20rem;
 }
-
-//* 放大動畫
 .animation_hover:hover {
     transform: scale(1.05);
-    
 }
 .animation_hover:active {
     transform: scale(1.1);
 }
-//* 針對下方三個卡片輪播調整樣式
 .card_container {
     position: relative;
     @include sm {
@@ -199,25 +189,46 @@
       left: 60%;
     }
   }
-
 .arrowLeft{
     position: absolute;
-    right: 54%;
     @include xs {
-      right: 70%;
+      right: 75%;
+    }
+    @include sm {
+      right: 0%;
+      left: -45%;
     }
     @include md {
-      right: 0%;
-      left: -50%;
+      left: -32%;
+    }
+    @include lg {
+      left: -28%;
+    }
+    @include xxl {
+      left: -23%;
+    }
+    @media (min-width:2500px) {
+      left: -12%;
     }
 }
 .arrowRight{
     position: absolute;
-    right: 44%;
     @include xs {
-      right: 14%;
+      right: 12%;
     }
     @include sm {
       right: 24%;
+    }
+    @include md {
+      right: 30%;
+    }
+    @include lg {
+      right: 33%;
+    }
+    @include xxl {
+      right: 37%;
+    }
+    @media (min-width:2500px) {
+      right: 43%;
     }
 }

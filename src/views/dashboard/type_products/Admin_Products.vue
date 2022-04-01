@@ -7,12 +7,11 @@
       <button
         type="button"
         class="btn btn-primary"
-        @click="open_Modal('new', product)"
+        @click="openModal('new', product)"
       >
         新增產品
       </button>
     </div>
-
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
       <div class="col border p-3" v-for="product in products" :key="product.id">
         <div class="card h-100 bg-dark" style="width: 19rem">
@@ -37,7 +36,7 @@
             <div class="ms-auto me-1">
               <button
                 class="btn btn-secondary"
-                @click="open_Modal('edit', product)"
+                @click="openModal('edit', product)"
               >
                 編輯
               </button>
@@ -46,7 +45,7 @@
               <button
                 type="button"
                 class="btn btn-danger"
-                @click="removeProduct(product)"
+                @click="openDeleteProductModal(product)"
               >
                 刪除
               </button>
@@ -56,26 +55,27 @@
       </div>
     </div>
   </div>
-    <Loading v-model:active="isLoading" />
-  <!-- modal -->
-  <updateProductModal @get_products="get_products"></updateProductModal>
-  <deleteProduct @get_products="get_products"></deleteProduct>
+  <Loading v-model:active="isLoading" />
+  <UpdateProductModal @getProducts="getProducts" />
+  <DeleteProductModal @getProducts="getProducts" />
 </template>
 
 <script>
 import emitter from '@/utils/emitter.js'
-import deleteProduct from '@/components/dashboard/modal/product/Delete_Product.vue'
-import updateProductModal from '@/components/dashboard/modal/product/Update_Product.vue'
+import DeleteProductModal from '@/components/dashboard/modal/product/DeleteProductModal.vue'
+import UpdateProductModal from '@/components/dashboard/modal/product/UpdateProductModal.vue'
 export default {
   components: {
-    updateProductModal,
-    deleteProduct
+    UpdateProductModal,
+    DeleteProductModal
   },
+
   provide () {
     return {
       emitter
     }
   },
+
   data () {
     return {
       products: [],
@@ -88,8 +88,9 @@ export default {
       isLoading: false
     }
   },
-  methods: { //* 取得產品
-    get_products () {
+
+  methods: {
+    getProducts () {
       this.isLoading = true
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/products/all`
       this.$http
@@ -98,35 +99,30 @@ export default {
           this.isLoading = false
           this.products = res.data.products
         })
-        .catch(() => {
-          this.isLoading = false
-          this.$router.push('/')
-        })
     },
-    //* modal
-    open_Modal (control, product) {
+    openModal (control, product) {
       if (control === 'new') {
         this.modal_status.isNew = true
-        emitter.emit('update_modal', this.modal_status)
+        emitter.emit('openModal', this.modal_status)
       } else if (control === 'edit') {
         this.modal_status.isNew = false
         //* this.loading('edit', product.id)
-        this.modal_status.tempProduct = JSON.parse(JSON.stringify(product)) //* 深拷貝
+        this.modal_status.tempProduct = JSON.parse(JSON.stringify(product))
         //* 因為在新增時多圖不是必填的選項，所以在編輯時會遇到沒有多圖 imagesUrl 陣列，無法新增多圖的情況 ，
         //* 若要新增多圖可以在 openModal 先判斷有沒有 imagesUrl 陣列，如果不存在就新增一個空的 imagesUrl 陣列
-        emitter.emit('update_modal', this.modal_status)
+        emitter.emit('openModal', this.modal_status)
       }
       if (!this.modal_status.tempProduct.imagesUrl) {
         this.modal_status.tempProduct.imagesUrl = []
       }
     },
-    //* 刪除產品
-    removeProduct (product) {
-      emitter.emit('delete_product', product)
+    openDeleteProductModal (product) {
+      emitter.emit('openDeleteProductModal', product)
     }
   },
+
   mounted () {
-    this.get_products()
+    this.getProducts()
     localStorage.setItem('current_page', JSON.stringify('products'))
   }
 }

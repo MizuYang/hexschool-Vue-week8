@@ -3,7 +3,7 @@
     <h2 class="title text-center pt-3 mb-4">
       <span class="decorate">完成訂單</span>
     </h2>
-    <CartTimeLine :time_line="time_line" />
+    <CartTimeLine />
 </div>
   <div>
       <div class="text-center mt-3">
@@ -104,7 +104,6 @@ export default {
 
   data () {
     return {
-      time_line: 0,
       order_Id: JSON.parse(localStorage.getItem('orderId')) || '',
       copy_point: false
     }
@@ -126,7 +125,6 @@ export default {
   },
 
   mounted () {
-    this.time_line = 4
     this.emitter.on('get_orderId', (orderId) => { //* 接收確認訂單傳來的訂單編號
       this.order_Id = orderId
       localStorage.setItem('orderId', JSON.stringify(orderId))//* 將ID儲存起來，避免使用者案重新整理後會消失

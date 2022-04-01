@@ -1,7 +1,7 @@
 <template>
   <div class="container" v-if="swiperShow">
     <h3 class="badge fs-5 text-primary mb-4 ms-5">泡芙</h3>
-    <swiper
+    <Swiper
       ref="swiper"
       :slides-per-view="3"
       :space-between="25"
@@ -45,11 +45,11 @@
         },
       }"
     >
-      <swiper-slide v-for="products in profiterole" :key="products.id">
+      <Swiper-slide v-for="products in profiterole" :key="products.id">
         <div class="overflow-hidden">
           <a
             href="#"
-            @click.prevent="view_product(products.id)"
+            @click.prevent="viewProduct(products.id)"
             class="text-decoration-none"
           >
             <div
@@ -80,8 +80,8 @@
         >
           <i class="bi bi-cart4 me-2"></i>加入購物車
         </button>
-      </swiper-slide>
-    </swiper>
+      </Swiper-slide>
+    </Swiper>
   </div>
 <Loading v-model:active="isLoading">
     <div class="cssload-container">
@@ -92,10 +92,12 @@
     </div>
 </Loading>
 </template>
+
 <script>
-import swiperMixins from '@/components/front/swiper/Swiper_Mixins.vue'
+import SwiperMixins from '@/components/front/swiper/SwiperMixins.vue'
 export default {
-  mixins: [swiperMixins],
+  mixins: [SwiperMixins],
+
   data () {
     return {
       productsData: [],
@@ -104,8 +106,9 @@ export default {
       swiperShow: false
     }
   },
+
   methods: {
-    filter_profiterole () {
+    filterProfiterole () {
       this.profiterole = this.products.filter((item) => {
         return item.category === '泡芙'
       })
@@ -114,16 +117,17 @@ export default {
       }
     }
   },
+
   mounted () {
     setTimeout(() => {
-      this.filter_profiterole()
+      this.filterProfiterole()
     }, 3000)
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/stylesheets/helpers/loading_css.scss"; //* loading CSS
+@import "@/assets/stylesheets/helpers/loading_css.scss";
 @import "@/assets/stylesheets/helpers/_rwdMixin.scss";
-@import "@/assets/stylesheets/helpers/front/_swiper_mixins.scss";
+@import "@/assets/stylesheets/helpers/front/_swiperMixins.scss";
 </style>

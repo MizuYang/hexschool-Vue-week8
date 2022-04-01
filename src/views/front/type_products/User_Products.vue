@@ -65,11 +65,11 @@
       </div>
       <div class="text-end mb-sm-5 mb-3 search d-flex">
       <button type="button" class="btn btn-outline-primary hideTool" @click="categoryToggle=!categoryToggle">隱藏工具</button>
-        <label for="search_products"><i class="bi bi-search me-2" v-if="!categoryToggle"></i></label>
+        <label for="searchText"><i class="bi bi-search me-2" v-if="!categoryToggle"></i></label>
         <input
           type="search"
-          id="search_products"
-          class="search_products"
+          id="searchText"
+          class="searchText"
           placeholder="輸入產品名稱"
           v-model="searchValue"
           @input="keywords" v-if="!categoryToggle" />
@@ -96,7 +96,7 @@
             :style="{ backgroundImage: `url(${product.imageUrl})` }">
             <button
               type="button"
-              class="badge text-decoration-none tag"
+              class="badge text-decoration-none categoryBtn"
               title="篩選類別"
               @click.prevent="getProducts(product.category)">
               {{ product.category }}
@@ -107,8 +107,8 @@
               src="@/assets/imageUrl/images/product_info.png"/>
             <button
               type="button"
-              class="badge animation_hover like_btn"
-              :class="`like_btn${index}`"
+              class="badge animation_hover collect_btn"
+              :class="`collect_btn${index}`"
               title="加入收藏"
               @click.prevent="toggleCollect(product.id, index)" >
               <span v-if="collect.includes(product.id)">
@@ -141,7 +141,7 @@
                 >元</strong>
             </div>
             <div>
-              <button type="button" class="btn btn-danger text-white w-100 d-block addCart animation_hover animation_active fs-5 mb-2"
+              <button type="button" class="btn btn-danger text-white w-100 d-block addCartBtn animation_hover animation_active fs-5 mb-2"
                 title="加入到購物車"
                 @click="addCart(product.id)">
                 <i class="bi bi-cart-check-fill"></i>
@@ -230,7 +230,6 @@ export default {
         }
       })
     },
-    //* 價格低到高
     priceSort () {
       this.activeCategoryStatus('價格低到高')
       this.products = this.products.sort((a, b) => {
@@ -259,7 +258,7 @@ export default {
       if (this.heart_disabled >= 2) {
         return
       }
-      const collectBtn = document.querySelector(`.like_btn${index}`)
+      const collectBtn = document.querySelector(`.collect_btn${index}`)
       collectBtn.style.cursor = 'no-drop' //* 將滑鼠變為禁用圖示
       const collectIndex = this.collect.findIndex((item) => {
         return id === item
@@ -275,7 +274,7 @@ export default {
         this.emitter.emit('get_collect', this.collect) //* navbar 更新收藏資料
       }
       setTimeout(() => {
-        collectBtn.style.cursor = 'default' //* 將滑鼠變回預設樣式
+        collectBtn.style.cursor = 'pointer' //* 將滑鼠變回手指樣式
       }, 2000)
     },
     keywords () {
