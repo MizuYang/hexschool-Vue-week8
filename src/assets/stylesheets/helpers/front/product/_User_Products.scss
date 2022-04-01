@@ -111,25 +111,26 @@
         position: fixed;
         overflow-x: scroll;
         overflow-y: hidden;
-        top: 10%;
+        top: 8.2%;
         z-index: 2;
         & button{
+            padding: 0;
             padding-left: 2rem;
             padding-right: 2rem;
             line-height: 1.2;
-            height: 4rem;
-            font-size: 1.3rem;
+            height: 4.4rem;
+            font-size: 1.2rem;
             background: rgba(0, 0, 0, 0.637);
         }
     }
     .search{
         position: fixed;
-        top: 19%;
+        top: 16.7%;
         z-index: 2;
     }
     .hideTool{
         position: fixed;
-        top: 19%;
+        top: 16.7%;
         right: 2%;
         width: 7rem;
         background: rgba(0, 0, 0, 0.637);
@@ -141,19 +142,17 @@
 @include sm {
         .category {
             position: fixed;
-            top: 9%;
+            top: 7.5%;
             width: 90%;
             left:7%;
             z-index: 2;
             & button{
-                height: 4.5rem;
-                font-size: 1.6rem;
                 background: rgba(0, 0, 0, 0.637);
             }
         }
         .search{
             position: fixed;
-            top: 17%;
+            top: 14.7%;
             z-index: 2;
             & .searchText{
                 width: 10rem;
@@ -161,7 +160,7 @@
         }
         .hideTool{
             position: fixed;
-            top: 17%;
+            top: 14.7%;
             right: 2%;
             width: 7rem;
             background: rgba(0, 0, 0, 0.637);
@@ -172,41 +171,44 @@
 }
 @include md {
     .category {
-        top: 10%;
+        top: 8.5%;
         left: 4%;
+        // transform: scale(.9);
         & button{
             font-size: 1.6rem;
             height: 5rem;
         }
     }
     .title{
-        margin-top: 5rem;
+        margin-top: 3rem;
     }
     .search{
-        top: 19%;
+        top: 16.7%;
         z-index: 1100;
         width: 41%;
         right: 55%;
     }
     .hideTool{
-        top: 11%;
+        top: 8.5%;
         right: 3%;
         width: 4rem;
     }
 }
 @include lg {
     .category {
-        top: 10%;
-        left: 0;
+        top: 7.7%;
+        left: -10%;
+        transform: scale(.8);
+        width: 100%;
         & button{
             font-size: 1.4rem;
             padding: 0 2.2rem;
         }
     }
     .search{
-        top: 18.5%;
+        top: 8.5%;
         width: 41%;
-        right: 59%;
+        right: -10%;
     }
     .hideTool{
         right: 1%;
@@ -217,55 +219,50 @@
         width: 100%;
     }
     .search{
-        top: 12%;
+        top: 8.5%;
         left: 76%;
     }
     .title{
-        margin-top: 4rem;
+        margin-top: 1rem;
     }
 }
 @include xxl {
     .search{
-        top: 12%;
-        left: 66%;
+        left: 79%;
     }
 }
 @media (min-width: 1500px) {
     .category {
-        top: 10%;
-        left: 6%;
+        top: 8%;
+        left: -10%;
     }
     .search{
-        top: 12%;
-        left: 68%;
+        left: 80%;
     }
 }
 @media (min-width: 2500px) {
     .category {
-        top: 11%;
-        left: 25%;
+        left: 16%;
     }
     .search{
-        top: 13%;
-        left: 59%;
-    }
-    .title{
-        margin-top: 3rem;
+        top: 8.7%;
+        left: 64%;
     }
     .hideTool{
+        top: 8.7%;
         right: 26%;
     }
 }
 @media (max-width:376px) {
     .category {
-        top: 13%;
+        top: 10.5%;
     }
     .search{
-        top: 25%;
+        top: 21.3%;
     }
     .hideTool{
         position: fixed;
-        top: 25%;
+        top: 21.3%;
         right: 2%;
         width: 7rem;
     }

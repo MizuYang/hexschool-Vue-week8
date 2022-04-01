@@ -109,9 +109,7 @@ export default {
 
   methods: {
     filterCake () {
-      this.cake = this.products.filter((item) => {
-        return item.category === '蛋糕'
-      })
+      this.cake = this.products.filter((item) => item.category === '蛋糕')
       if (this.cake.length > 0) {
         this.swiperShow = true
       }

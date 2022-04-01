@@ -58,11 +58,12 @@
               type="number"
               class="form-control"
               id="price"
-              min="0"
-              max="100"
+              min="0%"
+              max="100%"
               v-model.number="tempCoupon.percent"
               placeholder="請輸入折扣百分比"
             />
+            <i class="text-danger" v-if="!couponDiscountRule">請輸入 0~100 折扣碼!!</i>
           </div>
           <div class="mb-3">
             <div class="form-check">
@@ -111,12 +112,19 @@ export default {
       couponModal: '',
       isNew: false,
       tempCoupon: {},
-      due_date: ''
+      due_date: '',
+      couponDiscountRule: true
     }
   },
 
   methods: {
     updateCoupon (id) {
+      this.couponDiscountRule = this.tempCoupon.percent <= 100 && this.tempCoupon.percent > 0
+      if (!this.couponDiscountRule) {
+        this.tempCoupon.percent = 0
+        this.$httpMessageState(false, '請輸入正確的數字，更新優惠券')
+        return
+      }
       let methods = 'post'
       let api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/coupon`
       if (this.isNew) {
@@ -133,9 +141,7 @@ export default {
           this.$emit('getCoupon')
           this.tempCoupon = {}
         })
-        .catch((err) => {
-          this.$httpMessageState(err.success, '更新優惠券')
-        })
+        .catch((err) => this.$httpMessageState(err.success, '更新優惠券'))
     }
   },
 
@@ -157,9 +163,7 @@ export default {
         //* 再將日期賦予上去 (日期的 v-model 是分開寫的)
         this.due_date = dateAndTime[0]
       }
-      setTimeout(() => {
-        this.couponModal.show()
-      }, 1000)
+      setTimeout(() => this.couponModal.show(), 1000)
     })
   },
 

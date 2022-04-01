@@ -11,12 +11,12 @@
         <router-link class="navbar-brand  d-lg-none" title="首頁" to="/user/home"><i class="bi bi-house-door fs-1 ms-2"></i></router-link>
             <router-link
               to="/user/products"
-              class="nav-link productList d-block d-lg-none"
+              class="nav-link productList d-block d-lg-none pb-0"
               @click="currentPage('productList')"
               ><i class="bi bi-shop fs-1"></i></router-link>
             <router-link
               to="/user/cart"
-              class="nav-link cart position-relative d-block d-lg-none"
+              class="nav-link cart position-relative d-block d-lg-none pb-0"
               @click="currentPage('cart')"
               title="購物車">
               <span
@@ -35,7 +35,7 @@
             </router-link>
             <router-link
               to="/user/favorite"
-              class="nav-link favorite d-lg-none"
+              class="nav-link favorite d-lg-none pb-0"
               @click="currentPage('favorite')"
               title="收藏商品頁面">
             <span v-if="collect_data.length > 0">
@@ -170,9 +170,7 @@ export default {
     currentPage (page) {
       this.clickPageHideMenu()
       if (this.page) {
-        document
-          .querySelector(`.${this.page}`)
-          .classList.remove('currentPage')
+        document.querySelector(`.${this.page}`).classList.remove('currentPage')
         this.page = ''
       }
       setTimeout(() => {

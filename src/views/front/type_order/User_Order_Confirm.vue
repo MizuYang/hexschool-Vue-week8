@@ -3,7 +3,7 @@
     <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">確認訂單資料</span>
     </h2>
-    <CartTimeLine />
+    <CartTimeLine :is_pay="is_pay" />
       <h3 class="text-center pb-2 border-bottom mb-5 ">
         <span class=" fs-5 fw-bold" v-if="!is_pay">
           請確認您的資料無誤後付款 <span class=" text-danger">( 未付款 )</span>

@@ -13,12 +13,15 @@
 }
 .navbar {
     background: rgba(0, 0, 0, 0.4);
+    @include xs {
+        padding-bottom: .7rem;
+    }
     & .navbar-brand.logoRwdHide:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
         transition: 0.5s;
     }
     & .navbar-brand.logoRwdHide:active {
-        transform: scale(1.2);
+        transform: scale(1.08);
     }
     & .navbar-brand.logoRwdHide .title {
         position: absolute;
@@ -28,6 +31,7 @@
         overflow: hidden;
         white-space: nowrap;
     }
+    padding: 0 ;
 }
 .logoRwdHide{
     @media (max-width:576px) {

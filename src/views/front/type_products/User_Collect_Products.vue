@@ -100,11 +100,7 @@ export default {
     },
     getColletProduct () {
       this.collect = JSON.parse(localStorage.getItem('collect')) || []
-      this.collect.forEach((item) => {
-        this.collectData.push(this.products.filter((product) => {
-          return product.id === item
-        }))
-      })
+      this.collect.forEach((item) => this.collectData.push(this.products.filter((product) => product.id === item)))
       this.emitter.emit('get_collect', this.collect) //* Navbar 更新
     },
     addCart (id) {
@@ -127,9 +123,7 @@ export default {
       }
       const collectBtn = document.querySelector(`.collect_btn${index}`)
       collectBtn.style.cursor = 'no-drop' //* 滑鼠變禁用圖示
-      const collectIndex = this.collect.findIndex((item) => {
-        return id === item
-      })
+      const collectIndex = this.collect.findIndex((item) => id === item)
       if (collectIndex === -1) {
         this.collect.push(id)
         localStorage.setItem('collect', JSON.stringify(this.collect))

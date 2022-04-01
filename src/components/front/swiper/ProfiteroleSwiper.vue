@@ -109,9 +109,7 @@ export default {
 
   methods: {
     filterProfiterole () {
-      this.profiterole = this.products.filter((item) => {
-        return item.category === '泡芙'
-      })
+      this.profiterole = this.products.filter((item) => item.category === '泡芙')
       if (this.profiterole.length > 0) {
         this.swiperShow = true
       }

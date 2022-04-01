@@ -158,9 +158,7 @@ export default {
       }
     },
     filterOrder () {
-      this.queryOrder = this.all_order.filter((order) => {
-        return order.id === this.order_id
-      })
+      this.queryOrder = this.all_order.filter((order) => order.id === this.order_id)
       this.orderIdCheck()
     }
   },

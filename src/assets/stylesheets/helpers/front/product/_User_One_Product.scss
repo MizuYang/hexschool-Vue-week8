@@ -15,3 +15,57 @@
 		padding-right: 7%;
 	}
 }
+.productQtyText{
+	width: 15%;
+}
+.productsQtyBtn{
+	&:hover {
+        transform: scale(1.03);
+        background: #c43218c3;
+		color: #f1ebd8;
+    }
+    &:active{
+        transform: scale(1.07);
+	}
+}
+.rwdHide{
+	@include xs{
+		display: none;
+	}
+	@include sm{
+		display: block;
+	}
+	@media (min-width:992px) and (max-width:1200px) {
+		display: none;
+	}
+}
+.title .decorate:before {
+    left: 25%;
+    @include xs {
+        left: -3%;
+    }
+	@include md {
+        left: 10%;
+    }
+	@include lg {
+        left: 18%;
+    }
+	@include xxl {
+        left: 25%;
+    }
+}
+.title .decorate:after {
+    right: 25%;
+    @include xs {
+        right: -3%;
+    }
+	@include md {
+        right: 10%;
+    }
+	@include lg {
+        right: 18%;
+    }
+	@include xxl {
+        right: 25%;
+    }
+}

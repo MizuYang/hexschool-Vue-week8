@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  props: ['is_pay'],
 
   data () {
     return {
@@ -22,6 +23,11 @@ export default {
   watch: {
     timelineRoutePath () {
       this.change_time_line()
+    },
+    is_pay () {
+      document.querySelector('.finish_2').classList.add('timelineStyle')
+      document.querySelector('.finish_3').classList.add('timelineStyle')
+      document.querySelector('.finish_4').classList.add('timelineStyle')
     }
   },
 

@@ -109,9 +109,7 @@ export default {
 
   methods: {
     filterPudding () {
-      this.pudding = this.products.filter((item) => {
-        return item.category === '布丁'
-      })
+      this.pudding = this.products.filter((item) => item.category === '布丁')
       if (this.pudding.length > 0) {
         this.swiperShow = true
       }

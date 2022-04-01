@@ -108,9 +108,7 @@ export default {
 
   methods: {
     filterPopular () {
-      this.popular = this.products.filter((item) => {
-        return item.popular >= 3
-      })
+      this.popular = this.products.filter((item) => item.popular >= 3)
       if (this.popular.length > 0) {
         this.swiperShow = true
       }

@@ -15,52 +15,52 @@
           category">
         <button
           type="button"
-          class="btn btn-outline-primary products_category_btn animation_active"
+          class="btn btn-outline-primary animation_active"
           @click="getProducts('全部')"
           :class="{ activeCategoryStatus : category['全部'] }">
           全部
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary products_category_btn animation_active"
+          class="btn btn-outline-primary animation_active"
           @click="getProducts('蛋糕')"
           :class="{ activeCategoryStatus : category['蛋糕'] }">
           蛋糕
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary products_category_btn animation_active"
+          class="btn btn-outline-primary animation_active"
           @click="getProducts('布丁')"
           :class="{ activeCategoryStatus : category['布丁'] }">
           布丁
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary products_category_btn animation_active"
+          class="btn btn-outline-primary animation_active"
           @click="getProducts('泡芙')"
           :class="{ activeCategoryStatus : category['泡芙'] }">
           泡芙
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary products_category_btn animation_active"
+          class="btn btn-outline-primary animation_active"
           @click="getProducts('舒芙蕾')"
           :class="{ activeCategoryStatus : category['舒芙蕾'] }">
           舒芙蕾
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary products_category_btn animation_active"
+          class="btn btn-outline-primary animation_active"
           @click="getProducts('熱門商品')"
           :class="{ activeCategoryStatus : category['熱門商品'] }">
-          熱門商品
+          熱門
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary products_category_btn animation_active mt-md-0"
+          class="btn btn-outline-primary animation_active mt-md-0"
           @click="priceSort"
           :class="{ activeCategoryStatus : category['價格低到高'] }">
-          <i class="bi bi-cash-coin"></i> ↓/↑
+          <i class="bi bi-cash-coin"></i> ↓↑
         </button>
       </div>
       <div class="text-end mb-sm-5 mb-3 search d-flex">
@@ -232,9 +232,7 @@ export default {
     },
     priceSort () {
       this.activeCategoryStatus('價格低到高')
-      this.products = this.products.sort((a, b) => {
-        return a.price - b.price
-      })
+      this.products = this.products.sort((a, b) => a.price - b.price)
     },
     addCart (id) {
       this.isLoading = true
@@ -260,9 +258,7 @@ export default {
       }
       const collectBtn = document.querySelector(`.collect_btn${index}`)
       collectBtn.style.cursor = 'no-drop' //* 將滑鼠變為禁用圖示
-      const collectIndex = this.collect.findIndex((item) => {
-        return id === item
-      })
+      const collectIndex = this.collect.findIndex((item) => id === item)
       if (collectIndex === -1) {
         this.collect.push(id)
         this.$httpMessageState(true, '收藏產品')
@@ -281,9 +277,7 @@ export default {
       if (!this.searchValue) {
         this.products = this.tempProduct
       }
-      this.products = this.products.filter((product) => {
-        return product.title.match(this.searchValue) //* 判斷有部分相符的就顯示
-      })
+      this.products = this.products.filter((product) => product.title.match(this.searchValue)) //* 判斷有部分相符的就顯示
     },
     //* 點擊的產品會有特效
     activeCategoryStatus (category) {

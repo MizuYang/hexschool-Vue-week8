@@ -146,18 +146,14 @@ export default {
     },
     filterOneProduct () {
       if (this.product) {
-        this.filterProduct_index = this.products.findIndex((item) => {
-          return item.id === this.product.id
-        })
+        this.filterProduct_index = this.products.findIndex((item) => item.id === this.product.id)
         this.products.splice(this.filterProduct_index, 1)
       }
     },
     filterCarts () {
       if (this.cartData.length >= 1 && this.cartData.length <= 15) {
         this.cartData.forEach((cartProduct) => {
-          this.products = this.products.filter((product) => {
-            return product.id !== cartProduct.product_id
-          })
+          this.products = this.products.filter((product) => product.id !== cartProduct.product_id)
         })
       } else {
         this.products = this.tempProducts

@@ -2,7 +2,7 @@
   <UserHomeBanner />
   <div class="container">
     <div data-aos="fade-right" data-aos-duration="800">
-      <h2 class="text-center mb-5">這是一群大學生，勇敢追夢的故事 -</h2>
+      <h2 class="text-center my-5">這是一群大學生，勇敢追夢的故事 -</h2>
     </div>
     <div class="row row-cols-1 row-cols-lg-2 mb-3">
       <div class="col">

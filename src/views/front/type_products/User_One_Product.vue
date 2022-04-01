@@ -1,7 +1,7 @@
 <template>
   <div class="container mt-10 mb-5">
     <h2 class="title text-center mb-5 ">
-      <span class="decorate">{{ product.title }}</span>
+      <span class="decorate"> <span class="">{{ product.title }}</span> </span>
     </h2>
     <div class="row">
       <div class="col-12 col-lg-7 d-flex">
@@ -50,13 +50,20 @@
             <p>{{ product.description }}</p>
           </li>
           <li>
-            <div class="d-flex justify-content-between align-items-end">
-              <del style="opacity: 0.8">原價 {{ product.origin_price }} 元</del>
-              <strong class="ms-auto fs-3"
+            <div class="d-flex justify-content-between align-items-center">
+              <del style="opacity: 0.8" class="rwdHide me-3">原價 {{ product.origin_price }} 元</del>
+              <strong class="me-auto fs-3"
                 >優惠價<span class="text-danger fs-3 mb-auto">
                   {{ product.price }} </span
-                >元</strong
-              >
+                >元</strong>
+                <input type="button" class="btn productsQtyBtn btn-outline-primary"
+                  value="－" :disabled="addProductData.qty <= 1" @click="addProductData.qty -= 1"/>
+                <input type="number" class="productQtyText text-center" readonly  v-model="addProductData.qty">
+                <input
+                    type="button"
+                    class="btn productsQtyBtn btn-outline-primary"
+                    value="＋" @click="addProductData.qty += 1"
+                    />
             </div>
           </li>
         </ul>
@@ -72,10 +79,10 @@
                 animation_hover
               "
               title="返回產品列表"
-              @click="$router.push('/user/products')"
+              @click="$router.go(-1)"
             >
               <i class="bi bi-door-open"></i>
-              返回購物
+              返回
             </button>
 
             <button
@@ -139,6 +146,7 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.post(api, { data: this.addProductData }).then((res) => {
         this.isLoading = false
+        this.addProductData.qty = 1
         this.$httpMessageState(res.data.success, '加入購物車')
         this.emitter.emit('get_cart') //*  Navbar更新
       })
