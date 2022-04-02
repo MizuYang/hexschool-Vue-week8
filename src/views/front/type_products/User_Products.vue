@@ -289,6 +289,12 @@ export default {
   },
   mounted () {
     this.getProducts()
+    this.emitter.on('toProductsCategory', (category) => {
+      this.getProducts(category)
+    })
+  },
+  unmounted () {
+    this.emitter.off('toProductsCategory')
   }
 }
 </script>

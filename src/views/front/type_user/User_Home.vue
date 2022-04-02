@@ -35,13 +35,10 @@
             </div>
           </ul>
         </div>
-        <div
-          class="text-center img-fluid square-main row"
-          data-aos="fade-right"
-          data-aos-duration="5500"
-        >
+        <div class="text-center img-fluid square-main row" @click="toProductsCategory('蛋糕')">
           <p class="d-flex align-items-end justify-content-center mb-4">
-            <span class="badge fs-5">布朗尼巧克</span>
+            <span class="badge fs-5"  data-aos="fade-right" data-aos-duration="5500">「招牌」草莓酥</span>
+            <span class="badge hoverShowText">前往經典蛋糕</span>
           </p>
         </div>
       </div>
@@ -57,12 +54,9 @@
             </div>
           </ul>
         </div>
-        <div
-          class="square-secondary img-fluid"
-          data-aos="fade-left"
-          data-aos-duration="5000"
-        >
-          <p class="mt-5"><span class="badge fs-5">烤奶油堅果塔</span></p>
+        <div class="square-secondary img-fluid" @click="toProductsCategory('熱門商品')">
+          <p class="mt-5 ms-5"><span class="badge fs-5" data-aos="fade-left" data-aos-duration="5000">烤奶油堅果塔</span></p>
+          <span class="badge hoverShowText">前往熱門產品</span>
         </div>
       </div>
     </div>
@@ -130,6 +124,12 @@ export default {
     //* Navbar 的 active 效果
     current (page) {
       emitter.emit('currentPage', page)
+    },
+    toProductsCategory (category) {
+      this.$router.push('/user/products')
+      setTimeout(() => {
+        emitter.emit('toProductsCategory', category)
+      })
     }
   }
 }

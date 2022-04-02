@@ -70,22 +70,67 @@
     }
 }
 .square-main {
-    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E5%9E%82%E7%9B%B4banner-%E4%B8%BB%E8%A6%81/%E5%9E%82%E7%9B%B4%E5%B0%8F.png?raw=true);
+    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E7%94%A2%E5%93%81/%E5%B7%B2%E7%B6%93%E6%9B%B4%E6%8F%9B/%E3%80%8C%E6%8B%9B%E7%89%8C%E3%80%8D%E8%8D%89%E8%8E%93%E9%85%A5.png?raw=true);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    overflow: hidden;
+    position: relative;
+    opacity: .7;
+    clip-path: polygon(25% 0%, 75% 0%, 95% 50%, 70% 100%, 30% 100%, 0% 40%);
     margin: 5% auto;
     width: 25rem;
     height: 20rem;
+    cursor: pointer;
+    & .hoverShowText{
+      position: absolute;
+      background: rgba(17, 14, 14, 0.425);
+      color: #f1ebd8;
+      top: 50%;
+      font-size: 2rem;
+      transition: all .5s;
+      transform: translateY(10rem);
+    }
+    &:hover .hoverShowText{
+      transform: translateY(0rem);
+    }
+    &:hover {
+      clip-path: none;
+      transition: all 1s;
+      opacity: 1;
+    }
 }
 .square-secondary {
-    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E5%9E%82%E7%9B%B4banner-%E6%AC%A1%E8%A6%81/%E5%9E%82%E7%9B%B4%E5%B0%8F%20.png?raw=true);
+    background-image: url(https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E4%B8%BB%E9%A0%81/%E5%9E%82%E7%9B%B4banner-%E6%AC%A1%E8%A6%81/%E5%9E%82%E7%9B%B4%E5%B0%8F.png?raw=true);
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    position: relative;
+    overflow: hidden;
     margin: 0 auto;
+    opacity: .7;
     width: 25rem;
     height: 20rem;
+    clip-path: circle(50% at 50% 50%);
+    cursor: pointer;
+    & .hoverShowText{
+      position: absolute;
+      background: rgba(17, 14, 14, 0.425);
+      color: #f1ebd8;
+      top: 50%;
+      left: 20%;
+      font-size: 2rem;
+      transition: all .5s;
+      transform: translateY(10rem);
+    }
+    &:hover .hoverShowText{
+      transform: translateY(-2rem);
+    }
+    &:hover {
+      clip-path: none;
+      transition: all 1s;
+      opacity: 1;
+    }
 }
 .animation_hover:hover {
     transform: scale(1.05);
@@ -111,7 +156,6 @@
     }
     @include xxl {
       left: 0%;
-      
     }
   }
   .cake_container {
