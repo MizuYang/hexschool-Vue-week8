@@ -2,22 +2,9 @@
 .collect_btn {
     color: red;
     position: absolute;
-    @include xs {
-        right: 7%;
-        top: -1;
-    }
-    @include sm {
-        right: 7%;
-    }
-    @include md {
-        right: 3%;
-    }
-    @include xl {
-        right: 4%;
-    }
-    @include xxl {
-        right: 3%;
-    }
+    padding: 0 0.1rem;
+    right: 0%;
+    top: 0%;
 }
 .product_img {
     @include xs {

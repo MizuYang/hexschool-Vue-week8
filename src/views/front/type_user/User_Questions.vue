@@ -5,7 +5,7 @@
       </h2>
       <ul class="main list-unstyled">
         <div class="accordion" id="accordionExample">
-            <li class="accordion-item">
+            <li class="accordion-item" data-aos="fade-right" data-aos-easing="linear" aos-delay="1000" data-aos-duration="500">
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button q1 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" @click="currentQa('q1')">
                   <span class="badge bg-dark mx-1">1.</span>
@@ -23,7 +23,7 @@
                 </div>
               </div>
             </li>
-            <li class="accordion-item">
+            <li class="accordion-item" data-aos="fade-right" data-aos-easing="linear" aos-delay="1000" data-aos-duration="600">
               <h2 class="accordion-header" id="headingTwo">
                 <button class="accordion-button collapsed q2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" @click="currentQa('q2')">
                   <span class="badge bg-dark mx-1">2.</span>
@@ -36,7 +36,7 @@
                 </div>
               </div>
             </li>
-            <li class="accordion-item">
+            <li class="accordion-item" data-aos="fade-right" data-aos-easing="linear" aos-delay="1000" data-aos-duration="700">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed q3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" @click="currentQa('q3')">
                   <span class="badge bg-dark mx-1">3.</span>
@@ -49,7 +49,7 @@
                 </div>
               </div>
             </li>
-            <li class="accordion-item">
+            <li class="accordion-item" data-aos="fade-right" data-aos-easing="linear" aos-delay="1000" data-aos-duration="800">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed q4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree4" aria-expanded="false" aria-controls="collapseThree4" @click="currentQa('q4')">
                   <span class="badge bg-dark mx-1">4.</span>
@@ -65,7 +65,7 @@
                 </div>
               </div>
             </li>
-            <li class="accordion-item">
+            <li class="accordion-item" data-aos="fade-right" data-aos-easing="linear" aos-delay="1000" data-aos-duration="900">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed q5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree5" aria-expanded="false" aria-controls="collapseThree5" @click="currentQa('q5')">
                   <span class="badge bg-dark mx-1">5.</span>
@@ -78,7 +78,7 @@
                 </div>
               </div>
             </li>
-            <li class="accordion-item">
+            <li class="accordion-item" data-aos="fade-right" data-aos-easing="linear" aos-delay="1000" data-aos-duration="1000">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed q6" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree6" aria-expanded="false" aria-controls="collapseThree6" @click="currentQa('q6')">
                   <span class="badge bg-dark mx-1">6.</span>
@@ -91,7 +91,7 @@
                 </div>
               </div>
             </li>
-            <li class="accordion-item">
+            <li class="accordion-item" data-aos="fade-right" data-aos-easing="linear" aos-delay="1000" data-aos-duration="1100">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed q7" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree7" aria-expanded="false" aria-controls="collapseThree7" @click="currentQa('q7')">
                   <span class="badge bg-dark mx-1">7.</span>
@@ -104,7 +104,7 @@
                 </div>
               </div>
             </li>
-            <li class="accordion-item">
+            <li class="accordion-item" data-aos="fade-right" data-aos-easing="linear" aos-delay="1000" data-aos-duration="1200">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed q8 " type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree8" aria-expanded="false" aria-controls="collapseThree8" @click="currentQa('q8')">
                   <span class="badge bg-dark mx-1">8.</span>
@@ -122,7 +122,7 @@
                 </div>
               </div>
             </li>
-            <li class="accordion-item">
+            <li class="accordion-item" data-aos="fade-right" data-aos-easing="linear" aos-delay="1000" data-aos-duration="1300">
               <h2 class="accordion-header" id="headingThree">
                 <button class="accordion-button collapsed q9" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree9" aria-expanded="false" aria-controls="collapseThree9" @click="currentQa('q9')">
                   <span class="badge bg-dark mx-1">9.</span>

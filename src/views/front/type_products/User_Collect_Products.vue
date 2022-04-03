@@ -10,13 +10,13 @@
             :style="{ backgroundImage: `url(${product[0].imageUrl})` }">
          <img class="product_info img-fluid" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
             <span class="badge bg-danger p-1"  v-if="product[0].popular > 2">熱門商品</span>
-            </router-link>
-            <button type="button" class=" d-block animation_hover collect_btn fs-3" :class="`collect_btn${index}`" title="點擊移除收藏" @click="toggleCollect(product[0].id, index)">
-                <i class="bi bi-heart-fill" v-if="collect.includes(product[0].id)"></i>
-                <i class="bi bi-heartbreak-fill " v-if="(!collect.includes(product[0].id))"></i>
+            <button type="button" class=" d-block animation_hover collect_btn" :class="`collect_btn${index}`" title="點擊移除收藏" @click.prevent="toggleCollect(product[0].id, index)">
+                <i class="bi bi-heart-fill fs-5" v-if="collectIdData.includes(product[0].id)"></i>
+                <i class="bi bi-heartbreak-fill fs-5 text-primary" v-if="(!collectIdData.includes(product[0].id))"></i>
                 <i class="bi bi-heart-fill heart" :class="`heart${index}`"></i>
                 <i class="bi bi-heartbreak-fill heartbreak" :class="`heartbreak${index}`"></i>
             </button>
+            </router-link>
             <div class="card-body mb-0">
                 <div>
                     <h5 class="card-title fs-4 text-center ">{{ product[0].title }}</h5>
@@ -76,9 +76,11 @@ export default {
 
   data () {
     return {
-      collect: [], //* 裝 localStorage 產品ID
+      collectIdData: [], //* 裝 localStorage 產品ID
       collectData: [], //* 裝收藏產品
+      tempCollectId: '',
       products: [], //* 所有產品列表，做篩選用
+      tempProducts: [],
       addProductData: {
         product_id: '',
         qty: 1
@@ -95,13 +97,14 @@ export default {
       this.$http.get(api).then((res) => {
         this.isLoading = false
         this.products = res.data.products
+        this.tempProducts = res.data.products
         this.getColletProduct()
       })
     },
     getColletProduct () {
-      this.collect = JSON.parse(localStorage.getItem('collect')) || []
-      this.collect.forEach((item) => this.collectData.push(this.products.filter((product) => product.id === item)))
-      this.emitter.emit('get_collect', this.collect) //* Navbar 更新
+      this.collectIdData = JSON.parse(localStorage.getItem('collectIdData')) || []
+      this.collectIdData.forEach((item) => this.collectData.push(this.products.filter((product) => product.id === item)))
+      this.emitter.emit('get_collect', this.collectIdData) //* Navbar 更新
     },
     addCart (id) {
       this.isLoading = true
@@ -117,27 +120,29 @@ export default {
     },
     toggleCollect (id, index) {
       this.heart_disabled += 1
-      //* 兩秒後才可以再點擊
       if (this.heart_disabled >= 2) {
         return
       }
       const collectBtn = document.querySelector(`.collect_btn${index}`)
-      collectBtn.style.cursor = 'no-drop' //* 滑鼠變禁用圖示
-      const collectIndex = this.collect.findIndex((item) => id === item)
+      collectBtn.style.cursor = 'no-drop'
+      const collectIndex = this.collectIdData.findIndex((item) => id === item)
       if (collectIndex === -1) {
-        this.collect.push(id)
-        localStorage.setItem('collect', JSON.stringify(this.collect))
+        this.collectIdData.push(id)
+        localStorage.setItem('collectIdData', JSON.stringify(this.collectIdData))
         this.$httpMessageState(true, '加入收藏')
-        this.$collectAnimation(index) //* 收藏特效
-        this.emitter.emit('get_collect', this.collect) //* navbar 更新
+        this.$collectAnimation(index)
+        this.emitter.emit('get_collect', this.collectIdData) //* navbar 更新
       } else {
-        this.collect.splice(collectIndex, 1)
-        localStorage.setItem('collect', JSON.stringify(this.collect))
-        this.emitter.emit('get_collect', this.collect) //* navbar 更新
+        this.collectIdData.splice(collectIndex, 1)
+        localStorage.setItem('collectIdData', JSON.stringify(this.collectIdData))
+        this.emitter.emit('get_collect', this.collectIdData) //* navbar 更新
         this.$cancelCollectAnimation(index)
       }
       setTimeout(() => {
-        collectBtn.style.cursor = 'pointer' //* 滑鼠變預設樣式
+        this.collectData = []
+        this.products = this.tempProducts
+        this.getColletProduct()
+        collectBtn.style.cursor = 'pointer'
       }, 2000)
     }
   },

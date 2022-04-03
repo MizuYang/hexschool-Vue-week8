@@ -67,7 +67,7 @@ export default {
           this.$httpMessageState(true, '刪除勾選產品')
           this.isLoading = false
           this.emitter.emit('get_cart') //* Navbar更新
-          this.$emit('getCartList', '已刪除勾選商品') //* 如果刪除勾選商品，就讓購物車頁面隱藏刪除勾選按鈕
+          this.$emit('getCartList')
           this.delete_modal.hide()
         })
       })

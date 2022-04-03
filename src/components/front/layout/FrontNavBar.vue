@@ -20,6 +20,7 @@
               @click="currentPage('cart')"
               title="購物車">
               <span
+              v-if="cartData.length > 0"
                 class="
                   position-absolute
                   top-75
@@ -133,6 +134,7 @@
               title="購物車"
             >
               <span
+              v-if="cartData.length > 0"
                 class="
                   position-absolute
                   top-75

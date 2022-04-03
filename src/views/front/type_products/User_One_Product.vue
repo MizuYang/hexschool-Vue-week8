@@ -53,7 +53,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <del style="opacity: 0.8" class="rwdHide me-3">原價 {{ product.origin_price }} 元</del>
               <strong class="me-auto fs-3"
-                >優惠價<span class="text-danger fs-3 mb-auto">
+                ><span class="text-danger fs-3 mb-auto">
                   {{ product.price }} </span
                 >元</strong>
                 <input type="button" class="btn productsQtyBtn btn-outline-primary"

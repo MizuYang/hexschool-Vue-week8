@@ -29,7 +29,7 @@
     position: absolute;
     right: 0%;
     top: 0%;
-    font-size: 2.5rem;
+    // font-size: 2.5rem;
     padding: 0.2rem;
     color: #f1ebd8;
     background: rgba(168, 90, 0, 0.562);
@@ -37,9 +37,6 @@
     border-bottom-left-radius: 50%;
     & :hover {
         color: red;
-    }
-    & :active {
-        font-size: 2.75rem;
     }
 }
 .categoryBtn {

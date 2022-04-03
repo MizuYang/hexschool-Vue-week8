@@ -274,7 +274,7 @@ export default {
     },
     isPhone (value) {
       const phoneNumber = /^(09)[0-9]{8}$/
-      return phoneNumber.test(value) ? true : '請輸入 09 開頭的正確電話號碼'
+      return phoneNumber.test(value) ? true : '*請輸入 09 開頭的正確電話號碼'
     }
   }
 }

@@ -80,6 +80,7 @@
         <div
           class="card text-primary bg-dark col"
           data-aos="fade-up"
+          aos-delay="1000"
           data-aos-once="true"
           v-for="(product, index) in products"
           :key="product.id">
@@ -112,9 +113,9 @@
               title="加入收藏"
               @click.prevent="toggleCollect(product.id, index)" >
               <span v-if="collect.includes(product.id)">
-                <i class="bi bi-heart-fill" style="color: red"></i>
+                <i class="bi bi-heart-fill fs-5" style="color: red"></i>
               </span>
-              <i class="bi bi-heart-fill" v-else></i>
+              <i class="bi bi-heart-fill fs-5" v-else></i>
             </button>
             <!-- //* 收藏愛心特效 -->
             <i class="bi bi-heart-fill heart" :class="`heart${index}`"></i>
@@ -136,7 +137,7 @@
                 原價 $ {{ product.origin_price }}
               </del>
               <strong class="ms-auto"
-                >優惠價<span class="text-danger fs-3 mb-auto">
+                ><span class="text-danger fs-3 mb-auto">
                   {{ product.price }} </span
                 >元</strong>
             </div>
@@ -175,7 +176,7 @@ export default {
         product_id: '',
         qty: 1
       },
-      collect: JSON.parse(localStorage.getItem('collect')) || [],
+      collect: JSON.parse(localStorage.getItem('collectIdData')) || [],
       searchValue: '',
       isLoading: false,
       category: {},
@@ -187,7 +188,7 @@ export default {
   watch: {
     collect: {
       handler () {
-        localStorage.setItem('collect', JSON.stringify(this.collect))
+        localStorage.setItem('collectIdData', JSON.stringify(this.collect))
       },
       deep: true
     }
@@ -207,25 +208,15 @@ export default {
           if (category === '全部') {
             this.products = this.tempProduct
           } else if (category === '蛋糕') {
-            this.products = this.products.filter((product) => {
-              return product.category === '蛋糕'
-            })
+            this.products = this.products.filter((product) => product.category === '蛋糕')
           } else if (category === '布丁') {
-            this.products = this.products.filter((product) => {
-              return product.category === '布丁'
-            })
+            this.products = this.products.filter((product) => product.category === '布丁')
           } else if (category === '泡芙') {
-            this.products = this.products.filter((product) => {
-              return product.category === '泡芙'
-            })
+            this.products = this.products.filter((product) => product.category === '泡芙')
           } else if (category === '舒芙蕾') {
-            this.products = this.products.filter((product) => {
-              return product.category === '舒芙蕾'
-            })
+            this.products = this.products.filter((product) => product.category === '舒芙蕾')
           } else if (category === '熱門商品') {
-            this.products = this.products.filter((product) => {
-              return product.popular > 2
-            })
+            this.products = this.products.filter((product) => product.popular > 2)
           }
         }
       })
@@ -279,7 +270,6 @@ export default {
       }
       this.products = this.products.filter((product) => product.title.match(this.searchValue)) //* 判斷有部分相符的就顯示
     },
-    //* 點擊的產品會有特效
     activeCategoryStatus (category) {
       if (category !== '價格低到高') { //* 如果點的不是價格低到高，就初始化，如果是價格低到高，就不初始化
         this.category = {} //* 可以篩選一個類別同時再為那個類別排序低到高
