@@ -95,7 +95,7 @@
         </tbody>
 
       </table>
-         <div class="d-flex mb-3">
+         <div class="d-lg-flex mb-3 d-none d-lg-block">
                <button
                 v-if="checkbox_productId.length > 0"
                 type="button"
@@ -104,27 +104,39 @@
                 刪除
                 <span class="badge position-absolute bg-danger top-0 start-100 translate-middle rounded-pill">{{ checkbox_productId.length }}</span>
               </button>
-<p class=" ms-auto">總價：<span class="fs-4 fw-bold">{{ $thousandths(total) }} </span> 元</p>
+<p class="ms-auto me-lg-5 me-xl-7 me-xxl-9">{{ $thousandths(total) }} 元</p>
             </div>
-            <div class="d-flex justify-content-between mb-3">
+            <div class="d-lg-flex justify-content-between mb-3 finalSteps-bg d-none d-lg-block">
               <router-link
                 to="/user/products"
                 class="btn btn-secondary fs-4 active_bigger animation_hover"
                 >上一頁</router-link>
-                    <router-link
-                to="/user/checkout"
-                class="btn btn-danger fs-4 sendOrderBtn rwd_hide">
-                下一步</router-link>
+                <div class="d-flex">
+                  <p class="mt-auto me-5">購買了 <span class="fs-4">{{ cartData.length }}</span> 個產品</p>
+                  <p class="mt-auto me-5">總金額：<span class="fs-4 fw-bold">{{ $thousandths(total) }} </span> 元</p>
+                      <router-link
+                  to="/user/checkout"
+                  class="btn btn-danger fs-4 sendOrderBtn rwd_hide">
+                  下一步</router-link>
+                </div>
             </div>
 
     </div>
   </div>
 
+<div class=" d-lg-none text-center mt-5">
+<p class="mt-auto me-5 finalSteps-bg w-100 mb-0">購買了 <span class="fs-4">{{ cartData.length }}</span> 個產品</p>
+                  <p class="mt-auto me-5 finalSteps-bg w-100 mb-0">總金額：<span class="fs-4 fw-bold">{{ $thousandths(total) }} </span> 元</p>
   <router-link
       v-if="cartData.length > 0"
       to="/user/checkout"
-      class="btn btn-danger sendOrderBtn fs-5 w-100 d-lg-none my-3">
+      class="btn btn-danger sendOrderBtn fs-4 w-100">
   下一步</router-link>
+              <router-link
+                to="/user/products"
+                class="btn btn-secondary fs-4 active_bigger animation_hover w-100 my-5"
+                >上一頁</router-link>
+</div>
 <SwiperCartOneProduct class="mb-5" @getCartList="getCartList" :cartData="cartData" />
 <CartDeleteProductModal @getCartList="getCartList" />
 <Loading v-model:active="isLoading">

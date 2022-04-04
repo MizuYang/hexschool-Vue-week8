@@ -45,9 +45,9 @@
       <thead>
         <tr>
           <th>圖片</th>
-          <th style="width: 150px">名稱</th>
+          <th>名稱</th>
           <th>數量</th>
-          <th style="width: 200px">金額</th>
+          <th>金額</th>
         </tr>
       </thead>
       <tbody>
@@ -59,7 +59,7 @@
             />
           </td>
           <td>
-            <p style="width: 150px">{{ product.product.title }}</p>
+            <p>{{ product.product.title }}</p>
           </td>
           <td>
             <p>{{ product.qty }}個</p>
@@ -75,7 +75,7 @@
         <td></td>
         <td>
           <p :class="{ 'text-success': has_coupon }" class="fs-5">
-            {{ $thousandths(total) }}
+            {{ $thousandths(total) }} 元
           </p>
         </td>
       </tfoot>
@@ -85,9 +85,9 @@
     class="d-flex padding-clear mt-3 d-none d-lg-inline-block"
     v-if="cartData.length > 0"
   >
-    <p class="text-success fw-bold fs-5 mt-3 text-end" v-if="has_coupon">
+    <p class="fw-bold fs-5 mt-3 text-end" v-if="has_coupon">
       已使用優惠券
-      <span class="copy_point text-success badge"
+      <span class="copy_point badge"
         ><i class="bi bi-check-lg fs-4"></i
       ></span>
     </p>
@@ -137,13 +137,13 @@
     </div>
     <div class="d-flex justify-content-between">
       <p class="text-center me-5" v-if="has_coupon">
-        您省下了<span class="text-success finalSteps-text-fs-3">{{
+        您省下了 <span class="finalSteps-text-fs-3">{{
           $thousandths(coupon_price)
         }}</span>
         元
       </p>
       <p class="text-center me-5">
-        結帳總金額：
+        總金額：
         <span
           :class="{ 'text-success': has_coupon }"
           class="finalSteps-text-fs-3 fw-bold"
@@ -161,24 +161,24 @@
       </button>
     </div>
   </div>
-  <div class="padding-clear d-lg-none" v-if="cartData.length > 0">
-    <p class="text-success fw-bold fs-5 mt-3 text-center" v-if="has_coupon">
+  <div class="padding-clear d-lg-none mt-5" v-if="cartData.length > 0">
+    <p class="fs-5 mt-3 text-center finalSteps-bg w-100 mb-0" v-if="has_coupon">
       已使用優惠券
-      <span class="copy_point text-success badge"
+      <span class="copy_point badge"
         ><i class="bi bi-check-lg fs-4"></i
       ></span>
     </p>
-    <p class="text-center me-5" v-if="has_coupon">
-      您省下了<span class="text-success finalSteps-text-fs-3">{{
+    <p class="text-center me-5 finalSteps-bg w-100 mb-0" v-if="has_coupon">
+      您省下了 <span class="finalSteps-text-fs-3 fw-bold">{{
         $thousandths(coupon_price)
       }}</span>
       元
     </p>
-    <p class="text-center me-5">
-      結帳總金額：
+    <p class="text-center me-5 finalSteps-bg w-100 mb-0">
+      總金額：
       <span
         :class="{ 'text-success': has_coupon }"
-        class="finalSteps-text-fs-3"
+        class="finalSteps-text-fs-3 fw-bold"
         >{{ $thousandths(total) }}</span
       >
       元
@@ -273,7 +273,7 @@ export default {
         this.total = total
         const finalTotal = res.data.data.final_total
         let couponName = ''
-        if (res.data.data.carts[0].coupon) {
+        if (total > finalTotal) {
           couponName = res.data.data.carts[0].coupon.code
         }
         if (couponStatus || couponName) {
