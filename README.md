@@ -1,17 +1,3 @@
-你好，我為了這次的專案做了紀錄，目前還在緩慢更新中，此次上傳為作品初版，後續會在優化。
-這次作品的過程，在我的部落格中都有記錄下來
-https://equatorial-alloy-23b.notion.site/150ed9e5a4624c259bfaaa0bf1f23da2
-
-專案初版的結構
-https://whimsical.com/vue-CJV2RXJ2QmzUewz4bvR1dU
-
-其實在製作的過程中有做一些修改，後續會再做更新，
-這是我第一次寫 RWD 還有 SCSS ，我不確定這樣做是否正確，
-如果你願意給我一些想法和建議，歡迎寄信給我，我會很感謝你的，
-psdk55052004@gmail.com
-
-如果你有看到這邊，謝謝你，下面是我初期的專案規劃，但第一次做作品，比較混亂，並沒有完全照進度做。
-
 ## 初期列點
 
 - [x]  最終作業要註冊新的 path
@@ -61,56 +47,51 @@ psdk55052004@gmail.com
     - [x]  NavBar
         - [x]  額外製作透明效果
     - [x]  Footer
-- [ ]  **產品頁面**
+- [x]  **產品頁面**
     - [x]  產品可以點擊愛心，加入收藏，加入購物車按鈕
     - [x]  加上分頁元件
     - [x]  滑鼠 hover 圖片放大效果
     - [x]  創建產品資料夾，規劃每個產品獨立一個資料夾
-    - [ ]  尋找產品圖片素材 ( 圖片大小、色調、角度)
+    - [x]  尋找產品圖片素材 ( 圖片大小、色調、角度)
     - [x]  產品內容發想放在每個產品的獨立資料夾 (名稱、分類、描述、價格、推薦度)
         - [x]  分類：蛋糕、布丁、優格、泡芙、舒芙蕾、聖代
     - [x]  價格低到高、推薦度高到低、預設排序
-    - [ ]  篩選分類按鈕、商品名稱搜尋欄位  //嘗試做了將近三小時，失敗告終，時間壓力暫時先放著
+    - [x]  篩選分類按鈕、商品名稱搜尋欄位  //嘗試做了將近三小時，失敗告終，時間壓力暫時先放著
     - [x]  用 v-if 判斷該產品是否已收藏（實心、空心愛心） ~~//後來做得有點混亂後續要在整理複習~~
     - [ ]  點圖片查看更多時，判斷是從**產品頁面**過去產品單一頁面，v-if 顯示**產品頁面**的麵包屑
         - [ ]  或定義一個值，點圖片時將該值=收藏，並 `props` 傳到單一產品頁面，給他v-if判斷顯示哪個麵包屑
 - [x]  **常見問題 頁面**
 - [x]  **關於我們 頁面**
 - [x]  **聯絡我們 頁面**
-- [x]  偽元素製作，確認購物車>訂購資訊>確認結帳>訂購成功
-- [ ]  收藏產品頁面
+- [x]  **訂單查詢頁面(要加分頁)**
+- [x]  結帳流程製作，確認購物車>訂購資訊>確認結帳>訂購成功
+- [x]  **收藏產品頁面**
     - [ ]  點圖片查看更多時，判斷是從**收藏頁面**過去產品單一頁面，v-if 顯示**收藏頁面**的麵包屑
         - [ ]  或定義一個值，點圖片時將該值=收藏，並props傳到單一產品頁面，給他v-if判斷顯示哪個麵包屑
     - [x]  增加 localStorage 功能
     - [x]  用 v-if 判斷該產品是否已收藏（實心愛心）
     
-    ### 未完成
+    ### 
     
 
-訂單結帳後，將資料傳到 localstorage ，並在查詢訂單頁面將此資料抽出
+- [x]  關鍵字搜尋
+
+### 未完成
 
 加上 swiper 輪播
 
 點擊收藏商品， Navbar 可以判斷是否有收藏商品，有的話愛心就紅色
-
-關鍵字搜尋
-
-圖片都加上響應式**`img-fluid`**
-
-字體到 base 設定 font-family
 
 整理 scss 檔案，用資料夾分類
 
 製作 購物車下方 **你可能喜歡的商品 (( 輪播**
 
 - [ ]  CSS優化
-    - [ ]  將偽類裝飾的 css 拆成一個 scss ，再匯入到有用到的檔案就好
+    - [x]  將偽類裝飾的 css 拆成一個 scss ，再匯入到有用到的檔案就好
     - [ ]  收藏頁面是直接匯入產品頁面的css，可以看收藏頁面和產品頁面有哪些共通的 css 獨立拉出
         
         將獨立拉出的檔案同時匯入產品、收藏頁面，而這兩個頁面除了共通的之外也有自己的 css
         
-    - [ ]  把 hover 放大的效果拆出來一隻 scss
-    - [ ]  專案樹狀圖，增加檔案
         - [x]  新增時間軸檔案
 
 ### 後台設定
@@ -125,21 +106,20 @@ psdk55052004@gmail.com
 ## 後期優化
 
 - [x]  點擊LOGO會滾動到最畫面上面，搜尋 vue3 router >****滾動設置 scrollBehavior****
-- [ ]  滾動視差
-- [ ]  加上吐司邊視窗
+- [x]  滾動視差
+- [x]  加上吐司邊視窗
 - [ ]  加上麵包屑
-- [ ]  加上 loading 效果，全螢幕、單一物件
+- [x]  加上 loading 效果，全螢幕、單一物件 //有更換圖示
 - [ ]  按鈕增加 disabled 效果，防止多次點擊
 - [ ]  HTML 標籤增加 title 屬性，讓使用者體驗更好
 - [x]  所有圖片補上 alt 網頁親和力
 - [ ]  下拉選單 (Dropdowns) ，點購物車，會有 table
-- [ ]  千分號套件
+- [x]  千分號
 - [ ]  文字截斷
-- [ ]  加上陰影
 - [x]  為按鈕加上 hover、active 效果
-- [ ]  404 頁面
-- [ ]  [變更游標 cursor](https://www.google.com/search?q=CSS+%E6%B8%B8%E6%A8%99+%E8%AE%8A%E6%9B%B4&rlz=1C1CHBF_zh-TWTW975TW975&oq=CSS+%E6%B8%B8%E6%A8%99+%E8%AE%8A%E6%9B%B4&aqs=chrome..69i57j0i546l3.7847j0j15&sourceid=chrome&ie=UTF-8)
-    - [ ]  按鈕 disabled 時，游標過去會是禁止圖案
+- [x]  404 導向
+- [x]  [變更游標 cursor](https://www.google.com/search?q=CSS+%E6%B8%B8%E6%A8%99+%E8%AE%8A%E6%9B%B4&rlz=1C1CHBF_zh-TWTW975TW975&oq=CSS+%E6%B8%B8%E6%A8%99+%E8%AE%8A%E6%9B%B4&aqs=chrome..69i57j0i546l3.7847j0j15&sourceid=chrome&ie=UTF-8)
+    - [x]  按鈕 disabled 時，游標過去會是禁止圖案
 - [ ]  [[CSS] 製作滑鼠移過去後圖片放大效果|](https://www.google.com/search?q=%E6%8A%8A%E6%BB%91%E9%BC%A0%E8%AE%8A%E5%9C%96%E7%89%87+CSS&rlz=1C1CHBF_zh-TWTW975TW975&sxsrf=APq-WBtJoVnzryRGvt8qbwaXCF0R6cEyyg%3A1646624228721&ei=5H0lYoG4K4_1wAOMrquADg&ved=0ahUKEwiBuuyhibP2AhWPOnAKHQzXCuAQ4dUDCA4&uact=5&oq=%E6%8A%8A%E6%BB%91%E9%BC%A0%E8%AE%8A%E5%9C%96%E7%89%87+CSS&gs_lcp=Cgdnd3Mtd2l6EAM6BQgAEIAEOggILhCABBCxAzoLCC4QgAQQxwEQrwE6CwgAEIAEELEDEIMBOgQIIxAnOg4ILhCABBCxAxCDARDUAjoICAAQgAQQsQM6CAguEIAEENQCOgUILhCABDoECAAQDToFCAAQogQ6BQghEKABSgQIQRgASgQIRhgAUABY_lNg71VoAHABeACAAWCIAbsOkgECMzGYAQCgAQHAAQE&sclient=gws-wiz)
 - [ ]  增加一個輸入管理者密碼的欄位，如果密碼對了才可以刪後台產品
     - [ ]  新增 .env.local 檔案，VUE_APP_PASSWORD=密碼
@@ -148,10 +128,12 @@ psdk55052004@gmail.com
     
 - [ ]  更新 `README.md`
 
-下一個專案的發想
+### 下一個專案的發想
 
 ---
 
 - 想將LOGO做成橫的，不要太高，每頁都可以做個 Banner
     
     ![chrome_R5dEWDxK2M.gif](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bae3faaf-a88c-46e7-a606-6f9d8041532f/chrome_R5dEWDxK2M.gif)
+    
+- **WooCommerce 小技巧 – 2 種方式做出懸浮購物車、迅速結帳**
