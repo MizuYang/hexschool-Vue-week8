@@ -28,7 +28,7 @@
                   badge
                   rounded-pill
                   bg-danger
-                  cartQty
+                  cartQtyRwd
                 ">
                 {{ cartData.length }}
               </span>
@@ -193,7 +193,7 @@ export default {
 
   mounted () {
     this.getCartList()
-    //* 新增或刪除產品時會重新更新產品數量 product、cart
+    //* 更新產品數量 product、cart
     this.emitter.on('get_cart', () => {
       this.getCartList()
     })
@@ -203,7 +203,7 @@ export default {
         this.currentPage(page)
       })
     })
-    //* 產品頁面 按收藏時，愛心會變化
+    //* 產品頁面按收藏，愛心圖示會變化
     this.emitter.on('get_collect', (collectData) => {
       this.collect_data = collectData
     })

@@ -6,13 +6,23 @@
     <CartNoOrder v-if="cartData.length === 0" />
     <div v-else>
       <CartTimeLine />
-      <button
-                type="button"
-                class="btn btn-outline-danger active_bigger animation_hover d-block ms-auto mb-3"
-                @click="openDeleteModal">
-                全部刪除
-              </button>
-      <table class="table table-hover align-middle text-center text-primary">
+      <div class="d-flex mb-2">
+        <button
+            v-if="checkbox_productId.length > 0"
+            type="button"
+            class="btn btn-outline-danger active_bigger animation_hover position-relative"
+            @click="openDeleteModal(product,'勾選刪除')">
+            刪除
+            <span class="badge position-absolute bg-danger top-0 start-100 translate-middle rounded-pill">{{ checkbox_productId.length }}</span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger active_bigger animation_hover d-block ms-auto"
+          @click="openDeleteModal">
+          全部刪除
+        </button>
+       </div>
+      <table class="table table-hover align-middle text-center text-primary d-none d-lg-table">
         <thead class="table-dark text-primary">
             <tr>
               <th style="width: 50px">
@@ -93,49 +103,94 @@
               </td>
             </tr>
         </tbody>
-
       </table>
-         <div class="d-lg-flex mb-3 d-none d-lg-block">
-               <button
-                v-if="checkbox_productId.length > 0"
-                type="button"
-                class="btn btn-outline-danger active_bigger animation_hover btn-lg position-relative"
-                @click="openDeleteModal(product,'勾選刪除')">
-                刪除
-                <span class="badge position-absolute bg-danger top-0 start-100 translate-middle rounded-pill">{{ checkbox_productId.length }}</span>
-              </button>
-<p class="ms-auto me-lg-5 me-xl-7 me-xxl-9">{{ $thousandths(total) }} 元</p>
+      <div class="border p-2 position-relative mb-3 d-lg-none" v-for="(product, index) in cartData" :key="product.id" :class="{ 'finalSteps-bg': product.checkbox }">
+          <p class="text-center border-bottom pb-1">{{ index + 1 }}. {{ product.product.title }}</p>
+          <div class="d-flex justify-content-center">
+            <div class="my-auto">
+            <input
+              type="checkbox"
+              v-model="product.checkbox"
+              @click="checkboxGetProductId(product.checkbox, product.id)"
+              class="form-check-input bg-dark border me-2"/>
+          <input
+              type="button"
+              class="btn btn-outline-danger active_bigger position-absolute top-0 end-0"
+              @click="openDeleteModal(product, '刪除單一產品')"
+              value="X"/>
+          </div>
+          <div>
+            <router-link
+                  :to="`/user/one_product/${product.product_id}`"
+                  class="
+                    product_img product_imgRwd
+                    card-img-top
+                    animation_hover
+                    d-block me-2
+                    text-decoration-none
+                    img_hover img-fluid" :style="{ backgroundImage: `url(${product.product.imageUrl})` }">
+                  <div class="text-start">
+                    <span type="button" class="badge bg-primary text-dark tag" title="篩選類別">
+                      {{ product.product.category }}
+                    </span>
+                  </div>
+                  <img class="product_info" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
+            </router-link>
+          </div>
+          <div class="d-flex flex-column ">
+            <p>類別：{{ product.product.category }}</p>
+            <div class="d-flex">
+              <del class="opacity-50"
+              >${{ product.product.origin_price }}</del>
+              <br />
+              <strong><span class="fs-5 ms-3">
+                $ {{ product.product.price }} </span></strong>
             </div>
-            <div class="d-lg-flex justify-content-between mb-3 finalSteps-bg d-none d-lg-block">
-              <router-link
-                to="/user/products"
-                class="btn btn-secondary fs-4 active_bigger animation_hover"
-                >上一頁</router-link>
-                <div class="d-flex">
-                  <p class="mt-auto me-5">購買了 <span class="fs-4">{{ cartData.length }}</span> 個產品</p>
-                  <p class="mt-auto me-5">總金額：<span class="fs-4 fw-bold">{{ $thousandths(total) }} </span> 元</p>
-                      <router-link
-                  to="/user/checkout"
-                  class="btn btn-danger fs-4 sendOrderBtn rwd_hide">
-                  下一步</router-link>
-                </div>
+                <p>小計：{{ $thousandths(product.total) }} 元</p>
+            <div class="d-flex  mt-auto">
+                    <input type="button" class="btn productsQtyBtn btn-outline-primary active_bigger"
+                    value="－" :disabled="product.qty <= 1" @click="updateProductQty('cut', product)"/>
+                    <input
+                      type="text"
+                      class="productsQtyText mx-1 fs-4"
+                      :value="product.qty" readonly/>
+                    <input
+                      type="button"
+                      class="btn productsQtyBtn btn-outline-primary active_bigger"
+                      value="＋"
+                      @click="updateProductQty('add', product)"/>
             </div>
-
+          </div>
+          </div>
+      </div>
+      <div class="d-lg-flex justify-content-between mb-3 finalSteps-bg d-none d-lg-block">
+        <router-link
+          to="/user/products"
+          class="btn btn-secondary fs-4 active_bigger animation_hover">上一頁
+        </router-link>
+        <div class="d-flex">
+          <p class="mt-auto me-5">購買了 <span class="fs-4">{{ cartData.length }}</span> 個產品</p>
+          <p class="mt-auto me-5">總金額：<span class="fs-4 fw-bold">{{ $thousandths(total) }} </span> 元</p>
+          <router-link
+            to="/user/checkout"
+            class="btn btn-danger fs-4 sendOrderBtn rwd_hide">下一步
+          </router-link>
+        </div>
+      </div>
     </div>
   </div>
-
 <div class=" d-lg-none text-center mt-5">
-<p class="mt-auto me-5 finalSteps-bg w-100 mb-0">購買了 <span class="fs-4">{{ cartData.length }}</span> 個產品</p>
-                  <p class="mt-auto me-5 finalSteps-bg w-100 mb-0">總金額：<span class="fs-4 fw-bold">{{ $thousandths(total) }} </span> 元</p>
+  <p class="mt-auto me-5 finalSteps-bg w-100 mb-0">購買了 <span class="fs-4">{{ cartData.length }}</span> 個產品</p>
+  <p class="mt-auto me-5 finalSteps-bg w-100 mb-0">總金額：<span class="fs-4 fw-bold">{{ $thousandths(total) }} </span> 元</p>
   <router-link
       v-if="cartData.length > 0"
       to="/user/checkout"
-      class="btn btn-danger sendOrderBtn fs-4 w-100">
-  下一步</router-link>
-              <router-link
-                to="/user/products"
-                class="btn btn-secondary fs-4 active_bigger animation_hover w-100 my-5"
-                >上一頁</router-link>
+      class="btn btn-danger sendOrderBtn fs-4 w-100">下一步
+  </router-link>
+  <router-link
+    to="/user/products"
+    class="btn btn-secondary fs-4 active_bigger animation_hover w-100 my-5">上一頁
+  </router-link>
 </div>
 <SwiperCartOneProduct class="mb-5" @getCartList="getCartList" :cartData="cartData" />
 <CartDeleteProductModal @getCartList="getCartList" />

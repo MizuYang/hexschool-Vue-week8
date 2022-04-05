@@ -10,9 +10,13 @@
         margin: 0;
         font-size: 1.1rem;
     }
+    @media (max-width:1024px) {
+        margin: 0;
+        font-size: 1rem;
+    }
 }
 .navbar {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgb(0, 0, 0);
     @include xs {
         padding-bottom: .7rem;
     }
@@ -57,12 +61,11 @@
 .navbar-toggler .bi::before{
     font-size: 3rem;
 }
-//* 凸顯當前頁面
 .currentPage{
     border-bottom: 3px solid #f1ebd8;
     transform: scale(1.1);
 }
-.cartQty{
+.cartQtyRwd{
     margin-top: .6rem;
     @include xs {
         font-size: .7rem;

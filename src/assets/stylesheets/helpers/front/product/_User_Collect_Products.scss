@@ -52,16 +52,23 @@
     left: 0%;
     width: 100%;
     background-repeat: no-repeat;
-    height: calc(105%);
+    height: 63rem;
     @include xs {
         background-position: 40% 60%;
-        height: calc(105%);
+        height: 76rem;
     }
     @include md {
         background-position: 55% 55%;
+        height: 65rem;
     }
     @include xxl {
         background-position: 55% 35%;
+    }
+    @media (min-width:1536px) {
+        height: 60rem;
+    }
+    @media (min-width:2752px) {
+        height: 63.1rem;
     }
 }
 //* 調整 "查看更多" 圖片位置

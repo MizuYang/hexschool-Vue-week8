@@ -23,23 +23,13 @@ p{
     width: 100%;
     opacity: .5;
     @include xs {
-        top: 20%;
-        background-position: 70%;
-    }
-    @include sm {
-        top: 0%;
+        display: none;
     }
     @include md {
         background-position: 70%;
+        height: 70rem;
     }
-    @include lg {
-        top: 0;
-    }
-    @media (min-width: 1401px) {
-        left: 0;
-        width: 100%;
-        height: calc(101%);
-        top: 0;
-        background-position:  0% 40%;
+    @media (min-width: 1536px) {
+        height: 65rem;
     }
 }

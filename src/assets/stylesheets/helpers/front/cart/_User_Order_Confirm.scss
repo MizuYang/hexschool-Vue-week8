@@ -8,13 +8,10 @@
     color: green;
 }
 .table{
-  @include xs {
-    width: 30rem;
-  }
-  @include sm {
-    width: 90%;
-  }
   @include lg {
     width: 50%;
   }
+}
+.table > :not(caption) > * > * {
+  padding: .5rem 0;
 }

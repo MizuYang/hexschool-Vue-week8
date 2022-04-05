@@ -7,7 +7,7 @@
       class="
         d-flex
         align-items-center
-        justify-content-sm-center
+        justify-content-center
         d-md-none
         border
         mb-3

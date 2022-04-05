@@ -23,17 +23,16 @@
     left: 0;
     @include xs {
       top: 10%;
-      background-repeat: no-repeat;
-      height: calc(200%);
-    }
-    @include sm {
-      height: calc(170%);
+      height: 102rem;
     }
     @include md {
-      height: calc(155%);
+      height: 102rem;
     }
     @include xxl {
       height: calc(105%);
+    }
+    @media (min-width: 1536px) {
+      height: 65rem;
     }
   }
   

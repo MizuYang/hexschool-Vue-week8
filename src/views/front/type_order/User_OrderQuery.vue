@@ -99,6 +99,8 @@
 
 <script>
 export default {
+  inject: ['emitter'],
+
   data () {
     return {
       isLoading: false,
@@ -165,6 +167,10 @@ export default {
 
   mounted () {
     document.querySelector('.order_id_text').focus()
+    this.emitter.on('queryOrder', (orderId) => {
+      this.order_id = orderId
+      this.getAllOrder()
+    })
   }
 }
 </script>

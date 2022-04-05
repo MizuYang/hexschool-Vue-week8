@@ -1,121 +1,117 @@
 <template>
   <div class="container mt-8 mt-sm-10 mb-5 ">
     <h2 class="title text-center mb-5 pt-3">
-      <span class="decorate">確認訂單資料</span>
+      <span class="decorate">確認訂單</span>
     </h2>
     <CartTimeLine :is_pay="is_pay" />
-      <h3 class="text-center pb-2 border-bottom mb-5 ">
+      <h3 class="text-center pb-2 border-bottom mb-5">
         <span class=" fs-5 fw-bold" v-if="!is_pay">
           請確認您的資料無誤後付款 <span class=" text-danger">( 未付款 )</span>
         </span>
         <span class="badge text-success fs-5 fw-bold" v-else style="background-color: #D0E838;">已付款 <i class="bi bi-check2"></i></span>
       </h3>
-      <div class="table-responsive">
-          <table class="table mx-auto align-middle mb-5 text-primary">
-            <tbody>
-              <tr>
-                  <th>
-                    <span class="fs-5">
-                        訂單編號
-                    </span>
-                  </th>
-                  <th>
-                    <span class="fw-bold border-bottom id"> {{ order.id }} </span>
-                    <button type="button" class="btn btn-outline-primary btn-sm ms-2 tag-read" :data-clipboard-text="orderId" @click="copy">
-                      複製
-                      <span class="copy_point ms-2 text-success badge bg-primary" :class="{ 'd-none': !copy_point }"><i class="bi bi-check-lg"></i></span>
-                    </button>
-                  </th>
-              </tr>
-              <tr>
-                  <th>
-                    <span class="fs-5">訂購日期</span>
-                  </th>
-                  <td>
-                      {{ create_at }}
-                  </td>
-              </tr>
-              <tr>
-                  <th>
-                    <span class="fs-5">姓名</span>
-                  </th>
-                  <td>
-                      {{ order_user.name }}
-                  </td>
-              </tr>
-              <tr>
-                  <th>
-                    <span class="fs-5">Email</span>
-                  </th>
-                  <td>
-                      {{ order_user.email }}
-                  </td>
-              </tr>
-              <tr>
-                  <th>
-                    <span class="fs-5">電話</span>
-                  </th>
-                  <td>
-                      {{ order_user.tel }}
-                  </td>
-              </tr>
-              <tr>
-                  <th>
-                    <span class="fs-5">地址</span>
-                  </th>
-                  <td>
-                    {{ order_user.address }}
-                  </td>
-              </tr>
-              <tr>
-                  <th>
-                    <span class="fs-5">訂購產品</span>
-                  </th>
-                  <td>
-                    <ul class="list-unstyled">
-                      <li v-for="product in order.products" :key="product">
-                        <span class="mb-1"
-                          >{{ product.product.title }} x {{ product.qty }}
-                        </span>
-                      </li>
-                    </ul>
-                  </td>
-              </tr>
-              <tr>
-                  <th>
-                    <span class="fs-5">付款金額</span>
-                  </th>
-                  <td>
-                    {{ $thousandths(order.total) }} 元
-                  </td>
-              </tr>
-              <tr>
-                  <th>
-                    <span class="fs-5">付款方式</span>
-                  </th>
-                  <td>
-                      {{ order_user.pay_method }}
-                  </td>
-              </tr>
-              <tr>
-                  <th>
-                    <span class="fs-5">付款狀態</span>
-                  </th>
-                  <td>
-                    <span
-                      class="fw-bold text-danger fs-5"
-                      v-if="!is_pay"
-                    >
-                      未付款
-                    </span>
-                    <span class="badge text-success fs-5" v-else
-                      >已付款 <i class="bi bi-check2"></i></span
-                    >
-                  </td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="mb-3 text-center">
+        <span>
+            訂單
+        </span>
+        <span class="border-bottom"> {{ order.id }} </span>
+        <button type="button" class="btn btn-outline-primary btn-sm ms-2 tag-read" :data-clipboard-text="orderId" @click="copy">
+          複製
+          <span class="copy_point text-success badge bg-primary" :class="{ 'd-none': !copy_point }"><i class="bi bi-check-lg"></i></span>
+        </button>
       </div>
+      <table class="table mx-auto align-middle mb-5 text-primary">
+        <tbody>
+          <tr>
+          </tr>
+          <tr>
+              <th>
+                <span class="fs-5">訂購日期</span>
+              </th>
+              <td>
+                  {{ create_at }}
+              </td>
+          </tr>
+          <tr>
+              <th>
+                <span class="fs-5">姓名</span>
+              </th>
+              <td>
+                  {{ order_user.name }}
+              </td>
+          </tr>
+          <tr>
+              <th>
+                <span class="fs-5">Email</span>
+              </th>
+              <td>
+                  {{ order_user.email }}
+              </td>
+          </tr>
+          <tr>
+              <th>
+                <span class="fs-5">電話</span>
+              </th>
+              <td>
+                  {{ order_user.tel }}
+              </td>
+          </tr>
+          <tr>
+              <th>
+                <span class="fs-5">地址</span>
+              </th>
+              <td>
+                {{ order_user.address }}
+              </td>
+          </tr>
+          <tr>
+              <th>
+                <span class="fs-5">訂購產品</span>
+              </th>
+              <td>
+                <ul class="list-unstyled">
+                  <li v-for="product in order.products" :key="product">
+                    <span class="mb-1"
+                      >{{ product.product.title }} x {{ product.qty }}
+                    </span>
+                  </li>
+                </ul>
+              </td>
+          </tr>
+          <tr>
+              <th>
+                <span class="fs-5">付款金額</span>
+              </th>
+              <td>
+                {{ $thousandths(order.total) }} 元
+              </td>
+          </tr>
+          <tr>
+              <th>
+                <span class="fs-5">付款方式</span>
+              </th>
+              <td>
+                  {{ order_user.pay_method }}
+              </td>
+          </tr>
+          <tr>
+              <th>
+                <span class="fs-5">付款狀態</span>
+              </th>
+              <td>
+                <span
+                  class="fw-bold text-danger fs-5"
+                  v-if="!is_pay"
+                >
+                  未付款
+                </span>
+                <span class="badge text-success fs-5" v-else
+                  >已付款 <i class="bi bi-check2"></i></span
+                >
+              </td>
+          </tr>
+        </tbody>
+      </table>
       <button
         type="button"
         class="

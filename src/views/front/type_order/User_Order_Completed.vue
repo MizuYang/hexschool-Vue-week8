@@ -8,7 +8,7 @@
   <div>
       <div class="text-center mt-3">
           <h3>感謝您的訂購 <span class="fw-bold">(已付款)</span> </h3>
-          <p>請妥善保管您的訂單編號： <span class=" fw-bold border-bottom id"> {{ order_Id }} </span>
+          <p>請妥善保管您的訂單編號：<span class=" fw-bold border-bottom id">{{ order_Id }}</span>
           <button type="button" class="btn btn-outline-primary btn-sm ms-2 tag-read" :data-clipboard-text="order_Id" @click="copy">
             複製
             <span class="copy_point ms-2 text-success badge bg-primary" :class="{ 'd-none': !copy_point }"><i class="bi bi-check-lg"></i></span>
@@ -58,10 +58,10 @@
               send-btn
               active_bigger
               fs-4
-              animation_hover
+              animation_hover mt-1 mt-sm-0
             "
             title="查詢訂單"
-            @click="$router.push('/user/query_order')"
+            @click="queryOrder(order_Id)"
           >
             <i class="bi bi-cart4"></i>
             訂單查詢
@@ -121,6 +121,12 @@ export default {
         this.$httpMessageState(false, '該瀏覽器不支援，複製')
         clipboard.destroy()
       })
+    },
+    queryOrder (orderId) {
+      setTimeout(() => {
+        this.emitter.emit('queryOrder', orderId)
+      }, 1000)
+      this.$router.push('/user/query_order')
     }
   },
 

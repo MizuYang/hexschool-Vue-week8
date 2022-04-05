@@ -1,7 +1,7 @@
 <template>
-  <div class="banner_main  img-fluid"></div>
-  <div class="contact container  mt-8 mt-sm-10">
-    <h2 class="title text-center mb-10 pt-3">
+  <div class="banner_main img-fluid"></div>
+  <div class="contact container mt-8 mt-sm-10">
+    <h2 class="title text-center mb-5 pt-3">
       <span class="decorate">連絡我們</span>
     </h2>
     <div class="row justify-content-center form-container">
@@ -40,7 +40,6 @@
           </Field>
           <ErrorMessage name="信箱" class="invalid-feedback"></ErrorMessage>
         </div>
-
         <div class="mb-1">
           <label for="tel" class="form-label">電話</label>
           <Field
@@ -95,7 +94,7 @@
           ></Field>
           <ErrorMessage name="留言" class="invalid-feedback"></ErrorMessage>
         </div>
-        <div class="text-end">
+        <div class="text-center">
           <button
             type="submit"
             class="btn btn-danger send-btn mb-4"
@@ -131,10 +130,9 @@ export default {
   },
 
   methods: {
-    //* 電話驗證
     isPhone (value) {
       const phoneNumber = /^(09)[0-9]{8}$/
-      return phoneNumber.test(value) ? true : '請輸入 09 開頭的正確電話號碼'
+      return phoneNumber.test(value) ? true : '*請輸入 09 開頭的正確電話號碼'
     },
     sendQuestion () {
       this.isLoading = true

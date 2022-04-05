@@ -65,7 +65,7 @@
       </div>
       <div class="text-end mb-sm-5 mb-3 search d-flex">
       <button type="button" class="btn btn-outline-primary hideTool" @click="categoryToggle=!categoryToggle">隱藏工具</button>
-        <label for="searchText"><i class="bi bi-search me-2" v-if="!categoryToggle"></i></label>
+        <label for="searchText"><i class="bi bi-search me-2 bg-dark px-1 fs-4 border" v-if="!categoryToggle"></i></label>
         <input
           type="search"
           id="searchText"

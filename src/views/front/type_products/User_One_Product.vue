@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-10 mb-5">
+  <div class="container mt-9 mt-md-10 mb-5">
     <h2 class="title text-center mb-5 ">
       <span class="decorate"> <span class="">{{ product.title }}</span> </span>
     </h2>

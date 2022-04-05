@@ -15,11 +15,29 @@
     position: absolute;
     z-index: -1;
     @include xs {
-        top: 20%;
+        top: 0%;
         background-size: cover;
+        height: 85rem;
     }
     @include sm {
         top: 0%;
+        background-size: cover;
+        height: 85rem;
+    }
+    @include md {
+        height: 75rem;
+    }
+    @media (min-width: 1024px) {
+        height: 86rem;
+    }
+    @media (min-width: 1536px) {
+        height: 69rem;
+    }
+    @media (min-width: 2752px) {
+        height: 72rem;
+    }
+    @media (min-width: 3440px) {
+        height: 90rem;
     }
 }
 .form-container {
@@ -37,6 +55,9 @@
 }
 .invalid-feedback {
     color: red;
+    font-weight: bold;
+    font-style: italic;
+    background: rgba(0, 0, 0, 0.531);
     display: inline;
     padding: 0.1rem;
 }

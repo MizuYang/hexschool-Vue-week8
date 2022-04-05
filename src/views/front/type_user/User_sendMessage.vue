@@ -1,9 +1,9 @@
 <template>
-  <div class="container mt-10 ">
+  <div class="container mt-10">
     <h2 class="title text-center pt-sm-3">
       <span class="decorate mb-5">連絡我們</span>
     </h2>
-    <div class="text-center d-flex mb-5 flex-wrap ">
+    <div class="text-center d-flex mb-5 flex-wrap">
         <div class="content">
           <div  class=" banner img-fluid row" alt="banner"></div>
         </div>
