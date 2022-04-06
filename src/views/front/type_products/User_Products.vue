@@ -77,8 +77,8 @@
     </div>
     <div class="card-group">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-        <div
-          class="card text-primary bg-dark col"
+        <button type="button" @click.prevent="goToOneProduct(`${product.id}`,$event)"
+          class="card text-primary bg-dark col d-block text-start"
           data-aos="fade-up"
           aos-delay="1000"
           data-aos-once="true"
@@ -95,7 +95,7 @@
               img-fluid
               mx-auto w-100"
             :style="{ backgroundImage: `url(${product.imageUrl})` }">
-            <button
+            <button data-clickType="btn"
               type="button"
               class="badge text-decoration-none categoryBtn"
               title="篩選類別"
@@ -106,16 +106,16 @@
               class="product_info img-fluid"
               alt="顯示產品細節"
               src="@/assets/imageUrl/images/product_info.png"/>
-            <button
+            <button data-clickType="btn"
               type="button"
               class="badge animation_hover collect_btn"
               :class="`collect_btn${index}`"
               title="加入收藏"
               @click.prevent="toggleCollect(product.id, index)" >
               <span v-if="collect.includes(product.id)">
-                <i class="bi bi-heart-fill fs-5" style="color: red"></i>
+                <i class="bi bi-heart-fill fs-5" style="color: red"  data-clickType="btn"></i>
               </span>
-              <i class="bi bi-heart-fill fs-5" v-else></i>
+              <i class="bi bi-heart-fill fs-5" v-else  data-clickType="btn"></i>
             </button>
             <!-- //* 收藏愛心特效 -->
             <i class="bi bi-heart-fill heart" :class="`heart${index}`"></i>
@@ -142,7 +142,8 @@
                 >元</strong>
             </div>
             <div>
-              <button type="button" class="btn btn-danger text-white w-100 d-block addCartBtn animation_hover animation_active fs-5 mb-2"
+              <button data-clickType="btn"
+              type="button" class="btn btn-danger text-white w-100 d-block addCartBtn animation_hover animation_active fs-5 mb-2"
                 title="加入到購物車"
                 @click="addCart(product.id)">
                 <i class="bi bi-cart-check-fill"></i>
@@ -150,7 +151,7 @@
               </button>
             </div>
           </div>
-        </div>
+        </button>
       </div>
     </div>
   </div>
@@ -275,6 +276,14 @@ export default {
         this.category = {} //* 可以篩選一個類別同時再為那個類別排序低到高
       }
       this.category[category] = category
+    },
+    goToOneProduct (id, e) {
+      const btnCheck = e.target.getAttribute('data-clickType') === 'btn'
+      if (btnCheck) {
+        return '點擊的是按鈕'
+      } else if (!btnCheck) {
+        this.$router.push(`/user/one_product/${id}`)
+      }
     }
   },
   mounted () {

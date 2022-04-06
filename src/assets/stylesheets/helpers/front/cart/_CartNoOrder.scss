@@ -17,18 +17,15 @@
     opacity: .7;
     width: 100%;
     @include xs {
-        height: calc(175%);
-    }
-    @include sm {
-        height: calc(146%);
+        height: 106rem;
     }
     @include md {
-        height: calc(125%);
+        height: 100rem;
     }
-    @include xl {
-        height: calc(127%);
+    @media (min-width:1024px) {
+        height: 87rem;
     }
-    @include xxl {
-        height: calc(125%);
+    @media (min-width:1536px) {
+        height: 77rem;
     }
 }

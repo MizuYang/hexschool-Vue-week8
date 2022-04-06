@@ -95,8 +95,11 @@
     }
 }
 //* 顯示 "查看更多"
-.product_img:hover .product_info {
+.product_img:hover, .card:hover .product_info {
     display: block;
+}
+.card:hover .product_img{
+    transform: scale(1.05);
 }
 .searchText {
     width: 50%;

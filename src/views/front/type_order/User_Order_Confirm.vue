@@ -14,7 +14,7 @@
         <span>
             訂單
         </span>
-        <span class="border-bottom"> {{ order.id }} </span>
+        <button type="button" class="btn btn-outline text-primary border-bottom tag-read" :data-clipboard-text="orderId" @click="copy"> {{ order.id }} </button>
         <button type="button" class="btn btn-outline-primary btn-sm ms-2 tag-read" :data-clipboard-text="orderId" @click="copy">
           複製
           <span class="copy_point text-success badge bg-primary" :class="{ 'd-none': !copy_point }"><i class="bi bi-check-lg"></i></span>

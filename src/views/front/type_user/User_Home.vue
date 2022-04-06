@@ -28,7 +28,7 @@
                   "
                   to="/user/about"
                   title="查看品牌故事"
-                  @click="current('about')"
+                  @click="currentPage('about')"
                   >想聽他們的故事</router-link
                 >
               </li>
@@ -73,7 +73,7 @@
           <router-link
           to="/user/products"
           class="btn btn-outline-primary  animation_hover fs-5 relative animationHightLight"
-          @click="current('productList')"
+          @click="currentPage('products')"
           >
             現在，就想吃
           </router-link>
@@ -97,7 +97,7 @@
     <router-link
         to="/user/products"
         class="btn btn-outline-primary animation_hover fs-5"
-        @click="current('productList')"
+        @click="currentPage('products')"
       >
         <i class="bi bi-shop"></i> 查看所有產品
     </router-link>
@@ -122,13 +122,14 @@ export default {
 
   methods: {
     //* Navbar 的 active 效果
-    current (page) {
+    currentPage (page) {
       emitter.emit('currentPage', page)
     },
     toProductsCategory (category) {
       this.$router.push('/user/products')
       setTimeout(() => {
         emitter.emit('toProductsCategory', category)
+        emitter.emit('currentPage', 'products')
       })
     }
   }

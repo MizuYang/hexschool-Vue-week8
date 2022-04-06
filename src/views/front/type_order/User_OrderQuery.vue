@@ -31,7 +31,7 @@
         <div class="col-12 col-xxl-4">
           <ul class="list-unstyled p-5 border">
             <li><h3 class="border-bottom pb-2">訂單資料</h3></li>
-            <li>訂單編號：{{ queryOrder[0]?.id }}</li>
+            <li class="mx-auto">訂單編號：<p style="width:250px">{{ queryOrder[0]?.id }}</p></li>
             <li>購買日期：{{ create_at }}</li>
             <li>付款方式：{{ order_user.pay_method }}</li>
             <li class="mb-3">
@@ -75,10 +75,12 @@
             <li
               v-for="product in order_products"
               :key="product.id"
-              class="mb-1"
+              class="py-2 lh-1 border-bottom"
             >
-              {{ product.product.title }} * {{ product.qty }} / 單價
-              {{ product.product.price }} 元
+              <p>{{ product.product.title }} * {{ product.qty }}</p>
+              <p>單價：{{ product.product.price }} 元</p>
+              <p v-if="product.total > product.final_total">小計：{{ product.final_total }} 元 <span class="text-success fw-bold">(優惠券)</span></p>
+              <p v-else>小計：{{ product.total }} 元</p>
             </li>
             <li class="border-top pt-2" v-if="queryOrder[0]?.total">總金額：{{ $thousandths(queryOrder[0]?.total) }} 元</li>
           </ul>
@@ -110,9 +112,7 @@ export default {
       order_user: [],
       order_products: [],
       create_at: '',
-      is_pay: '',
-      total: '',
-      coupon: false
+      is_pay: ''
     }
   },
 

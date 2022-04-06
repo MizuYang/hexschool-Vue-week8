@@ -77,8 +77,8 @@
           <li class="nav-item me-4">
             <router-link
               to="/user/products"
-              class="nav-link productList"
-              @click="currentPage('productList')"
+              class="nav-link products"
+              @click="currentPage('products')"
               >產品列表</router-link
             >
           </li>
@@ -117,8 +117,8 @@
           <li class="nav-item me-4">
             <router-link
               to="/user/favorite"
-              class="nav-link favorite"
-              @click="currentPage('favorite')"
+              class="nav-link collect"
+              @click="currentPage('collect')"
               title="收藏商品頁面">
             <span v-if="collect_data.length > 0">
               <i class="bi bi-heart-fill fs-3" style="color:red"></i>
@@ -129,8 +129,8 @@
           <li class="nav-item me-4">
             <router-link
               to="/user/cart"
-              class="nav-link cart position-relative"
-              @click="currentPage('cart')"
+              class="nav-link carts position-relative"
+              @click="currentPage('carts')"
               title="購物車"
             >
               <span

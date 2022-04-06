@@ -8,7 +8,8 @@
   <div>
       <div class="text-center mt-3">
           <h3>感謝您的訂購 <span class="fw-bold">(已付款)</span> </h3>
-          <p>請妥善保管您的訂單編號：<span class=" fw-bold border-bottom id">{{ order_Id }}</span>
+          <p>請妥善保管您的訂單編號：
+          <button type="button" class="btn btn-outline text-primary fw-bold border-bottom id tag-read" :data-clipboard-text="order_Id" @click="copy">{{ order_Id }}</button>
           <button type="button" class="btn btn-outline-primary btn-sm ms-2 tag-read" :data-clipboard-text="order_Id" @click="copy">
             複製
             <span class="copy_point ms-2 text-success badge bg-primary" :class="{ 'd-none': !copy_point }"><i class="bi bi-check-lg"></i></span>
