@@ -5,7 +5,9 @@
     </h2>
     <template v-if="collectData.length > 0">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 mb-5">
-        <button type="button" @click.prevent="goToOneProduct(`${product[0].id}`,$event)" class="card text-primary bg-dark col mb-md-4 d-block"  v-for="(product, index) in collectData" :key="product.id">
+        <button type="button" @click.prevent="goToOneProduct(`${product[0].id}`,$event)" class="card text-primary bg-dark col mb-md-4 d-block"
+          v-for="(product, index) in collectData" :key="product.id"
+          @mouseover="hightLight(`${index}`, 'open')" @mouseleave="hightLight(`${index}`, 'close')">
             <router-link  :to="`/user/one_product/${product[0].id}`" class="product_img card-img-top animation_hover d-block text-decoration-none img-fluid" title="查看產品細節"
             :style="{ backgroundImage: `url(${product[0].imageUrl})` }">
             <img class="product_info img-fluid" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
@@ -26,6 +28,7 @@
                     <strong>優惠價<u class="text-danger text-end fs-4"> {{product[0].price}} </u>元</strong>
                 </div>
                 <button type="button" class="btn btn-danger text-white w-100 d-block addCart animation_hover animation_active fs-5" title="將收藏產品加入購物車"
+                    :class="`hoverHightLight${index}`"
                     @click="addCart(product[0].id)" data-clickType="btn">
                     <i class="bi bi-cart-check-fill fs-5"></i>
                     加入購物車
@@ -151,6 +154,14 @@ export default {
         return '點擊的是按鈕'
       } else if (!btnCheck) {
         this.$router.push(`/user/one_product/${id}`)
+      }
+    },
+    hightLight (index, status) {
+      const addBtn = document.querySelector(`.hoverHightLight${index}`)
+      if (status === 'open') {
+        addBtn.classList.add('hoverHightLight')
+      } else if (status === 'close') {
+        addBtn.classList.remove('hoverHightLight')
       }
     }
   },

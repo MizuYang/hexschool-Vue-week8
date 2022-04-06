@@ -303,9 +303,11 @@
     &:hover .product_info{ //* 顯示 "查看更多"
         display: block;
     }
-    &:hover .card-footer,&:hover .card-body{
-        // background: rgba(59, 18, 18, 0.228);
+    &:hover .card-title{
         font-weight: bold;
+    }
+    &:hover .card-footer, &:hover .card-body {
+        background: rgba(71, 14, 14, 0.72);
     }
     &:hover .product_img{
         transform: scale(1.02);

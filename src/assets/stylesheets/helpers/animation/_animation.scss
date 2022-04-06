@@ -72,11 +72,11 @@
 .btnActive {
     animation: btnActive 1s ease infinite;
 }
-//* 購物車縮放
+//* 加入購物車縮放
 @keyframes hoverHightLight {
     0% {
-        transform: scale(1.02);
-        background: #c43218af;
+        transform: scale(1.03);
+        background: #c43218c1;
     }
 }
 .hoverHightLight {

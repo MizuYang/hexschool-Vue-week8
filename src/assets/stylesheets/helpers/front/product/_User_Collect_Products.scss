@@ -19,6 +19,7 @@
 }
 .card-body {
     margin-bottom: 5%;
+    border-bottom: 0.1rem solid rgba(170, 1, 1, 0.678);
 }
 .badge {
     position: absolute;
@@ -72,9 +73,6 @@
 }
 .title{
     margin-top: 0;
-}
-.card-body{
-    border-bottom: 0.1rem solid rgba(170, 1, 1, 0.678);
 }
 .heartbreak{
     top: -130%;
