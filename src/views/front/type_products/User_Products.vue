@@ -79,6 +79,8 @@
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
         <button type="button" @click.prevent="goToOneProduct(`${product.id}`,$event)"
           class="card text-primary bg-dark col d-block text-start"
+          @mouseover="hightLight(`${index}`, 'open')"
+          @mouseleave="hightLight(`${index}`, 'close')"
           data-aos="fade-up"
           aos-delay="1000"
           data-aos-once="true"
@@ -143,7 +145,7 @@
             </div>
             <div>
               <button data-clickType="btn"
-              type="button" class="btn btn-danger text-white w-100 d-block addCartBtn animation_hover animation_active fs-5 mb-2"
+              type="button" class="btn btn-danger text-white w-100 d-block addCartBtn animation_hover animation_active fs-5 mb-2" :class="`hoverHightLight${index}`"
                 title="加入到購物車"
                 @click="addCart(product.id)">
                 <i class="bi bi-cart-check-fill"></i>
@@ -182,7 +184,8 @@ export default {
       isLoading: false,
       category: {},
       heart_disabled: 0,
-      categoryToggle: false
+      categoryToggle: false,
+      hoverHightLight: false
     }
   },
 
@@ -283,6 +286,14 @@ export default {
         return '點擊的是按鈕'
       } else if (!btnCheck) {
         this.$router.push(`/user/one_product/${id}`)
+      }
+    },
+    hightLight (index, status) {
+      const addBtn = document.querySelector(`.hoverHightLight${index}`)
+      if (status === 'open') {
+        addBtn.classList.add('hoverHightLight')
+      } else if (status === 'close') {
+        addBtn.classList.remove('hoverHightLight')
       }
     }
   },

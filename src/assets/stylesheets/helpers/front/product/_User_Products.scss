@@ -94,13 +94,6 @@
         left: 12%;
     }
 }
-//* 顯示 "查看更多"
-.product_img:hover, .card:hover .product_info {
-    display: block;
-}
-.card:hover .product_img{
-    transform: scale(1.05);
-}
 .searchText {
     width: 50%;
 }
@@ -307,6 +300,19 @@
 }
 .card {
     overflow: hidden;
+    &:hover .product_info{ //* 顯示 "查看更多"
+        display: block;
+    }
+    &:hover .card-footer,&:hover .card-body{
+        // background: rgba(59, 18, 18, 0.228);
+        font-weight: bold;
+    }
+    &:hover .product_img{
+        transform: scale(1.02);
+    }
+}
+.hightLight{
+    display: none;
 }
 .heart {
     display: none;

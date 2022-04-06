@@ -1,6 +1,6 @@
 @import "@/assets/stylesheets/helpers/_rwdMixin.scss";
 //* 左右搖晃 + 變色
-@keyframes heightLight {
+@keyframes animationHightLight {
     0% {
         transform: rotate(3deg);
     }
@@ -23,7 +23,7 @@
     }
 }
 .animationHightLight {
-    animation: heightLight 2s ease infinite;
+    animation: animationHightLight 2s ease infinite;
 }
 //* 箭頭左右效果
 @keyframes arrowMoveLeft {
@@ -71,4 +71,15 @@
 }
 .btnActive {
     animation: btnActive 1s ease infinite;
+}
+//* 購物車縮放
+@keyframes hoverHightLight {
+    0% {
+        transform: scale(1.02);
+        background: #c43218af;
+    }
+}
+.hoverHightLight {
+    display: none;
+    animation: hoverHightLight 1.5s ease infinite;
 }
