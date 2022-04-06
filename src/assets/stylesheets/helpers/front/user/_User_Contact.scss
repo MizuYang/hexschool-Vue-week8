@@ -1,7 +1,6 @@
 .contact {
     position: relative;
     z-index: 1;
-    margin-bottom: 8rem;
 }
 .banner_main::before {
     background-image: url('https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/%E9%A0%81%E9%9D%A2%E5%9C%96%E7%89%87/%E8%81%AF%E7%B5%A1%E6%88%91%E5%80%91/%E8%81%AF%E7%B5%A1%E6%88%91%E5%80%91.png?raw=true');
@@ -17,7 +16,7 @@
     @include xs {
         top: 0%;
         background-size: cover;
-        height: 85rem;
+        height: 77rem;
     }
     @include sm {
         top: 0%;
@@ -25,16 +24,16 @@
         height: 85rem;
     }
     @include md {
-        height: 75rem;
+        height: 67rem;
     }
     @media (min-width: 1024px) {
         height: 86rem;
     }
     @media (min-width: 1536px) {
-        height: 69rem;
+        height: 61rem;
     }
     @media (min-width: 2752px) {
-        height: 72rem;
+        height: 63.1rem;
     }
     @media (min-width: 3440px) {
         height: 90rem;
