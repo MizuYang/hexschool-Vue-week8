@@ -29,8 +29,8 @@
       </div>
       <div class="row text-center">
         <div class="col-12 col-xxl-4">
-          <ul class="list-unstyled p-5 border">
-            <li><h3 class="border-bottom pb-2">訂單資料</h3></li>
+          <ul class="list-unstyled p-5 border  h-100">
+            <li><h3 class="border-bottom pb-2 ">訂單資料</h3></li>
             <li class="mx-auto">訂單編號：<p style="width:250px">{{ queryOrder[0]?.id }}</p></li>
             <li>購買日期：{{ create_at }}</li>
             <li>付款方式：{{ order_user.pay_method }}</li>
@@ -61,7 +61,7 @@
           </ul>
         </div>
         <div class="col-12 col-xxl-4">
-          <ul class="list-unstyled p-5 border">
+          <ul class="list-unstyled p-5 border  h-100">
             <li><h3 class="border-bottom pb-2">訂購人資料</h3></li>
             <li>姓名：{{ order_user.name }}</li>
             <li>手機：{{ order_user.tel }}</li>
@@ -70,7 +70,7 @@
           </ul>
         </div>
         <div class="col-12 col-xxl-4">
-          <ul class="list-unstyled p-5 border">
+          <ul class="list-unstyled p-5 border  h-100">
             <li><h3 class="border-bottom pb-2">購買產品</h3></li>
             <li
               v-for="product in order_products"
