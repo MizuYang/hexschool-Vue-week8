@@ -60,7 +60,7 @@
           class="btn btn-outline-primary animation_active mt-md-0 fs-7-rwd"
           @click="priceSort"
           :class="{ activeCategoryStatus : category['價格低到高'] }">
-          <i class="bi bi-cash-coin"></i>高到低
+          <i class="bi bi-cash-coin"></i> 高到低
         </button>
       </div>
       <div class="text-end mb-sm-5 mb-3 search d-flex">

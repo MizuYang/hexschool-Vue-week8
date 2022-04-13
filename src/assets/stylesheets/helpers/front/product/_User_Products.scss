@@ -170,7 +170,7 @@
 }
 @include md {
     .category {
-        top: 8.4%;
+        top: 8.35%;
         left: 4%;
         & button{
             font-size: 1.6rem;
@@ -190,7 +190,7 @@
         font-size: 1.5rem;
     }
     .hideTool{
-        top: 8.4%;
+        top: 8.35%;
         right: 3%;
         width: 5rem;
         height: 5rem;
@@ -239,22 +239,22 @@
 }
 @media (min-width: 1024px) {
     .category {
-        top: 4.9rem;
+        top: 4.85rem;
         left: -6.5%;
     }
     .search{
-        top: 5.4rem;
+        top: 5.35rem;
         height: 4rem;
-        left: 73%;
+        left: 73.5%;
     }
     .search-icon{
-        font-size: 2.5rem;
+        font-size: 2.1rem;
     }
     .searchText.searchText{
-        width: 39%;
+        width: 38%;
     }
     .hideTool{
-        top: 5.4rem;
+        top: 5.35rem;
         right: 0%;
     }
 }
