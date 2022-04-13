@@ -1,6 +1,7 @@
 這是我作品的 github pages https://mizuyang.github.io/hexschool-Vue-week8/ 小巷弄甜點電商
 
-你好，我為了這次的專案做了紀錄，目前還在緩慢更新中，此次上傳為作品初版，後續會在優化。 這次作品的過程，在我的部落格中都有記錄下來 https://equatorial-alloy-23b.notion.site/150ed9e5a4624c259bfaaa0bf1f23da2
+你好，我為了這次的專案做了紀錄，目前還在緩慢更新中，
+你可以在我的部落格查看完成作品的過程 https://equatorial-alloy-23b.notion.site/Vue-c56d16d8c5584847893e2733bb15e89c
 
 專案初版的結構 https://whimsical.com/vue-CJV2RXJ2QmzUewz4bvR1dU
 
