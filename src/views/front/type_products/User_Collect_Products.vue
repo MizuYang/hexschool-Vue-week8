@@ -24,8 +24,8 @@
                     <h5 class="card-title fs-4 text-center ">{{ product[0].title }}</h5>
                 </div>
                 <div class="d-flex justify-content-between align-items-end mb-3">
-                    <del style="opacity: .8;">原價 {{ product[0].origin_price }} 元</del>
-                    <strong>優惠價<u class="text-danger text-end fs-4"> {{product[0].price}} </u>元</strong>
+                    <del style="opacity: .8;"> {{ product[0].origin_price }} 元</del>
+                    <strong>特價<span class="text-danger text-end fs-4"> {{product[0].price}} </span>元</strong>
                 </div>
                 <button type="button" class="btn btn-danger text-white w-100 d-block addCart animation_hover animation_active fs-5" title="將收藏產品加入購物車"
                     :class="`hoverHightLight${index}`"
