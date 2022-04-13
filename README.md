@@ -1,5 +1,13 @@
 這是我作品的 github pages https://mizuyang.github.io/hexschool-Vue-week8/ 小巷弄甜點電商
 
+你好，我為了這次的專案做了紀錄，目前還在緩慢更新中，此次上傳為作品初版，後續會在優化。 這次作品的過程，在我的部落格中都有記錄下來 https://equatorial-alloy-23b.notion.site/150ed9e5a4624c259bfaaa0bf1f23da2
+
+專案初版的結構 https://whimsical.com/vue-CJV2RXJ2QmzUewz4bvR1dU
+
+其實在製作的過程中有做一些修改，後續會再做更新， 這是我第一次寫 RWD 還有 SCSS ，我不確定這樣做是否正確， 如果你願意給我一些想法和建議，歡迎寄信給我，我會很感謝你的， psdk55052004@gmail.com
+
+如果你有看到這邊，謝謝你，下面是我初期的專案規劃，但第一次做作品，比較混亂，並沒有完全照進度做。
+
 ## 初期列點
 
 - [x]  最終作業要註冊新的 path
