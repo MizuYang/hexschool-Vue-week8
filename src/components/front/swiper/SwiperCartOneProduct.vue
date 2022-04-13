@@ -45,6 +45,7 @@
       }"
     >
       <Swiper-slide v-for="products in products" :key="products.id">
+        <!-- 防止 hover 的圖片溢出 -->
         <div class="overflow-hidden">
           <a
             href="#"
@@ -74,7 +75,7 @@
         </div>
         <button
           type="button"
-          class="btn btn-danger w-100 fs-5 animation_hover animation_active"
+          class="btn btn-danger w-100 fs-5 animation_hover animation_active btn-opacity-none"
           @click="addCart(`${products.id}`)"
         >
           <i class="bi bi-cart4 me-2"></i>加入購物車
@@ -137,7 +138,7 @@ export default {
       setTimeout(() => {
         //* 單一產品頁面 、 購物車頁面 各自篩選的方法
         const path = this.$route.path
-        if (path === '/user/cart') {
+        if (path === '/cart') {
           this.filterCarts()
         } else {
           this.filterOneProduct()
@@ -160,9 +161,9 @@ export default {
       }
     },
     viewProduct (id) {
-      this.$router.push('/user/products')
+      this.$router.push('/products')
       setTimeout(() => {
-        this.$router.push(`/user/one_product/${id}`)
+        this.$router.push(`/one_product/${id}`)
       })
     },
     addCart (id) {

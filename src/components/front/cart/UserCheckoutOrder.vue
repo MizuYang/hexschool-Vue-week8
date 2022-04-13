@@ -122,7 +122,7 @@
   >
     <div>
       <router-link
-        to="/user/cart"
+        to="/cart"
         class="
           btn btn-secondary
           active_bigger
@@ -218,7 +218,7 @@
     </button>
   </div>
   <router-link
-    to="/user/cart"
+    to="/cart"
     class="
       btn btn-secondary
       active_bigger

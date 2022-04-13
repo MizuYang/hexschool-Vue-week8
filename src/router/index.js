@@ -2,11 +2,11 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
   {
     //* 前台路由
-    path: '/user',
+    path: '/',
     component: () => import('@/views/front/User_Main.vue'),
     children: [
       {
-        path: 'home',
+        path: '',
         component: () => import('@/views/front/type_user/User_Home.vue')
       },
       {
@@ -58,7 +58,6 @@ const routes = [
         component: () => import('@/views/front/type_order/User_OrderQuery.vue')
       }
     ]
-
   },
   {
     //* 後台路由
@@ -71,6 +70,7 @@ const routes = [
     children: [
       {
         path: 'products',
+        name: 'products',
         component: () => import('@/views/dashboard/type_products/Admin_Products.vue')
       },
       {
@@ -83,13 +83,13 @@ const routes = [
       }
     ]
   },
-  { //* 代表所有 user 下的頁面，路由錯誤都會被導向
-    path: '/user/:pathMatch(.*)*',
-    redirect: '/user/home'
+  { //* 代表所有主頁面下的頁面，路由錯誤都會被導向
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
   },
   {
-    path: '/:pathMatch(.*)*',
-    redirect: '/login'
+    path: '/admin/:pathMatch(.*)*',
+    redirect: { name: 'products' }
   }
 ]
 
@@ -98,7 +98,7 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes,
   scrollBehavior (to, from, savedPosition) {
-    if (to.fullPath.match('/user')) {
+    if (to.fullPath.match('/')) {
       return {
         top: 0 //* 切換頁面時會切換到最上面的位置
       }

@@ -18,8 +18,11 @@
     }
 }
 .card-body {
-    margin-bottom: 5%;
+    height: auto;
     border-bottom: 0.1rem solid rgba(170, 1, 1, 0.678);
+    @include xs {
+        margin-bottom: 5%;
+    }
 }
 .badge {
     position: absolute;

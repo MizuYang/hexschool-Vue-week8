@@ -1,21 +1,21 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-secondary fixed-top">
     <div class="container">
-      <router-link class="navbar-brand logoRwdHide" title="首頁" to="/user/home"
+      <router-link class="navbar-brand logoRwdHide" title="首頁" to="/"
         ><img
           src="@/assets/imageUrl/專案圖片/LOGO/橫向LOGO.png"
           alt="小巷弄甜點的logo"
           width="130"
         />
         <h1 class="title">小巷弄甜點_alley_dessert</h1></router-link>
-        <router-link class="navbar-brand  d-lg-none" title="首頁" to="/user/home"><i class="bi bi-house-door fs-1 ms-2"></i></router-link>
+        <router-link class="navbar-brand  d-lg-none" title="首頁" to="/"><i class="bi bi-house-door fs-1 ms-2"></i></router-link>
             <router-link
-              to="/user/products"
+              to="/products"
               class="nav-link productList d-block d-lg-none pb-0"
               @click="currentPage('productList')"
               ><i class="bi bi-shop fs-1"></i></router-link>
             <router-link
-              to="/user/cart"
+              to="/cart"
               class="nav-link cart position-relative d-block d-lg-none pb-0"
               @click="currentPage('cart')"
               title="購物車">
@@ -35,7 +35,7 @@
               <i class="bi bi-cart4 fs-1"></i>
             </router-link>
             <router-link
-              to="/user/favorite"
+              to="/favorite"
               class="nav-link favorite d-lg-none pb-0"
               @click="currentPage('favorite')"
               title="收藏商品頁面">
@@ -66,7 +66,7 @@
         >
           <li class="nav-item">
             <router-link
-              to="/user/home"
+              to="/"
               class="nav-link home me-4"
               @click="currentPage('home')"
             >
@@ -76,7 +76,7 @@
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/products"
+              to="/products"
               class="nav-link products"
               @click="currentPage('products')"
               >產品列表</router-link
@@ -84,7 +84,7 @@
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/questions"
+              to="/questions"
               class="nav-link qa"
               @click="currentPage('qa')"
               >常見問題</router-link
@@ -92,7 +92,7 @@
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/about"
+              to="/about"
               class="nav-link about"
               @click="currentPage('about')"
               >關於我們</router-link
@@ -100,7 +100,7 @@
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/contact"
+              to="/contact"
               class="nav-link contact"
               @click="currentPage('contact')"
               >聯絡我們</router-link
@@ -108,7 +108,7 @@
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/query_order"
+              to="/query_order"
               class="nav-link query_order"
               @click="currentPage('query_order')"
               >查詢訂單</router-link
@@ -116,7 +116,7 @@
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/favorite"
+              to="/favorite"
               class="nav-link collect"
               @click="currentPage('collect')"
               title="收藏商品頁面">
@@ -128,7 +128,7 @@
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/cart"
+              to="/cart"
               class="nav-link carts position-relative"
               @click="currentPage('carts')"
               title="購物車"

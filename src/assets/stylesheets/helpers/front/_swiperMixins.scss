@@ -16,7 +16,7 @@
     display: block;
   }
   .products_img:hover{
-      transform: scale(1.03);
+      transform: scale(1.01);
       transition: all .3s;
   }
   .tag{
@@ -48,3 +48,9 @@
   .btn.animation_active:active {
       transform: scale(1.05);
   }
+.btn-opacity-none{
+  background: #7a1c0c;
+  &:hover {
+    background: rgb(162, 17, 17);
+  }
+}

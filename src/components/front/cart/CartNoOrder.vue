@@ -6,12 +6,12 @@
       </small>
       <div class="mt-5">
           <router-link
-            to="/user/contact"
+            to="/contact"
             class="btn btn-outline-primary animation_hover active_bigger me-5"
             >聯絡我們</router-link
           >
           <router-link
-            to="/user/products"
+            to="/products"
             class="btn btn-danger animation_hover active_bigger"
             >返回購物</router-link
           >

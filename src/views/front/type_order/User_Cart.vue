@@ -47,7 +47,7 @@
               </td>
               <td>
                 <router-link
-                  :to="`/user/one_product/${product.product_id}`"
+                  :to="`/one_product/${product.product_id}`"
                   class="
                     product_img
                     card-img-top
@@ -116,12 +116,13 @@
           <input
               type="button"
               class="btn btn-outline-danger active_bigger position-absolute top-0 end-0"
+              style="font-size:1.26rem"
               @click="openDeleteModal(product, '刪除單一產品')"
               value="X"/>
           </div>
           <div>
             <router-link
-                  :to="`/user/one_product/${product.product_id}`"
+                  :to="`/one_product/${product.product_id}`"
                   class="
                     product_img product_imgRwd
                     card-img-top
@@ -165,14 +166,14 @@
       </div>
       <div class="d-lg-flex justify-content-between mb-3 finalSteps-bg d-none d-lg-block">
         <router-link
-          to="/user/products"
+          to="/products"
           class="btn btn-secondary fs-4 active_bigger animation_hover">上一頁
         </router-link>
         <div class="d-flex">
           <p class="mt-auto me-5">購買了 <span class="fs-4">{{ cartData.length }}</span> 個產品</p>
           <p class="mt-auto me-5">總金額：<span class="fs-4 fw-bold">{{ $thousandths(total) }} </span> 元</p>
           <router-link
-            to="/user/checkout"
+            to="/checkout"
             class="btn btn-danger fs-4 sendOrderBtn rwd_hide">下一步
           </router-link>
         </div>
@@ -184,11 +185,11 @@
   <p class="mt-auto me-5 finalSteps-bg w-100 mb-0">總金額：<span class="fs-4 fw-bold">{{ $thousandths(total) }} </span> 元</p>
   <router-link
       v-if="cartData.length > 0"
-      to="/user/checkout"
+      to="/checkout"
       class="btn btn-danger sendOrderBtn fs-4 w-100">下一步
   </router-link>
   <router-link
-    to="/user/products"
+    to="/products"
     class="btn btn-secondary fs-4 active_bigger animation_hover w-100 my-5">上一頁
   </router-link>
 </div>

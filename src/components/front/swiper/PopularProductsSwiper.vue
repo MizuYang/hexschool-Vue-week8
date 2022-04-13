@@ -45,6 +45,7 @@
       }"
     >
       <Swiper-slide v-for="products in popular" :key="products.id">
+        <!-- 防止 hover 的圖片溢出 -->
         <div class="overflow-hidden">
           <a
             href="#"

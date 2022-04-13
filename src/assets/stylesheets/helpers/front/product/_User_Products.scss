@@ -45,7 +45,7 @@
     color: #f1ebd8;
     border-bottom-right-radius: 50%;
     border: 0.1rem solid rgba(170, 1, 1, 0.678);
-    background: rgba(168, 90, 0, 0.562);
+    background: rgb(168, 90, 0);
     &:hover {
         font-size: 1.005rem;
         color: #f0ecc8;
@@ -103,32 +103,39 @@
         position: fixed;
         overflow-x: scroll;
         overflow-y: hidden;
-        top: 4.5rem;
+        top: 4.28rem;
         z-index: 2;
         & button{
             padding: 0;
             padding-left: 2rem;
             padding-right: 2rem;
             line-height: 1.2;
-            height: 4.4rem;
+            height: 5rem;
             font-size: 1.2rem;
             background: #000;
         }
     }
     .search{
         position: fixed;
-        top: 9rem;
+        top: 9.32rem;
         z-index: 2;
+    }
+    .search-icon{
+        font-size: 1.5rem;
     }
     .hideTool{
         position: fixed;
-        top: 9rem;
+        top: 9.32rem;
         right: 2%;
         width: 7rem;
         background: #000;
     }
     .title{
         margin-top: 4rem;
+    }
+    .fs-7-rwd{
+        font-size: 1rem!important;
+        line-height: 1.1rem!important;
     }
 }
 @include sm {
@@ -163,7 +170,7 @@
 }
 @include md {
     .category {
-        top: 8.5%;
+        top: 8.4%;
         left: 4%;
         & button{
             font-size: 1.6rem;
@@ -174,15 +181,20 @@
         margin-top: 3rem;
     }
     .search{
-        top: 16.7%;
+        top: 16.2%;
         z-index: 1100;
-        width: 41%;
-        right: 55%;
+        width: 27%;
+        right: 69%;
+    }
+    .search-icon{
+        font-size: 1.5rem;
     }
     .hideTool{
-        top: 8.5%;
+        top: 8.4%;
         right: 3%;
-        width: 4rem;
+        width: 5rem;
+        height: 5rem;
+        font-size: 1.2rem;
     }
 }
 @include lg {
@@ -199,10 +211,13 @@
     .search{
         top: 8.5%;
         width: 41%;
-        right: -10%;
+        right: -11%;
     }
     .hideTool{
-        right: 1%;
+        right: 0%;
+        font-size: 1rem;
+        height: 4rem;
+        width: 4rem;
     }
 }
 @include xl {
@@ -224,38 +239,58 @@
 }
 @media (min-width: 1024px) {
     .category {
-        top: 5rem;
+        top: 4.9rem;
         left: -6.5%;
     }
     .search{
-        top: 5.5rem;
-        left: 70%;
+        top: 5.4rem;
+        height: 4rem;
+        left: 73%;
+    }
+    .search-icon{
+        font-size: 2.5rem;
+    }
+    .searchText.searchText{
+        width: 39%;
     }
     .hideTool{
-        top: 5.5rem;
-        right: 2%;
+        top: 5.4rem;
+        right: 0%;
     }
 }
 @media (min-width: 1536px) {
     .category {
-        top: 5rem;
+        top: 4.85rem;
         left: -3.2%;
     }
     .search{
-        top: 5.5rem;
-        left: 78.3%;
+        top: 5.35rem;
+        left: 78%;
+    }
+    .search-icon{
+        font-size: 2.6rem;
+    }
+    .searchText.searchText{
+        width: 26%;
     }
     .hideTool{
-        top: 5.5rem;
+        top: 5.3rem;
         right: 2.5%;
     }
 }
 @media (min-width: 2752px) {
     .category {
+        top: 4.87rem;
         left: 16.2%;
     }
     .search{
         left: 65.6%;
+    }
+    .search-icon{
+        font-size: 2.7rem;
+    }
+    .searchText.searchText{
+        width: 14.5%;
     }
     .hideTool{
         right: 23.5%;
@@ -263,12 +298,15 @@
 }
 @media (min-width: 3440px) {
     .category {
-        top: 5rem;
+        top: 4.88rem;
         left: 21%;
     }
     .search{
         top: 5.5rem;
         left: 62.5%;
+    }
+    .searchText.searchText{
+        width: 10.5%;
     }
     .hideTool{
         top: 5.5rem;
@@ -277,14 +315,14 @@
 }
 @media (max-width:376px) {
     .category {
-        top: 10.5%;
+        top: 10.1%;
     }
     .search{
-        top: 21.3%;
+        top: 22.1%;
     }
     .hideTool{
         position: fixed;
-        top: 21.3%;
+        top: 22.1%;
         right: 2%;
         width: 7rem;
     }
@@ -292,6 +330,7 @@
 .card-body {
     border-left: 0.1rem solid rgba(170, 1, 1, 0.678);
     border-right: 0.1rem solid rgba(170, 1, 1, 0.678);
+    height: 29%;
 }
 .card-footer {
     border-right: 0.1rem solid rgba(170, 1, 1, 0.678);
@@ -334,4 +373,12 @@
     top: -20%;
     right: 13%;
 }
-
+.category{
+    background: #000;
+}
+.search{
+    background: #000;
+    @media (min-width: 1024px) {
+        background: none;
+    }
+}

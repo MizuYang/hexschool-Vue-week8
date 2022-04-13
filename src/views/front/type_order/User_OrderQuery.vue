@@ -31,7 +31,7 @@
         <div class="col-12 col-xxl-4">
           <ul class="list-unstyled p-5 border  h-100">
             <li><h3 class="border-bottom pb-2 ">訂單資料</h3></li>
-            <li class="mx-auto">訂單編號：<p style="width:250px">{{ queryOrder[0]?.id }}</p></li>
+            <li class="mx-auto">訂單編號：<p style="font-size:1.2rem">{{ queryOrder[0]?.id }}</p></li>
             <li>購買日期：{{ create_at }}</li>
             <li>付款方式：{{ order_user.pay_method }}</li>
             <li class="mb-3">
@@ -51,7 +51,7 @@
                 class="btn btn-danger"
                 title="前往結帳流程"
                 @click="
-                  this.$router.push(`/user/order_confirm/${queryOrder[0]?.id}`)
+                  this.$router.push(`/order_confirm/${queryOrder[0]?.id}`)
                 "
                 v-if="is_pay === false"
               >

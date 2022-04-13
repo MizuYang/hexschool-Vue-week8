@@ -12,7 +12,7 @@
             <li><p>感謝所有支持者們給予我們的意見反應與回饋。</p></li>
             <li><p>您的寶貴建議是讓我們進步的最大動力。</p></li>
             <li><p>您也可以先參考常見問題，看是否能解決您的問題。</p></li>
-            <li><button type="button" class="btn btn-outline-primary" @click="$router.push('/user/questions')">常見問題</button></li>
+            <li><button type="button" class="btn btn-outline-primary" @click="$router.push('/questions')">常見問題</button></li>
         </ul>
     </div>
   </div>

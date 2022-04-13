@@ -30,7 +30,7 @@
           <button class="btn btn-lg btn-outline-primary btn-block w-50" type="submit">
             登入
           </button>
-          <button class="btn btn-lg btn-outline-primary btn-block  w-50" type="submit">
+          <button class="btn btn-lg btn-outline-primary btn-block  w-50" type="button" @click="$router.push('/')">
             取消
           </button>
         </div>

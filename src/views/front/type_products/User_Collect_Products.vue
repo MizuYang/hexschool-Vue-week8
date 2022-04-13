@@ -8,7 +8,7 @@
         <button type="button" @click.prevent="goToOneProduct(`${product[0].id}`,$event)" class="card text-primary bg-dark col mb-md-4 d-block"
           v-for="(product, index) in collectData" :key="product.id"
           @mouseover="hightLight(`${index}`, 'open')" @mouseleave="hightLight(`${index}`, 'close')">
-            <router-link  :to="`/user/one_product/${product[0].id}`" class="product_img card-img-top animation_hover d-block text-decoration-none img-fluid" title="查看產品細節"
+            <router-link  :to="`/one_product/${product[0].id}`" class="product_img card-img-top animation_hover d-block text-decoration-none img-fluid" title="查看產品細節"
             :style="{ backgroundImage: `url(${product[0].imageUrl})` }">
             <img class="product_info img-fluid" alt="顯示產品細節" src="@/assets/imageUrl/images/product_info.png">
             <span class="badge bg-danger p-1"  v-if="product[0].popular > 2">熱門商品</span>
@@ -19,7 +19,7 @@
                 <i class="bi bi-heartbreak-fill heartbreak" :class="`heartbreak${index}`"></i>
             </button>
             </router-link>
-            <div class="card-body mb-0 w-100">
+            <div class="card-body w-100">
                 <div>
                     <h5 class="card-title fs-4 text-center ">{{ product[0].title }}</h5>
                 </div>
@@ -54,7 +54,7 @@
                   mb-10
                 "
                 title="返回購物"
-                @click="$router.push('/user/products')"
+                @click="$router.push('/products')"
               >
                 <i class="bi bi-cart-check-fill"></i>
                 返回購物
@@ -153,7 +153,7 @@ export default {
       if (btnCheck) {
         return '點擊的是按鈕'
       } else if (!btnCheck) {
-        this.$router.push(`/user/one_product/${id}`)
+        this.$router.push(`/one_product/${id}`)
       }
     },
     hightLight (index, status) {

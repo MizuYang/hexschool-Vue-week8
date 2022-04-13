@@ -26,7 +26,7 @@
                     fs-5
                     mb-2
                   "
-                  to="/user/about"
+                  to="/about"
                   title="查看品牌故事"
                   @click="currentPage('about')"
                   >想聽他們的故事</router-link
@@ -71,7 +71,7 @@
        <div class="d-flex align-items-center justify-content-center">
           <i class="bi bi-arrow-right fs-2 me-4 arrowLeft arrowMoveLeft"></i>
           <router-link
-          to="/user/products"
+          to="/products"
           class="btn btn-outline-primary  animation_hover fs-5 relative animationHightLight"
           @click="currentPage('products')"
           >
@@ -95,7 +95,7 @@
   </div>
 <div class="container text-center mb-5">
     <router-link
-        to="/user/products"
+        to="/products"
         class="btn btn-outline-primary animation_hover fs-5"
         @click="currentPage('products')"
       >
@@ -126,7 +126,7 @@ export default {
       emitter.emit('currentPage', page)
     },
     toProductsCategory (category) {
-      this.$router.push('/user/products')
+      this.$router.push('/products')
       setTimeout(() => {
         emitter.emit('toProductsCategory', category)
         emitter.emit('currentPage', 'products')

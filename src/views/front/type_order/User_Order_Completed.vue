@@ -31,7 +31,7 @@
               animation_hover
             "
             title="聯絡我們"
-            @click="$router.push('/user/contact')"
+            @click="$router.push('/contact')"
           >
             <i class="bi bi-envelope-fill"></i>
             聯絡我們
@@ -47,7 +47,7 @@
               animation_hover
             "
             title="返回產品列表"
-            @click="$router.push('/user/products')"
+            @click="$router.push('/products')"
           >
             <i class="bi bi-cart4"></i>
             繼續購物
@@ -127,7 +127,7 @@ export default {
       setTimeout(() => {
         this.emitter.emit('queryOrder', orderId)
       }, 1000)
-      this.$router.push('/user/query_order')
+      this.$router.push('/query_order')
     }
   },
 

@@ -14,7 +14,7 @@
         </ul>
       </div>
       <div>
-        <router-link class="navbar-brand logo mx-auto" to="/user/home"
+        <router-link class="navbar-brand logo mx-auto" to="/"
           ><img
             src="@/assets/imageUrl/images/LOGO_PNG_Big-removebg-preview.png"
             alt="小巷弄甜點的logo" class="animation_hover "
@@ -24,10 +24,10 @@
       </div>
       <div class="text-center">
          <div class="d-flex flex-sm-wrap menu">
-              <router-link to="/user/products" class="nav-link text-center animation_hover" @click="current('productList')">產品列表</router-link>
-              <router-link to="/user/questions" class="nav-link text-center animation_hover" @click="current('qa')">常見問題</router-link>
-              <router-link to="/user/about" class="nav-link text-center animation_hover" @click="current('about')">關於我們</router-link>
-              <router-link to="/user/contact" class="nav-link text-center animation_hover" @click="current('contact')">聯絡我們</router-link>
+              <router-link to="/products" class="nav-link text-center animation_hover" @click="current('productList')">產品列表</router-link>
+              <router-link to="/questions" class="nav-link text-center animation_hover" @click="current('qa')">常見問題</router-link>
+              <router-link to="/about" class="nav-link text-center animation_hover" @click="current('about')">關於我們</router-link>
+              <router-link to="/contact" class="nav-link text-center animation_hover" @click="current('contact')">聯絡我們</router-link>
               <router-link to="/login" class="nav-link text-center animation_hover" ><i class="bi bi-key"></i>企業登入</router-link>
           </div>
           <div>

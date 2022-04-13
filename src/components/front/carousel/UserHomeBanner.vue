@@ -11,7 +11,7 @@
           <h2 class="ms-9 mb-4">永遠最甜蜜 ❞</h2>
           <div>
             <router-link
-              to="/user/products"
+              to="/products"
               class="btn btn-outline-primary fs-4 animation_hover animation_active fingerRelative btnActive"
               @click="(this.emitter.emit('currentPage', 'products'))"
               >前往商品<i class="bi bi-hand-index finger fingerActiveAnimation"></i></router-link
@@ -25,7 +25,7 @@
           <h2 class="ms-9 mb-4">永遠最甜蜜 ❞</h2>
           <div>
             <router-link
-              to="/user/products"
+              to="/products"
               class="btn btn-outline-primary fs-4 animation_hover animation_active fingerRelative btnActive"
               @click="(this.emitter.emit('currentPage', 'products'))"
               >前往商品<i class="bi bi-hand-index finger fingerActiveAnimation"></i></router-link
@@ -39,7 +39,7 @@
           <h2 class="ms-9 mb-4">永遠最甜蜜 ❞</h2>
           <div>
             <router-link
-              to="/user/products"
+              to="/products"
               class="btn btn-outline-primary fs-4 animation_hover animation_active fingerRelative btnActive"
               @click="(this.emitter.emit('currentPage', 'products'))"
               >前往商品<i class="bi bi-hand-index finger fingerActiveAnimation"></i></router-link

@@ -33,11 +33,11 @@ export default {
 
   methods: {
     change_time_line () {
-      if (this.timelineRoutePath === '/user/cart') {
+      if (this.timelineRoutePath === '/cart') {
         document.querySelector('.finish_2').classList.remove('timelineStyle')
         document.querySelector('.finish_3').classList.remove('timelineStyle')
         document.querySelector('.finish_4').classList.remove('timelineStyle')
-      } else if (this.timelineRoutePath === '/user/checkout') {
+      } else if (this.timelineRoutePath === '/checkout') {
         document.querySelector('.finish_2').classList.add('timelineStyle')
         document.querySelector('.finish_3').classList.remove('timelineStyle')
         document.querySelector('.finish_4').classList.remove('timelineStyle')
@@ -45,7 +45,7 @@ export default {
         document.querySelector('.finish_2').classList.add('timelineStyle')
         document.querySelector('.finish_3').classList.add('timelineStyle')
         document.querySelector('.finish_4').classList.remove('timelineStyle')
-      } else if (this.timelineRoutePath === '/user/order_completed') {
+      } else if (this.timelineRoutePath === '/order_completed') {
         document.querySelector('.finish_2').classList.add('timelineStyle')
         document.querySelector('.finish_3').classList.add('timelineStyle')
         document.querySelector('.finish_4').classList.add('timelineStyle')

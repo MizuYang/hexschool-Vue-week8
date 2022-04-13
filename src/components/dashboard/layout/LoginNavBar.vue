@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-secondary fixed-top">
     <div class="container">
-      <router-link class="navbar-brand logo" title="首頁" to="/user/home"
+      <router-link class="navbar-brand logo" title="首頁" to="/"
         ><img
           src="https://github.com/MizuYang/hexschool-Vue-week8/blob/main/src/assets/imageUrl/%E5%B0%88%E6%A1%88%E5%9C%96%E7%89%87/LOGO/%E6%A9%AB%E5%90%91LOGO.png?raw=true"
           alt="小巷弄甜點的logo"
@@ -34,7 +34,7 @@
         >
           <li class="nav-item">
             <router-link
-              to="/user/home"
+              to="/"
               class="nav-link me-4"
             >
               <i class="bi bi-house-door"></i>
@@ -43,35 +43,35 @@
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/products"
+              to="/products"
               class="nav-link"
               >產品列表</router-link
             >
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/questions"
+              to="/questions"
               class="nav-link"
               >常見問題</router-link
             >
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/about"
+              to="/about"
               class="nav-link"
               >關於我們</router-link
             >
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/contact"
+              to="/contact"
               class="nav-link"
               >聯絡我們</router-link
             >
           </li>
           <li class="nav-item me-4">
             <router-link
-              to="/user/query_order"
+              to="/query_order"
               class="nav-link"
               >查詢訂單</router-link
             >

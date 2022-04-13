@@ -138,7 +138,7 @@ export default {
       this.isLoading = true
       setTimeout(() => {
         this.$httpMessageState(true, '送出內容')
-        this.$router.push('sendMessage')
+        this.$router.push('/sendMessage')
         this.isLoading = false
       }, 1500)
     }

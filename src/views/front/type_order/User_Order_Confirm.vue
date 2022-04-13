@@ -194,7 +194,7 @@ export default {
         setTimeout(() => {
           this.emitter.emit('get_orderId', this.orderId) //* 給完成訂單頁面訂單的ID
         }, 1000)
-        this.$router.push('/user/order_completed')
+        this.$router.push('/order_completed')
       }).catch((err) => {
         this.isLoading = false
         this.$httpMessageState(err.response.success, '付款')

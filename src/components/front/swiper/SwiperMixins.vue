@@ -40,9 +40,9 @@ export default {
       })
     },
     viewProduct (id) {
-      this.$router.push('/user/products')
+      this.$router.push('/products')
       setTimeout(() => {
-        this.$router.push(`/user/one_product/${id}`)
+        this.$router.push(`/one_product/${id}`)
       })
     },
     addCart (id) {

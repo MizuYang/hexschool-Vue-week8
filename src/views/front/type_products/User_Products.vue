@@ -57,15 +57,16 @@
         </button>
         <button
           type="button"
-          class="btn btn-outline-primary animation_active mt-md-0"
+          class="btn btn-outline-primary animation_active mt-md-0 fs-7-rwd"
           @click="priceSort"
           :class="{ activeCategoryStatus : category['價格低到高'] }">
-          <i class="bi bi-cash-coin"></i> ↓↑
+          <i class="bi bi-cash-coin"></i>高到低
         </button>
       </div>
       <div class="text-end mb-sm-5 mb-3 search d-flex">
-      <button type="button" class="btn btn-outline-primary hideTool" @click="categoryToggle=!categoryToggle">隱藏工具</button>
-        <label for="searchText"><i class="bi bi-search me-2 bg-dark px-1 fs-4 border" v-if="!categoryToggle"></i></label>
+      <button type="button" class="btn btn-outline-primary hideTool" v-if="!categoryToggle" @click="categoryToggle=!categoryToggle">隱藏工具</button>
+      <button type="button" class="btn btn-outline-primary hideTool" v-if="categoryToggle" @click="categoryToggle=!categoryToggle">開啟工具</button>
+        <label for="searchText"><i class="bi bi-search me-2 bg-dark px-1 search-icon" v-if="!categoryToggle"></i></label>
         <input
           type="search"
           id="searchText"
@@ -87,7 +88,7 @@
           v-for="(product, index) in products"
           :key="product.id">
           <router-link
-            :to="`/user/one_product/${product.id}`"
+            :to="`/one_product/${product.id}`"
             class="
               card-img-top
               animation_hover
@@ -127,7 +128,7 @@
             <div class="d-flex justify-content-between align-items-center">
               <h5 class="card-title fs-4 border-bottom">{{ product.title }}</h5>
               <span class="badge bg-danger p-1" v-if="product.popular > 2"
-                >熱門商品</span>
+                >熱門</span>
             </div>
             <p class="card-text">
               {{ product.description }}
@@ -285,7 +286,7 @@ export default {
       if (btnCheck) {
         return '點擊的是按鈕'
       } else if (!btnCheck) {
-        this.$router.push(`/user/one_product/${id}`)
+        this.$router.push(`/one_product/${id}`)
       }
     },
     hightLight (index, status) {
