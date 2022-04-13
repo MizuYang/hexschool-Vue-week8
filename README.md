@@ -1,3 +1,5 @@
+這是我作品的 github pages https://mizuyang.github.io/hexschool-Vue-week8/ 小巷弄甜點電商
+
 ## 初期列點
 
 - [x]  最終作業要註冊新的 path
